@@ -26,5 +26,17 @@ public class DataTypeApp {
 		System.out.println("a2 = "+a2);
 		System.out.println("a3 = "+a3);
 		System.out.println("a4 = "+a4);
+	
+		long a5=100;
+		System.out.println("a5 ="+a5);
+		System.out.println("==================================================");
+	
+	
+	
+	
+	
+	
+	
+	
 	}
 }
