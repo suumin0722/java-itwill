@@ -4,6 +4,6 @@ public class HelloWorld {
 	 public static void main(String[ ] args) {
 		 System.out.println("안녕하세요.");
 		  System.out.print("Hello, World");
-		  System.out.println("반갑습니다.");
+		  System.out.println("반갑습니다.");/* 출력매소드 호출 */
 	 }
 }
