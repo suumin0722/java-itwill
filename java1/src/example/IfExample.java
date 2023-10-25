@@ -5,7 +5,12 @@ public class IfExample {
 		//변수에 저장된 문자값을 출력하세요.
 		//단, 변수에 저장된 문자값이 소문자인 경우 대문자로 변환하여 출력하세요.
 		char mun='x';
-
+		
+		if(mun>='a'&& mun <= 'z') {
+			//mun=(char)(mun-32); =>mun이 int로 자동형변환 됌
+			mun-=32;//++, --, +=, -= 는 형변환이 일어나지 않음
+		}
+		
 		System.out.println("mun = "+mun);
 		System.out.println("============================================================");
 		//변수에 저장된 정수값이 4의 배수인지 아닌지를 구분하여 출력하세요.
@@ -26,14 +31,61 @@ public class IfExample {
 		// => 평균은 소숫점 두자리까지만 출력하고 나머지는 절삭 처리 하세요.
 		
 		String name ="홍길동";
-		int kor=89, eng=93, mat=95;
+		int kor=89, eng=193, mat=195;
 		
+		/*
+		//입력값 검증(Validation)
+		if(kor>100 | kor<0 | eng>100 | eng<0 | mat>100 | mat<0) {
+			System.out.println("[에러]0~100 범위를 벗어난 비정상적인 점수가 입력되었습니다.");
+			System.exit(0);
+		}
+		*/
+		
+		//검증 결과를 저장하기 위한 변수
+		// => false : 검증 성공, true : 검증 실패
+		boolean valid=false;
+		
+		if(kor>100 | kor<0) {
+			System.out.println("[에러]0~100 범위를 벗어난 국어 점수가 입력되었습니다.");
+			//System.exit(0);
+			valid=true;
+		}
+		
+		if(eng>100 | eng<0) {
+			System.out.println("[에러]0~100 범위를 벗어난 영어 점수가 입력되었습니다.");
+			//System.exit(0);
+			valid=true;
+		}
+		
+		if(mat>100 | mat<0) {
+			System.out.println("[에러]0~100 범위를 벗어난 수학 점수가 입력되었습니다.");
+			//System.exit(0);
+			valid=true;
+		}
+	
+		//검증이 실패된 경우 프로그램 종료
+		if(valid) {
+			System.exit(0);
+		}
+		
+	
 		int tot=kor+eng+mat;
 		double ave=tot/3.;
 		
-		if(kor>=0 && kor<=100 && eng>=0 && eng<=100 && mat>=0 && mat <=100) {
-			String grade;
+		String grade="";
+		
+			if(tot>=90) {
+				grade = "A";
+			} else if(tot >= 80) {
+				grade = "B";
+			} else if(tot >= 70) {
+				grade = "C";
+			} else if(tot >= 60) {
+				grade = "D";
+			}else {
+				grade = "F";
 			
+			/*
 			switch((int)ave/10) {
 			case 10:
 			case 9: grade="A"; break;
@@ -42,13 +94,13 @@ public class IfExample {
 			case 6: grade="D"; break;
 			default: grade="F";
 			}
+			*/
 			
-			System.out.println(((int)(ave*100)/100.)+"학점");
-		} else {
-			System.exit(0);
-	
+		} 
+			System.out.println("이름 ="+name+", 총점 = "+tot+ ", 평균 = "
+					+((int)(ave*100)/100.)+"점, 학점 = "+grade);
 		System.out.println("============================================================");
 		}
-	}
+	
 }
 
