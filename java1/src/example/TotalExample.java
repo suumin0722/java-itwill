@@ -20,10 +20,16 @@ public class TotalExample {
 			System.out.print("정수값 입력[0:종료] >> ");
 			int user=scanner.nextInt();
 			
+			/*
 			if(user != 0) {
 				sum+=user;
 			} else break;
+			*/
+			if(user == 0) break;
+			sum+=user;
 		}	
 		System.out.println("[결과]합계 = "+sum);
+		
+		scanner.close();
 	}
 }

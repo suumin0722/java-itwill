@@ -9,11 +9,11 @@ public class ArrayExample {
 		
 		int tot=0;
 		
-		for(int score : age) {
-			tot+=score;
+		for(int ages : age) {
+			tot+=ages;
 		}
-		double avg=(double)tot/age.length;
-		System.out.println("나이 평균 = " + ((int)(avg*10))/10.0);
+		int avg=tot/age.length;
+		System.out.println("나이 평균 = " + avg+"살");
 
 		System.out.println("===============================================================");
 		//배열에 저장된 사람들의 나이를 연령별로 구분하여 인원수를 계산하여 출력하세요.
@@ -22,11 +22,51 @@ public class ArrayExample {
 		//    ...
 		//    60대 = 1명
 		
+		/*
+		int count10=0, count20=0, count30=0, count40=0, count50=0, count60=0;
+		
+		for(int ages : age) {
+			if(ages>=10 && ages <20) 
+				count10++;
+			else if(ages>=20 && ages <30) 
+				count20++;
+			else if(ages>=30 && ages <40) 
+				count30++;
+			else if(ages>=40 && ages <50) 
+				count40++;
+			else if(ages>=50 && ages <60) 
+				count50++;
+			else count60++;
+		}	
+		System.out.println("10 대 = "+count10+"명");
+		System.out.println("10 대 = "+count20+"명");
+		System.out.println("10 대 = "+count30+"명");
+		System.out.println("10 대 = "+count40+"명");
+		System.out.println("10 대 = "+count50+"명");
+		System.out.println("10 대 = "+count60+"명");
+		*/
 		
 		
+		int[] count=new int[6];
 		
+		for(int ages : age) {
+			/*
+			switch(ages / 10) {
+			case 1: count[0]++; break;
+			case 2: count[1]++; break;
+			case 3: count[2]++; break;
+			case 4: count[3]++; break;
+			case 5: count[4]++; break;
+			case 6: count[5]++; break;
+			}
+			*/
+			count[ages/10 - 1]++;
+		}
 		
-
+		for(int i=0; i<count.length;i++) {
+			System.out.println((i+1)*10+"대 인원수 = "+count[i]);
+		}
+		
 		System.out.println("===============================================================");
 	}
 }

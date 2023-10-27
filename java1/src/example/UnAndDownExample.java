@@ -14,13 +14,17 @@ public class UnAndDownExample {
 		Scanner scanner = new Scanner(System.in);
 
 		int computer = (int) (Math.random() * 100 + 1);
-		int user;
+		
+		//정답 상태를 저장하기 위한 변수
+		// => false : 정답을 맞추지 못한 상태, true : 정답을 맞춘 상태
+		boolean result=false;
 
 		for (int i = 1; i <= 10; i++) {
+			int user;
 			while (true) {
-				System.out.print("[입력] >> ");
+				System.out.print("["+i+"번째 입력] >> ");
 				user = scanner.nextInt();
-				if (user > 1 && user < 100)
+				if (user > 0 && user < 100)
 					break;
 				System.out.println("[에러]1~100 범위의 숫자 중 하나를 선택하여 입력해 주세요.");
 			}
@@ -32,13 +36,17 @@ public class UnAndDownExample {
 			} else {
 				System.out.println("맞췄습니다! [입력 횟수] = " + i);
 				break;
-			}
-			if (i == 10) {
+			} 
+				if (i == 10) {
 				System.out.println("10번의 기회가 끝났습니다. 정답은 = "+computer);
+				result=true;//변수에 정답을 맞춘 상태값을 저장
 			}
-
+			
+			
 		}
-		System.out.println();
+		
+		
+		scanner.close();
 	}
 
 }
