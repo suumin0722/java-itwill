@@ -13,39 +13,43 @@ public class UnAndDownExample {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 
-		int computer = (int) (Math.random() * 100 + 1);
-		
-		//정답 상태를 저장하기 위한 변수
+		// 1~100 범위의 정수 난수값을 제공받아 변수에 저장
+		int dap = (int) (Math.random() * 100) + 1;
+
+		// 정답 상태를 저장하기 위한 변수
 		// => false : 정답을 맞추지 못한 상태, true : 정답을 맞춘 상태
-		boolean result=false;
+		boolean result = false;
 
+		// 키보드로 정수값을 입력받아 난수값을 맞추기 위한 기회를 10번 제공하기 위한 반복문
 		for (int i = 1; i <= 10; i++) {
-			int user;
+			int input;// 키보드 입력값을 저장하기 위한 변수
+
+			// 키보드 입력값을 검증하기 위한 반복문
 			while (true) {
-				System.out.print("["+i+"번째 입력] >> ");
-				user = scanner.nextInt();
-				if (user > 0 && user < 100)
-					break;
-				System.out.println("[에러]1~100 범위의 숫자 중 하나를 선택하여 입력해 주세요.");
+				System.out.print(i + "번째 정수값 입력[0~100] >> ");
+				// 키보드 입력값을 제공받아 변수에 저장
+				input = scanner.nextInt();
+				if (input >= 1 && input <= 100)
+					break;// 정상적인 값이 입력된 경우 반복문 종료
+				System.out.println("[에러]1~100 범위의 정수값만 입력 가능합니다.");
 			}
 
-			if (computer < user) {
-				System.out.println("큰값 입력");
-			} else if (computer > user) {
-				System.out.println("작은값 입력");
+			// 난수값과 키보드 입력값을 비교하여 결과 출력
+			if (dap == input) {
+				System.out.println("[메세지]축하합니다." + i + "번만에 맞췄습니다.");
+				result = true;// 정답을 맞춘 변수에 저장된 상태값을 변경
+				break;// 난수값을 맞추기 위한 반복문 종료
+			} else if (dap > input) {
+				System.out.println("[결과]" + input + "보다 큰 값을 입력해 보세요.");
 			} else {
-				System.out.println("맞췄습니다! [입력 횟수] = " + i);
-				break;
-			} 
-				if (i == 10) {
-				System.out.println("10번의 기회가 끝났습니다. 정답은 = "+computer);
-				result=true;//변수에 정답을 맞춘 상태값을 저장
+				System.out.println("[결과]" + input + "보다 작은 값을 입력해 보세요.");
 			}
-			
-			
 		}
-		
-		
+
+		if (!result) {// 정답을 맞추지 못한 상태인 경우
+			System.out.println("[메세지]정답을 맞추지 못했군요. 정답은 [" + dap + "]입니다.");
+		}
+
 		scanner.close();
 	}
 
