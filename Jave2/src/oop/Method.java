@@ -2,7 +2,7 @@ package oop;
 
 //메소드(Method) : 클래스 내부에 선언한 함수 - 멤버함수
 // => 필드(멤버변수)를 사용하여 필요한 기능을 제공하기 위한 명령의 모임
-// => 메소드 내부에서만 Java 명령을 작성하여 실행
+// => 메소드 내부에서만 Java 명령을 작성하여 실행(외부에는 절대 작성할 수 없음!)
 
 //함수(Function) : 매개변수로 값을 제공받아 연산 처리하여 반환하는 명령의 모임
 
@@ -34,61 +34,120 @@ package oop;
 //형식) return 반환값; => 메소드의 반환형은 반환되는 값의 자료형으로 작성
 
 //객체 생성을 목적으로 작성된 클래스
-public class Method{
+public class Method {
+	// 기본생성자(default constructor)가 만들어져 있음.
+
 	void displayOne() {
 		System.out.println("Method 클래스에 선언된 displayOne() 메소드 호출");
 	}
+
 	void displayTwo() {
 		System.out.println("Method 클래스에 선언된 displayTwo() 메소드 호출");
+	}
 
-	}
 	void printOne() {
-		int total=0;
-		for(int i=1; i<=100; i++) {
-			total+=i;
+		int total = 0;
+		for (int i = 1; i <= 100; i++) {
+			total += i;
 		}
-		System.out.println("1~100 범위의 정수들의 합계 = "+total);
-		
+		System.out.println("1~100 범위의 정수들의 합계 = " + total);
 	}
+
 	void printTwo(int number) {
-		//매개변수에 저장된 값에 대한 검증
-		if(number<=0) {
+		// 매개변수에 저장된 값에 대한 검증
+		if (number <= 0) {
 			System.out.println("[에러]매개변수에는 0보다 큰 값이 저장되어야 됩니다.");
-			return;//메소드 강제 종료
+			return;// 메소드 강제 종료
 		}
-		
-		int total=0;
-		for(int i=1; i<=number; i++) {
-			total+=i;
+
+		int total = 0;
+		for (int i = 1; i <= number; i++) {
+			total += i;
 		}
-		System.out.println("1~"+number+ "범위의 정수들의 합계 = "+total);
+		System.out.println("1~" + number + "범위의 정수들의 합계 = " + total);
 	}
+
 	void printThree(int start, int end) {
-		if(start > end) {
-			int temp=start;
-			start=end;
-			end=temp;
+		if (start > end) {
+			int temp = start;
+			start = end;
+			end = temp;
 		}
-		
-		int total=0;
-		for(int i=start; i<=end; i++) {
-			total+=i;
+
+		int total = 0;
+		for (int i = start; i <= end; i++) {
+			total += i;
 		}
-		System.out.println(start+"~"+end+ "범위의 정수들의 합계 = "+total);
+		System.out.println(start + "~" + end + "범위의 정수들의 합계 = " + total);
 	}
-	
+
 	int returnTotal(int start, int end) {
-			if(start > end) {
-				int temp=start;
-				start=end;
-				end=temp;
-			}
-			
-			int total=0;
-			for(int i=start; i<=end; i++) {
-				total+=i;
-			}
-			return total;
-	
+		if (start > end) {
+			int temp = start;
+			start = end;
+			end = temp;
+		}
+
+		int total = 0;
+		for (int i = start; i <= end; i++) {
+			total += i;
+		}
+		return total;
 	}
+
+	// 매개 변수로 전달받은 정수값을 홀수와 짝수로 구분하여 반환하는 메소드
+	// => false 반환: 홀수, true 반환 : 짝수
+	boolean isOddEven(int number){// is로 시작하는 메소드는 '대체로' boolean 반환함(100%는 아님~ )
+		if(number % 2!= 0){
+			return false;
+		} else {
+			return true;
+		}	
+	}
+	
+	
+	//배열을 반환하는 메소드
+	int[] returnArray() {
+		/*
+		int[] array={10, 20, 30, 40, 50};
+		return array;//참조변수에 저장된 배열의 메모리 주소 반환 - 배열 반환
+		*/
+		
+		//배열을 참조변수에 저장하지 않고 배열을 생성하여 반환
+		//return {10, 20, 30, 40, 50};//엄밀히 말하면 배열이 아니고 상수임(=자료형 아님)
+		//=> heap 영역이 아닌 메소드 영역에 만들어짐, 에러가 발생
+		return new int[]{10, 20, 30, 40, 50};
+	}
+	
+	
+	
+	//매개변수로 배열을 전달받아 모든 배열 요소값의 합계를 계산하여 반환하는 메소드
+	int sumOne(int[] array) {//배열의 메모리 주소를 전달받아 매개변수(참조변수)에 저장
+		int total=0;
+		for(int su : array) {
+			total += su;
+		}
+		return total;
+		
+	}
+	//매개변수 생략 기호(...)를 이용하여  매개변수를 작성하여
+	//0개 이상의 값을 전달받아 합계를 계산하여 반환하는 메소드'
+	// =>0개 이상의 값을 전달받아 저장한 매개변수는 메소드 내부에서는 배열과 동일하게 처리
+	int sumTwo(int... number) {
+		int total=0;
+		for(int su : number) {
+			total += su;
+		}
+		return total;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

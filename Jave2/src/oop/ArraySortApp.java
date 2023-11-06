@@ -58,11 +58,5 @@ public class ArraySortApp {
 		System.out.println("정렬 후 >> "+Arrays.toString(array));
 		
 		
-		
-		
-		
-		
-		
-		
 	}
 }
