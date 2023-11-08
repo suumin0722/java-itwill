@@ -12,6 +12,7 @@ public class OuterOneApp {
 		//InnerOne innerOne=new InnerOne(200);
 		
 		//외부클래스로 생성된 객체를 이용하면 객체 내부클래스의 생성자를 호출하여 객체 생성 가능
+		//이렇게 쓰는 일은 없다고 보면 됌. 내부클래스는 내부에서만 사용하려고 만든거기 때문에.. 
 		InnerOne innerOne=outerOne.new InnerOne(200);
 		innerOne.innerDisplay();
 		System.out.println("========================================================");

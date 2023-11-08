@@ -8,6 +8,22 @@ public class AnonymousApp {
 		// => 인터페이스를 상속받은 자식클래스의 생성자를 이용해 객체를 생성해 인터페이스 참조변수에 저장 가능
 		//Anonymous anonymous=new Anonymous();
 		
+		/*
+		//인터페이스를 상속받은 자식클래스 작성 - 로컬 클래스(Local Class)
+		class Test implements Anonymous{
+			//기본생성자가 자동적으로 만들어져 있는거임
+			@Override
+			public void display() {
+				System.out.println("익명 내부클래스의 오버라이드 메소드 호출");
+			}
+		}
+		
+		// => 인터페이스를 상속받은 자식클래스의 기본 생성자를 이용해 객체를 생성해 인터페이스 참조변수에 저장 가능
+		Anonymous anonymous=new Test();
+		anonymous.display();
+		*/
+		
+		
 		//인터페이스를 상속받은 이름이 없는 자식클래스의 기본 생성자를 호출하여 객체를 생성해
 		//인터페이스 참조변수에 저장
 		// => 인터페이스를 상속받은 이름이 없는 자식클래스 - 익명 내부클래스
@@ -16,7 +32,6 @@ public class AnonymousApp {
 		// => 익명 내부 클래스로 메소드에서 사용될 하나의 객체만을 생성할 목적으로 사용
 		// => 익명 내부클래스는 반드시 추상클래스 또는 인터페이스의 모든 추상메소드를
 		//반드시 오버라이드 선언
-		
 		Anonymous anonymous=new Anonymous() {
 			@Override
 			public void display() {
