@@ -8,13 +8,14 @@ public class StringApp {
 	public static void main(String[] args) {
 		//문자열을 " " 기호를 사용하여 리터럴로 표현하면 JVM은 자동으로 메모리(MethodArea)에 문자열이 저장된 
 		//String 객체 생성 - 상수 객체
-		// =>메모리(MethodArea)에는 같은 값을 가진 상수객체를 생성 불가능
+		// =>메모리(MethodArea)에는 같은 문자열이 저장된 String 객체(상수객체) 생성 불가능
 
 		String str1="ABC";
 		
 		//String.toString() : String 객체에 저장된 문자열을 반환하는 메소드
 		System.out.println("str1.toString() = "+str1.toString());
 		//참조변수를 출력하면 참조변수가 String 객체를 참조해 자동으로 toString() 메소드 호출
+		//하므로 toString() 메소드
 		System.out.println("str1 = "+str1);
 		System.out.println("================================================================");
 		//상수객체로 생성된 String 객체는 같은 문자열이 저장된 String 객체를 생성하지 않고
@@ -77,6 +78,10 @@ public class StringApp {
 			System.out.println("str1 변수가 참조하는 String 객체의 문자열이 str4 변수가 참조하는 String 객체의 문자열보다 같습니다.");
 			System.out.println("================================================================");
 		}
+		//String.getBytes() : String 객체에 저장된 문자열을 byte 배열로 변환하여 반환하는 메소드
+		
+		
+		System.out.println("================================================================");
 	}
 }
 
