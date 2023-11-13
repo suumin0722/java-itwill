@@ -12,5 +12,7 @@ public class DayCalculateApp {
 		
 		System.out.print("생년월일 입력[ex. 2000-01-01] >> ");
 		String birthday=sc.nextLine();
+		
+		
 	}
 }
