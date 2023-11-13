@@ -1,4 +1,4 @@
-package xyz.itwill.lang;
+package xyz.itwill.util;
 
 import java.util.Random;
 import java.util.UUID;

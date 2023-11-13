@@ -42,6 +42,7 @@ public class PersonNumberApp {
 		}
 		
 		//입력된 주민번호에서 생년원일을 잘라내어 변수에 추가하여 저장
+		
 		birthday+=idNumber.substring(0,2)+"년 ";
 		birthday+=idNumber.substring(2,4)+"월 ";
 		birthday+=idNumber.substring(4,6)+"일";
