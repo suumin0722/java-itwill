@@ -9,19 +9,22 @@ public class WantCalendarApp {
 		
 		Scanner sc=new Scanner(System.in);
 		
-		System.out.print("[입력]OOOO년을 입력하세요 >> ");
+		System.out.print("[입력]원하는 년도를 입력하세요[ex.2000] >> ");
 		int year=sc.nextInt();
 		
-		System.out.print("[입력]OO월을 입력하세요 >> ");
+		System.out.print("[입력]원하는 달을 입력하세요[ex.09] >> ");
 		int month=sc.nextInt();
 		
 		sc.close();
 		
 		Calendar calendar=Calendar.getInstance();
 		
+		/* 내가 쓴 코드
 		calendar.set(Calendar.YEAR, year);
 		calendar.set(Calendar.MONTH, month-1);
 		calendar.set(Calendar.DATE, 1);
+		*/
+		calendar.set(year, month-1, 1);
 		
 		
 		int week=calendar.get(Calendar.DAY_OF_WEEK);

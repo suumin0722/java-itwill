@@ -2,8 +2,6 @@ package xyz.itwill.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -16,36 +14,33 @@ public class DayCalculateApp {
 		Scanner sc=new Scanner(System.in);
 		
 		System.out.print("생년월일 입력[ex. 2000-01-01] >> ");
-		String birthday=sc.nextLine();
-		sc.close();
-		
-		Date now = new Date();
 		
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-		//LocalDate now=LocalDate.now();
+		Date bday=null;
+		
 		try {
-			Date bdayDate = sdf.parse(birthday);
-			
-			
-			//long diffSec = (bdayDate.getTime() - nowDate.getTime())
-			//long diffDays = / (24*60*60);
-			
-			
-			
-			
-			
-			//System.out.println(now);
-			//System.out.println("생일 = "+bdayDate);
+			//키보드로 입력받은 문자열(생년월일)을 Date 객체로 변환하여 저장
+			// => 키보드로 입력받은 문자열이 SimpleDateFormat 객체에 저장된 패턴정보가 일치하지
+			//않을 경우 ParseException 발생
+			bday = sdf.parse(sc.nextLine());
 		} catch (ParseException e) {
 			System.out.println("[에러]형식에 맞는 날짜와 시간을 입력해 주세요.");
+			System.exit(0);
+		} finally {
 			sc.close();
 		}
 		
+		//살아온 날짜를 계산하여 출력
 		
+		/* 내가 쓴 코드
+		Date now=new Date();
+		long diffSec = (now.getTime() - bday.getTime());
+		long diffDays = diffSec / (1000*86400);
+		System.out.println("[결과]태어난지 <"+diffDays+"일>이 지났습니다.");
+		*/
 		
-	
-	
-	
+		long day=(System.currentTimeMillis()-bday.getTime())/(1000*60*60*24);
+		System.out.println("[결과]태어난지 <"+day+"일>이 지났습니다.");
 	}
 }
 
