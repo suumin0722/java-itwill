@@ -43,11 +43,13 @@ public class Student implements Comparable<Student> {
 
 	@Override
 	public int compareTo(Student o) {
-		//return this.num-o.num;//학번을 비교하여 결과값(양수,음수,0) 반환 - 오름차순 정렬
-		//return o.num-this.num;//학번을 비교하여 결과값(양수,음수,0) 반환 - 내림차순 정렬 ㅠㅜ ㅠ
-		//문자열은 String 클래스의 compareTo() 메소드를 호출하여 비교하여 반환값으로 처리
-		//return this.name.compareTo(o.name);//이름을 비교하여 결과값(양수,음수,0) 반환 - 오름차순 정렬
-		return o.name.compareTo(this.name);//이름을 비교하여 결과값(양수,음수,0) 반환 - 내림차순 정렬
+		//학번(숫자값)을 연산처리(-)하여 결과값(양수,음수,0)반환 - 학번으로 정렬 처리
+		//return this.num-o.num;//오름차순 정렬
+		//return o.num-this.num;//내림차순 정렬 
+		
+		//문자열은 String 클래스의 compareTo() 메소드를 호출하여 비교하여 반환값으로 처리 -이름으로 정렬 처리
+		//return this.name.compareTo(o.name);//오름차순 정렬
+		return o.name.compareTo(this.name);//내림차순 정렬
 		
 	}
 }

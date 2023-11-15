@@ -8,7 +8,7 @@ import java.util.Objects;
 // => final 제한자를 사용한 필드는 Getter 메소드만 작성 가능
 // => final 제한자로 선언된 필드에는 매개변수가 작성된 생성자를 사용하여 객체 초기화 처리
 // => 객체를 비교하기 위해 Object 클래스의 equals() 메소드와 hashCode() 메소드를 반드시 오버라이딩
-// => 객체를 검증하기 위해 사용하는 클래스
+// => 객체에 저장된 필드값을 검증하기 위해 사용하는 클래스
 
 //사용자정보(아이디, 이름, 이메일)를 저장하기 위한 클래스 - VO 클래스
 public class UserVO {
@@ -43,13 +43,13 @@ public class UserVO {
 			//매개변수로 전달받은 객체를 명시적 객체 형변환하여 참조변수에 저장
 			UserVO userVO=(UserVO)obj;
 			
-			//Objects 클래스 : VO 클래스 생성에 필요한 기능을 메소드로 제공하는 클래스
+			//Objects 클래스 : 객체를 비교하거나 [null] 검사를 하기 위한 기능을 메소드로 제공하는 클래스
 			// => Objects.equals(Object value1, Object value2) : 매개변수로 전달받은 값을 비교하여
-			//결과를 논리값으로 반환하는 메소드
-			return Objects.equals(this.id, userVO.id);
+			//결과를 논리값으로 반환하는 메소드 - NullPointerException 방지
+			return Objects.equals(this.id, userVO.id);//사용자정보의 아이디를 비교하여 결과 반환
 		}
 		
-		//객체의 메모리 주소를 해싱 기법을 사용하여 정수값(int)으로 변환하여 반환하는 메소드
+		//객체의 필드값을 해싱 기법을 사용하여 정수값(int)으로 변환하여 반환하는 메소드 - 메모리 주소 반환
 		// => 객체의 메모리 주소를 비교하기 위해 사용
 		@Override
 		public int hashCode() {
