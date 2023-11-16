@@ -35,7 +35,7 @@ import java.util.regex.Pattern;
 \메타문자 : 메타문자를 일반문자로 표현됨을 의미 - ex) \. : 문자 .
 */
 
-//키보드로 사용자에게 값을 입력받아 원하는 패턴의 값인지를 비교하여 출력하는 프로그램 작성
+//키보드를 이용하여 사용자로부터 값을 입력받아 원하는 패턴의 값인지를 비교하여 출력하는 프로그램 작성
 // => 입력값이 원하는 패턴의 문자열이 아닌 경우 에러 메세지 출력 후 프로그램 종료
 public class RegularExpressionApp {
 	public static void main(String[] args) {
@@ -68,7 +68,50 @@ public class RegularExpressionApp {
 
 		System.out.println("[메세지]패턴에 맞는 아이디를 입력 하였습니다.");
 
+		
+		//키보드로 [비밀번호]를 입력받아 원하는 패턴의 [비밀번호]인지를 검사
+		// => 비밀번호는 영문자, 숫자, 특수문자가 반드시 1번 이상 포함된 8~30 범위의 문자들로
+		//구성된 패턴을 가진 문자열
+		System.out.print("비밀번호 입력 >> ");
+		String password=scanner.nextLine();
+
+		if(password==null || password.equals("")) {
+			System.out.println("[에러]비밀번호를 반드시 입력해 주세요.");
+			System.exit(0);
+		}
+
+		String passwordReg="^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~!@#$%^&*_-]).{8,30}$";
+
+		if(!Pattern.matches(passwordReg, password)) {
+			System.out.println("[에러]비밀번호는 8~30자의 영문자, 숫자, 특수기호가 반드시 1번이상 포함되도록 입력해 주세요.");
+			System.exit(0);
+		}
+
+		System.out.println("[메세지]패턴에 맞는 비밀번호를 입력 하였습니다.");
+		System.out.println();
+		
+		
+		//키보드로 [이메일]을 입력받아 원하는 패턴의 [이메일]인지를 검사
+		// => 이메일은 [아이디@도메인] 형식의 패턴을 가진 문자열
+		System.out.print("이메일 입력 >> ");
+		String email=scanner.nextLine();
+
+		if(email==null || email.equals("")) {//사용자 입력값이 없는 경우
+			System.out.println("[에러]이메일를 반드시 입력해 주세요.");
+			System.exit(0);
+		}
+		
+		String emailReg="^([a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+)*$";
+		if(!Pattern.matches(emailReg, email)) {
+			System.out.println("[에러]아이디@도메인 형식으로 이메일을 입력해 주세요.");
+			System.exit(0);
+		}
+
+		System.out.println("[메세지]패턴에 맞는 이메일를 입력 하였습니다.");
+
+		
+		
 		scanner.close();
+		
 	}
 }
-
