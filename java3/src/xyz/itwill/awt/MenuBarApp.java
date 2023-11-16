@@ -1,0 +1,60 @@
+package xyz.itwill.awt;
+
+import java.awt.BorderLayout;
+import java.awt.Font;
+import java.awt.Frame;
+import java.awt.Menu;
+import java.awt.MenuBar;
+import java.awt.MenuItem;
+import java.awt.TextArea;
+
+public class MenuBarApp extends Frame {
+	private static final long serialVersionUID = 1L;
+
+	public MenuBarApp(String title) {
+		super(title);
+		
+		//MenuBar 클래스: 프레임에 메뉴를 배치하기 위한 컨테이너
+		MenuBar menuBar=new MenuBar();
+		
+		//Menu 클래스: 메뉴바 메뉴를 배치하기 위한 컨테이너
+		Menu file=new Menu("File");
+		Menu help=new Menu("Help");
+		
+		menuBar.add(file);
+		menuBar.add(help);
+		
+		//MenuItem 클래스: 메뉴에 배치하기 위한 메뉴아이템 컨퍼넌트
+		MenuItem open=new MenuItem("Open");
+		MenuItem save=new MenuItem("Save");
+		MenuItem exit=new MenuItem("Exit");
+
+		MenuItem view=new MenuItem("HelpView");
+		MenuItem info=new MenuItem("Information");
+		
+	
+		//메뉴에 메뉴아이템 배치
+		file.add(open);
+		file.add(save);
+		file.addSeparator();//메뉴아이템을 구분하는 구분선 배치
+		file.add(exit);
+
+		help.add(view);
+		help.add(info);
+		
+		//프레임의 메뉴바를 변경하는 메소드
+		setMenuBar(menuBar);
+		
+		
+		TextArea textArea=new TextArea();
+		textArea.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 20));
+		add(textArea, BorderLayout.CENTER);
+
+		setBounds(500, 100, 1000, 800);
+		setVisible(true);
+	}
+	
+	public static void main(String[] args) {
+		new MenuBarApp("MenuBar");
+	}
+}
