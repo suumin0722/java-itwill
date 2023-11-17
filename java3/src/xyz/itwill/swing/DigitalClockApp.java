@@ -98,14 +98,14 @@ public class DigitalClockApp extends JFrame {
 			Date now=new Date();
 			String printDate=df.format(now);
 			clockLabel.setText(printDate);//컴퍼넌트의 문자열 변경
-			
+
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			  }
-			
+
 			}
 			
 		}
