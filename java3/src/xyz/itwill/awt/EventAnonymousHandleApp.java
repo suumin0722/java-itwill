@@ -20,12 +20,15 @@ public class EventAnonymousHandleApp extends Frame {
 		exit.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
 		add(exit);
 
+		//익명의 내부클래스
 		exit.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
 		});
+		//람다표현식 작성도 가능은 하지만, 익명의 내부클래스로 작성하는 것 권장
+		//exit.addActionListener(e -> System.exit(0);
 		
 		setBounds(800, 200, 300, 300);
 		setVisible(true);

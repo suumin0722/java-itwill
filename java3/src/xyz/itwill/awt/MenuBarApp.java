@@ -10,8 +10,9 @@ import java.awt.MenuShortcut;
 import java.awt.TextArea;
 import java.awt.event.KeyEvent;
 
-
-//Frame >> MenuBar >> Menu >> MenuItem
+//Frame 클래스는 메뉴를 제공하는 MenuBar 영역이 존재하는 컨테이너 
+// => 프레임의 MenuBar 영역을 변경하여 메뉴 제공
+// => Frame - MenuBar << Menu << MenuItem
 public class MenuBarApp extends Frame {
 	private static final long serialVersionUID = 1L;
 

@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -54,7 +55,16 @@ public class SwingApp extends JFrame {
 		//JFrame.getContentPane(): 프레임의 Container 객체를 반환하는 메소드
 		Container container=getContentPane();
 		
-		container.add(textArea, BorderLayout.CENTER);
+		//JTextArea 컴퍼넌트는 폭과 높이를 벗어난 문자열 출력이 불가능 - 스크롤 미발생
+		// => JScrollPane 컨테이너에 JTextArea 컴퍼넌트를 배치하여 사용하면 스크롤 발생
+		
+		//JScrollPane 클래스: 컴퍼넌트에 스크롤을 제공하기 위한 컨테이너 클래스
+		// => JScrollPane 클래스의 JScrollPane(Component view) 생성자로 객체 생성
+		// => JScrollPane 생성자의 매개변수에는 스크롤을 제공하고 싶은 컴퍼넌트 전달 
+		JScrollPane scrollPane=new JScrollPane(textArea);
+
+		
+		container.add(scrollPane, BorderLayout.CENTER);
 		container.add(textField, BorderLayout.SOUTH);
 		
 		
@@ -87,6 +97,10 @@ public class SwingApp extends JFrame {
 			if(!text.equals("")) {//입력된 문자열이 있는 경우
 				//JTextArea.append(String text): JTextArea. 컴퍼넌트에 문자열을 추가하여 출력하는 메소드
 				textArea.append("[홍길동]"+text+"\n");
+				
+				//JTextArea 컴퍼넌트의 스크롤을 JTextArea 컴퍼넌트의 끝지점으로 이동되도록 처리
+				//JTextArea.setCaretPosition(int position): JTextArea 컴퍼넌트의 출력 위치를 이동하는 메소드
+				textArea.setCaretPosition(textArea.getText().length());
 				
 				//TextComponent.setText(String text): JTextField 컴퍼넌트 또는 JTextArea 컴퍼넌트에 입력된
 				//문자열을 변경하는 메소드
