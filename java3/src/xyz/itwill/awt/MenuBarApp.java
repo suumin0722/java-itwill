@@ -6,8 +6,12 @@ import java.awt.Frame;
 import java.awt.Menu;
 import java.awt.MenuBar;
 import java.awt.MenuItem;
+import java.awt.MenuShortcut;
 import java.awt.TextArea;
+import java.awt.event.KeyEvent;
 
+
+//Frame >> MenuBar >> Menu >> MenuItem
 public class MenuBarApp extends Frame {
 	private static final long serialVersionUID = 1L;
 
@@ -25,8 +29,11 @@ public class MenuBarApp extends Frame {
 		menuBar.add(help);
 		
 		//MenuItem 클래스: 메뉴에 배치하기 위한 메뉴아이템 컨퍼넌트
-		MenuItem open=new MenuItem("Open");
-		MenuItem save=new MenuItem("Save");
+		//MenuShortcut 클래스: 메뉴아이템에 단축키를 제공하기 위한 클래스
+		//KeyEvent: 키보드 관ㄹ녀 이벤트 정보를 저장하기 위한 클래스
+		// => 가상의 키보드를 이용하여 키보드에 대한 정보를 상수로 제공
+		MenuItem open=new MenuItem("Open", new MenuShortcut(KeyEvent.VK_0));
+		MenuItem save=new MenuItem("Save", new MenuShortcut(KeyEvent.VK_S));
 		MenuItem exit=new MenuItem("Exit");
 
 		MenuItem view=new MenuItem("HelpView");
