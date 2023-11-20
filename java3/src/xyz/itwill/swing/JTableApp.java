@@ -36,7 +36,6 @@ public class JTableApp extends JFrame {
 		panel.add(addBtn);
 		panel.add(removeBtn);
 
-
 		//테이블의 컬럼명으로 사용될 String 배열 선언
 		String[] columnNames={"학번", "이름", "전화번호"};
 
@@ -53,7 +52,7 @@ public class JTableApp extends JFrame {
 
 		//JTable 컴퍼넌트는 반드시 JScrollPane 컨테이너에 배치하여 JFrame 컨테이너에 배치 처리
 		JScrollPane scrollPane=new JScrollPane(table);
-
+	
 		dialog=new InputStudentDialog(this, "학생추가");
 
 		getContentPane().add(scrollPane, BorderLayout.CENTER);
@@ -115,7 +114,6 @@ public class JTableApp extends JFrame {
 
 			getContentPane().setLayout(new GridLayout(2,1));
 			
-			
 			JPanel panelOne=new JPanel(new GridLayout(3,2));
 		
 			panelOne.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -134,13 +132,13 @@ public class JTableApp extends JFrame {
 			okBtn=new JButton("추가");
 			cancelBtn=new JButton("취소");
 			
-			JPanel panelTwo  = new JPanel();
-			panelTwo.setAlignmentX(JPanel.CENTER_ALIGNMENT);
-			panelTwo.add(okBtn);
-			panelTwo.add(cancelBtn);
-			
+//			JPanel panelTwo  = new JPanel();
+//			panelTwo.setAlignmentX(JPanel.CENTER_ALIGNMENT);
+//			panelTwo.add(okBtn);
+//			panelTwo.add(cancelBtn);
+//			
 			getContentPane().add(panelOne);
-			getContentPane().add(panelTwo);
+//			getContentPane().add(panelTwo);
 			
 			
 			
@@ -158,18 +156,18 @@ public class JTableApp extends JFrame {
 					vector.add(name);
 					vector.add(phone);
 					
-					//JTable.getModel():테이블 관련 행에 대한 정보가 저장된 TableModel 객체를 반환하는 메소드
-					// => 명시적 객체 형변환을 이용하여 DefaultTableModel 객체로 형변환
-					DefaultTableModel tableModel=(DefaultTableModel)table.getModel();
-					
-					//DefaultTableModel.addRow(Vector vector): Vector 객체의 요소값(컬럼값)을
-					//테이블에 행을 추가하는 메소드
-					tableModel.addRow(vector);
-					
-					//JTextField 컴퍼넌트의 입력값 초기화
-					numTf.setText("");
-					nameTf.setText("");
-					phoneTf.setText("");
+//					//JTable.getModel():테이블 관련 행에 대한 정보가 저장된 TableModel 객체를 반환하는 메소드
+//					// => 명시적 객체 형변환을 이용하여 DefaultTableModel 객체로 형변환
+//					DefaultTableModel tableModel=(DefaultTableModel)table.getModel();
+//					
+//					//DefaultTableModel.addRow(Vector vector): Vector 객체의 요소값(컬럼값)을
+//					//테이블에 행을 추가하는 메소드
+//					tableModel.addRow(vector);
+//					
+//					//JTextField 컴퍼넌트의 입력값 초기화
+//					numTf.setText("");
+//					nameTf.setText("");
+//					phoneTf.setText("");
 					
 					setVisible(false);
 				}
