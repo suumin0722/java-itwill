@@ -132,13 +132,13 @@ public class JTableApp extends JFrame {
 			okBtn=new JButton("추가");
 			cancelBtn=new JButton("취소");
 			
-//			JPanel panelTwo  = new JPanel();
-//			panelTwo.setAlignmentX(JPanel.CENTER_ALIGNMENT);
-//			panelTwo.add(okBtn);
-//			panelTwo.add(cancelBtn);
-//			
+			JPanel panelTwo  = new JPanel();
+			panelTwo.setAlignmentX(JPanel.CENTER_ALIGNMENT);
+			panelTwo.add(okBtn);
+			panelTwo.add(cancelBtn);
+			
 			getContentPane().add(panelOne);
-//			getContentPane().add(panelTwo);
+			getContentPane().add(panelTwo);
 			
 			
 			
@@ -156,18 +156,18 @@ public class JTableApp extends JFrame {
 					vector.add(name);
 					vector.add(phone);
 					
-//					//JTable.getModel():테이블 관련 행에 대한 정보가 저장된 TableModel 객체를 반환하는 메소드
-//					// => 명시적 객체 형변환을 이용하여 DefaultTableModel 객체로 형변환
-//					DefaultTableModel tableModel=(DefaultTableModel)table.getModel();
-//					
-//					//DefaultTableModel.addRow(Vector vector): Vector 객체의 요소값(컬럼값)을
-//					//테이블에 행을 추가하는 메소드
-//					tableModel.addRow(vector);
-//					
-//					//JTextField 컴퍼넌트의 입력값 초기화
-//					numTf.setText("");
-//					nameTf.setText("");
-//					phoneTf.setText("");
+					//JTable.getModel():테이블 관련 행에 대한 정보가 저장된 TableModel 객체를 반환하는 메소드
+					// => 명시적 객체 형변환을 이용하여 DefaultTableModel 객체로 형변환
+					DefaultTableModel tableModel=(DefaultTableModel)table.getModel();
+					
+					//DefaultTableModel.addRow(Vector vector): Vector 객체의 요소값(컬럼값)을
+					//테이블에 행을 추가하는 메소드
+					tableModel.addRow(vector);
+					
+					//JTextField 컴퍼넌트의 입력값 초기화
+					numTf.setText("");
+					nameTf.setText("");
+					phoneTf.setText("");
 					
 					setVisible(false);
 				}
