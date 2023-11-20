@@ -203,8 +203,9 @@ public class WindowBuilderApp extends JFrame {
 			
 			getContentPane().add(panelOne);
 			getContentPane().add(panelTwo);
-			
+			 
 			setBounds(700, 200, 400, 300);
 		}	
 	}
 }
+ 
