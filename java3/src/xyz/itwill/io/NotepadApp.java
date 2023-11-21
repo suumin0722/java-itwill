@@ -7,9 +7,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.swing.JFileChooser;
@@ -145,7 +147,19 @@ public class NotepadApp extends JFrame {
 					return;
 				}
 			} else if(eventSource == save) {
+				try {
+					BufferedWriter out=new BufferedWriter(new FileWriter("c:/data/new memo", true));
+
+					String text = textArea.getText();
+						
+					out.write(text);
+					out.flush();
 				
+					out.close();
+	
+				} catch (IOException e1) {
+					JOptionPane.showMessageDialog(NotepadApp.this, "프로그램에 문제가 발생 하였습니다.");
+				}
 				
 			} else if(eventSource == exit) {
 				System.exit(0);
