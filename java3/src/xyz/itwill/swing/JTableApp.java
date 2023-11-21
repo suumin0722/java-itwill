@@ -129,6 +129,9 @@ public class JTableApp extends JFrame {
 			panelOne.add(new JLabel("전화번호", JLabel.CENTER));
 			panelOne.add(phoneTf);
 			
+			//TextComponent.requestFocus(): 컴퍼넌트에게 포커스(Focus)를 제공하는 메소드
+			numTf.requestFocus(); //커서가 깜박거리게끔 하는거
+			
 			okBtn=new JButton("추가");
 			cancelBtn=new JButton("취소");
 			
@@ -168,6 +171,7 @@ public class JTableApp extends JFrame {
 					numTf.setText("");
 					nameTf.setText("");
 					phoneTf.setText("");
+					
 					
 					setVisible(false);
 				}

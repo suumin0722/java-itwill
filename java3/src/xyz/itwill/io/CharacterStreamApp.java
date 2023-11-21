@@ -23,7 +23,10 @@ public class CharacterStreamApp {
 		
 		//OutputStreamWriter 클래스 : 매개변수로 OutputStream 객체를 전달받아 문자데이타를  
 		//출력하기 위한 출력스트림(Writer 객체)을 생성하기 클래스 - 스트림 확장
-		// => 모니터를 사용하여 인코딩 처리된 문자값(2Byte)을 전달하여 출력할 수 있는 출력스트림 생성 
+		// => 모니터를 사용하여 인코딩 처리된
+		
+		
+		//문자값(2Byte)을 전달하여 출력할 수 있는 출력스트림 생성 
 		//OutputStreamWriter out=new OutputStreamWriter(System.out);
 		
 		//PrintWriter 클래스 : 매개변수로 OutputStream 객체를 전달받아 문자데이타를 출력하기  

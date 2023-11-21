@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import xyz.itwill.swing.JTableApp.InputStudentDialog;
+import xyz.itwill.swing.JTableApp.StudentButtonEventHandle;
 
 import java.awt.Font;
 import javax.swing.JButton;
@@ -28,6 +29,9 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 import java.awt.event.KeyEvent;
+import java.util.Vector;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.Color;
 import java.awt.SystemColor;
@@ -36,33 +40,22 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.BevelBorder;
 
 public class WindowBuilderApp extends JFrame {
-
 	private static final long serialVersionUID = 1L;
+	
 	private JPanel contentPane;
 	private JTable table;
-	private JButton addBtn;
+	private JButton addBtn, removeBtn, modifyBtn, searchBtn;
 	InputStudentDialog dialog;
 
-	/**
-	 * Launch the application.
-	 */
+	
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					WindowBuilderApp frame = new WindowBuilderApp();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+			new WindowBuilderApp("WindowBuilder 연습");
+			
 	}
 
-	/**
-	 * Create the frame.
-	 */
-	public WindowBuilderApp() {
+	public WindowBuilderApp(String title) {
+		super(title);
+		
 		setBackground(new Color(240, 240, 240));
 		setIconImage(Toolkit.getDefaultToolkit().getImage(WindowBuilderApp.class.getResource("/images/penguin1.gif")));
 		setTitle("WindowBuilder 연습");
@@ -76,42 +69,25 @@ public class WindowBuilderApp extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setViewportBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 255, 127), null));
-		contentPane.add(scrollPane, BorderLayout.EAST);
+		scrollPane.setViewportBorder(new EmptyBorder(0, 0, 0, 0));
+		contentPane.add(scrollPane, BorderLayout.CENTER);
 		
-		table = new JTable();
-		table.setBackground(new Color(255, 255, 255));
-		table.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(255, 0, 0), new Color(135, 206, 250), new Color(47, 79, 79), new Color(147, 112, 219)));
+		String[] columnNames= {"학번", "이름", "전화번호"};
+		
+		DefaultTableModel tableModel=new DefaultTableModel(columnNames, 0);
+		
+		table = new JTable(tableModel);
+			
+			
+		table.setToolTipText("학생목록");
+		table.setBackground(new Color(192, 192, 192));
+		table.setBorder(new EmptyBorder(0, 0, 0, 0));
 		table.setFont(new Font("함초롬돋움", Font.BOLD, 12));
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-			},
-			new String[] {
-				"\uC774\uB984", "\uD559\uBC88", "\uC804\uD654\uBC88\uD638"
-			}
-		));
 		
 		
-		
+		table.getColumnModel().getColumn(0).setResizable(false);
 		table.getColumnModel().getColumn(0).setPreferredWidth(72);
+		table.getColumnModel().getColumn(1).setResizable(false);
 		table.getColumnModel().getColumn(1).setPreferredWidth(74);
 		table.getColumnModel().getColumn(2).setResizable(false);
 		scrollPane.setViewportView(table);
@@ -160,6 +136,40 @@ public class WindowBuilderApp extends JFrame {
 		open.setBackground(new Color(128, 0, 0));
 		open.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK | InputEvent.ALT_DOWN_MASK));
 		file.add(open);
+		
+		addBtn.addActionListener(new StudentButtonEventHandle());
+		removeBtn.addActionListener(new StudentButtonEventHandle());
+		modifyBtn.addActionListener(new StudentButtonEventHandle());
+		
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setBounds(700, 200, 500, 400);
+		setVisible(true);
+	}
+	
+	
+	public class StudentButtonEventHandle implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			Object eventSource=e.getSource();
+
+			if(eventSource == addBtn) {
+				dialog.setVisible(true);
+			} else if(eventSource == removeBtn) {
+				DefaultTableModel tableModel=(DefaultTableModel)table.getModel();
+				
+				//행이 하나도 없는 경우 메소드 종료
+				if(tableModel.getRowCount()==0) return;
+				
+				//JTable.getSelectedRow(): 테이블에서 선택행의 행번호를 반환하는 메소드
+				int row=table.getSelectedRow();
+				if(row == -1) return;//선택행이 없는 경우 메소드 종료
+				
+				//DefaultTableModel.removeRow(int row): 매개변수로 전달받은 행을 삭제하는 메소드
+				tableModel.removeRow(row);
+			} else if(eventSource == modifyBtn) {
+				dialog.setVisible(true);
+			}
+		}
 	}
 	
 	public class InputStudentDialog extends JDialog {
@@ -168,12 +178,7 @@ public class WindowBuilderApp extends JFrame {
 		JTextField numTf, nameTf, phoneTf;
 		JButton okBtn, cancelBtn;
 		
-		//생성자 매개변수에는 부모창의 컨테이너 관련 객체와 제목을 전달받아 초기화
 		public InputStudentDialog(JFrame frame, String title) {
-			//JDialog(Frame owner, String title, boolean model) 생성자를 super 키워드로 호출
-			// => owner 매개변수에는 부모창의 JFram 객체를 전달받고 model 매개변수에는 부모창의
-			//비활성화 여부를 설정하는 논리값(false : 부모창 활성화, true : 부모창 비활성화)을 
-			//전달받아 JDialog 객체 생성
 			super(frame, title, true);
 
 			getContentPane().setLayout(new GridLayout(2,1));
@@ -203,8 +208,53 @@ public class WindowBuilderApp extends JFrame {
 			
 			getContentPane().add(panelOne);
 			getContentPane().add(panelTwo);
-			 
+			
+			okBtn.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					//JTextField 컴퍼넌트의 입력값을 반환받아 저장
+					String num=numTf.getText();
+					String name=nameTf.getText();
+					String phone=phoneTf.getText();
+					
+					//Vector 객체를 생성하여 입력값을 요소로 추가하여 저장
+					Vector<String> vector=new Vector<String>();
+					vector.add(num);
+					vector.add(name);
+					vector.add(phone);
+					
+					//JTable.getModel():테이블 관련 행에 대한 정보가 저장된 TableModel 객체를 반환하는 메소드
+					// => 명시적 객체 형변환을 이용하여 DefaultTableModel 객체로 형변환
+					DefaultTableModel tableModel=(DefaultTableModel)table.getModel();
+					
+					//DefaultTableModel.addRow(Vector vector): Vector 객체의 요소값(컬럼값)을
+					//테이블에 행을 추가하는 메소드
+					tableModel.addRow(vector);
+					
+					//JTextField 컴퍼넌트의 입력값 초기화
+					numTf.setText("");
+					nameTf.setText("");
+					phoneTf.setText("");
+					
+					
+					setVisible(false);
+				}
+			});
+				
+			
+			cancelBtn.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					setVisible(false);
+					
+				}
+			});
+			
+			setDefaultCloseOperation(HIDE_ON_CLOSE);
+
 			setBounds(700, 200, 400, 300);
+			
+			
 		}	
 	}
 }
