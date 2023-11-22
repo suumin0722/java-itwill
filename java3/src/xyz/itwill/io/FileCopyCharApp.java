@@ -22,7 +22,7 @@ public class FileCopyCharApp {
 			// => in 매개변수에 Reader 객체를 전달받아 저장
 			//FileReader 클래스로 만들어진 파일 입력스트림을 BufferedReader 클래스를 사용하여
 			//확장된 파일 입력스트림으로 생성
-			in=new BufferedReader(new FileReader("c:/data/bandzip.exe"));
+			in=new BufferedReader(new FileReader("c:/data/bandizip.exe"));
 		} catch (FileNotFoundException e) {
 			System.out.println("[에러]원본파일을 찾을 수 없습니다.");
 			System.exit(0);
@@ -34,7 +34,7 @@ public class FileCopyCharApp {
 		// => out 매개변수에 Writer 객체를 전달받아 저장
 		//FileWriter 클래스로 만들어진 파일 출력스트림을 BufferedWriter 클래스를 사용하여 
 		//확장된 파일 출력스트림으로 생성
-		BufferedWriter out=new BufferedWriter(new FileWriter("c:/data/bandzip_char.exe"));
+		BufferedWriter out=new BufferedWriter(new FileWriter("c:/data/bandizip_char.exe"));
 		
 		int readByte;
 		

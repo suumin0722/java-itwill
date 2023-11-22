@@ -14,7 +14,8 @@ public class FileOutputStreamApp {
 		// => name 매개변수에는 파일 출력스트림을 생성하기 위한 파일경로를 전달하여 저장
 		// => 매개변수로 전달받은 위치(파일경로)에 파일이 존재하지 않는 경우 FileNotFoundException	
 		// => FileNotFoundException 대신 IOException를 이용하여 예외 처리 또는 예외 전달 가능
-		// => 파일 출력스트림은 매개변수로 전달받은 파일이 없는 경우 파일을 생성하여 출력스트림 제공
+		// => 파일 출력스트림은 매개변수로 전달받은 파일이 없는 경우 파일을 생성하여 출력스트을
+		//제공하므로 FileNotFoundException이 발생된 경우 예외 처리하지 않고 예외 전달
 		// => 매개변수로 전달받은 파일이 있는 경우 기존 파일에 저장된 값은 초기화 처리되고
 		//출력스트림으로 새롭게 전달받은 값으로 파일에 저장 - 덮어씌우기(OverWrite)
 		//FileOutputStream out = new FileOutputStream("c:/data/byte.txt");
