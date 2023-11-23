@@ -148,7 +148,7 @@ public class NotepadApp extends JFrame {
 					return;
 				}
 			} else if(eventSource == save) {
-				if(file == null ) {
+				if(file == null ) {//현재 작업중인 파일이 없는 경우
 					int option=fileChooser.showSaveDialog(NotepadApp.this);
 				
 					if(option == JFileChooser.APPROVE_OPTION) {//파일 선택 후 [저장] 버튼을 누른 경우
@@ -177,9 +177,17 @@ public class NotepadApp extends JFrame {
 							JOptionPane.showMessageDialog(NotepadApp.this, "프로그램에 문제가 발생 하였습니다.");
 						}
 
-
 					} else if (option == JFileChooser.CANCEL_OPTION) {
 						return;
+					}
+				} else {//현재 작업중인 파일이 있는 경우
+					try {
+						BufferedWriter out=new BufferedWriter(new FileWriter(file));
+						String text=textArea.getText();
+						out.write(text);
+						out.close();
+					} catch (IOException exception) {
+						JOptionPane.showMessageDialog(NotepadApp.this, "프로그램에 문제가 발생 하였습니다.");
 					}
 				}	
 			} else if(eventSource == exit) {
