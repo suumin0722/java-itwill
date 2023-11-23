@@ -1,6 +1,5 @@
 package xyz.itwill.swing;
 
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -11,19 +10,14 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import xyz.itwill.swing.JTableApp.InputStudentDialog;
-import xyz.itwill.swing.JTableApp.StudentButtonEventHandle;
 
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import java.awt.Toolkit;
-import javax.swing.ImageIcon;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -35,16 +29,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.Color;
 import java.awt.SystemColor;
-import javax.swing.border.LineBorder;
-import javax.swing.border.EtchedBorder;
-import javax.swing.border.BevelBorder;
 
 public class WindowBuilderApp extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	private JPanel contentPane;
 	private JTable table;
-	private JButton addBtn, removeBtn, modifyBtn, searchBtn;
+	private JButton addBtn, removeBtn, modifyBtn;
 	InputStudentDialog dialog;
 
 	

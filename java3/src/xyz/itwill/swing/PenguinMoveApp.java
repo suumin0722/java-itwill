@@ -2,12 +2,10 @@ package xyz.itwill.swing;
 
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.RenderingHints.Key;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 
 //키보드를 누르면 펭귄 이미지가 이동되는 프로그램 작성
