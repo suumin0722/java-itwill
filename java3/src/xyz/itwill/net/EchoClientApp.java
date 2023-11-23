@@ -1,17 +1,16 @@
 package xyz.itwill.net;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
 //키보드로 메세지를 입력받아 서버에 전달하는 클라이언트 프로그램 작성
 public class EchoClientApp {
 	public static void main(String[] args) throws IOException {
-		//키보드 입력스트림(System.in)을 대량의 문자데이터를 제공받을 수 있는 입력스트림으로 확장
+		//키보드 입력스트림(System.in )을 대량의 문자데이터를 제공받을 수 있는 입력스트림으로 확장
 		BufferedReader in=new BufferedReader(new InputStreamReader(System.in));	
 
 
@@ -24,10 +23,14 @@ public class EchoClientApp {
 			Socket socket = new Socket("192.168.13.31", 3000);
 
 			//소켓의 출력스트림을 대량의 문자데이터를 전달할 수 있는 출력스트림으로 확장
-			BufferedWriter out=new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-
+			//BufferedWriter out=new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+			PrintWriter out = new PrintWriter(socket.getOutputStream());
+			
 			//확장된 출력스트림을 이용하여 문자열(메세지)를 전달
-			out.write(message);
+			//out.write(message);
+			//PrintWriter.println(Object o): 매개변수로 전달받은 모든 자료형의 객체(값)을
+			//문자열로 변환하여 전달하는 메소드
+			out.println(message);
 			out.flush();
 			
 			//접속 해제
