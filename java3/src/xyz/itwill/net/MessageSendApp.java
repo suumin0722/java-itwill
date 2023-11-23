@@ -26,7 +26,7 @@ public class MessageSendApp {
 		DatagramSocket datagramSocket=new DatagramSocket();
 		
 		//연결할 컴퓨터의 네트워크 식별자가 저장된 InetAddress 객체를 반환받아 저장
-		InetAddress inetAddress=InetAddress.getByName("192.168.13.31");
+		InetAddress inetAddress=InetAddress.getByName("192.168.13.12");
 		
 		//전달할 문자열(메세지)을 byte 배열(원시데이터의 모임)로 변환하여 저장
 		byte[] data=message.getBytes();
