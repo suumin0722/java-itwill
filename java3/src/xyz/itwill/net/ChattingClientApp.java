@@ -114,11 +114,15 @@ public class ChattingClientApp extends JFrame {
 		JOptionPane.showMessageDialog(this, "2~6 범위의 한글로된 대화명을 입력해주세요.",
 				"입력오류", JOptionPane.ERROR_MESSAGE);
 		
+		
 //		int re = JOptionPane.showConfirmDialog(this, "창을 닫으시겠습니까?", "창 닫기", JOptionPane.YES_NO_OPTION);
 //		
 //			if(re == 0) {
 //		dispose();
 //			}
+		
+		
+		
 		
 		}
 		
