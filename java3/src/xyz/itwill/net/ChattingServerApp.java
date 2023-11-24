@@ -6,8 +6,8 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 //채팅 서버 프로그램
 // => 클라이언트의 접속으로 생성된 소켓을 사용하여 클라이언트가 보내온 메세지를 제공받아
@@ -24,7 +24,10 @@ public class ChattingServerApp {
 		ServerSocket chattingServer=null;
 		
 		//ArrayList 객체를 생성하여 필드에 저장
-		clientList=new ArrayList<SocketThread>();
+		//clientList=new ArrayList<SocketThread>();
+		
+		//Vector 객체를 생성하여 필드에 저장
+		clientList=new Vector<SocketThread>();
 		
 		try {
 			chattingServer=new ServerSocket(5000);
@@ -38,7 +41,7 @@ public class ChattingServerApp {
 				
 				//Thread 클래스를 상속받은 자식클래스로 객체 생성 - Thread 객체
 				// => 클라이언트의 접속으로 생성된 Socket 객체를 매개변수로 전달하여 
-				//SocketThread 객체의 필드에 저장
+				///socket 필드(Socket 객체)에 저장
 				SocketThread socketThread=new SocketThread(socket);
 			
 				//List 객체의 요소로 socketThread 객체를 추가하여 저장
@@ -69,8 +72,8 @@ public class ChattingServerApp {
 		}
 	
 		//클라이언트의 접속으로 생성된 소켓을 이용하여 입력 또는 출력 기능을 제공하기 위한 클래스
-		// => 소켓을 이용하여 독립적인 입력 또는 출력 처리를 위해 새로운 스레드를 생성하여 입력
-		//또는 출력 명령을 실행할 수 있도록 Thread 클래스 상속받아 작성
+		// => 새로운 스레드를 생성하여 소켓을 사용하여 독립적으로 입력 또는 출력 명령을 실행할 수 있도록
+		//Thread 클래스 상속받아 작성
 		public class SocketThread extends Thread {
 			//클라이언트의 접속으로 생성된 소켓(Socket 객체)를 저장하기 위한 필드
 			private Socket socket;
@@ -87,7 +90,7 @@ public class ChattingServerApp {
 			}
 			
 			//새로운 스레드가 실행될 명령을 작성하기 위한 메소드
-			// => 클라이언트가 보내온 메세지를 제공받아 모든 클라이언트에게 전달하는 기능의 프로그램
+			// => 클라이언트가 보내온 메세지를 제공받아 모든 클라이언트에게 전달하는 기능의 메소드 작성
 			@Override
 			public void run() {
 				//클라이언트의 대화명을 저장하기 위한 변수
@@ -118,11 +121,10 @@ public class ChattingServerApp {
 					// => 클라이언트가 접속을 종료하면 입출력스트림이 소멸되어 IOException 발생
 					while(true) {
 						//클라이언트가 메세지를 보내기 전까지 스레드는 일시 중지
+						// =>클라이언트가 접속을 종료한 경우 IOException 발생
 						sendMessage("["+aliasName+"]"+in.readLine());
 					}
-				} catch (IOException e) {
-					//클라이언트가 접속을 종료한 경우 실행될 명령 작성
-					
+				} catch (IOException e) {//클라이언트가 접속을 종료한 경우 실행될 명령 작성
 					//List 객체에 저장된 요소 중 접속 종료된 클라이언트의 소켓정보(SocketThread 객체) 삭제 처리
 					clientList.remove(this);
 					

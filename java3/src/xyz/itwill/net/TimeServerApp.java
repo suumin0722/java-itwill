@@ -6,8 +6,9 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Date;
 
-//ServerSocket 클래스와 Socket 클래스를 사용하여 TCP 네트워크 프로그램 작성
-// => 서버와 클라이언트가 소켓을 사용하여 1:1로 연결돼 데이타를 송수신하는 프로그램 
+//TCP 네트워크 프로그램: ServerSocket 클래스와 Socket 클래스를 사용하여 작성
+// => 클라이언트가 서버에 접속(Connection)하여 서버와 클라이언트에 만들어진 소켓을 사용하여
+//1:1로 연결되어 데이타를 송수신하는 프로그램 
 
 //접속된 클라이언트에게 서버 컴퓨터의 현재 날짜와 시간을 전달하는 서버 프로그램 작성
 // => NTP(Network Time Protocol) Server : 날짜와 시간 정보를 제공하는 서버 컴퓨터
@@ -63,6 +64,15 @@ public class TimeServerApp {
 			}
 		} catch (IOException e) {
 			System.out.println("[에러]서버 네트워크에 문제가 발생 되었습니다.");
+		} finally {
+			try {
+				//이걸 하는게 정석이긴하나, 안해도 에러 ㄴㄴ
+				//ServerSocket.close(): ServerSocket 객체를 제거하는 메소드 - 서버 종료
+				// => 접속된 모든 클라이언트의 접속 해제
+				ntpServer.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }
