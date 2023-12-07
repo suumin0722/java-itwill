@@ -29,6 +29,7 @@ public class IfApp {
 		if(su>=50) {
 			System.out.println("su = "+su);
 		}
+		
 		System.out.println("==================================================");
 		
 		int score=50;
@@ -68,9 +69,11 @@ public class IfApp {
 		if(mun >= 'A' && mun <='Z' || mun >= 'a' && mun <= 'z') {
 			System.out.println("[결과]"+mun+" = 영문자");
 		}	else {
-			System.out.println("[결과]"+mun+" = 영문자");
+			System.out.println("[결과]"+mun+" = 영문자가 아님"
+					+ "");
 		}
-		System.out.println("==================================================");
+		System.out.println("============================="
+				+ "=====================");
 		boolean bool=false;
 		
 		if(!bool) {

@@ -32,7 +32,5 @@ public class ScannerApp {
 		
 		//Scanner.close() : Scanner 객체가 사용한 입력스트림을 제거하는 메소드
 		scanner.close();
-		
-		
 	}
 }
