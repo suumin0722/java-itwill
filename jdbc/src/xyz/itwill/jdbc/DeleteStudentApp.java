@@ -13,7 +13,7 @@ public class DeleteStudentApp {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			
-			String url = "oracle:jdbc:thin:@localhost:1521:xe";
+			String url = "jdbc:oracle:thin:@localhost:1521:xe";
 			String username = "scott";
 			String password = "tiger";
 			con = DriverManager.getConnection(url, username, password);
@@ -22,12 +22,15 @@ public class DeleteStudentApp {
 			stmt=con.createStatement();
 			int rows=stmt.executeUpdate(sql);
 			
-			
+			if(rows>0) {//삭제행이 있는 경우
 			System.out.println("[메세지]"+rows+"명의 정보가 삭제되었습니다.");
+			} else {//삭제행이 없는 경우
+				System.out.println("[메세지]해당 학번의 학생정보를 찾을 수 없습니다.");
+			}
 		} catch (ClassNotFoundException e) {
 			System.out.println("[에러]OracleDriver 클래스를 찾을 수 없습니다.");
 		} catch (SQLException e) {
-			System.out.println("[에러]SQL 관련 에러 발생 = "+e.getMessage());
+			System.out.println("[에러]JDBC 관련 에러 발생 = "+e.getMessage());
 		} finally {
 			try {
 				if(stmt!=null) stmt.close();
