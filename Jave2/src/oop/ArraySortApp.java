@@ -15,6 +15,7 @@ import java.util.Arrays;
 
 //배열에 저장된 요소값을 오름차순 정렬하여 출력하는 프로그램 작성
 public class ArraySortApp {
+	
 	public static void main(String[] args) {
 		
 		/* 절차지향
