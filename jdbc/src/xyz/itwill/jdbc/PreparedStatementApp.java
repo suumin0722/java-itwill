@@ -43,7 +43,7 @@ public class PreparedStatementApp {
 		// => PreparedStatement 객체에 저장되는 SQL 명령에서는 ?(InParameter) 기호 사용
 		//InParameter : Java 변수값을 제공받아 SQL 명령에 문자값으로 포함하기 위한 기호 
 		String sql1="insert into student values(?,?,?,?,?)";
-		PreparedStatement pstmt=con.prepareStatement(sql1);//미완성된 SQL 명령이 저장
+		PreparedStatement pstmt=con.prepareStatement(sql1);//미완성된 SQL 명령이 PreparedStatement 객체에 저장
 		
 		//PreparedStatement.setXXX(int parameterIndex, XXX value) 
 		// => PreparedStatement 객체에 저장된 SQL 명령의 InParameter에 Java 변수값을 전달하는 메소드

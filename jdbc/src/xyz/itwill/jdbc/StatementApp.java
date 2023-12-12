@@ -78,6 +78,8 @@ public class StatementApp {
 
 		Statement stmt=con.createStatement();
 		
+		//이름대신 [' or '1'='1] 형식의 문자열을 입력한 경우 입력값이 비교값이 아닌 조건식으로
+		//처리되어 조건식의 결과가 무조건 참(TRUE)으로 모든 행이 검색 
 		String sql="select * from student where name='"+name+"' order by no";
 		ResultSet rs=stmt.executeQuery(sql);
 		
