@@ -28,6 +28,8 @@ public class ListApp {
 		//List 객체의 요소에는 동일한 객체 저장 가능
 		list.add("임꺽정");
 		System.out.println("list = "+list);
+		
+		
 		System.out.println("==============================================================");
 		//List.size() : List 객체에 저장된 모든 요소값의 갯수를 반환하는 메소드
 		System.out.println("list.size() = "+list.size());
