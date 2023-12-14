@@ -109,9 +109,5 @@ public class OperatorApp {
 		
 		e*=20;//e=e+20
 		System.out.println("e = "+e);
-		
-		
-		
-		
 	}
 }
