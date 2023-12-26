@@ -5,9 +5,9 @@ public class PrivateMemberUse {
 		@SuppressWarnings("unused")
 		PrivateMember member = new PrivateMember();
 		
-	/*
+		/*
 		member.number=100;
 		member.display();
-	*/
+		*/
 	}
 }
