@@ -29,13 +29,13 @@
 	//display2();//변수명으로 익명함수 호출
 	
 	function display(callback) {
-		//alert(callback);
+		alert(callback);
 		
-		callback();//매개변수에 저장된 함수 호출 - 콜백함수
+		//callback();//매개변수에 저장된 함수 호출 - 콜백함수
 	}
 	
-	//display(display1);//함수 호출시 매개변수에 함수명으로 선언함수를 전달
-	//display(display2);//함수 호출시 매개변수에 함수변수로 익명함수를 전달
+	display(display1);//함수 호출시 매개변수에 함수명으로 선언함수를 전달
+	display(display2);//함수 호출시 매개변수에 함수변수로 익명함수를 전달
 	
 	//함수 호출시 익명함수를 선언하여 매개변수에 전달하여 함수 내부에서 호출 가능
 	/*
