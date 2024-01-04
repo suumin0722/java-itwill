@@ -98,25 +98,4 @@ public abstract class Employee {
 		return (int)(computePay()*INCENTIVE_RATE);
 	}
 	
-	
-	
-	
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

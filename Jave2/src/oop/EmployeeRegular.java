@@ -25,16 +25,23 @@ public class EmployeeRegular extends Employee {
 		this.annualSalary = annualSalary;
 	}
 	
+	/*
 	//급여를 계산하여 반환하는 메소드
 	public int computeSalary() {
 		return annualSalary/12;
 	}
-
+	*/
+	
 	@Override
 	public int computePay() {
-		// TODO Auto-generated method stub
-		return 0;
+		return annualSalary/12;
 	}
 	
-	
+	/*
+	//final 메소드를 오버라이드 선언한 경우 에러 발생
+	@Override
+	public int computeIncetive() {
+		return 1000000000;
+	}
+	*/
 }
