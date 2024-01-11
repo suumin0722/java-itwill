@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//입력페이지(form.html)로부터 전달받은 입력값(회원정보)을 반환받아 클라이언트에게 HTML 문서를
-//전달하여 응답하는 서블릿
+//입력페이지(form.html)로부터 전달받은 입력값(회원정보)을 반환받아 회원정보를 HTML 문서로 만들어
+//클라이언트에게 전달하여 응답하는 서블릿
 // => 입력페이지의 form 태그를 사용하여 POST 방식으로 요청해야 실행되는 서블릿
 @WebServlet("/join.itwill")
 public class JoinServlet extends HttpServlet {

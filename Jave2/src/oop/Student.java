@@ -21,7 +21,7 @@ public class Student {
 	// => 클래스로 생성된 모든 객체가 정적 필드 사용 가능 - 모든 객체가 메모리를 공유하여 사용
 	// => 정적 필드를 작성하면 메모리를 절약할 수 있고 필드값 변경 용이
 	// => 클래스 외부에서는 객체가 아닌 클래스를 이용하여 필드 사용
-	// public static int total=0;
+	//public static int total=0;
 	private static int total = 0;
 
 	// 생성자(Constructor)
