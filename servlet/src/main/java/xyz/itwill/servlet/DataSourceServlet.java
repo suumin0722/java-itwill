@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 
 //DBCP(DataBase Connection Pool) 객체 : 다수의 Connection 객체를 미리 생성하여 저장하여 관리하기 위한 객체
-// => DataSource 인터페이스를 상속받은 자식클래스를 사용하여 객체 생성
+// => DataSource 인터페이스를 상속받은 자식클래스를 사용하여 객체 생성 - DataSource 객체
 
 //Apache 그룹에서 제공하는 tomcat-dbcp 라이브러리의 클래스를 사용하여 DBCP 객체(DataSource 객체)를 생성해 
 //Connection 객체를 반환받아 Connection 객체의 정보를 HTML 문서로 응답하는 서블릿
