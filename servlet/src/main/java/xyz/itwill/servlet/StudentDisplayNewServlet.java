@@ -2,11 +2,6 @@ package xyz.itwill.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -23,15 +18,15 @@ import xyz.itwill.dto.StudentDTO;
 @WebServlet("/new..itwill")
 public class StudentDisplayNewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		response.setContentType("text/html;charset=utf-8");
-		PrintWriter out=response.getWriter();
-		
-		//STUDENT 테이블에 저장된 모든 학생정보를 검색하여 List 객체로 반환하는 DAO 클래스의 
-		List<StudentDTO> studentList=StudentDAO.getDAO().selectStudentList();
-		
-		
+		PrintWriter out = response.getWriter();
+
+		// STUDENT 테이블에 저장된 모든 학생정보를 검색하여 List 객체로 반환하는 DAO 클래스의
+		List<StudentDTO> studentList = StudentDAO.getDAO().selectStudentList();
+
 		out.println("<!DOCTYPE html>");
 		out.println("<html>");
 		out.println("<head>");
@@ -49,22 +44,20 @@ public class StudentDisplayNewServlet extends HttpServlet {
 		out.println("<th width='300'>주소</th>");
 		out.println("<th width='250'>생년월일</th>");
 		out.println("</tr>");
-		//List 객체에 저장된 요소(StudentDTO 객체)를 차례대로 제공받아 변수에 저장하는 반복문
-		for(StudentDTO student : studentList) {
+		// List 객체에 저장된 요소(StudentDTO 객체)를 차례대로 제공받아 변수에 저장하는 반복문
+		for (StudentDTO student : studentList) {
 			out.println("<tr>");
-			out.println("<td align='center'>"+student.getNo()+"</th>");
-			out.println("<td align='center'>"+student.getName()+"</th>");
-			out.println("<td align='center'>"+student.getPhone()+"</th>");
-			out.println("<td align='center'>"+student.getAddress()+"</th>");
-			out.println("<td align='center'>"+student.getBirthday().substring(0,10)+"</th>");
+			out.println("<td align='center'>" + student.getNo() + "</th>");
+			out.println("<td align='center'>" + student.getName() + "</th>");
+			out.println("<td align='center'>" + student.getPhone() + "</th>");
+			out.println("<td align='center'>" + student.getAddress() + "</th>");
+			out.println("<td align='center'>" + student.getBirthday().substring(0, 10) + "</th>");
 			out.println("</tr>");
 		}
 		out.println("</table>");
 		out.println("</body>");
-			out.println("</html>");
-			
-	
-		
+		out.println("</html>");
+
 	}
 
 }
