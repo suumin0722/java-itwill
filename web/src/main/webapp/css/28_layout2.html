@@ -10,11 +10,12 @@ ul li {
 	margin: 20px;
 	
 	/* display : 박스모델 배치 관련 스타일 속성 */
-	/* 속성값 : none(미배치), block(블럭 레벨 배치), inline(인라인 레벨 배치 - 폭과 높이 지정 불가),
-	inline-block(인라인 레벨 배치 - 폭과 높이 지정 가능) */
+	/* 속성값 : none(미배치), block(블럭 레벨 배치), inline(인라인 레벨 배치 - 크기 지정 불가능)
+	, inline-block(인라인 레벨 배치 - 크기 지정 가능), table, table-row, table-cell 등  */
 	display: inline; /* margin 적용 불가능 */
 	display: inline-block; /* margin 적용 가능 */
-}
+}	
+
 img {
 	margin: 20px;
 	display: block;
@@ -31,11 +32,11 @@ img {
 		<li>장바구니</li>
 		<li>구매내역</li>
 		<li>제품후기</li>
-	</ul>
+	</ul>	
 	<hr>
-	<!-- 인라인 레벨의 박스모델은 하나의 라인에 박스모델이 여러개 출력 -->	
-	<img alt="펜션이미지1" src="/web/css/images/1.jpg"></p>
-	<img alt="펜션이미지2" src="/web/css/images/2.jpg"></p>
-	<img alt="펜션이미지3" src="/web/css/images/3.jpg"></p>
+	<!-- 인라인 레벨의 박스모델은 하나의 라인에 박스모델이 여러개 출력 -->
+	<img alt="펜션 이미지1" src="/web/css/images/1.jpg">
+	<img alt="펜션 이미지2" src="/web/css/images/2.jpg">
+	<img alt="펜션 이미지3" src="/web/css/images/3.jpg">
 </body>
 </html>

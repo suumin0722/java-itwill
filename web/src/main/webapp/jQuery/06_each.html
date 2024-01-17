@@ -21,39 +21,39 @@
 	//$("h3").css("color","red");
 	
 	/*
-	//선택자로 검색된 다수의 태그를 구분하여 메소드 호출 - 태그에 다른 기능 구현 
-	$("h3").eq(0).css("color","red");
-	$("h3").eq(1).css("color","green");
-	$("h3").eq(2).css("color","purple");
-	$("h3").eq(3).css("color","orange");
-	$("h3").eq(4).css("color","blue");
+	//선택자로 검색된 다수의 태그를 구분하여 메소드 호출 - 태그에 다른 기능 구현
+	$("h3").eq(0).css("color","red");	
+	$("h3").eq(1).css("color","green");	
+	$("h3").eq(2).css("color","blue");	
+	$("h3").eq(3).css("color","orange");	
+	$("h3").eq(4).css("color","lime");
 	*/
 	
-	var color=["red","green","purple","orange","blue"];
+	var color=["red","green","blue","orange","lime"];
 	
 	/*
-	//$(selector).size() : 선택자로 검색된 태그의 개수를 반환하는 메소드 
-	// => jQuery3.0 이상에서는 size() 메소드 대신 length라는 프로퍼티를 사용하여 태그의 개수를 제공
+	//$(selector).size() :  선택자로 검색된 태그의 갯수를 반환하는 메소드
+	// => jQuery 3.0 이상에서는 size() 메소드 대신 length 프로퍼티를 사용하여 태그의 갯수를 제공받아 사용
 	for(i=0;i<$("h3").length;i++) {
-		$("h3").eq(i).css("color",color[i]);
+		$("h3").eq(i).css("color", color[i]);
 	}
 	*/
 	
-	//$(selector).each(callback([index][, element])): 선택자로 검색된 태그의 개수만큼 콜백함수를
+	//$(selector).each(callback([index][, element])) : 선택자로 검색된 태그의 갯수만큼 콜백함수를
 	//반복적으로 호출하는 메소드 - 명시적 반복
 	// => 콜백함수에 매개변수를 작성하면 검색된 태그의 첨자와 태그의 Element 객체가 자동으로
-	//저장되어 콜백함수에서 사용 가능
+	//저장되어 콜백함수에서 사용 가능 	
 	$("h3").each(function(index, element) {
-		//$("h3").eq(index).css("color",color[index]);
+		//$("h3").eq(index).css("color", color[index]);
 		
-		//jQuery 함수의 매개변수에 선택자 대신 Element 객체를 전달받아 jQuery 객체로 생성하여
-		//메소드 호출 가능 
+		//jQuery 클래스 함수의 매개변수에 선택자 대신 Element 객체를 전달받아 jQuery 객체로 
+		//생성하여 메소드 호출 가능 
 		//$(element).css("color", color[index]);
 		
 		//this : 콜백함수에 처리중인 태그의 Element 객체를 표현하기 위한 키워드
 		// => this : 자바스크립트의 Element 객체, $(this) : jQuery 객체
 		$(this).css("color", color[index]);
-	});
+	});	
 	</script>
 </body>
 </html>

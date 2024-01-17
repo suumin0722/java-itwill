@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!DOCTYPE html>
-<html>
-<head>
 <meta charset="UTF-8">
 <title>CSS</title>
 <style>
@@ -19,6 +16,14 @@ img {
 	float: left;
 	margin: 20px;
 	background: rgba(0, 0, 255, 0.3);
+	
+	/* perspective : Z 영역에 대한 스타일 속성 */
+	/* 속성값 : Z 영역에 대한 깊이를 px 단위로 설정 */
+	perspective: 200px;
+	
+	/* transform-style : 박스모델 변형에 대한 차원 관련 스타일 속성 */
+	/* 속성값 : flat(2차원 - 기본), preserve-3d(3차원) */
+	transform-style: preserve-3d;
 }
 
 /* transform : 박스모델 변형 관련 스타일 속성 */

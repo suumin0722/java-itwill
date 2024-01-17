@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-//입력페이지에서 form 태그를 상요해 사용자 입력값(파일)을 [multipart/form-data] 형태로 전달하면
+//입력페이지에서 form 태그를 사용해 사용자 입력값(파일)을 [multipart/form-data] 형태로 전달하면
 //HttpServletResponse 객체로 리퀘스트 메시지의 몸체부에 저장된 파일을 읽기 위한
 //입력스트림(ServletInputStream 객체)을 반환받아 전달값과 파일을 구분하여 처리
 // => [multipart/form-data] 형태로 전달되는 문자값 및 파일을 처리하기 위한 클래스를 사용하는 것을 권장

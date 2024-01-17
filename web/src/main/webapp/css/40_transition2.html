@@ -1,26 +1,24 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-	<meta charset="UTF-8">
-	<title>CSS</title>
-</head>
+<meta charset="UTF-8">
+<title>CSS</title>
 <style>
 #images img {
 	margin: 20px;
 	
-	/* opacity: 박스모델 투명도 관련 스타일 속성 */
+	/* opacity : 박스모델 투명도 관련 스타일 속성 */
 	/* 속성값 : 0.0(투명) ~ 1.0(불투명) */
 	opacity: 0.5;
 	
-	/* transition: 트랜지션 관련 모든 스타일 속성값 적용할 수 있는 스타일 속성 */
+	/* transition : 트렌지션 관련 모든 스타일 속성값을 적용할 수 있는 스타일 속성 */
 	transition: all 1s;
 }
 
 #images img:hover {
 	transform: scale(1.2, 1.2);
 	opacity: 1.0;
-}
+}	
 
 #shape div {
 	width: 100px;
@@ -33,10 +31,10 @@
 
 #shape:hover div {
 	background: url(/web/css/images/f2.png);
-	left: 600px;
+	left: 600px;	
 }
-
 </style>
+</head>
 <body>
 	<h1>트렌지션 관련 스타일 속성</h1>
 	<hr>
@@ -47,8 +45,7 @@
 	</div>
 	<hr>
 	<div id="shape">
-		<div></div>
+		<div></div>		
 	</div>
 </body>
-
 </html>
