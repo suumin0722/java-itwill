@@ -51,6 +51,7 @@
 			} else {
 				session.removeAttribute("id");
 			}
+			
 		%>
 		<h1>로그인</h1>
 		<hr>
