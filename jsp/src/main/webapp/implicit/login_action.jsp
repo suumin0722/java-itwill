@@ -18,7 +18,7 @@
 		return;
 		*/
 		
-		//response.sendRedirect(String url) : 클라이언트에게 URL 주소를 전달하영 응답하는 메소드
+		//response.sendRedirect(String url) : 클라이언트에게 URL 주소를 전달하여 응답하는 메소드
 		// => URL 주소를 응답받은 클라이언트는 브라우저의 요청 URL 주소를 변경하여 JSP 문서를 
 		//요청하고 실행결과를 응답받아 출력 - 리다이렉트를 사용한 페이지 이동(리다이렉트 이동)
 		
@@ -36,6 +36,14 @@
 		String message=URLEncoder.encode("비정상적인 방법으로 페이지를 요청 하였습니다.", "utf-8");
 		//System.out.println("message = "+message);
 		response.sendRedirect("login_form.jsp?msg="+message);
+		return;
+		*/
+		
+		/*
+		out.println("<script type='text/javascript'>");
+		out.println("alert('비정상적인 방법으로 페이지를 요청 하였습니다.');");
+		out.println("location.href='login_form.jsp';");
+		out.println("</script>");
 		return;
 		*/
 		
