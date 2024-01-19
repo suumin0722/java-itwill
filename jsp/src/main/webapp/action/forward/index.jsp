@@ -16,10 +16,10 @@
 	<a href="review.jsp">제품후기</a>&nbsp;&nbsp;
 	 --%>
 	 
-	<a href="controller.jsp">로그인</a>&nbsp;&nbsp;
-	<a href="controller.jsp">회원가입</a>&nbsp;&nbsp;
-	<a href="controller.jsp">장바구니</a>&nbsp;&nbsp;
-	<a href="controller.jsp">제품후기</a>&nbsp;&nbsp;
+	<a href="controller.jsp?pageName=login">로그인</a>&nbsp;&nbsp;
+	<a href="controller.jsp?pageName=join">회원가입</a>&nbsp;&nbsp;
+	<a href="controller.jsp?pageName=cart">장바구니</a>&nbsp;&nbsp;
+	<a href="controller.jsp?pageName=review">제품후기</a>&nbsp;&nbsp;
 	 
 </body>
 </html>
