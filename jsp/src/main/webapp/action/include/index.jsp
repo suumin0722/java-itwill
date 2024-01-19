@@ -23,6 +23,8 @@
 	} else if(category.equals("cafe")) {
 		master="일지매(cafe@itwill.xyz)";
 	}
+	
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -81,10 +83,25 @@
 	<p>관리자 : 홍길동(abc@itwill.xyz)</p>
 	--%>
 	<%-- <%@include file="/action/include/footer.jspf" %> --%>
-	<jsp:include page="/action/include/footer.jsp"></jsp:include>
+
+	<%-- param Tag : 스레드가 이동되는 JSP 문서에게 값을 전달하기 위한 태그 --%>
+	<%-- => 리퀘스트 메세지 몸체부에 값을 저장하여 전달 --%>
+	<%-- => include 태그와 forward 태그의 하위태그로 사용 --%>
+	<%-- 주의점) include 태그와 forward 태그의 하위태그로 param 태그를 제외한 문장이 존재할 경우 에러 발생 --%>
+	<jsp:include page="/action/include/footer.jsp">
+		<jsp:param value="<%=master%>" name="master"/>
+	</jsp:include>
+	
+	<%
+		if(request.getAttribute("errorCode")!=null) {
+			//클라이언트에게 에러코드 전달
+			response.sendError((Integer)request.getAttribute("errorCode"));
+			return;
+		}
+	%>	
+	
 </body>
 </html>
-
 
 
 
