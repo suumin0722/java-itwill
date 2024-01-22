@@ -36,40 +36,41 @@
 	<h1 align="center">학생정보 변경</h1>
 	<hr>
 	<form name="studentForm">
+	<%-- <input type="hidden" name="no" value="<%=student.getNo()%>"> --%>
 	<table align="center" border="1" cellpadding="1" cellspacing="0" width="300">
 		<tr height="40">
 			<th bgcolor="yellow" width="100">학생번호</th>
 			<td width="200" align="center">
-				<input type="text" name="no">
+				<input type="text" name="no" value="<%=student.getNo()%>" readonly="readonly">
 			</td>
 		</tr>
 		<tr height="40">
 			<th bgcolor="yellow" width="100">이름</th>
 			<td width="200" align="center">
-				<input type="text" name="name">
+				<input type="text" name="name" value="<%=student.getName()%>">
 			</td>
 		</tr>
 		<tr height="40">
 			<th bgcolor="yellow" width="100">전화번호</th>
 			<td width="200" align="center">
-				<input type="text" name="phone">
+				<input type="text" name="phone" value="<%=student.getPhone()%>">
 			</td>
 		</tr>
 		<tr height="40">
 			<th bgcolor="yellow" width="100">주소</th>
 			<td width="200" align="center">
-				<input type="text" name="address">
+				<input type="text" name="address" value="<%=student.getAddress()%>">
 			</td>
 		</tr>
 		<tr height="40">
 			<th bgcolor="yellow" width="100">생년월일</th>
 			<td width="200" align="center">
-				<input type="text" name="birthday">
+				<input type="text" name="birthday" value="<%=student.getBirthday().substring(0, 10)%>">
 			</td>
 		</tr>
 		<tr height="40">
 			<td width="200" colspan="2" align="center">
-				<input type="button" value="학생변경">
+				<input type="button" value="학생변경" onclick="submitCheck();">
 				<input type="reset" value="초기화">
 				<input type="button" value="학생목록" onclick="location.href='displayStudent.jsp';">
 			</td>
