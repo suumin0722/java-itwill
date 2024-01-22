@@ -30,7 +30,7 @@ public class ChattingClientApp extends JFrame {
 	private JTextField textField;//입력 컴퍼넌트
 
 	//서버와 연결된 Socket 객체를 저장하기 위한 필드
-	private Socket socket;
+	//private Socket socket;
 	
 	//서버에서 보내온 메세지를 제공받기 위한 입력스트림을 저장하기 위한 필드
 	private BufferedReader in;
@@ -81,7 +81,8 @@ public class ChattingClientApp extends JFrame {
 		});
 		
 		try {
-			//Socet 객체를 생성하여 필드에 저장 - 서버 접속
+			//Socket 객체를 생성하여 필드에 저장 - 서버 접속
+			@SuppressWarnings("resource")
 			Socket socket=new Socket("192.168.13.12", 5000);
 			
 			//소켓의 입력스트림을 제공받아 대량의 문자데이터(문자열)을 제공받을 수 있는 입력 스트림으로
@@ -120,8 +121,6 @@ public class ChattingClientApp extends JFrame {
 //			if(re == 0) {
 //		dispose();
 //			}
-		
-		
 		
 		
 		}
