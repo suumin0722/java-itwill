@@ -90,7 +90,7 @@ public class MemberDAO extends JdbcDAO {
 				member.setJoinDate(rs.getString("join_date"));
 				member.setUpdateDate(rs.getString("update_date"));
 				member.setLastLogin(rs.getString("last_login"));
-				member.setMemberStatus(rs.getString("member_status"));
+				member.setMemberStatus(rs.getInt("member_status"));
 			}
 		} catch (SQLException e) {
 			System.out.println("[에러]selectMemberById() 메소드의 SQL 오류 = "+e.getMessage());

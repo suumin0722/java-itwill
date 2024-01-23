@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%-- 사용자로부터 회원정보를 입력받기 위한 JSP 문서 --%>    
-<%--  --%>
-<%-- [회원가입] 태그를 클릭한 경우 [/member/member_join_action.jsp] 문서를 요청하여 페이지 이동 - 입력값 전달 --%>
+<%-- 사용자로부터 회원정보를 입력받기 위한 JSP 문서 --%>
+<%-- => [아이디 중복 검사] 태그를 클릭한 경우 새창을 열어 [/member/id_check.jsp] 문서를 요청 - 아이디 전달 --%>
+<%-- => [우편번호 검색] 태그를 클릭한 경우 [다음 우편번호 서비스]를 사용하여 우편번호와 기본주소의 입력태그에 입력값 변경 --%>    
+<%-- => [회원가입] 태그를 클릭한 경우 [/member/member_join_action.jsp] 문서를 요청하여 페이지 이동 - 입력값 전달 --%>    
 <style type="text/css">
 fieldset {
 	text-align: left;
@@ -52,6 +53,9 @@ legend {
 }
 </style>
 <form id="join" action="<%=request.getContextPath() %>/index.jsp?group=member&worker=member_join_action" method="post">
+<%-- [아이디 중복 검사] 기능 실행 여부를 저장하기 위한 입력태그 --%>
+<%-- => 0 : [아이디 중복 검사] 기능 미실행, 1 : [아이디 중복 검사] 기능 실행 --%>
+<input type="hidden" id="idCheckResult" value="0">
 <fieldset>
 	<legend>회원가입 정보</legend>
 	<ul>
@@ -87,7 +91,7 @@ legend {
 			<div id="emailRegMsg" class="error">입력한 이메일이 형식에 맞지 않습니다.</div>
 		</li>
 		<li>
-			<label for="mobile">전화번호</label>
+			<label for="mobile2">전화번호</label>
 			<select name="mobile1">
 				<option value="010" selected>&nbsp;010&nbsp;</option>
 				<option value="011">&nbsp;011&nbsp;</option>
@@ -124,6 +128,8 @@ legend {
 	<button type="reset">다시입력</button>
 </div>
 </form>
+
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
 $("#id").focus();
 
@@ -203,5 +209,39 @@ $("#join").submit(function() {
 	return submitResult;
 });
 
-$("#idCheck").clo
+//[아이디 중복 검사] 태그를 클릭한 경우 호출되는 이벤트 처리 함수 등록
+$("#idCheck").click(function() {
+	//아이디 관련 에러메세지가 보여지지 않도록 설정
+	$("#idMsg").css("display","none");
+	$("#idRegMsg").css("display","none");
+	
+	//입력태그(아이디)의 입력값에 대한 검증
+	var idReg=/^[a-zA-Z]\w{5,19}$/g;
+	if($("#id").val()=="") {
+		$("#idMsg").css("display","block");
+		return;
+	} else if(!idReg.test($("#id").val())) {
+		$("#idRegMsg").css("display","block");
+		return;
+	}
+	
+	//새창(팝업창)을 실행하여 [/member/id_check.jsp] 문서 요청
+	window.open("<%=request.getContextPath()%>/member/id_check.jsp?id="+$("#id").val()
+			,"idCheck", "width=450, height=130, left=700, top=400");
+});
+
+//입력태그(아이디)의 입력값이 변경된 경우 호출되는 이벤트 처리 함수 등록
+$("#id").change(function() {
+	//입력태그(아이디 중복 검사 실행 여부)의 입력값 변경
+	$("#idCheckResult").val("0");
+});
+
+$("#postSearch").click(function() {
+	new daum.Postcode({
+		oncomplete: function(data) {
+			$("#zipcode").val(data.zonecode);
+			$("#address1").val(data.address);
+		} 
+	}).open();
+});
 </script>
