@@ -22,9 +22,14 @@
 			<span class="star" value="5"> </span>
 		</div>
 		<p id="star_select">선택하세요.</p>
-		
-		<textarea class="review_box" placeholder="리뷰 내용을 작성해주세요."></textarea>
-		
+			<div class="review_box">
+			<textarea id="review_box" placeholder="리뷰 내용을 작성해주세요."></textarea>
+			</div>
+			<div class="review_text">
+			<p id="textCount">0자</p>
+    		<p id="textTotal">/500자</p>
+			</div>
+			
 		<div class="photo">
 		<input type="submit" class="attach_photo" value="사진 첨부하기" />
 		</div>
@@ -57,5 +62,26 @@
 			$(this).addClass('on').prevAll('span').addClass('on');
 		}
 	});
+	
+	//리뷰박스 키업 이벤트 처리
+	$('#review_box').keyup(function (e) {
+		let content = $(this).val();
+	    
+	    // 글자수 세기
+	    if (content.length == 0 || content == '') {
+	    	$('#textCount').text('0자');
+	    } else {
+	    	$('#textCount').text(content.length + '자');
+	    }
+	    
+	    // 글자수 제한
+	    if (content.length > 500) {
+	    	// 500자 부터는 타이핑 되지 않도록
+	        $(this).val($(this).val().substring(0, 500));
+	        // 500자 넘으면 알림창 뜨도록
+	        alert('글자수는 500자까지 입력 가능합니다.');
+	    };
+	});
+	
 </script>
 </html>

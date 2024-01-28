@@ -51,18 +51,29 @@ body {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
+}
+
+#review_box {
 	width: 400px;
 	box-sizing: border-box;
 	display: inline-block;
-	margin: 15px 0;
 	background: #F3F4F8;
 	border: 0;
 	border-radius: 10px;
 	height: 100px;
 	resize: none;
-	padding: 10px;
 	font-size: 13px;
 	font-family: sans-serif;
+	resize: none;
+}
+
+.review_text {
+	display: flex;
+	flex-direction: row;
+	justify-content: right;
+	font-size: 12px;
+	vertical-align: top;
+	margin-bottom: 10px;
 }
 
 .photo {
