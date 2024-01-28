@@ -7,39 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https:///code.jquery.com/jquery-3.7.1.min.js"></script>
-<script>
-const drawStar = (target) => {
-  $(`.star span`).css({ width: `${target.value * 10}%` });
-}
-</script>
 <style>
-.rating_box {
-  display: flex;
-}
-
-.star {
-    position: relative;
-    font-size: 2rem;
-    color: #ddd;
-}
-  
-.star input {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 0;
-    opacity: 0;
-    cursor: pointer;
-}
-  
-.star span {
-    width: 0;
-    position: absolute; 
-    left: 0;
-    color: red;
-    overflow: hidden;
-    pointer-events: none;
-}
 </style>
 <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -70,17 +38,13 @@ const drawStar = (target) => {
             <div class="col-lg-6">
               <div class="review_box">
                 <h4>리뷰 작성</h4>
-              	<div class="rating_box">
-                <p>Your Rating:</p>
-                <ul class="rating">
-                  <li>
-                  <span class="star">
-                   ★★★★★
-                   <span>★★★★★</span>
-                   <input type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
-				  </span>
-				  </li>
-                </ul>
+                <div class="product_info">
+                상품 이미지, 상품 카테고리, 상품명
+                </div>
+                <div class="rating">
+                <p>상품은 만족하셨나요?</p><br>
+                <p>별점 출력되는 곳</p><br>
+               <p>선택하세요.</p>
                 </div>
                 <form class="row contact_form" action="contact_process.php" method="post" novalidate="novalidate">
                   <div class="col-md-12">

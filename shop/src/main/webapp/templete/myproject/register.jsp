@@ -20,11 +20,11 @@ border: none;
 </head>
 <body>
 	<div>
-	<img alt="등록" src="/shop/myproject/register.png" width="80" >
+	<img alt="등록" src="/shop/templete/myproject/register.png" width="80" >
 	<h2>문의가 등록되었습니다.</h2>
 	<p>문의에 대한 답변은 마이페이지에서 확인 가능합니다.<br>
 	급한 문의사항은 전화 문의를 이용해주세요.</p>
-	<p><img alt="전화" src="/shop/myproject/telephoneblack.png" width="15" >
+	<p><img alt="전화" src="/shop/templete/myproject/telephoneblack.png" width="15" >
 	<strong>02-111-8282</strong></p>
 	<p id="button">
 	<input type="button" value="추가 문의 등록" >
