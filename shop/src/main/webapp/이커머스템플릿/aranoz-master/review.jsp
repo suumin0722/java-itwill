@@ -6,6 +6,41 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https:///code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+const drawStar = (target) => {
+  $(`.star span`).css({ width: `${target.value * 10}%` });
+}
+</script>
+<style>
+.rating_box {
+  display: flex;
+}
+
+.star {
+    position: relative;
+    font-size: 2rem;
+    color: #ddd;
+}
+  
+.star input {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+  
+.star span {
+    width: 0;
+    position: absolute; 
+    left: 0;
+    color: red;
+    overflow: hidden;
+    pointer-events: none;
+}
+</style>
 <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -27,167 +62,26 @@
   <link rel="stylesheet" href="css/magnific-popup.css">
   <!-- style CSS -->
   <link rel="stylesheet" href="css/style.css">
+
 </head>
 <body>
 <div class="col-lg-6">
-              
-        <div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab">
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="row total_rate">
-                <div class="col-6">
-                  <div class="box_total">
-                    <h5>Overall</h5>
-                    <h4>4.0</h4>
-                    <h6>(03 Reviews)</h6>
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="rating_list">
-                    <h3>Based on 3 Reviews</h3>
-                    <ul class="list">
-                      <li>
-                        <a href="#">5 Star
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i> 01</a>
-                      </li>
-                      <li>
-                        <a href="#">4 Star
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i> 01</a>
-                      </li>
-                      <li>
-                        <a href="#">3 Star
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i> 01</a>
-                      </li>
-                      <li>
-                        <a href="#">2 Star
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i> 01</a>
-                      </li>
-                      <li>
-                        <a href="#">1 Star
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i> 01</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="review_list">
-                <div class="review_item">
-                  <div class="media">
-                    <div class="d-flex">
-                      <img src="img/product/single-product/review-1.png" alt="" />
-                    </div>
-                    <div class="media-body">
-                      <h4>Blake Ruiz</h4>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                    </div>
-                  </div>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo
-                  </p>
-                </div>
-                <div class="review_item">
-                  <div class="media">
-                    <div class="d-flex">
-                      <img src="img/product/single-product/review-2.png" alt="" />
-                    </div>
-                    <div class="media-body">
-                      <h4>Blake Ruiz</h4>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                    </div>
-                  </div>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo
-                  </p>
-                </div>
-                <div class="review_item">
-                  <div class="media">
-                    <div class="d-flex">
-                      <img src="img/product/single-product/review-3.png" alt="" />
-                    </div>
-                    <div class="media-body">
-                      <h4>Blake Ruiz</h4>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                    </div>
-                  </div>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo
-                  </p>
-                </div>
-              </div>
-            </div>
+         
             <div class="col-lg-6">
               <div class="review_box">
-                <h4>Add a Review</h4>
+                <h4>리뷰 작성</h4>
+              	<div class="rating_box">
                 <p>Your Rating:</p>
-                <ul class="list">
+                <ul class="rating">
                   <li>
-                    <a href="#">
-                      <i class="fa fa-star"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-star"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-star"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-star"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-star"></i>
-                    </a>
-                  </li>
+                  <span class="star">
+                   ★★★★★
+                   <span>★★★★★</span>
+                   <input type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
+				  </span>
+				  </li>
                 </ul>
-                <p>Outstanding</p>
+                </div>
                 <form class="row contact_form" action="contact_process.php" method="post" novalidate="novalidate">
                   <div class="col-md-12">
                     <div class="form-group">
