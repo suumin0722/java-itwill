@@ -15,11 +15,11 @@
 		
 		<p>상품은 만족하셨나요?</p>
 		<div class="star_rating">
-			<span class="star on" value="1"></span>
-			<span class="star" value="2"></span>
-			<span class="star" value="3"> </span>
-			<span class="star" value="4"></span>
-			<span class="star" value="5"> </span>
+			<span class="star on" data-value="1"></span>
+			<span class="star" data-value="2"></span>
+			<span class="star" data-value="3"> </span>
+			<span class="star" data-value="4"></span>
+			<span class="star" data-value="5"> </span>
 		</div>
 		<p id="star_select">선택하세요.</p>
 			<div class="review_box">
