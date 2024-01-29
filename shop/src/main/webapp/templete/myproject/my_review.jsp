@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+	
+<%-- 비로그인 상태의 사용자가 JSP 문서를 요청한 경우 에러페이지로 이동되도록 응답 처리 --%>
+
 <html>
 <head>
 <meta charset="UTF-8">
@@ -15,15 +17,15 @@
 		
 		<p>상품은 만족하셨나요?</p>
 		<div class="star_rating">
-			<span class="star on" data-value="1"></span>
+			<span class="star" data-value="1"></span>
 			<span class="star" data-value="2"></span>
 			<span class="star" data-value="3"> </span>
 			<span class="star" data-value="4"></span>
 			<span class="star" data-value="5"> </span>
 		</div>
 		<p id="star_select">선택하세요.</p>
-			<div class="review_box">
-			<textarea id="review_box" placeholder="리뷰 내용을 작성해주세요."></textarea>
+			<div class="reviewContent">
+			<textarea id="reviewContent" placeholder="리뷰 내용을 작성해주세요."></textarea>
 			</div>
 			<div class="review_text">
 			<p id="textCount">0자</p>
@@ -83,5 +85,17 @@
 	    };
 	});
 	
+	//
+	$("#reviewForm").submit(function() {
+	    if ($(".star").data("value") === undefined || $(".star").data("value") === "") {
+	        $("#star_select").text("별점을 선택해 주세요.").css("color":"red");
+	        return false;
+	    }
+		
+		if($("#reviewContent").val()=="") {
+			 $("#reviewContent").attr("placeholder", "내용을 입력해 주세요.").css("color", "red");
+			return false;
+		}
+	});
 </script>
 </html>

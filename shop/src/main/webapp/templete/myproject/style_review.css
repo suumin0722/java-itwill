@@ -47,13 +47,13 @@ body {
 	font-size: 12px;
 }
 
-.review_box {
+.reviewContent {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 }
 
-#review_box {
+#reviewContent {
 	width: 400px;
 	box-sizing: border-box;
 	display: inline-block;

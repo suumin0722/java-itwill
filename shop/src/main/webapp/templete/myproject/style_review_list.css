@@ -1,0 +1,93 @@
+@charset "UTF-8";
+
+ul {
+  list-style-type: none; /* 목록 아이콘을 없앰 */
+  padding: 0; /* 목록의 패딩을 없앰 */
+  margin: 0; /* 목록의 마진을 없앰 */
+}
+
+
+.review_title_block {
+	display: flex;
+	flex-direction: row;
+	align-items: center; /* 세로 중앙 정렬을 위한 속성 추가 */
+}
+
+.review_count, .star_rating {
+	margin-right: 5px; /* 간격 조절을 위한 속성 추가 */
+}
+
+.star_rating {
+	margin-top: 10px;
+	margin-right: 3px;
+}
+
+.star_rating .star {
+	width: 25px;
+	height: 25px;
+	display: inline-block;
+	background: url('/shop/templete/empty_star.png') no-repeat;
+	background-size: 100%;
+	box-sizing: border-box;
+}
+
+.star_rating .star.on {
+	width: 25px;
+	height: 25px;
+	display: inline-block;
+	background: url('/shop/templete/black_star.png') no-repeat;
+	background-size: 100%;
+	box-sizing: border-box;
+}
+
+.sortBtn {
+	display: flex;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+#sortByDate:hover,
+#sortByRating:hover {
+  color: lightgray; /* 글자 색을 변경하는 코드 추가 */
+} 
+
+#sortByDate,
+#sortByRating {
+    border: none;
+    background-color: transparent; /* 배경색을 투명하게 변경 */
+    font-weight: bold;
+}
+
+#review_title_line {
+	border: 2px solid #000; /* 2px 굵기의 실선을 사용하며, 색상은 검정(#000)입니다. */
+	margin-top: 1px; /* 간격 조절을 위한 margin-top 추가 */
+}
+
+.writer_info_1 {
+	display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 15px;
+    color: rgb(0, 0, 0);
+}
+
+
+#userId {
+	margin-left: 5px;
+}
+
+#regDate {
+	display: flex;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+}
+
+
