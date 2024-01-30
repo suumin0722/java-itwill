@@ -18,11 +18,9 @@
 		pageNum=Integer.parseInt(request.getParameter("pageNum"));
 	}
 	
-	int pageSize=10;//게시글갯수- 전달값이 없는 경우 저장된 초기값 설정
-	if(request.getParameter("pageSize")!=null) {//전달값이 있는 경우
-		pageSize=Integer.parseInt(request.getParameter("pageSize"));
-	}
+	
 %>
+
 <html>
 <head>
     <meta charset="UTF-8">
@@ -65,16 +63,16 @@
                         <span id="userId">son*****</span>
                         <span id="regDate">2024.01.28</span>
                     </div>
-                </div>
                 <div class="writer_info_2">
+                    <div class="review_content">
+                        <p>리뷰내용입니다. 너무 좋아요~!</p>
+                    </div>
                     <div class="review_images">
                         <img src="/shop/templete/tennisracket.jpg" 
                             alt="리뷰 이미지" class="review_image" style="width: 120px; height: 90px;">
                     </div>
-                    <div class="review_content">
-                        <p>리뷰내용입니다. 너무 좋아요~!</p>
-                    </div>
                 </div>
+              </div>
             </li>
         </ul>
     </div>
@@ -98,7 +96,7 @@
 		//	endPage=totalPage;
 		//}
 	%>
-    <div class="paging_block"></div>
+	
 <script>
 $(document).ready(function() {
     // 이미지 클릭 시 동작할 함수
