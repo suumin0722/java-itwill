@@ -163,11 +163,15 @@ td {
 
 <script type="text/javascript">
 $("#modifyBtn").click(function() {
-	
+	location.href="<%=request.getContextPath()%>/index.jsp?group=review&worker=review_modify"
+		+"&reviewNum=<%=review.getReviewNum()%>&pageNum=<%=pageNum%>"
+		+"&pageSize=<%=pageSize%>&search=<%=search%>&keyword=<%=keyword%>";	
 });
 
 $("#removeBtn").click(function() {
-	
+	if(confirm("게시글을 정말로 삭제하시겠습니까?"))
+		location.href="<%=request.getContextPath()%>/index.jsp?group=review&worker=review_remove_action"
+			+"&reviewNum=<%=review.getReviewNum()%>";	
 });
 
 $("#replyBtn").click(function() {
@@ -181,5 +185,16 @@ $("#listBtn").click(function() {
 		+"&pageNum=<%=pageNum%>&pageSize=<%=pageSize%>&search=<%=search%>&keyword=<%=keyword%>";	
 });
 </script>
+
+
+
+
+
+
+
+
+
+
+
 
 

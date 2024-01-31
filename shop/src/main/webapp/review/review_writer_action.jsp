@@ -62,7 +62,7 @@
 	}
 	
 	//REVIEW_SEQ 시퀸스의 다음값을 검색하여 반환하는 ReviewDAO 클래스의 메소드 호출
-	int nextNum=ReviewDAO.getDAO().selectReviewNextNum();
+	int nextNum=ReviewDAO.getDAO().selectReivewNextNum();
 	
 	//게시글을 작성한 클라이언트의 IP 주소를 반환받아 저장
 	//request.getRemoteAddr() : JSP 문서를 요청한 클라이언트의 IP 주소를 반환하는 메소드
