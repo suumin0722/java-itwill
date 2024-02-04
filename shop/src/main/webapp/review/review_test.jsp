@@ -6,7 +6,7 @@
 <%
 	ReviewDTO review=new ReviewDTO();
 	for(int i=1;i<=500;i++) {
-		int nextNum=ReviewDAO.getDAO().selectReviewNextNum();
+		int nextNum=ReviewDAO.getDAO().selectReivewNextNum();
 		review.setReviewNum(nextNum);//글번호 변경
 		review.setReviewMember(8);//회원번호 변경
 		review.setReviewSubject("테스트-"+i);//제목 변경
