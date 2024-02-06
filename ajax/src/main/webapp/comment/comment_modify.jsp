@@ -1,6 +1,6 @@
-<%@page import="xyz.itwill.utility.Utility"%>
 <%@page import="xyz.itwill.dao.AjaxCommentDAO"%>
 <%@page import="xyz.itwill.dto.AjaxCommentDTO"%>
+<%@page import="xyz.itwill.util.Utility"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%-- 댓글정보(댓글번호, 작성자, 내용)을 전달받아 AJAX_COMMENT 테이블에 저장된 행으로 변경하고 

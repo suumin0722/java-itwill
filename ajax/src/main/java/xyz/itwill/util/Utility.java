@@ -1,4 +1,4 @@
-package xyz.itwill.utility;
+package xyz.itwill.util;
 
 public class Utility {
 	//문자열을 전달받아 태그 관련 문자를 회피문자로 변경하여 반환하는 메소드
