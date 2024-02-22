@@ -65,32 +65,32 @@ public class ControllerServlet extends HttpServlet {
 		if(command.equals("/loginform.do")) {
 			action=new LoginFormModel();
 		} else if(command.equals("/login.do")) {
-			//action=new LoginModel();
+			action=new LoginModel();
 		} else if(command.equals("/logout.do")) {
-			//action=new LogoutModel();
+			action=new LogoutModel();
 		} else if(command.equals("/writeform.do")) {
-			//action=new WriteFormModel();
+			action=new WriteFormModel();
 		} else if(command.equals("/write.do")) {
-			//action=new WriteModel();
+			action=new WriteModel();
 		} else if(command.equals("/list.do")) {
-			//action=new ListModel();
+			action=new ListModel();
 		} else if(command.equals("/view.do")) {
-			//action=new ViewModel();
+			action=new ViewModel();
 		} else if(command.equals("/modifyform.do")) {
-			//action=new ModifyFormModel();
+			action=new ModifyFormModel();
 		} else if(command.equals("/modify.do")) {
-			//action=new ModifyModel();
+			action=new ModifyModel();
 		} else if(command.equals("/remove.do")) {
-			//action=new RemoveModel();
+			action=new RemoveModel();
 		} else if(command.equals("/error.do")) {
 			action=new ErrorModel();
 		} else {//클라이언트 요청에 대한 모델 역할의 클래스가 없는 경우
 			action=new ErrorModel();
 		}
 		
-		//인터페이스 참조변수로 추상메소드를 호출하면 참조변수에 저장된 모델 객체의 요청 처리 
-		//메소드를 호출하여 요청을 처리하고 뷰 관련 정보(ActionForward 객체)를 반환받아 저장
-		// => 메소드 오버라이드에 의한 다형성
+		//인터페이스 참조변수로 추상메소드를 호출하면 묵시적 객체 형변환에 의해 참조변수에  
+		//저장된 모델 객체의 오버라이드 선언된 요청 처리 메소드를 호출하여 요청을 처리하고 
+		//뷰 관련 정보(ActionForward 객체)를 반환받아 저장 - 메소드 오버라이드에 의한 다형성
 		ActionForward actionForward=action.execute(request, response);
 				
 		//4.뷰 관련 정보가 저장된 ActionForward 객체를 이용하여 응답 처리
