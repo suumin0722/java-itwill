@@ -56,7 +56,9 @@ public class ControllerServlet extends HttpServlet {
 	
 	
 		//모델 역할의 클래스가 상속받기 위한 인터페이스로 참조변수 생성
-		// => 인터페이스로 생성된 참조변수에는 인터페이스를 상속받은 모든 자식클래스(모델)의
+		// => 인터페이스로 생성된 참조변수에는 인터페이스를 상속받은 모든 자식클래스(모델)
+
+		
 		//객체 저장 가능
 		Action action=null;
 		
