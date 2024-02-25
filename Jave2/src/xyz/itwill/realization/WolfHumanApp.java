@@ -58,12 +58,12 @@ public class WolfHumanApp {
 		((WolfHuman)human).change();
 		System.out.println("===================================================");
 		//자식클래스의 생성자로 부모 객체와 자식 객체를 생성하여 인터페이스의 참조변수에 자식 객체 저장
-		//Wolf wolf=new WolfHuman();
+		Wolf wolf=new WolfHuman();
 		
 		//자식클래스가 같은 클래스와 인터페이스는 명시적 객체 형변환을 사용하여 자식객체를 공유하여 사용 가능
 		//Wolf wolf = (WolfHuman)human;
 		//자식클래스로 형변환하지 않고 직접 부모클래스 또는 인터페이스로 객체 형변환 가능
-		Wolf wolf = (Wolf)human;
+		//Wolf wolf = (Wolf)human;
 		
 		//묵시적 객체 형변환에 의해 인터페이스로 생성된 참조변수로 자식객체를 참조하여 자식클래스의 메소드로 호출 가능
 		wolf.fastWalk();

@@ -8,7 +8,6 @@ public class AnonymousApp {
 		// => 인터페이스를 상속받은 자식클래스의 생성자를 이용해 객체를 생성해 인터페이스 참조변수에 저장 가능
 		//Anonymous anonymous=new Anonymous();
 		
-		/*
 		//인터페이스를 상속받은 자식클래스 작성 - 로컬 클래스(Local Class)
 		class Test implements Anonymous{
 			//기본생성자가 자동적으로 만들어져 있는거임
@@ -21,8 +20,8 @@ public class AnonymousApp {
 		// => 인터페이스를 상속받은 자식클래스의 기본 생성자를 이용해 객체를 생성해 인터페이스 참조변수에 저장 가능
 		Anonymous anonymous=new Test();
 		anonymous.display();
-		*/
-		
+
+		/*
 		
 		//인터페이스를 상속받은 이름이 없는 자식클래스의 기본 생성자를 호출하여 객체를 생성해
 		//인터페이스 참조변수에 저장
@@ -40,5 +39,6 @@ public class AnonymousApp {
 		};
 		
 		anonymous.display();
+	*/
 	}
 }
