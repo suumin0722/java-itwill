@@ -190,7 +190,8 @@ public class ControllerServlet extends HttpServlet {
 		// => 가독성 증가
 		Action action=actionMap.get(command);
 		if(action==null) {
-			action=new ErrorModel();
+			//action=new ErrorModel();
+			action=actionMap.get("/error.do");
 		}
 		//모델 객체로 요청 처리 메소드를 호출하여 클라이언트의 요청을 처리하고 뷰 관련 정보를 반환받아 저장
 		ActionForward actionForward=action.execute(request, response);
