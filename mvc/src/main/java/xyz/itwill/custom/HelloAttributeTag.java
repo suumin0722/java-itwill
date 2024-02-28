@@ -23,7 +23,8 @@ public class HelloAttributeTag extends TagSupport {
 	public String getName() {
 		return name;
 	}
-
+	
+	//커스텀 태그의 속성을 사용하여 속성값을 설정할 때 필드의 Setter 메소드 자동 호출
 	public void setName(String name) {
 		this.name = name;
 	}
