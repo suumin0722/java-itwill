@@ -51,7 +51,8 @@ function userLogin() {
 	  <br>
 	  
 	  <c:choose>
-		  <c:when test="${loginUserinfo.status eq null }">
+		  <%-- <c:when test="${loginUserinfo.status eq null }"> --%>
+		  <c:when test="${empty(loginUserinfo) }"><%-- 비로그인 상태의 사용자인 경우 --%>
 			  <!-- login Form  -->
 			  <form name="f" method="post">
 			  <table border="0" cellpadding="0" cellspacing="1" width="590" bgcolor="BBBBBB">
@@ -79,7 +80,7 @@ function userLogin() {
 				  </tr>
 			  </table>
 	  	</c:when>
-	 	<c:otherwise>
+	 	<c:otherwise><%-- 로그인 상태의 사용자인 경우 --%>
 		  <table border="0" cellpadding="0" cellspacing="1" width="590" bgcolor="BBBBBB">
 			  <tr>
 				<td align=center bgcolor="E6ECDE" height="22">

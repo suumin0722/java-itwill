@@ -61,22 +61,15 @@ function userModify() {
 		  <tr>
 			<td width=100 align=center bgcolor="E6ECDE" height="22">이메일 주소</td>
 			<td width=490 bgcolor="ffffff" style="padding-left:10px;">
-				<c:choose>
-					<c:when test="${userinfo.email ne null }">
-						<input type="text" style="width:240" name="email" value="${userinfo.email }">
-					</c:when>
-					<c:otherwise>
-						<input type="text" style="width:240" name="email">
-					</c:otherwise>
-				</c:choose>
+				<input type="text" style="width:240" name="email" value="${userinfo.email }">
 			</td>
 		  </tr>		  
 		  <tr>
 			<td width=100 align=center bgcolor="E6ECDE" height="22">회원등급</td>
 			<td width=490 bgcolor="ffffff" style="padding-left:10px;">
 				<select name="status">
-					<option value="1" <c:if test="${userinfo.status}eq 1"> { selected } </c:if>>일반회원</option>
-					<option value="9" <c:if test="${userinfo.status}eq 9"> { selected } </c:if>>관리자</option>
+					<option value="1" <c:if test="${userinfo.status eq 1}"> selected </c:if>>일반회원</option>
+					<option value="9" <c:if test="${userinfo.status eq 9}"> selected </c:if>>관리자</option>
 				</select>
 			</td>
 		  </tr>	
