@@ -1,10 +1,12 @@
+<%@page import="xyz.itwill.dao.MyMemberInterfaceDAO"%>
 <%@page import="xyz.itwill.dao.MyMemberXMLDAO"%>
 <%@page import="xyz.itwill.dto.MyMember"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	List<MyMember> memberList=MyMemberXMLDAO.getDAO().selectMemberList();
+	//List<MyMember> memberList=MyMemberXMLDAO.getDAO().selectMemberList();
+	List<MyMember> memberList=MyMemberInterfaceDAO.getDAO().selectMemberList();
 %>    
 <!DOCTYPE html>
 <html>
@@ -45,7 +47,9 @@ td, th {
 			<% for(MyMember member : memberList) { %>
 			<tr>
 				<td width="140"><%=member.getId() %></td>
-				<td width="160"><%=member.getName() %></td>
+				<td width="160">
+					<a href="member_view.jsp?id=<%=member.getId() %>"><%=member.getName() %></a>
+				</td>
 			</tr>
 			<% } %>
 		<% } %>
@@ -57,12 +61,4 @@ td, th {
 	</table>
 </body>
 </html>
-
-
-
-
-
-
-
-
 

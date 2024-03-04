@@ -4,7 +4,7 @@
     pageEncoding="UTF-8"%>
 <%
 	String id=request.getParameter("id");
-
+	
 	MyMember member=MyMemberXMLDAO.getDAO().selectMember(id);
 %>    
 <!DOCTYPE html>
@@ -31,24 +31,24 @@ td, th {
 </style>
 </head>
 <body>
-	<h1>회원등록</h1>
-	<form id="registerForm">
+	<h1>회원변경</h1>
+	<form id="modifyForm">
 	<table>
 		<tr>
 			<th width="100">아이디</th>
-			<td width="200"><input type="text" name="id" id="id"></td>
+			<td width="200"><input type="text" name="id" id="id" value="<%=member.getId()%>" readonly></td>
 		</tr>
 		<tr>
 			<th width="100">이름</th>
-			<td width="200"><input type="text" name="name" id="name"></td>
+			<td width="200"><input type="text" name="name" id="name" value="<%=member.getName()%>"></td>
 		</tr>
 		<tr>
 			<th width="100">전화번호</th>
-			<td width="200"><input type="text" name="phone" id="phone"></td>
+			<td width="200"><input type="text" name="phone" id="phone" value="<%=member.getPhone()%>"></td>
 		</tr>
 		<tr>
 			<th width="100">이메일</th>
-			<td width="200"><input type="text" name="email" id="email"></td>
+			<td width="200"><input type="text" name="email" id="email" value="<%=member.getEmail()%>"></td>
 		</tr>
 		<tr>
 			<td colspan="2">
@@ -61,15 +61,7 @@ td, th {
 	</form>	
 	
 	<script type="text/javascript">
-	$("#id").focus();
-	
 	$("#submitBtn").click(function() {
-		if($("#id").val()=="") {
-			alert("아이디를 입력해 주세요.");
-			$("#id").focus();
-			return;
-		}
-		
 		if($("#name").val()=="") {
 			alert("이름을 입력해 주세요.");
 			$("#name").focus();
@@ -88,14 +80,13 @@ td, th {
 			return;
 		}
 		
-		$("#registerForm").attr("method", "post").attr("action", "member_register_action.jsp").submit();
+		$("#modifyForm").attr("method", "post").attr("action", "member_modify_action.jsp").submit();
 	});
 	
 	$("#resetBtn").click(function() {
-		$("#registerForm").each(function() {
+		$("#modifyForm").each(function() {
 			this.reset();
 		});	
-		$("#id").focus();
 	});
 		
 	$("#displayBtn").click(function() {
