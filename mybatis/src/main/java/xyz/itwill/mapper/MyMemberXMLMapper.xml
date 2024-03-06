@@ -22,7 +22,7 @@
 		update mymember set name=#{name}, phone=#{phone}, email=#{email} where id=#{id}	
 	</update>
 	
-	<!-- update : DELETE 명령을 등록하기 위한 엘리먼트 -->
+	<!-- delete : DELETE 명령을 등록하기 위한 엘리먼트 -->
 	<!-- => 전달값이 하나인 경우 String 클래스 또는 Wrapper 클래스(원시형) 사용 -->
 	<!-- => String 클래스 또는 Wrapper 클래스(원시형)는 내부적으로 선언된 별칭을 사용하여 설정 -->
 	<delete id="deleteMember" parameterType="string">

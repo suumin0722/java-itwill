@@ -10,5 +10,4 @@ public interface MyUserMapper {
 	
 	List<MyUser> selectUserList();
 	
-	
 }

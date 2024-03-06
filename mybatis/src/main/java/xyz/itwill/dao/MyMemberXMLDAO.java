@@ -68,6 +68,7 @@ public class MyMemberXMLDAO {
 		}
 	}
 	
+	
 	//회원정보를 전달받아 MYMEMBER 테이블에 저장된 행을 변경하고 변경행의 갯수를 반환하는 메소드
 	public int updateMember(MyMember member) {
 		//SqlSessionFactory.openSession(boolean autoCommit) : SqlSession 객체를 생성하여 반환하는 메소드
