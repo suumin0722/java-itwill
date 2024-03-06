@@ -24,10 +24,3 @@
 		select no, name, phone, address, birthday from student order by no
 	</select>
 </mapper>
-
-
-
-
-
-
-
