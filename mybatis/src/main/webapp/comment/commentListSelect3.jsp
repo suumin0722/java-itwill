@@ -1,10 +1,10 @@
-<%@page import="xyz.itwill.dto.MyComment2"%>
+<%@page import="xyz.itwill.dto.MyComment3"%>
 <%@page import="xyz.itwill.dao.MyCommentDAO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	List<MyComment2> commentList=MyCommentDAO.getDAO().selectCommentList2();
+	List<MyComment3> commentList=MyCommentDAO.getDAO().selectCommentList3();
 %>    
 <!DOCTYPE html>
 <html>
@@ -39,10 +39,10 @@ td {
 			<td class="content">게시글내용</td>
 			<td class="date">게시글작성일</td>
 		</tr>
-		<% for(MyComment2 comment : commentList) { %>
+		<% for(MyComment3 comment : commentList) { %>
 		<tr>
 			<td><%=comment.getNo() %></td>
-			<td><%=comment.getId() %></td>
+			<td><%=comment.getName() %>[<%=comment.getId() %>]</td>
 			<td><%=comment.getContent() %></td>
 			<td><%=comment.getDate() %></td>
 		</tr>
