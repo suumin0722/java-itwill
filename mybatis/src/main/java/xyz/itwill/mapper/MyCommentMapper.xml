@@ -25,7 +25,7 @@
 	
 	<select id="selectCommentList1" resultType="MyComment1">
 		select comment_no, comment_id, comment_content, comment_date from mycomment order by comment_no desc
-	</select>
+	</select> 
 	
 	<!-- 검색행의 컬럼명과 resultType 속성값으로 설정된 클래스의 필드명이 모두 다른 경우 
 	resultType 속성값으로 설정된 클래스의 객체 대신 NULL 제공 -->
@@ -167,6 +167,112 @@
 	<select id="selectCommentNoReplyList" parameterType="int" resultType="MyReply">
 		select reply_no, reply_id, reply_content, reply_date, reply_comment_no from myreply
 			where reply_comment_no=#{replyCommentNo} order by reply_no desc 
+	</select>
+	
+	<!-- 문제점 : resultMap 엘리먼트의 첫번째 하위 엘리먼트로 association 엘리먼트를 사용한
+	경우 하나의 검색행으로 Java 객체를 만들어 제공하지만 다수의 행이 검색되면 TooManyResultsException 발생 -->
+	<!-- 해결법 : 다수의 행이 검색되는 경우 resultMap 엘리먼트의 첫번째 하위 엘리먼트로
+	association 엘리먼트외에 다른 엘리먼트(constructor, id, result)를 사용하여 작성 -->
+	<resultMap type="MyCommentReply" id="myCommentReplyResultMap">
+		<id column="comment_no" property="commentNo"/>
+	
+		<association property="comment" javaType="MyComment1">
+			<id column="comment_no" property="commentNo"/>
+			<result column="comment_id" property="commentId"/>
+			<result column="comment_content" property="commentContent"/>
+			<result column="comment_date" property="commentDate"/>
+		</association>
+		
+		<!-- collection : 1:N 관계의 테이블 조인에서 검색행의 컬럼값으로 List 객체를 생성하여
+		resultMap 엘리먼트의 type 속성값으로 설정된 클래스의 객체 필드에 저장하는 엘리먼트 -->
+		<!-- => 하위 엘리먼트로 id 엘리먼트 또는 result 엘리먼트를 사용하여 검색행의 컬럼값을
+		List 객체 요소(Java 객체)의 필드에 저장되도록 설정 -->
+		<!-- property 속성 : collection 엘리먼트로 생성된 List 객체가 저장될 클래스의 필드명을 속성값으로 설정 -->
+		<!-- ofType 속성 : List 객체에 저장된 요소(Java 객체)의 자료형을 속성값으로 설정 -->
+		<!-- => Java 자료형 대신 typeAlias 엘리먼트로 설정한 별칭(AliasName) 사용 가능 -->
+		<collection property="replyList" ofType="MyReply">
+			<id column="reply_no" property="replyNo"/>
+			<result column="reply_id" property="replyId"/>
+			<result column="reply_content" property="replyContent"/>
+			<result column="reply_date" property="replyDate"/>
+			<result column="reply_comment_no" property="replyCommentNo"/>
+		</collection>
+	</resultMap>
+	
+	<!-- 게시글번호를 전달받아 MYCOMMENT 테이블에 저장된 행과 MYREPLY 테이블에 저장된 행을
+	1:N 관계로 결합되도록 검색하여 Java 객체(MyCommentReply 객체)로 제공하는 엘리먼트 -->
+	<select id="selectCommentReply" parameterType="int" resultMap="myCommentReplyResultMap">
+		select comment_no, comment_id, comment_content, comment_date, reply_no, reply_id
+			, reply_content, reply_date, reply_comment_no from mycomment left join myreply on 
+			comment_no=reply_comment_no where comment_no=#{commentNo} order by reply_no desc
+	</select>
+	
+	<!--  
+	<resultMap type="MyCommentUserReply" id="myCommentUserReplyResultMap">
+		<id column="comment_no" property="commentNo"/>
+		<result column="comment_id" property="commentId"/>
+		<result column="comment_content" property="commentContent"/>
+		<result column="comment_date" property="commentDate"/>
+		
+		<association property="user" javaType="MyUser">
+			<id column="user_id" property="userId"/>
+			<result column="user_name" property="userName"/>
+		</association>
+		
+		<collection property="replyUserList" ofType="MyReplyUser">
+			<association property="reply" javaType="MyReply">
+				<id column="reply_no" property="replyNo"/>
+				<result column="reply_id" property="replyId"/>
+				<result column="reply_content" property="replyContent"/>
+				<result column="reply_date" property="replyDate"/>
+				<result column="reply_comment_no" property="replyCommentNo"/>
+			</association>
+			<association property="user" javaType="MyUser">
+				<id column="reply_user_id" property="userId"/>
+				<result column="reply_user_name" property="userName"/>
+			</association>
+		</collection>
+	</resultMap>
+	-->
+
+	<!-- 게시글번호를 전달받아 MYCOMMENT 테이블(MYUSER 테이블)에 저장된 행과 MYREPLY 테이블
+	(MYUSER 테이블)에 저장된 행을 1:N 관계로 결합되도록 검색하여 Java 객체(MyCommentUserReply 
+	객체)로 제공하는 엘리먼트 -->
+	<!--  
+	<select id="selectCommentUserReply" parameterType="int" resultMap="myCommentUserReplyResultMap">
+		select comment_no, comment_id, comment_content, comment_date, user_id, user_name
+			, reply_no, reply_id, reply_content, reply_date, reply_comment_no, reply_user_id 
+			, reply_user_name from mycomment join myuser on comment_id=user_id left join
+			(select reply_no, reply_id, reply_content, reply_date, reply_comment_no
+			, user_id reply_user_id, user_name reply_user_name from myreply join myuser 
+			on reply_id=user_id) on comment_no=reply_comment_no where comment_no=#{commentNo}
+			order by reply_no desc 
+	</select>
+	-->
+	
+	<!-- autoMapping 속성 : false(기본) 또는 true 중 하나를 속성값으로 설정 -->
+	<!-- => autoMapping 속성의 속성값을 [true]로 설정한 경우 검색행의 컬럼명과 같은 이름의 
+	필드에 검색행의 컬럼값을 자동으로 저장되도록 처리 -->
+	<resultMap type="MyCommentUserReply" id="myCommentUserReplyResultMap" autoMapping="true">
+		<id column="comment_no" property="commentNo"/>
+		<association property="user" javaType="MyUser" autoMapping="true"/>
+		<collection property="replyUserList" select="selectReplyUser" column="comment_no"/>
+	</resultMap>
+	
+	<resultMap type="MyReplyUser" id="myReplyUserResultMap">
+		<association property="reply" javaType="MyReply" autoMapping="true"/>
+		<association property="user" javaType="MyUser" autoMapping="true"/>
+	</resultMap>
+	
+	<select id="selectReplyUser" parameterType="int" resultMap="myReplyUserResultMap">
+		select reply_no, reply_id, reply_content, reply_date, reply_comment_no, user_id 
+			, user_name from myreply join myuser on reply_id=user_id where 
+			reply_comment_no=#{commentNo} order by reply_no desc	
+	</select>
+	
+	<select id="selectCommentUserReply" parameterType="int" resultMap="myCommentUserReplyResultMap">
+		select comment_no, comment_id, comment_content, comment_date, user_id, user_name
+			from mycomment join myuser on comment_id=user_id where comment_no=#{commentNo}	
 	</select>
 </mapper>
 

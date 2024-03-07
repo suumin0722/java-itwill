@@ -1,3 +1,6 @@
+<%@page import="xyz.itwill.dto.MyReplyUser"%>
+<%@page import="xyz.itwill.dto.MyCommentUserReply"%>
+<%@page import="xyz.itwill.dto.MyCommentReply"%>
 <%@page import="xyz.itwill.dto.MyReply"%>
 <%@page import="java.util.List"%>
 <%@page import="xyz.itwill.dao.MyCommentDAO"%>
@@ -12,13 +15,9 @@
 	}
 
 	int commentNo=Integer.parseInt(request.getParameter("commentNo"));
-	
-	//게시글번호를 전달받아 MYCOMMENT 테이블에 저장된 행을 검색하여 게시글을 반환하는 메소드 호출 
-	MyComment1 comment=MyCommentDAO.getDAO().selectComment(commentNo);
-	
-	//게시글번호를 전달받아 MYREPLY 테이블에 저장된 행을 검색하여 댓글목록을 반환하는 메소드 호출 
-	List<MyReply> replyList=MyCommentDAO.getDAO().selectCommentNoReplyList(commentNo);
-%>    
+
+	MyCommentUserReply commentUserReply=MyCommentDAO.getDAO().selectCommentUserReply(commentNo);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,19 +49,20 @@ td {
 	<table>
 		<tr>
 			<td width="200">게시글번호</td>
-			<td width="300"><%=comment.getCommentNo() %></td>
+			<td width="300"><%=commentUserReply.getCommentNo() %></td>
 		</tr>
 		<tr>
 			<td width="200">게시글작성자</td>
-			<td width="300"><%=comment.getCommentId() %></td>
+			<td width="300"><%=commentUserReply.getUser().getUserName() %>
+				[<%=commentUserReply.getCommentId() %>]</td>
 		</tr>
 		<tr>
 			<td width="200">게시글내용</td>
-			<td width="300"><%=comment.getCommentContent() %></td>
+			<td width="300"><%=commentUserReply.getCommentContent() %></td>
 		</tr>
 		<tr>
 			<td width="200">게시글작성일</td>
-			<td width="300"><%=comment.getCommentDate() %></td>
+			<td width="300"><%=commentUserReply.getCommentDate() %></td>
 		</tr>
 	</table>
 	<br>
@@ -76,18 +76,19 @@ td {
 			<td class="date">댓글작성일</td>
 			<td class="comment">게시글번호</td>
 		</tr>
-		<% if(replyList.isEmpty()) { %>
+		<% if(commentUserReply.getReplyUserList().isEmpty()) { %>
 		<tr>
 			<td colspan="5">댓글이 존재하지 않습니다.</td>
 		</tr>	
 		<% } else { %>
-			<% for(MyReply reply : replyList) { %>
+			<% for(MyReplyUser replyUser : commentUserReply.getReplyUserList()) { %>
 			<tr>
-				<td><%=reply.getReplyNo() %></td>
-				<td><%=reply.getReplyId() %></td>
-				<td><%=reply.getReplyContent() %></td>
-				<td><%=reply.getReplyDate() %></td>
-				<td><%=reply.getReplyCommentNo() %></td>
+				<td><%=replyUser.getReply().getReplyNo() %></td>
+				<td><%=replyUser.getUser().getUserName() %>
+					[<%=replyUser.getReply().getReplyId() %>]</td>
+				<td><%=replyUser.getReply().getReplyContent() %></td>
+				<td><%=replyUser.getReply().getReplyDate() %></td>
+				<td><%=replyUser.getReply().getReplyCommentNo() %></td>
 			</tr>
 			<% } %>
 		<% } %>
