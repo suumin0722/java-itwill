@@ -287,14 +287,122 @@
 	 --> 
 	 
 	<!-- 아이디와 이름을 모두 전달받아도 하나의 SQL 문장으로 SQL 명령에 포함되도록 설정 -->
-	<!-- => 이름만 전달받은 경우 SQL 명령에 오류가 발생되어 에러 발생 -->
+	<!-- => 이름만 전달받은 경우 SQL 명령에 오류가 발생되어 에러 발생 - trim 엘리먼트를 사용하여 해결 가능 -->
+	<!-- trim : 엘리먼트 내용에 필요한 SQL 문장을 추가하여 불필요한 SQL 문장을 삭제하여 
+	SQL 명령에 포함하는 엘리먼트 - 하위 엘리먼트로 다수의 if 엘리먼트 사용 -->
+	<!-- prefix 속성 : trim 엘리먼트 내용이 있는 경우 엘리먼트 내용 앞부분에 추가될 SQL 
+	문장을 속성값으로 설정 -->
+	<!-- suffix 속성 : trim 엘리먼트 내용이 있는 경우 엘리먼트 내용 뒷부분에 추가될 SQL 
+	문장을 속성값으로 설정 -->
+	<!-- prefixOverrides : trim 엘리먼트 내용이 있는 경우 엘리먼트 내용에서 삭제될 앞부분의
+	SQL	문장을 속성값으로 설정 -->
+	<!-- suffixOverrides : trim 엘리먼트 내용이 있는 경우 엘리먼트 내용에서 삭제될 뒷부분의
+	SQL	문장을 속성값으로 설정 -->
+	<!-- <select id="selectDynamicIdNameHewonList" parameterType="map" resultMap="myHewonResultMap">
+		select hewon_id, hewon_name, hewon_phone, hewon_email, hewon_status from myhewon
+		<trim prefix="where" prefixOverrides="or|and">
+			<if test="id != null and id != ''">
+				hewon_id = #{id}
+			</if>
+			<if test="name != null and name != ''">
+				${choice} hewon_name = #{name}
+			</if>
+		</trim>
+		order by hewon_id
+	</select> -->
+	
+	<!-- where : 엘리먼트 내용이 있는 경우 엘리먼트 내용(조건식)에서 앞부분에 불필요한
+	SQL 문장(or 또는 and 등)을 삭제하고 엘리먼트 내용 앞부분에 [where] 문장을 추가하여 
+	SQL 명령에 포함하는 엘리먼트 -->
 	<select id="selectDynamicIdNameHewonList" parameterType="map" resultMap="myHewonResultMap">
 		select hewon_id, hewon_name, hewon_phone, hewon_email, hewon_status from myhewon
-		<if test="id != null and id != ''">
-			where hewon_id = #{id}
-		</if>
-		<if test="name != null and name != ''">
-			${choice} hewon_name = #{name}
+		<where>
+			<if test="id != null and id != ''">
+				hewon_id = #{id}
+			</if>
+			<if test="name != null and name != ''">
+				${choice} hewon_name = #{name}
+			</if>
+		</where>
+		order by hewon_id
+	</select>
+	
+	
+	<!-- 회원정보를 전달받아 MYHEWON 테이블에 저장된 행을 변경하는 엘리먼트 -->
+	<!-- => 아이디를 비교하여 아이디를 제외한 모든 컬럼값을 변경하도록 처리 -->
+	<update id="updateHewon" parameterType="MyHewon">
+		update myhewon set hewon_name=#{name}, hewon_phone=#{phone}, hewon_email=#{email}
+			, hewon_status=#{status} where hewon_id=#{id}
+	</update>
+	
+	<!-- 회원정보를 전달받아 MYHEWON 테이블에 저장된 행을 변경하는 엘리먼트 -->
+	<!-- => 아이디를 비교하여 아이디를 제외한 컬럼값을 전달값이 있는 경우에만 변경하도록 처리 -->
+	<!-- if 엘리먼트의 test 속성값으로 조건식을 사용할 경우 비교 연산자(>, <, >=, <=)를 
+	사용하면 에러 발생 -->
+	<!-- => 기호로 표현된 비교 연산자 대신 문자로 표현된 연산자(gt, lt, gte, lte)를 사용하여 조건식 작성 -->
+	<!-- 
+	<update id="updateDynamicHewon" parameterType="MyHewon">
+		update myhewon 
+			<trim prefix="set" suffixOverrides=",">
+				<if test="name!=null and name!=''">
+					hewon_name=#{name},
+				</if>
+				<if test="phone!=null and phone!=''">
+					 hewon_phone=#{phone},
+				</if>
+				<if test="email!=null and email!=''">
+					 hewon_email=#{email},
+				</if>
+				<if test="status gte 1 and status lte 4">
+					 hewon_status=#{status} 
+				</if>  
+			</trim>
+		where hewon_id=#{id}
+	</update>
+	 -->
+	
+	<!-- set : 엘리먼트 내용이 있는 경우 엘리먼트 내용(변경식)에서 뒷부분에 불필요한
+	SQL 문장(, 기호)을 삭제하고 엘리먼트 내용 앞부분에 [set] 문장을 추가하여 SQL 명령에  
+	포함하는 엘리먼트 -->
+	<update id="updateDynamicHewon" parameterType="MyHewon">
+		update myhewon 
+			<set>
+				<if test="name!=null and name!=''">
+					hewon_name=#{name},
+				</if>
+				<if test="phone!=null and phone!=''">
+					 hewon_phone=#{phone},
+				</if>
+				<if test="email!=null and email!=''">
+					 hewon_email=#{email},
+				</if>
+				<if test="status gte 1 and status lte 4">
+					 hewon_status=#{status} 
+				</if>  
+			</set>
+		where hewon_id=#{id}
+	</update> 
+	
+	<!-- 0개 이상의 아이디를 전달받아 MYHEWON 테이블에 저장된 행에서 해당 아이디의 행을
+	검색하여 Java 객체로 제공하는 엘리먼트 -->
+	<!-- => 전달된 아이디가 없는 경우 MYHEWON 테이블에 저장된 모든 행을 검색하여 Java 객체로 제공 -->
+	<!-- parameterType 속성값으로 ArrayList 클래스(List 인터페이스)를 설정하여 ArrayList 객체
+	(List 객체)를 전달받아 SQL 명령에서 [list] 이름으로 ArrayList 객체(List 객체)의 요소값을
+	사용하여 SQL 명령 작성  -->
+	<select id="selectMultiIdDynamicHewonList" parameterType="list" resultMap="myHewonResultMap">
+		select hewon_id, hewon_name, hewon_phone, hewon_email, hewon_status from myhewon
+		<if test="list != null">
+			where hewon_id in 
+			<!-- foreach : 전달받은 ArrayList 객체(List 객체)의 요소값을 차례대로 제공받아
+			반복적으로 엘리먼트 내용(SQL 문장)을 SQL 명령에 포함하는 엘리먼트 -->
+			<!-- collection 속성 : 반복 처리할 ArrayList 객체(List 객체)의 이름을 속성값으로 설정 -->
+			<!-- item 속성 : List 객체의 요소값을 제공받아 저장하기 위한 이름(변수명)을 속성값으로 설정 -->
+			<!-- open 속성 : foreach 엘리먼트의 내용 앞부분에 추가될 SQL 문장을 속성값으로 설정 -->
+			<!-- close 속성 : foreach 엘리먼트의 내용 뒷부분에 추가될 SQL 문장을 속성값으로 설정 -->
+			<!-- separator 속성 : 요소값을 구분하기 위한 SQL 문장을 속성값으로 설정 -->
+			<foreach collection="list" item="id" open="(" close=")" separator=",">
+				#{id}
+			</foreach>
 		</if>
 		order by hewon_id
 	</select>

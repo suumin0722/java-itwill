@@ -130,8 +130,34 @@ public class MyHewonDAO extends AbstractSession {
 			sqlSession.close();
 		}
 	}
+	
+	public int updateHewon(MyHewon hewon) {
+		SqlSession sqlSession=getSqlSessionFactory().openSession(true);
+		try {
+			return sqlSession.getMapper(MyHewonMapper.class).updateHewon(hewon);
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	public int updateDynamicHewon(MyHewon hewon) {
+		SqlSession sqlSession=getSqlSessionFactory().openSession(true);
+		try {
+			return sqlSession.getMapper(MyHewonMapper.class).updateDynamicHewon(hewon);
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	public List<MyHewon> selectMultiIdDynamicHewonList(List<String> idList) {
+		SqlSession sqlSession=getSqlSessionFactory().openSession(true);
+		try {
+			return sqlSession.getMapper(MyHewonMapper.class).selectMultiIdDynamicHewonList(idList);
+		} finally {
+			sqlSession.close();
+		}
+	}
 }
-
 
 
 
