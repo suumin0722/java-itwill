@@ -3,17 +3,15 @@ package xyz.itwill06.aop;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class HewonApp {
+public class ExecutionTimeApp {
 	public static void main(String[] args) {
-		ApplicationContext context=new ClassPathXmlApplicationContext("06-1_aop.xml");
-		HewonService service=context.getBean("hewonService", HewonService.class);
+		ApplicationContext context=new ClassPathXmlApplicationContext("06-3_timer.xml");
+		ExecutionTimeBean bean=context.getBean("executionTimeBean", ExecutionTimeBean.class);
 		System.out.println("==============================================================");
-		service.addHewon(null);
+		bean.one();
 		System.out.println("==============================================================");
-		service.getHewon(0);
+		bean.two();
 		System.out.println("==============================================================");
-		service.getHewonList();
-		System.out.println("==============================================================");
-		((ClassPathXmlApplicationContext)context).close();
+		((ClassPathXmlApplicationContext)context).close();		
 	}
 }
