@@ -6,4 +6,13 @@
 		http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
 
 	<bean class="xyz.itwill06.aop.ExecutionTimeBean" id="executionTimeBean"/>
+	
+	<bean class="xyz.itwill06.aop.ExecutionTimeAdvice" id="executionTimeAdvice"/>
+	
+	<aop:config>
+		<aop:aspect ref="executionTimeAdvice">
+			<aop:pointcut expression="execution(* *(..))" id="executionTimePointcut"/>
+			<aop:around method="timeWatchLog" pointcut-ref="executionTimePointcut"/>
+		</aop:aspect>
+	</aop:config>
 </beans>
