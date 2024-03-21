@@ -25,6 +25,7 @@ public class EmailSendBean {
 	//SMTP 서비스를 사용하여 메일을 전송하는 메소드
 	// => 메일을 받는 사람의 이메일 주소를 반환
 	// => 메일을 받는 사람의 이메일 주소, 제목, 내용을 매개변수로 전달받아 메소드에서 사용
+	//보통은 반환형을 void로 많이 씀 
 	public String sendEmail(String email, String subject, String content) throws Exception {
 		//JavaMailSender.createMimeMessage() : MimeMessage 객체를 생성하여 반환하는 메소드
 		//MimeMessage 객체 : 메일 전송 관련 정보를 저장하기 위한 객체
