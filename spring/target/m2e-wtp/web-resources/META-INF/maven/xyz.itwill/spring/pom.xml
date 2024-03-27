@@ -210,6 +210,31 @@
 		<version>${org.springframework-version}</version>
 	</dependency>
 	
+	<!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
+	<!-- => 전달값이 저장된 Command 객체에 대한 검증 기능을 제공하기 위한 라이브러리 -->
+	<dependency>
+	    <groupId>javax.validation</groupId>
+	    <artifactId>validation-api</artifactId>
+	    <version>2.0.1.Final</version>
+	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
+	<!-- => Command 객체 필드에 저장된 전달값에 대한 검증 기능을 제공하기 위한 라이브러리 -->
+	<dependency>
+	    <groupId>org.hibernate.validator</groupId>
+	    <artifactId>hibernate-validator</artifactId>
+	    <version>6.2.5.Final</version>
+	</dependency>
+
+	<!-- https://mvnrepository.com/artifact/org.apache.tiles/tiles-extras -->
+	<!--  => ViewResolver 기능을 제공하기 위한 라이브러리(apache에서 만든거) -->
+	<dependency>
+	    <groupId>org.apache.tiles</groupId>
+	    <artifactId>tiles-extras</artifactId>
+	    <version>3.0.8</version>
+	</dependency>
+
+	
 </dependencies>
  	<build>
         <plugins>
