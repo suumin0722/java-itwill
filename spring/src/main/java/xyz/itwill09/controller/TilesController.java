@@ -29,4 +29,9 @@ public class TilesController {
 	public String tiles2() {
 		return "layout_tiles2";
 	}
+	
+	@RequestMapping("/admin")
+	public String admin() {
+		return "admin";
+	}
 }
