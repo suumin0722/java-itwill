@@ -53,6 +53,5 @@ public class ResultController {
 		model.addAttribute("modelName", "Àü¿ìÄ¡");
 		return "result_display";
 	}
-	//
 }
 
