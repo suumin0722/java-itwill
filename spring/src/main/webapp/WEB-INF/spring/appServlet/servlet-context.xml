@@ -63,7 +63,11 @@
 	
 	<!-- 플젝할 때는 spring 파일을 controller로 만들면 됨 -->
 	<!-- <context:component-scan base-package="xyz.itwill.spring" /> -->
+	<!-- <context:component-scan base-package="xyz.itwill09" /> -->
+	<!-- => 위처럼 써도 되나 속도 좀 느려질 수 있음. 권장 ㄴㄴ -->
 	<context:component-scan base-package="xyz.itwill09.controller" />
+	<context:component-scan base-package="xyz.itwill09.dao" />
+	<context:component-scan base-package="xyz.itwill09.service" />
 	
 	
 	<!--  메세지 관리 기능을 제공하는 클래스(ReloadableResourceBundleMessageSource)를 Spring Bean으로 등록 -->
