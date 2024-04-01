@@ -21,9 +21,9 @@ import xyz.itwill09.service.StudentService;
 		, "file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml"})
 //@FixMethodOrder : 테스트 메소드 호출순서를 설정하기 위한 어노테이션
 //value 속성 : MethodSorters Enum 자료형의 상수 중 하나를 속성값으로 설정
-//
-//
-//
+//=> MethodSorters.DEFAULT : JUnit 프로그램의 내부 규칙에 의해 메소드가 정렬되어 호출 - 실행시 동일한 순서로 정렬되어 호출
+//=> MethodSorters.JVM : JVM 프로그램에 의해 메소드가 정렬되어 호출 - 실행시 불규칙한 순서로 정렬되어 호출
+//=> MethodSorters.NAME_ASCENDING : 테스트 메소드의 이름으로 정렬되어 호출 - 실행시 동일한 순서로 정렬되어 호출
 @FixMethodOrder(value = MethodSorters.DEFAULT)
 @Slf4j
 public class StudentServiceTest {

@@ -82,8 +82,8 @@
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
-				/WEB-INF/spring/mvc-context1.xml
-				/WEB-INF/spring/mvc-context2.xml
+				/WEB-INF/spring/mvc/mvc-context1.xml
+				/WEB-INF/spring/mvc/mvc-context2.xml
 			</param-value>
 		</init-param>
 		<!-- load-on-startup : WAS 프로그램이 실행될 때 서블릿 클래스를 객체로 생성하는 기능을 제공하는 엘리먼트 -->
