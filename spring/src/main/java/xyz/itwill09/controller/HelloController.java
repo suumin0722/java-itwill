@@ -27,6 +27,9 @@ public class HelloController {
 	@RequestMapping(value = "/hello")
 	public void hello() {//요청 처리 메소드
 		//요청 처리 명령 작성
+		
+		
+		
 		log.info("[/hello] 페이지 요청 : HelloController 클래스의 hello() 메소드 호출");
 	}
 	
