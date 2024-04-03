@@ -26,7 +26,7 @@ public class ListController implements Controller {
 		productList.add(new Product(2000, "노트북"));
 		productList.add(new Product(3000, "태블릿"));
 		
-		//ModelAndView.addObject(String attributeName, Object attributeValue)
+		//ModelAndView.addObject(String attributeName, Obgject attributeValue)
 		// => ModelAndView 객체에 요청에 대한 처리 결과를 속성값으로 저장하는 메소드 - Request Scope
 		modelAndView.addObject("productList", productList);
 		
