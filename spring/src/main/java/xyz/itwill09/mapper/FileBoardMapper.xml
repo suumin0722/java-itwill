@@ -12,7 +12,7 @@
 		delete from file_board where idx=#{idx}
 	</delete>
 	
-	<select id="selectFileBoard" resultType="int">
+	<select id="selectFileBoard" resultType="FileBoard">
 		select idx, writer, subject, filename from file_board where idx=#{idx}
 	</select>
 	

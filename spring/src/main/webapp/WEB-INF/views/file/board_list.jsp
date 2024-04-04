@@ -32,8 +32,8 @@ th, td {
 			<th width="100">작성자</th>
 			<th width="300">제목</th>
 			<th width="350">파일명</th>
-			<th width="100">다운로드</th>
 			<th width="100">삭제</th>
+			<th width="100">다운로드</th>
 		</tr>
 		
 		<%-- 게시글 목록 출력 --%>
@@ -44,10 +44,10 @@ th, td {
 				<td>${fileBoard.subject }</td>
 				<td>${fn:split(fileBoard.filename, "_")[1] }</td>
 				<td align="center">
-					<button type="button">다운로드</button>
+					<button type="button" onclick="fileDelete(${fileBoard.idx});">삭제</button>
 				</td>
 				<td align="center">
-					<button type="button">삭제</button>
+					<button type="button" onclick="fileDownload(${fileBoard.idx});">다운로드</button>
 				</td>
 			</tr>
 		</c:forEach>
@@ -78,9 +78,21 @@ th, td {
 		<c:when test="${pager.endPage != pager.totalPage }">
 			<a href="<c:url value="/file/list"/>?pageNum=${pager.nextPage}">[다음]</a>
 		</c:when>
-		<c:otherwise>
+		<c:otherwise> 
 			[다음]
 		</c:otherwise>
 	</c:choose>
+	
+	<script type="text/javascript">
+	function fileDelete(idx) {
+		if(confirm("자료를 정말로 삭제하시겠습니까?")) {
+			location.href="<c:url value="/file/delete"/>?idx="+idx;
+		}
+	};
+	
+	function fileDownload(idx) {
+		location.href="<c:url value="/file/download"/>?idx="+idx;
+	}
+	</script>
 </body>
 </html>
