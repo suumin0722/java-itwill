@@ -9,32 +9,29 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
-//¸ğµ¨ ±â´ÉÀ» Á¦°øÇÏ±â À§ÇÑ ¿äÃ» Ã³¸® Å¬·¡½º - Controller Å¬·¡½º
-// => Spring-webmvc ¶óÀÌºê·¯¸®·Î Á¦°øµÈ Controller ÀÎÅÍÆäÀÌ½º¸¦ »ó¼Ó¹Ş¾Æ ÀÛ¼º
-// => Å¬¶óÀÌ¾ğÆ®°¡ [/list.do]ÀÇ URL ÁÖ¼Ò·Î ¿äÃ»ÇÑ °æ¿ì ÄÁÆ®·Ñ·¯¿¡ ÀÇÇØ ½ÇÇàµÉ Å¬·¡½º
+//ëª¨ë¸ ê¸°ëŠ¥ì„ ì œê³µí•˜ê¸° ìœ„í•œ ìš”ì²­ ì²˜ë¦¬ í´ë˜ìŠ¤ - Controller í´ë˜ìŠ¤
+// => Spring-webmvc ë¼ì´ë¸ŒëŸ¬ë¦¬ë¡œ ì œê³µëœ Controller ì¸í„°í˜ì´ìŠ¤ë¥¼ ìƒì†ë°›ì•„ ì‘ì„±
+//í´ë¼ì´ì–¸íŠ¸ê°€ [/list.do]ì˜ URL ì£¼ì†Œë¡œ ìš”ì²­í•œ ê²½ìš° ì»¨íŠ¸ë¡¤ëŸ¬ì— ì˜í•´ ì‹¤í–‰ë  í´ë˜ìŠ¤
 public class ListController implements Controller {
-
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		//ModelAndView Å¬·¡½º·Î °´Ã¼ »ı¼º
-		// => ModelAndView °´Ã¼ : Ã³¸®°á°ú¿Í ºäÀÌ¸§(ViewName)À» ÀúÀåÇÏ±â À§ÇÑ °´Ã¼
+		//ModelAndView í´ë˜ìŠ¤ë¡œ ê°ì²´ ìƒì„±
+		// => ModelAndView ê°ì²´ : ì²˜ë¦¬ê²°ê³¼ì™€ ë·°ì´ë¦„(ViewName)ì„ ì €ì¥í•˜ê¸° ìœ„í•œ ê°ì²´
 		ModelAndView modelAndView=new ModelAndView();
 		
-		//µ¥ÀÌÅÍ Ã³¸® - Service Å¬·¡½ºÀÇ ¸Ş¼Òµå È£Ãâ
-		List<Product> productList = new ArrayList<Product>();
-		productList.add(new Product(1000, "ÄÄÇ»ÅÍ"));
-		productList.add(new Product(2000, "³ëÆ®ºÏ"));
-		productList.add(new Product(3000, "ÅÂºí¸´"));
+		//ë°ì´íƒ€ ì²˜ë¦¬ - Service í´ë˜ìŠ¤ì˜ ë©”ì†Œë“œ í˜¸ì¶œ
+		List<Product> productList=new ArrayList<Product>();
+		productList.add(new Product(1000, "ì»´í“¨í„°"));
+		productList.add(new Product(2000, "ë…¸íŠ¸ë¶"));
+		productList.add(new Product(3000, "í…Œë¸”ë¦¿"));
 		
-		//ModelAndView.addObject(String attributeName, Obgject attributeValue)
-		// => ModelAndView °´Ã¼¿¡ ¿äÃ»¿¡ ´ëÇÑ Ã³¸® °á°ú¸¦ ¼Ó¼º°ªÀ¸·Î ÀúÀåÇÏ´Â ¸Ş¼Òµå - Request Scope
+		//ModelAndView.addObject(String attributeName, Object attributeValue)
+		// => ModelAndView ê°ì²´ì— ìš”ì²­ì— ëŒ€í•œ ì²˜ë¦¬ ê²°ê³¼ë¥¼ ì†ì„±ê°’ìœ¼ë¡œ ì €ì¥í•˜ëŠ” ë©”ì†Œë“œ - Request Scope
 		modelAndView.addObject("productList", productList);
 		
-		//ModelAndView.setViewName(String viewName) : ModelAndView °´Ã¼ÀÇ ºäÀÌ¸§À» º¯°æÇÏ´Â ¸Ş¼Òµå
+		//ModelAndView.setViewName(String viewName) : ModelAndView ê°ì²´ì˜ ë·°ì´ë¦„ì„ ë³€ê²½í•˜ëŠ” ë©”ì†Œë“œ
 		modelAndView.setViewName("product_list");
-	
-		//Ã³¸®°á°ú¿Í ºäÀÌ¸§À» ÇÏ³ªÀÇ º¯¼ö¿¡ ´ã¾Æ¼­ ¹İÈ¯
+		
 		return modelAndView;
 	}
-	
 }

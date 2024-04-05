@@ -3,32 +3,32 @@ package xyz.itwill04.bean;
 import org.springframework.beans.factory.BeanClassLoaderAware;
 import org.springframework.beans.factory.BeanNameAware;
 
-//Spring BeanÀ¸·Î µî·ÏµÉ Å¬·¡½º´Â ´Ù¾çÇÑ ÀÎÅÍÆäÀÌ½º¸¦ »ó¼Ó¹Ş¾Æ Ãß»ó¸Ş¼Òµå¸¦ ¿À¹ö¶óÀÌµå ¼±¾ğ °¡´É
-// => ¿À¹ö¶óÀÌµå ¼±¾ğµÈ ¸Ş¼Òµå´Â °´Ã¼ »ı¼º ÈÄ ¶Ç´Â ¼Ò¸ê Àü ÀÚµ¿ È£ÃâµÇ¾î ÃÊ±âÈ­ ¹× ¸¶¹«¸® ÀÛ¾÷ °¡´É 
+//Spring Beanìœ¼ë¡œ ë“±ë¡ë  í´ë˜ìŠ¤ëŠ” ë‹¤ì–‘í•œ ì¸í„°í˜ì´ìŠ¤ë¥¼ ìƒì†ë°›ì•„ ì¶”ìƒë©”ì†Œë“œë¥¼ ì˜¤ë²„ë¼ì´ë“œ ì„ ì–¸ ê°€ëŠ¥
+// => ì˜¤ë²„ë¼ì´ë“œ ì„ ì–¸ëœ ë©”ì†Œë“œëŠ” ê°ì²´ ìƒì„± í›„ ë˜ëŠ” ì†Œë©¸ ì „ ìë™ í˜¸ì¶œë˜ì–´ ì´ˆê¸°í™” ë° ë§ˆë¬´ë¦¬ ì‘ì—… ê°€ëŠ¥ 
 public class InitDestroyMethodBean implements BeanNameAware, BeanClassLoaderAware {
 	public InitDestroyMethodBean() {
-		System.out.println("### InitDestroyMethodBean Å¬·¡½ºÀÇ ±âº» »ı¼ºÀÚ È£Ãâ ###");
+		System.out.println("### InitDestroyMethodBean í´ë˜ìŠ¤ì˜ ê¸°ë³¸ ìƒì„±ì í˜¸ì¶œ ###");
 	}
 	
 	public void init() {
-		System.out.println("*** InitDestroyMethodBean Å¬·¡½ºÀÇ init() ¸Ş¼Òµå È£Ãâ ***");
+		System.out.println("*** InitDestroyMethodBean í´ë˜ìŠ¤ì˜ init() ë©”ì†Œë“œ í˜¸ì¶œ ***");
 	}
 	
 	public void destroy() {
-		System.out.println("*** InitDestroyMethodBean Å¬·¡½ºÀÇ destroy() ¸Ş¼Òµå È£Ãâ ***");
+		System.out.println("*** InitDestroyMethodBean í´ë˜ìŠ¤ì˜ destroy() ë©”ì†Œë“œ í˜¸ì¶œ ***");
 	}
 	
 	public void display() {
-		System.out.println("*** InitDestroyMethodBean Å¬·¡½ºÀÇ display() ¸Ş¼Òµå È£Ãâ ***");
+		System.out.println("*** InitDestroyMethodBean í´ë˜ìŠ¤ì˜ display() ë©”ì†Œë“œ í˜¸ì¶œ ***");
 	}
 
 	@Override
 	public void setBeanName(String name) {
-		System.out.println("*** InitDestroyMethodBean Å¬·¡½ºÀÇ setBeanName() ¸Ş¼Òµå È£Ãâ ***");
+		System.out.println("*** InitDestroyMethodBean í´ë˜ìŠ¤ì˜ setBeanName() ë©”ì†Œë“œ í˜¸ì¶œ ***");
 	}
 
 	@Override
 	public void setBeanClassLoader(ClassLoader classLoader) {
-		System.out.println("*** InitDestroyMethodBean Å¬·¡½ºÀÇ setBeanClassLoader() ¸Ş¼Òµå È£Ãâ ***");
+		System.out.println("*** InitDestroyMethodBean í´ë˜ìŠ¤ì˜ setBeanClassLoader() ë©”ì†Œë“œ í˜¸ì¶œ ***");
 	}
 }

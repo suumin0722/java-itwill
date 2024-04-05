@@ -5,11 +5,11 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class StudentApp {
 	public static void main(String[] args) {
-		System.out.println("=============== Spring Container ÃÊ±âÈ­ Àü ===============");
+		System.out.println("=============== Spring Container ì´ˆê¸°í™” ì „ ===============");
 		ApplicationContext context=new ClassPathXmlApplicationContext("05-1_di.xml");
-		System.out.println("=============== Spring Container ÃÊ±âÈ­ ÈÄ ===============");
+		System.out.println("=============== Spring Container ì´ˆê¸°í™” í›„ ===============");
 		Student student1=context.getBean("student1", Student.class);
-		//ÂüÁ¶º¯¼ö¸¦ Ãâ·ÂÇÒ °æ¿ì ÂüÁ¶º¯¼ö¿¡ ÀúÀåµÈ °´Ã¼·Î toString() ¸Ş¼Òµå ÀÚµ¿ È£Ãâ - °´Ã¼ÀÇ ÇÊµå°ª È®ÀÎ
+		//ì°¸ì¡°ë³€ìˆ˜ë¥¼ ì¶œë ¥í•  ê²½ìš° ì°¸ì¡°ë³€ìˆ˜ì— ì €ì¥ëœ ê°ì²´ë¡œ toString() ë©”ì†Œë“œ ìë™ í˜¸ì¶œ - ê°ì²´ì˜ í•„ë“œê°’ í™•ì¸
 		System.out.println(student1);
 		System.out.println("==========================================================");
 		Student student2=context.getBean("student2", Student.class);
@@ -27,13 +27,13 @@ public class StudentApp {
 		Student student6=context.getBean("student6", Student.class);
 		System.out.println(student6);
 		System.out.println("==========================================================");
-		//½ºÇÁ¸µ ÄÁÅ×ÀÌ³Ê¿¡¼­ µ¥ÀÌÅ¸ Ã³¸® ±â´ÉÀ» Á¦°øÇÏ´Â Service °´Ã¼¸¦ ¹İÈ¯¹Ş¾Æ ÀúÀå
+		//ìŠ¤í”„ë§ ì»¨í…Œì´ë„ˆì—ì„œ ë°ì´íƒ€ ì²˜ë¦¬ ê¸°ëŠ¥ì„ ì œê³µí•˜ëŠ” Service ê°ì²´ë¥¼ ë°˜í™˜ë°›ì•„ ì €ì¥
 		//StudentServiceImpl service=context.getBean("studentServiceImpl", StudentServiceImpl.class);
 		
-		//ÀÎÅÍÆäÀÌ½º·Î ÂüÁ¶º¯¼ö¸¦ »ı¼ºÇÏ¿© °´Ã¼¸¦ ¹İÈ¯¹Ş¾Æ ÀúÀåÇÏ¿© »ç¿ëÇÏ´Â °ÍÀ» ±ÇÀå
+		//ì¸í„°í˜ì´ìŠ¤ë¡œ ì°¸ì¡°ë³€ìˆ˜ë¥¼ ìƒì„±í•˜ì—¬ ê°ì²´ë¥¼ ë°˜í™˜ë°›ì•„ ì €ì¥í•˜ì—¬ ì‚¬ìš©í•˜ëŠ” ê²ƒì„ ê¶Œì¥
 		StudentService service=context.getBean("studentServiceImpl", StudentService.class);
 		
-		//Service °´Ã¼ÀÇ ¸Ş¼Òµå¸¦ È£ÃâÇÏ¿© µ¥ÀÌÅ¸ Ã³¸® ±â´É ±¸Çö
+		//Service ê°ì²´ì˜ ë©”ì†Œë“œë¥¼ í˜¸ì¶œí•˜ì—¬ ë°ì´íƒ€ ì²˜ë¦¬ ê¸°ëŠ¥ êµ¬í˜„
 		service.addStudent(student1);
 		service.modifyStudent(student1);
 		service.removeStudent(1000);

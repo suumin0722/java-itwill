@@ -3,12 +3,13 @@
 <mapper namespace="xyz.itwill09.mapper.StudentMapper">
 	<!-- 매퍼 바이딩을 사용할 경우 XML 기반의 매퍼 파일의 엘리먼트에서는 parameterType 속성 생략 가능 -->
 	<insert id="insertStudent">
-		insert into Student values(#{no}, #{name}, #{phone}, #{address}, #{birthday})
+		insert into student values(#{no}, #{name}, #{phone}, #{address}, #{birthday})
 	</insert>
 	
 	<!-- 검색행의 컬럼명과 DTO 클래스의 필드명이 같은 경우 resultType 속성을 사용하여 검색행을
-	DTO	클래스의 객체를 제공받도록 설정 - 자동 매핑 -->
+	DTO	클래스의 객체를 제공받도록 설정 -->
+	<!-- => 검색행의 컬럼값이 같은 이름의 필드에 자동 저장되어 DTO 객체로 제공 - 자동 매핑 -->
 	<select id="selectStudentList" resultType="Student">
-		select no, name, phone, address, birthday from Student order by no
+		select no, name, phone, address, birthday from student order by no
 	</select>
 </mapper>

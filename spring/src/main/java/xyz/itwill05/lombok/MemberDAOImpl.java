@@ -10,36 +10,36 @@ import lombok.extern.slf4j.Slf4j;
 @Repository
 public class MemberDAOImpl implements MemberDAO {
 	public MemberDAOImpl() {
-		log.info("### MemberDAOImpl Å¬·¡½ºÀÇ ±âº» »ı¼ºÀÚ È£Ãâ ###");
+		log.info("### MemberDAOImpl í´ë˜ìŠ¤ì˜ ê¸°ë³¸ ìƒì„±ì í˜¸ì¶œ ###");
 	}
 	
 	@Override
 	public int insertMember(Member member) {
-		log.info("*** MemberDAOImpl Å¬·¡½ºÀÇ insertMember(Member member) ¸Ş¼Òµå È£Ãâ ***");
+		log.info("*** MemberDAOImpl í´ë˜ìŠ¤ì˜ insertMember(Member member) ë©”ì†Œë“œ í˜¸ì¶œ ***");
 		return 0;
 	}
 
 	@Override
 	public int updateMember(Member member) {
-		log.info("*** MemberDAOImpl Å¬·¡½ºÀÇ updateMember(Member member) ¸Ş¼Òµå È£Ãâ ***");
+		log.info("*** MemberDAOImpl í´ë˜ìŠ¤ì˜ updateMember(Member member) ë©”ì†Œë“œ í˜¸ì¶œ ***");
 		return 0;
 	}
 
 	@Override
 	public int deleteMember(String id) {
-		log.info("*** MemberDAOImpl Å¬·¡½ºÀÇ deleteMember(String id) ¸Ş¼Òµå È£Ãâ ***");
+		log.info("*** MemberDAOImpl í´ë˜ìŠ¤ì˜ deleteMember(String id) ë©”ì†Œë“œ í˜¸ì¶œ ***");
 		return 0;
 	}
 
 	@Override
 	public Member selectMember(String id) {
-		log.info("*** MemberDAOImpl Å¬·¡½ºÀÇ selectMember(String id) ¸Ş¼Òµå È£Ãâ ***");
+		log.info("*** MemberDAOImpl í´ë˜ìŠ¤ì˜ selectMember(String id) ë©”ì†Œë“œ í˜¸ì¶œ ***");
 		return null;
 	}
 
 	@Override
 	public List<Member> selectMemberList() {
-		log.info("*** MemberDAOImpl Å¬·¡½ºÀÇ selectMemberList() ¸Ş¼Òµå È£Ãâ ***");
+		log.info("*** MemberDAOImpl í´ë˜ìŠ¤ì˜ selectMemberList() ë©”ì†Œë“œ í˜¸ì¶œ ***");
 		return null;
 	}
 

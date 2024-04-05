@@ -7,30 +7,30 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//ÄÁÆ®·Ñ·¯(Controller) : Å¬¶óÀÌ¾ğÆ®ÀÇ ¸ğµç ¿äÃ»À» ¹Ş¾Æ URL ÁÖ¼Ò¸¦  ºĞ¼®ÇÏ¿© ÇÊ¿äÇÑ ¿äÃ» Ã³¸®
-//Å¬·¡½º(Model)ÀÇ ¸Ş¼Òµå¸¦ È£ÃâÇÏ¿© Å¬¶óÀÌ¾ğÆ®ÀÇ ¿äÃ»À» Ã³¸®ÇÏ°í JSP ¹®¼­(View)·Î ½º·¹µå¸¦
-//ÀÌµ¿ÇÏ¿© ÀÀ´äÃ³¸® µÇµµ·Ï ÇÁ·Î±×·¥ÀÇ Èå¸§À» Á¦¾îÇÏ´Â ±â´ÉÀ» Á¦°ø - ¼­ºí¸´(Servlet)À¸·Î ±¸Çö
+//ì»¨íŠ¸ë¡¤ëŸ¬(Controller) : í´ë¼ì´ì–¸íŠ¸ì˜ ëª¨ë“  ìš”ì²­ì„ ë°›ì•„ URL ì£¼ì†Œë¥¼  ë¶„ì„í•˜ì—¬ í•„ìš”í•œ ìš”ì²­ ì²˜ë¦¬
+//í´ë˜ìŠ¤(Model)ì˜ ë©”ì†Œë“œë¥¼ í˜¸ì¶œí•´ í´ë¼ì´ì–¸íŠ¸ì˜ ìš”ì²­ì„ ì²˜ë¦¬í•˜ê³  JSP ë¬¸ì„œ(View)ë¡œ ìŠ¤ë ˆë“œë¥¼
+//ì´ë™í•˜ì—¬ ì‘ë‹µì²˜ë¦¬ ë˜ë„ë¡ í”„ë¡œê·¸ë¨ì˜ íë¦„ì„ ì œì–´í•˜ëŠ” ê¸°ëŠ¥ì„ ì œê³µ - ì„œë¸”ë¦¿(Servlet)ìœ¼ë¡œ êµ¬í˜„
 
-//ÄÁÆ®·Ñ·¯ ±â´ÉÀ» Á¦°øÇÏ±â À§ÇÑ ¼­ºí¸´ Å¬·¡½º
-// => Å¬¶óÀÌ¾ğÆ®ÀÇ ¸ğµç ¿äÃ»À» ¹Ş¾Æ Ã³¸®ÇÏ´Â ´ÜÀÏ ÁøÀÔÁ¡ÀÇ ¿ªÇÒÀ» ¼öÇàÇÏµµ·Ï ¼³Á¤ - Front Controller Pattern
-// => [web.xml] ÆÄÀÏ¿¡¼­ Å¬·¡½º¸¦ ¼­ºí¸´À¸·Î µî·ÏÇÏ°í Å¬¶óÀÌ¾ğÆ®ÀÇ ¸ğµç ¿äÃ»À» ¹Ş¾Æ Ã³¸®ÇÒ ¼ö
-//ÀÖµµ·Ï URL ÆĞÅÏ µî·Ï Ã³¸®
+//ì»¨íŠ¸ë¡¤ëŸ¬ ê¸°ëŠ¥ì„ ì œê³µí•˜ê¸° ìœ„í•œ ì„œë¸”ë¦¿ í´ë˜ìŠ¤
+// => í´ë¼ì´ì–¸íŠ¸ì˜ ëª¨ë“  ìš”ì²­ì„ ë°›ì•„ ì²˜ë¦¬í•˜ëŠ” ë‹¨ì¼ ì§„ì…ì ì˜ ì—­í™œì„ ìˆ˜í–‰í•˜ë„ë¡ ì„¤ì • - Front Controller Pattern
+// => [web.xml] íŒŒì¼ì—ì„œ í´ë˜ìŠ¤ë¥¼ ì„œë¸”ë¦¿ìœ¼ë¡œ ë“±ë¡í•˜ê³  í´ë¼ì´ì–¸íŠ¸ì˜ ëª¨ë“  ìš”ì²­ì„ ë°›ì•„ ì²˜ë¦¬í•  ìˆ˜
+//ìˆë„ë¡ URL íŒ¨í„´ ë“±ë¡ ì²˜ë¦¬
 public class DispatcherServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	//Å¬¶óÀÌ¾ğÆ® ¿äÃ»¿¡ ÀÇÇØ ÀÚµ¿ È£ÃâµÇ´Â ¸Ş¼Òµå
+	//í´ë¼ì´ì–¸íŠ¸ ìš”ì²­ì— ì˜í•´ ìë™ í˜¸ì¶œë˜ëŠ” ë©”ì†Œë“œ
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//Å¬¶óÀÌ¾ğÆ®ÀÇ ¿äÃ» URL ÁÖ¼Ò¸¦ ºĞ¼®ÇÏ¿© ¿äÃ»Á¤º¸¸¦ ¹İÈ¯¹Ş¾Æ ÀúÀå
+		//í´ë¼ì´ì–¸íŠ¸ì˜ ìš”ì²­ URL ì£¼ì†Œë¥¼ ë¶„ì„í•˜ì—¬ ìš”ì²­ì •ë³´ë¥¼ ë°˜í™˜ë°›ì•„ ì €ì¥
 		String requestURI=request.getRequestURI();
 		String contextPath=request.getContextPath();
 		String command=requestURI.substring(contextPath.length());
 		
-		//Å¬¶óÀÌ¾ğÆ® ¿äÃ»Á¤º¸(Command)¸¦ ÀÌ¿ëÇÏ¿© ¿äÃ» Ã³¸® Å¬·¡½º(Model)ÀÇ °´Ã¼¸¦ Á¦°ø¹Ş¾Æ 
-		//¸Ş¼Òµå¸¦ È£ÃâÇÏ¿© Å¬¶óÀÌ¾ğÆ® ¿äÃ»À» Ã³¸®ÇÏ°í ÀÀ´ä °ü·Ã Á¤º¸¸¦ ¹İÈ¯¹Ş¾Æ ÀúÀå
+		//í´ë¼ì´ì–¸íŠ¸ ìš”ì²­ì •ë³´(Command)ë¥¼ ì´ìš©í•˜ì—¬ ìš”ì²­ ì²˜ë¦¬ í´ë˜ìŠ¤(Model)ì˜ ê°ì²´ë¥¼ ì œê³µë°›ì•„ 
+		//ë©”ì†Œë“œë¥¼ í˜¸ì¶œí•˜ì—¬ í´ë¼ì´ì–¸íŠ¸ ìš”ì²­ì„ ì²˜ë¦¬í•˜ê³  ì‘ë‹µ ê´€ë ¨ ì •ë³´ë¥¼ ë°˜í™˜ë°›ì•„ ì €ì¥
 		/*
 		Controller controller=null;
-		//Å¬¶óÀÌ¾ğÆ®ÀÇ ¿äÃ»Á¤º¸¸¦ ºñ±³ÇÏ¿© ¿äÃ» Ã³¸® Å¬·¡½º¸¦ °´Ã¼·Î »ı¼ºÇÏ¿© ÀúÀå
+		//í´ë¼ì´ì–¸íŠ¸ì˜ ìš”ì²­ì •ë³´ë¥¼ ë¹„êµí•˜ì—¬ ìš”ì²­ ì²˜ë¦¬ í´ë˜ìŠ¤ë¥¼ ê°ì²´ë¡œ ìƒì„±í•˜ì—¬ ì €ì¥
 		if(command.equals("/list.itwill")) {
 			controller=new ListController();
 		} else if(command.equals("/view.itwill")) {
@@ -38,17 +38,17 @@ public class DispatcherServlet extends HttpServlet {
 		}
 		*/
 		
-		//HandlerMapping Å¬·¡½º·Î °´Ã¼ »ı¼º
+		//HandlerMapping í´ë˜ìŠ¤ë¡œ ê°ì²´ ìƒì„±
 		HandlerMapping handlerMapping=new HandlerMapping();
-		//HandlerMapping Å¬·¡½ºÀÇ ¸Ş¼Òµå¸¦ È£ÃâÇÏ¿© Å¬¶óÀÌ¾ğÆ®ÀÇ ¿äÃ»Á¤º¸¿¡ ´ëÇÑ ¿äÃ» Ã³¸®
-		//Å¬·¡½ºÀÇ °´Ã¼¸¦ ¹İÈ¯¹Ş¾Æ ÀúÀå
+		//HandlerMapping í´ë˜ìŠ¤ì˜ ë©”ì†Œë“œë¥¼ í˜¸ì¶œí•˜ì—¬ í´ë¼ì´ì–¸íŠ¸ì˜ ìš”ì²­ì •ë³´ì— ëŒ€í•œ ìš”ì²­ ì²˜ë¦¬
+		//í´ë˜ìŠ¤ì˜ ê°ì²´ë¥¼ ë°˜í™˜ë°›ì•„ ì €ì¥
 		Controller controller=handlerMapping.getController(command);
 		
-		//¿äÃ» Ã³¸® Å¬·¡½ºÀÇ ¸Ş¼Òµå¸¦ È£ÃâÇÏ¿© Å¬¶óÀÌ¾ğÆ®ÀÇ ¿äÃ»À» Ã³¸®ÇÏ°í ºäÀÌ¸§À» ¹İÈ¯¹Ş¾Æ ÀúÀå
+		//ìš”ì²­ ì²˜ë¦¬ í´ë˜ìŠ¤ì˜ ë©”ì†Œë“œë¥¼ í˜¸ì¶œí•˜ì—¬ í´ë¼ì´ì–¸íŠ¸ì˜ ìš”ì²­ì„ ì²˜ë¦¬í•˜ê³  ë·°ì´ë¦„ì„ ë°˜í™˜ë°›ì•„ ì €ì¥
 		String viewName=controller.handleRequest(request, response);
 		
-		//ºä(JSP)·Î Æ÷¿öµå ÀÌµ¿ÇÏ¿© Å¬¶óÀÌ¾ğÆ® ¿äÃ»¿¡ ´ëÇÑ Ã³¸®°á°ú¸¦ ÀÀ´ä Ã³¸®
-		// => ¿äÃ» Ã³¸® ¸Ş¼ÒµåÀÇ ¹İÈ¯°ª(ViewName)À» »ç¿ëÇÏ¿© JSP ¹®¼­ÀÇ °æ·Î¸¦ ¿Ï¼ºÇØ Æ÷¿öµå ÀÌµ¿
+		//ë·°(JSP)ë¡œ í¬ì›Œë“œ ì´ë™í•˜ì—¬ í´ë¼ì´ì–¸íŠ¸ ìš”ì²­ì— ëŒ€í•œ ì²˜ë¦¬ê²°ê³¼ë¥¼ ì‘ë‹µ ì²˜ë¦¬
+		// => ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œì˜ ë°˜í™˜ê°’(ViewName)ì„ ì‚¬ìš©í•˜ì—¬ JSP ë¬¸ì„œì˜ ê²½ë¡œë¥¼ ì™„ì„±í•´ í¬ì›Œë“œ ì´ë™
 		ViewResolver viewResolver=new ViewResolver();
 		String view=viewResolver.getView(viewName);
 		request.getRequestDispatcher(view).forward(request, response);

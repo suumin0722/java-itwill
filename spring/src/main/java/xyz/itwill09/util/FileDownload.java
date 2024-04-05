@@ -13,43 +13,42 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.servlet.view.AbstractView;
 
-//ÆÄÀÏ ´Ù¿î·Îµå ±â´ÉÀ» Á¦°øÇÏ±â À§ÇÑ Å¬·¡½º
-// => BeanNameViewResolver °´Ã¼¿¡ ÀÇÇØ ½ÇÇàµÇ´Â Å¬·¡½º
-// => Spring Bean Configuration File(servlet-context.xml)¿¡ Spring BeanÀ¸·Î µî·Ï
-//BeanNameViewResolver °´Ã¼¿¡ ÀÇÇØ ½ÇÇàµÇ´Â Å¬·¡½º´Â ¹İµå½Ã AbstractView Å¬·¡½º¸¦ »ó¼Ó¹Ş¾Æ ÀÛ¼º
-// => renderMergedOutputModel() ¸Ş¼Òµå¸¦ ¿À¹ö¶óÀÌµå ¼±¾ğÇÏ¿© ÀÀ´ä Ã³¸®¿¡ ÇÊ¿äÇÑ ¸í·É ÀÛ¼º
+//íŒŒì¼ ë‹¤ìš´ë¡œë“œ ê¸°ëŠ¥ì„ ì œê³µí•˜ê¸° ìœ„í•œ í´ë˜ìŠ¤
+// => BeanNameViewResovler ê°ì²´ì— ì˜í•´ ì‹¤í–‰ë˜ëŠ” í´ë˜ìŠ¤
+// => Spring Bean Configuration File(servlet-context.xml)ì— Spring Beanìœ¼ë¡œ ë“±ë¡
+//BeanNameViewResovler ê°ì²´ì— ì˜í•´ ì‹¤í–‰ë˜ëŠ” í´ë˜ìŠ¤ëŠ” ë°˜ë“œì‹œ AbstractView í´ë˜ìŠ¤ë¥¼ ìƒì†ë°›ì•„ ì‘ì„±
+// => renderMergedOutputModel() ë©”ì†Œë“œë¥¼ ì˜¤ë²„ë¼ì´ë“œ ì„ ì–¸í•˜ì—¬ ì‘ë‹µ ì²˜ë¦¬ì— í•„ìš”í•œ ëª…ë ¹ ì‘ì„±
 public class FileDownload extends AbstractView {
-
 	@Override
 	protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		//¿äÃ» Ã³¸® ¸Ş¼Òµå¿¡¼­ Á¦°øµÈ ¼Ó¼º°ª(´Ù¿î·Îµå °ü·Ã Á¤º¸)À» °´Ã¼·Î ¹İÈ¯¹Ş¾Æ ÀúÀå
+		//ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œì—ì„œ ì œê³µëœ ì†ì„±ê°’(ë‹¤ìš´ë¡œë“œ ê´€ë ¨ ì •ë³´)ì„ ê°ì²´ë¡œ ë°˜í™˜ë°›ì•„ ì €ì¥
 		String uploadDirectory=(String)model.get("uploadDirectory");
 		String uploadFilename=(String)model.get("uploadFilename");
 		
-		//¼­¹ö µğ·ºÅä¸®¿¡ ÀúÀåµÈ ¾÷·Îµå ÆÄÀÏ¿¡ ´ëÇÑ File °´Ã¼ »ı¼º
+		//ì„œë²„ ë””ë ‰í† ë¦¬ì— ì €ì¥ëœ ì—…ë¡œë“œ íŒŒì¼ì— ëŒ€í•œ File ê°ì²´ ìƒì„±
 		File file=new File(uploadDirectory, uploadFilename);
 		
-		//ÆÄÀÏ·Î ÀÀ´ä Ã³¸®µÇµµ·Ï Å¬¶óÀÌ¾ğÆ®¿¡°Ô ÀÀ´äÇÒ ÆÄÀÏÇü½Ä(MimeType)À» ¼³Á¤
+		//íŒŒì¼ë¡œ ì‘ë‹µ ì²˜ë¦¬ë˜ë„ë¡ í´ë¼ì´ì–¸íŠ¸ì—ê²Œ ì‘ë‹µí•  íŒŒì¼í˜•ì‹(MimeType) ì„¤ì •
 		response.setContentType("application/download; utf-8");
-		
-		//Å¬¶óÀÌ¾ğÆ®¿¡°Ô ÀÀ´äÇÒ ÆÄÀÏÅ©±â¸¦ ¼³Á¤
+	
+		//í´ë¼ì´ì–¸íŠ¸ì—ê²Œ ì‘ë‹µí•  íŒŒì¼í¬ê¸° ì„¤ì •
 		response.setContentLengthLong(file.length());
 		
-		//Å¬¶óÀÌ¾ğÆ®¿¡ ÀúÀåµÉ ÆÄÀÏ¸í ¼³Á¤
-		// => ÆÄÀÏÀÇ ÀÌ¸§¿¡ ÇÑ±ÛÀÌ Á¸ÀçÇÒ °æ¿ì ºÎÈ£È­ Ã³¸®ÇÏ¿© ÀÀ´ä Ã³¸®
+		//í´ë¼ì´ì–¸íŠ¸ì— ì €ì¥ë  íŒŒì¼ëª… ì„¤ì •
+		// => íŒŒì¼ì˜ ì´ë¦„ì— í•œê¸€ì´ ì¡´ì¬í•  ê²½ìš° ë¶€í˜¸í™” ì²˜ë¦¬í•˜ì—¬ ì‘ë‹µ ì²˜ë¦¬
 		String originalFilename=URLEncoder.encode(uploadFilename.substring(37), "utf-8");
-		response.setHeader("Content-Disposition", "attachment;filename=\""
+		response.setHeader("Content-Disposition", "attachement;filename=\""
 				+originalFilename+"\";");
 		
-		//ÆÄÀÏÀ» Å¬¶óÀÌ¾ğÆ®¿¡°Ô Àü´ŞÇÏ±â À§ÇÑ Ãâ·Â½ºÆ®¸²À» ¹İÈ¯¹Ş¾Æ ÀúÀå
+		//íŒŒì¼ì„ í´ë¼ì´ì–¸íŠ¸ì—ê²Œ ì „ë‹¬í•˜ê¸° ìœ„í•œ ì¶œë ¥ìŠ¤íŠ¸ë¦¼ì„ ë°˜í™˜ë°›ì•„ ì €ì¥
 		OutputStream out=response.getOutputStream();
 		
-		//¼­¹ö µğ·ºÅä¸®¿¡ ÀúÀåµÈ ¾÷·Îµå ÆÄÀÏÀÇ ³»¿ëÀ» ÀĞ±â À§ÇÑ ÀÔ·Â½ºÆ®¸²À» »ı¼ºÇÏ¿© ÀúÀå
+		//ì„œë²„ ë””ë ‰í† ë¦¬ì— ì €ì¥ëœ ì—…ë¡œë“œ íŒŒì¼ì˜ ë‚´ìš©ì„ ì½ê¸° ìœ„í•œ ì…ë ¥ìŠ¤íŠ¸ë¦¼ì„ ìƒì„±í•˜ì—¬ ì €ì¥
 		InputStream in=new FileInputStream(file);
 		
-		//FileCopyUtils.copy(InputStream in, OutputStream out) : ÀÔ·Â½ºÆ®¸²À¸·Î ¿ø½Ãµ¥ÀÌÅÍ¸¦ ÀĞ¾î
-		//Ãâ·Â½ºÆ®¸²À¸·Î Àü´ŞÇÏ´Â ¸Ş¼Òµå - º¹»ç
+		//FileCopyUtils.copy(InputStream in, OutputStream out) : ì…ë ¥ìŠ¤íŠ¸ë¦¼ìœ¼ë¡œ ì›ì‹œë°ì´íƒ€ë¥¼
+		//ì½ì–´ ì¶œë ¥ìŠ¤íŠ¸ë¦¼ìœ¼ë¡œ ì „ë‹¬í•˜ëŠ” ë©”ì†Œë“œ - ë³µì‚¬		
 		FileCopyUtils.copy(in, out);
 		
 		in.close();

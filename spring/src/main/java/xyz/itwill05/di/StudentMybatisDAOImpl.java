@@ -4,36 +4,36 @@ import java.util.List;
 
 public class StudentMybatisDAOImpl implements StudentDAO {
 	public StudentMybatisDAOImpl() {
-		System.out.println("### StudentMybatisDAOImpl Å¬·¡½ºÀÇ ±âº» »ı¼ºÀÚ È£Ãâ ###");
+		System.out.println("### StudentMybatisDAOImpl í´ë˜ìŠ¤ì˜ ê¸°ë³¸ ìƒì„±ì í˜¸ì¶œ ###");
 	}
 	
 	@Override
 	public int insertStudent(Student student) {
-		System.out.println("*** StudentMybatisDAOImpl Å¬·¡½ºÀÇ insertStudent(Student student) ¸Ş¼Òµå È£Ãâ ***");
+		System.out.println("*** StudentMybatisDAOImpl í´ë˜ìŠ¤ì˜ insertStudent(Student student) ë©”ì†Œë“œ í˜¸ì¶œ ***");
 		return 0;
 	}
 
 	@Override
 	public int updateStudent(Student student) {
-		System.out.println("*** StudentMybatisDAOImpl Å¬·¡½ºÀÇ updateStudent(Student student) ¸Ş¼Òµå È£Ãâ ***");
+		System.out.println("*** StudentMybatisDAOImpl í´ë˜ìŠ¤ì˜ updateStudent(Student student) ë©”ì†Œë“œ í˜¸ì¶œ ***");
 		return 0;
 	}
 
 	@Override
 	public int deleteStudent(int num) {
-		System.out.println("*** StudentMybatisDAOImpl Å¬·¡½ºÀÇ deleteStudent(int num) ¸Ş¼Òµå È£Ãâ ***");
+		System.out.println("*** StudentMybatisDAOImpl í´ë˜ìŠ¤ì˜ deleteStudent(int num) ë©”ì†Œë“œ í˜¸ì¶œ ***");
 		return 0;
 	}
 
 	@Override
 	public Student selectStudent(int num) {
-		System.out.println("*** StudentMybatisDAOImpl Å¬·¡½ºÀÇ selectStudent(int num) ¸Ş¼Òµå È£Ãâ ***");
+		System.out.println("*** StudentMybatisDAOImpl í´ë˜ìŠ¤ì˜ selectStudent(int num) ë©”ì†Œë“œ í˜¸ì¶œ ***");
 		return null;
 	}
 
 	@Override
 	public List<Student> selectStudentList() {
-		System.out.println("*** StudentMybatisDAOImpl Å¬·¡½ºÀÇ selectStudentList() ¸Ş¼Òµå È£Ãâ ***");
+		System.out.println("*** StudentMybatisDAOImpl í´ë˜ìŠ¤ì˜ selectStudentList() ë©”ì†Œë“œ í˜¸ì¶œ ***");
 		return null;
 	}
 }

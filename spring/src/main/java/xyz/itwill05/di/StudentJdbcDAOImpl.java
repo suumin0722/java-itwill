@@ -2,42 +2,42 @@ package xyz.itwill05.di;
 
 import java.util.List;
 
-//DAO Å¬·¡½º : ÀúÀå¸ÅÃ¼(File, DBMS µî)ÀÇ Çà¿¡ ´ëÇÑ »ğÀÔ,º¯°æ,»èÁ¦,°Ë»ö ±â´ÉÀ» Á¦°øÇÏ´Â Å¬·¡½º
-// => ÀúÀå¸ÅÃ¼ÀÇ Á¾·ù ¶Ç´Â ¹æ¹ı¿¡ µû¶ó DAO Å¬·¡½º ±³Ã¼ °¡´É
-// => DAO Å¬·¡½º°¡ ±³Ã¼µÅµµ DAO Å¬·¡½º¸¦ »ç¿ëÇÏ´Â Å¬·¡½º(Service Å¬·¡½º)¿¡ ¿µÇâÀ» ÃÖ¼ÒÈ­ÇÏ±â
-//À§ÇØ ¹İµå½Ã ÀÎÅÍÆäÀÌ½º¸¦ »ó¼Ó¹Ş¾Æ ÀÛ¼º - °áÇÕµµ¸¦ ³·Ãç À¯Áöº¸¼öÀÇ È¿À²¼º Áõ°¡
+//DAO í´ë˜ìŠ¤ : ì €ì¥ë§¤ì²´(File, DBMS ë“±)ì˜ í–‰ì— ëŒ€í•œ ì‚½ì…,ë³€ê²½,ì‚­ì œ,ê²€ìƒ‰ ê¸°ëŠ¥ì„ ì œê³µí•˜ëŠ” í´ë˜ìŠ¤
+// => ì €ì¥ë§¤ì²´ì˜ ì¢…ë¥˜ ë˜ëŠ” ë°©ë²•ì— ë”°ë¼ DAO í´ë˜ìŠ¤ êµì²´ ê°€ëŠ¥
+// => DAO í´ë˜ìŠ¤ê°€ êµì²´ë¼ë„ DAO í´ë˜ìŠ¤ë¥¼ ì‚¬ìš©í•˜ëŠ” í´ë˜ìŠ¤(Service í´ë˜ìŠ¤)ì— ì˜í–¥ì„ ìµœì†Œí™”í•˜ê¸°
+//ìœ„í•´ ë°˜ë“œì‹œ ì¸í„°í˜ì´ìŠ¤ë¥¼ ìƒì†ë°›ì•„ ì‘ì„± - ê²°í•©ë„ë¥¼ ë‚®ì¶° ìœ ì§€ë³´ìˆ˜ì˜ íš¨ìœ¨ì„± ì¦ê°€
 public class StudentJdbcDAOImpl implements StudentDAO {
 	public StudentJdbcDAOImpl() {
-		System.out.println("### StudentJdbcDAOImpl Å¬·¡½ºÀÇ ±âº» »ı¼ºÀÚ È£Ãâ ###");
+		System.out.println("### StudentJdbcDAOImpl í´ë˜ìŠ¤ì˜ ê¸°ë³¸ ìƒì„±ì í˜¸ì¶œ ###");
 	}
 	
 	@Override
 	public int insertStudent(Student student) {
-		System.out.println("*** StudentJdbcDAOImpl Å¬·¡½ºÀÇ insertStudent(Student student) ¸Ş¼Òµå È£Ãâ ***");
+		System.out.println("*** StudentJdbcDAOImpl í´ë˜ìŠ¤ì˜ insertStudent(Student student) ë©”ì†Œë“œ í˜¸ì¶œ ***");
 		return 0;
 	}
 
 	@Override
 	public int updateStudent(Student student) {
-		System.out.println("*** StudentJdbcDAOImpl Å¬·¡½ºÀÇ updateStudent(Student student) ¸Ş¼Òµå È£Ãâ ***");
+		System.out.println("*** StudentJdbcDAOImpl í´ë˜ìŠ¤ì˜ updateStudent(Student student) ë©”ì†Œë“œ í˜¸ì¶œ ***");
 		return 0;
 	}
 
 	@Override
 	public int deleteStudent(int num) {
-		System.out.println("*** StudentJdbcDAOImpl Å¬·¡½ºÀÇ deleteStudent(int num) ¸Ş¼Òµå È£Ãâ ***");
+		System.out.println("*** StudentJdbcDAOImpl í´ë˜ìŠ¤ì˜ deleteStudent(int num) ë©”ì†Œë“œ í˜¸ì¶œ ***");
 		return 0;
 	}
 
 	@Override
 	public Student selectStudent(int num) {
-		System.out.println("*** StudentJdbcDAOImpl Å¬·¡½ºÀÇ selectStudent(int num) ¸Ş¼Òµå È£Ãâ ***");
+		System.out.println("*** StudentJdbcDAOImpl í´ë˜ìŠ¤ì˜ selectStudent(int num) ë©”ì†Œë“œ í˜¸ì¶œ ***");
 		return null;
 	}
 
 	@Override
 	public List<Student> selectStudentList() {
-		System.out.println("*** StudentJdbcDAOImpl Å¬·¡½ºÀÇ selectStudentList() ¸Ş¼Òµå È£Ãâ ***");
+		System.out.println("*** StudentJdbcDAOImpl í´ë˜ìŠ¤ì˜ selectStudentList() ë©”ì†Œë“œ í˜¸ì¶œ ***");
 		return null;
 	}
 }

@@ -1,18 +1,18 @@
 package xyz.itwill02.factory;
 
-//Factory µğÀÚÀÎ ÆĞÅÏÀ» Àû¿ëÇÏ¿© ÀÛ¼ºµÈ Å¬·¡½º - Factory Å¬·¡½º
-//=> ÇÁ·Î±×·¥ °³¹ß¿¡ ÇÊ¿äÇÑ °´Ã¼¸¦ »ı¼ºÇÏ¿© Á¦°øÇÏ´Â Å¬·¡½º
-//=> IoC(Inversion of Control)±â´ÉÀÇ Å¬·¡½º
+//Factory ë””ìì¸ íŒ¨í„´ì„ ì ìš©í•˜ì—¬ ì‘ì„±ëœ í´ë˜ìŠ¤ - Factory í´ë˜ìŠ¤
+// => í”„ë¡œê·¸ë¨ ê°œë°œì— í•„ìš”í•œ ê°ì²´ë¥¼ ìƒì„±í•˜ì—¬ ì œê³µí•˜ëŠ” í´ë˜ìŠ¤
+// => IoC(Inversion of Control)ê¸°ëŠ¥ì˜ í´ë˜ìŠ¤
 public class MessageObjectFactory {
-	// Factory Å¬·¡½º¿¡ ÀÇÇØ Á¦°øµÉ °´Ã¼¸¦ ±¸ºĞÇÏ±â À§ÇÑ »ó¼ö(Constant)
-	public static final int HELLO_MSG = 1;
-	public static final int HI_MSG = 2;
+	//Factory í´ë˜ìŠ¤ì— ì˜í•´ ì œê³µë  ê°ì²´ë¥¼ êµ¬ë¶„í•˜ê¸° ìœ„í•œ ìƒìˆ˜(Constant)
+	public static final int HELLO_MSG=1;  
+	public static final int HI_MSG=2;  
 	
-	//ÀÎÅÍÆäÀÌ½º¸¦ »ó¼Ó¹ŞÀº ÀÚ½ÄÅ¬·¡½º·Î °´Ã¼¸¦ »ı¼ºÇÏ¿© ¹İÈ¯ÇÏ´Â Á¤Àû ¸Ş¼Òµå
+	//ì¸í„°í˜ì´ìŠ¤ë¥¼ ìƒì†ë°›ì€ ìì‹í´ë˜ìŠ¤ë¡œ ê°ì²´ë¥¼ ìƒì„±í•˜ì—¬ ë°˜í™˜í•˜ëŠ” ì •ì  ë©”ì†Œë“œ
 	public static MessageObject getMessageObject(int message) {
-		// MessageObject object=new HelloMessageObject();
-		//MessageObject object = new HiMessageObject();
-
+		//MessageObject object=new HelloMessageObject();
+		//MessageObject object=new HiMessageObject();
+		
 		MessageObject object=null;
 		switch (message) {
 		case HELLO_MSG: 

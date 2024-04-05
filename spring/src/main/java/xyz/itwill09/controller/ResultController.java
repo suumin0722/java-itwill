@@ -7,10 +7,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-//¿äÃ» Ã³¸® ¸Ş¼ÒµåÀÇ ¸í·É¿¡ ÀÇÇØ »ı¼ºµÈ °á°ú°ªÀ» ºä(JSP)¿¡°Ô Á¦°øÇÏ´Â ¹æ¹ı
-//1.ModelAndView °´Ã¼ÀÇ addObject() ¸Ş¼Òµå¸¦ È£ÃâÇÏ¿© °á°ú°ªÀ» ¼Ó¼º°ªÀ¸·Î ÀúÀåÇÏ¿© Á¦°ø 
-//2.HttpServletRequest °´Ã¼ÀÇ setAttribute() ¸Ş¼Òµå¸¦ È£ÃâÇÏ¿© °á°ú°ªÀ» ¼Ó¼º°ªÀ¸·Î ÀúÀåÇÏ¿© Á¦°ø 
-//3.Model °´Ã¼ÀÇ addAttribute() ¸Ş¼Òµå¸¦ È£ÃâÇÏ¿© °á°ú°ªÀ» ¼Ó¼º°ªÀ¸·Î ÀúÀåÇÏ¿© Á¦°ø 
+//ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œì˜ ëª…ë ¹ì— ì˜í•´ ìƒì„±ëœ ê²°ê³¼ê°’ì„ ë·°(JSP)ì—ê²Œ ì œê³µí•˜ëŠ” ë°©ë²•
+//1.ModelAndView ê°ì²´ì˜ addObject() ë©”ì†Œë“œë¥¼ í˜¸ì¶œí•˜ì—¬ ê²°ê³¼ê°’ì„ ì†ì„±ê°’ìœ¼ë¡œ ì €ì¥í•˜ì—¬ ì œê³µ 
+//2.HttpServletRequest ê°ì²´ì˜ setAttribute() ë©”ì†Œë“œë¥¼ í˜¸ì¶œí•˜ì—¬ ê²°ê³¼ê°’ì„ ì†ì„±ê°’ìœ¼ë¡œ ì €ì¥í•˜ì—¬ ì œê³µ 
+//3.Model ê°ì²´ì˜ addAttribute() ë©”ì†Œë“œë¥¼ í˜¸ì¶œí•˜ì—¬ ê²°ê³¼ê°’ì„ ì†ì„±ê°’ìœ¼ë¡œ ì €ì¥í•˜ì—¬ ì œê³µ 
 
 @Controller
 public class ResultController {
@@ -20,38 +20,37 @@ public class ResultController {
 		ModelAndView modelAndView=new ModelAndView("result_display");
 		
 		//ModelAndView.addObject(String attributeName, Object attributeVale) 
-		// => ModelAndView °´Ã¼¿¡ °á°ú°ªÀ» ¼Ó¼º°ªÀ¸·Î ÀúÀåÇÏ´Â ¸Ş¼Òµå - Request Scope
-		// => ºä(JSP)¿¡¼­´Â EL ¶Ç´Â JSTL¸¦ »ç¿ëÇÏ¿© ¼Ó¼º¸íÀ¸·Î ¼Ó¼º°ª(°´Ã¼)¸¦ Á¦°ø¹Ş¾Æ Ãâ·Â Ã³¸®
-		modelAndView.addObject("mavName", "È«±æµ¿");
+		// => ModelAndView ê°ì²´ì— ê²°ê³¼ê°’ì„ ì†ì„±ê°’ìœ¼ë¡œ ì €ì¥í•˜ëŠ” ë©”ì†Œë“œ - Request Scope
+		// => ë·°(JSP)ì—ì„œëŠ” EL ë˜ëŠ” JSTLë¥¼ ì‚¬ìš©í•˜ì—¬ ì†ì„±ëª…ìœ¼ë¡œ ì†ì„±ê°’(ê°ì²´)ë¥¼ ì œê³µë°›ì•„ ì¶œë ¥ ì²˜ë¦¬
+		modelAndView.addObject("mavName", "í™ê¸¸ë™");
 		
 		return modelAndView;
 	}
 	*/
 	
-	//¿äÃ» Ã³¸® ¸Ş¼Òµå¿¡ ¸Å°³º¯¼ö¸¦ ÀÛ¼ºÇÏ¸é Front Controller´Â ½ºÇÁ¸µ ÄÁÅ×ÀÌ³Ê(WebApplicationContext °´Ã¼)¸¦
-	//»ç¿ëÇØ Spring BeanÀ¸·Î µî·ÏµÈ °´Ã¼¸¦ Àü´Ş¹Ş¾Æ ¸Å°³º¯¼ö¿¡ ÀúÀåÇÏ¿© »ç¿ë
+	//ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œì— ë§¤ê°œë³€ìˆ˜ë¥¼ ì‘ì„±í•˜ë©´ Front ControllerëŠ” ìŠ¤í”„ë§ ì»¨í…Œì´ë„ˆ(WebApplicationContext ê°ì²´)ë¥¼
+	//ì‚¬ìš©í•´ Spring Beanìœ¼ë¡œ ë“±ë¡ëœ ê°ì²´ë¥¼ ì „ë‹¬ë°›ì•„ ë§¤ê°œë³€ìˆ˜ì— ì €ì¥í•˜ì—¬ ì‚¬ìš©ë˜ë„ë¡ ì œê³µ
 	@RequestMapping("/resultMav")
 	public ModelAndView modelAndViewResult(ModelAndView modelAndView) {
 		modelAndView.setViewName("result_display");
-		modelAndView.addObject("mavName", "È«±æµ¿");
+		modelAndView.addObject("mavName", "í™ê¸¸ë™");
 		return modelAndView;
 	}
 	
 	@RequestMapping("/resultRequest")
 	public String requestResult(HttpServletRequest request) {
 		//HttpServletRequest.setAttribute(String attributeName, Object attributeVale) 
-		// => HttpServletRequest °´Ã¼¿¡ °á°ú°ªÀ» ¼Ó¼º°ªÀ¸·Î ÀúÀåÇÏ´Â ¸Ş¼Òµå - Request Scope		
-		request.setAttribute("requestName", "ÀÓ²©Á¤");
+		// => HttpServletRequest ê°ì²´ì— ê²°ê³¼ê°’ì„ ì†ì„±ê°’ìœ¼ë¡œ ì €ì¥í•˜ëŠ” ë©”ì†Œë“œ - Request Scope		
+		request.setAttribute("requestName", "ì„êº½ì •");
 		return "result_display";
 	}
 	
 	@RequestMapping("/resultModel")
 	public String modelResult(Model model) {
-		//Model °´Ã¼ : ¿äÃ» Ã³¸® ¸Ş¼ÒµåÀÇ Ã³¸® °á°ú°ªÀ» ºä¿¡°Ô Á¦°øÇÏ±â À§ÇÑ °´Ã¤
+		//Model ê°ì²´ : ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œì˜ ì²˜ë¦¬ ê²°ê³¼ê°’ì„ ë·°ì—ê²Œ ì œê³µí•˜ê¸° ìœ„í•œ ê°ì±„
 		//Model.addAttribute(String attributeName, Object attributeVale) 
-		// => Model °´Ã¼¿¡ °á°ú°ªÀ» ¼Ó¼º°ªÀ¸·Î ÀúÀåÇÏ´Â ¸Ş¼Òµå - Request Scope		
-		model.addAttribute("modelName", "Àü¿ìÄ¡");
+		// => Model ê°ì²´ì— ê²°ê³¼ê°’ì„ ì†ì„±ê°’ìœ¼ë¡œ ì €ì¥í•˜ëŠ” ë©”ì†Œë“œ - Request Scope		
+		model.addAttribute("modelName", "ì „ìš°ì¹˜");
 		return "result_display";
 	}
 }
-

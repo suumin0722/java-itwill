@@ -14,12 +14,13 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import xyz.itwill09.dto.Product;
 
-//½ºÇÁ¸µ ¸Ş¼¼Áö(Spring Message) : Spring ÇÁ·¹ÀÓ¿öÅ©·Î ¸Ş¼¼Áö¸¦ °ü¸®ÇÏ±â À§ÇÑ ±â´É
-//1.¸Ş¼¼Áö°¡ ÀúÀåµÈ Properties ÆÄÀÏ »ı¼º
-// => ½ºÇÁ¸µ ÄÁÅ×ÀÌ³Ê°¡ ÂüÁ¶ÇÒ ¼ö ÀÖµµ·Ï [src/main/webapp] Æú´õ¿¡ Properties ÆÄÀÏÀ» ÀÛ¼ºÇÏ´Â °ÍÀ» ±ÇÀå
-//2.Spring Bean Configuration File(servlet-context.xml)¿¡ ¸Ş¼¼Áö °ü¸® ±â´ÉÀ» Á¦°øÇÏ´Â Å¬·¡½º¸¦
-//Spring BeanÀ¸·Î µî·ÏÇÏ°í ¸Ş¼¼Áö°¡ ÀúÀåµÈ Properties ÆÄÀÏÀÇ °æ·Î¸¦ °´Ã¼ ÇÊµå¿¡ ÀúÀåµÇµµ·Ï ÀÎÁ§¼Ç Ã³¸®
-//3.ºä(JSP)¿¡¼­ spring ÅÂ±× ¶óÀÌºê·¯¸®ÀÇ message ÅÂ±×¸¦ »ç¿ëÇÏ¿© ¸Ş¼¼Áö¸¦ Á¦°ø¹Ş¾Æ Ãâ·Â Ã³¸®
+//ìŠ¤í”„ë§ ë©”ì„¸ì§€(Spring Message) : Spring í”„ë ˆì„ì›Œí¬ë¡œ ë©”ì„¸ì§€ë¥¼ ê´€ë¦¬í•˜ê¸° ìœ„í•œ ê¸°ëŠ¥
+//1.ë©”ì„¸ì§€ê°€ ì €ì¥ëœ Properties íŒŒì¼ ìƒì„±
+// => ìŠ¤í”„ë§ ì»¨í…Œì´ë„ˆ(WebApplicationContext ê°ì²´)ê°€ ì°¸ì¡°í•  ìˆ˜ ìˆë„ë¡ [src/main/webapp] í´ë”ì—
+//Properties íŒŒì¼ì„ ì‘ì„±í•˜ëŠ” ê²ƒì„ ê¶Œì¥
+//2.Spring Bean Configuration File(servlet-context.xml)ì— ë©”ì„¸ì§€ ê´€ë¦¬ ê¸°ëŠ¥ì„ ì œê³µí•˜ëŠ” í´ë˜ìŠ¤ë¥¼
+//Spring Beanìœ¼ë¡œ ë“±ë¡í•˜ê³  ë©”ì„¸ì§€ê°€ ì €ì¥ëœ Properties íŒŒì¼ì˜ ê²½ë¡œë¥¼ ê°ì²´ í•„ë“œì— ì €ì¥ë˜ë„ë¡ ì¸ì ì…˜ ì²˜ë¦¬
+//3.ë·°(JSP)ì—ì„œ spring íƒœê·¸ ë¼ì´ë¸ŒëŸ¬ë¦¬ì˜ message íƒœê·¸ë¥¼ ì‚¬ìš©í•˜ì—¬ ë©”ì„¸ì§€ë¥¼ ì œê³µë°›ì•„ ì¶œë ¥ ì²˜ë¦¬
 
 @Controller
 @RequestMapping("/message")
@@ -31,11 +32,11 @@ public class MessageController {
 	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String message(@ModelAttribute @Valid Product product, Errors errors, HttpSession session) {
-		//Locale °´Ã¼ »ı¼º - »ç¿ë ¾ğ¾î ¼³Á¤
-		Locale locale = new Locale("en");
+		//Locale ê°ì²´ ìƒì„± - ì‚¬ìš© ì–¸ì–´ ì„¤ì •
+		Locale locale=new Locale("en");
 		
-		//HttpSession °´Ã¼¿¡ Locale °´Ã¼¸¦ ¼Ó¼º°ªÀ¸·Î ÀúÀå
-		// => ¹İµå½Ã ¼Ó¼º¸íÀº SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME »ó¼ö·Î ¼³Á¤
+		//HttpSession ê°ì²´ì— Locale ê°ì²´ë¥¼ ì†ì„±ê°’ìœ¼ë¡œ ì €ì¥
+		// => ë°˜ë“œì‹œ ì†ì„±ëª…ì€ SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME ìƒìˆ˜ë¡œ ì„¤ì •
 		session.setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME, locale);
 		
 		if(errors.hasErrors()) {
@@ -44,5 +45,13 @@ public class MessageController {
 		return "message/success";
 	}
 }
+
+
+
+
+
+
+
+
 
 

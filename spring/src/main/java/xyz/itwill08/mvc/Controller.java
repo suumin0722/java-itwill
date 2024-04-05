@@ -6,11 +6,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//¿äÃ» Ã³¸® Å¬·¡½º(Model)°¡ ¹İµå½Ã »ó¼Ó¹Ş¾Æ¾ß ÇÏ´Â ÀÎÅÍÆäÀÌ½º
-// => ¸ğµç ¿äÃ» Ã³¸® Å¬·¡½ºÀÇ ¸Ş¼Òµå°¡ µ¿ÀÏÇÏ°Ô ÀÛ¼ºµÇµµ·Ï ±ÔÄ¢ Á¦°ø
-// => ÄÁÆ®·Ñ·¯¿¡¼­ ¿äÃ» Ã³¸® Å¬·¡½ºÀÇ °´Ã¼·Î ¸Ş¼Òµå¸¦ ½±°Ô È£ÃâÇÏ±â À§ÇÑ ÀÎÅÍÆäÀÌ½º ÇÊµå
+//ìš”ì²­ ì²˜ë¦¬ í´ë˜ìŠ¤(Model)ê°€ ë°˜ë“œì‹œ ìƒì†ë°›ì•„ì•¼ ë˜ëŠ” ì¸í„°í˜ì´ìŠ¤
+// => ëª¨ë“  ìš”ì²­ ì²˜ë¦¬ í´ë˜ìŠ¤ì˜ ë©”ì†Œë“œê°€ ë™ì¼í•˜ê²Œ ì‘ì„±ë˜ë„ë¡ ê·œì¹™ ì œê³µ
+// => ì»¨íŠ¸ë¡¤ëŸ¬ì—ì„œ ìš”ì²­ ì²˜ë¦¬ í´ë˜ìŠ¤ì˜ ê°ì²´ë¡œ ë©”ì†Œë“œë¥¼ ì‰½ê²Œ í˜¸ì¶œí•˜ê¸° ìœ„í•œ ì¸í„°í˜ì´ìŠ¤ í•„ë“œ
 public interface Controller {
-	//¿äÃ» Ã³¸® ¸Ş¼Òµå¸¦ Ãß»ó¸Ş¼Òµå·Î ÀÛ¼º
+	//ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œë¥¼ ì¶”ìƒë©”ì†Œë“œë¡œ ì‘ì„±
 	String handleRequest(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException;
 }

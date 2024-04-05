@@ -4,49 +4,49 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-//@Component : Å¬·¡½º¸¦ ½ºÇÁ¸µ ÄÁÅ×ÀÌ³Ê°¡ °ü¸®ÇÒ ¼ö ÀÖ´Â Spring BeanÀ¸·Î µî·ÏÇÏ±â À§ÇÑ ¾î³ëÅ×ÀÌ¼Ç
-// => Å¬·¡½ºÀÇ ÀÌ¸§À» ÀÚµ¿À¸·Î beanNameÀ¸·Î ¼³Á¤ - Å¬·¡½º ÀÌ¸§ÀÇ Ã¹¹®ÀÚ´Â ¼Ò¹®ÀÚ·Î º¯È¯
-// => @Component ¾î³ëÅ×ÀÌ¼ÇÀÇ value ¼Ó¼ºÀ» »ç¿ëÇÏ¿© beanName º¯°æ °¡´É
+//@Component : í´ë˜ìŠ¤ë¥¼ ìŠ¤í”„ë§ ì»¨í…Œì´ë„ˆê°€ ê´€ë¦¬í•  ìˆ˜ ìˆëŠ” Spring Beanìœ¼ë¡œ ë“±ë¡í•˜ê¸° ìœ„í•œ ì–´ë…¸í…Œì´ì…˜
+// => í´ë˜ìŠ¤ì˜ ì´ë¦„ì„ ìë™ìœ¼ë¡œ beanNameìœ¼ë¡œ ì„¤ì • - í´ë˜ìŠ¤ ì´ë¦„ì˜ ì²«ë¬¸ìëŠ” ì†Œë¬¸ìë¡œ ë³€í™˜
+// => @Component ì–´ë…¸í…Œì´ì…˜ì˜ value ì†ì„±ì„ ì‚¬ìš©í•˜ì—¬ beanName ë³€ê²½ ê°€ëŠ¥
 //@Component
-//@Primary : ÀÇÁ¸¼º ÁÖÀÔÀ» À§ÇÑ ¿ì¼±±ÇÀ» Á¦°øÇÏ±â À§ÇÑ ¾î³ëÅ×ÀÌ¼Ç
-// => µ¿ÀÏÇÑ ÀÎÅÍÆäÀÌ½º¸¦ »ó¼Ó¹ŞÀº Å¬·¡½º¿¡ @Primary ¾î³ëÅ×ÀÌ¼ÇÀ» Áßº¹ ¼±¾ğÇÏ¸é ÀÇÁ¸¼º ÁÖÀÔ ½ÇÆĞ
+//@Primary : ì˜ì¡´ì„± ì£¼ì…ì„ ìœ„í•œ ìš°ì„ ê¶Œì„ ì œê³µí•˜ê¸° ìœ„í•œ ì–´ë…¸í…Œì´ì…˜
+// => ë™ì¼í•œ ì¸í„°í˜ì´ìŠ¤ë¥¼ ìƒì†ë°›ì€ í´ë˜ìŠ¤ì— @Primary ì–´ë…¸í…Œì´ì…˜ì„ ì¤‘ë³µ ì„ ì–¸í•˜ë©´ ì˜ì¡´ì„± ì£¼ì… ì‹¤íŒ¨
 //@Primary
 
-//@Repository : DAO Å¬·¡½º¸¦ ½ºÇÁ¸µ ÄÁÅ×ÀÌ³Ê°¡ °ü¸®ÇÒ ¼ö ÀÖ´Â Spring BeanÀ¸·Î µî·ÏÇÏ±â À§ÇÑ ¾î³ëÅ×ÀÌ¼Ç
-// => Å¬·¡½ºÀÇ ÀÌ¸§À» ÀÚµ¿À¸·Î beanNameÀ¸·Î ¼³Á¤µÇÁö¸¸ value ¼Ó¼ºÀ» »ç¿ëÇÏ¿© beanName º¯°æ °¡´É
+//@Repository : DAO í´ë˜ìŠ¤ë¥¼ ìŠ¤í”„ë§ ì»¨í…Œì´ë„ˆê°€ ê´€ë¦¬í•  ìˆ˜ ìˆëŠ” Spring Beanìœ¼ë¡œ ë“±ë¡í•˜ê¸° ìœ„í•œ ì–´ë…¸í…Œì´ì…˜
+// => í´ë˜ìŠ¤ì˜ ì´ë¦„ì„ ìë™ìœ¼ë¡œ beanNameìœ¼ë¡œ ì„¤ì •ë˜ì§€ë§Œ value ì†ì„±ì„ ì‚¬ìš©í•˜ì—¬ beanName ë³€ê²½ ê°€ëŠ¥
 @Repository
 public class AnnotationStudentJdbcDAOImpl implements StudentDAO {
 	public AnnotationStudentJdbcDAOImpl() {
-		System.out.println("### AnnotationStudentJdbcDAOImpl Å¬·¡½ºÀÇ ±âº» »ı¼ºÀÚ È£Ãâ ###");
+		System.out.println("### AnnotationStudentJdbcDAOImpl í´ë˜ìŠ¤ì˜ ê¸°ë³¸ ìƒì„±ì í˜¸ì¶œ ###");
 	}
 	
 	@Override
 	public int insertStudent(Student student) {
-		System.out.println("*** AnnotationStudentJdbcDAOImpl Å¬·¡½ºÀÇ insertStudent(Student student) ¸Ş¼Òµå È£Ãâ ***");
+		System.out.println("*** AnnotationStudentJdbcDAOImpl í´ë˜ìŠ¤ì˜ insertStudent(Student student) ë©”ì†Œë“œ í˜¸ì¶œ ***");
 		return 0;
 	}
 
 	@Override
 	public int updateStudent(Student student) {
-		System.out.println("*** AnnotationStudentJdbcDAOImpl Å¬·¡½ºÀÇ updateStudent(Student student) ¸Ş¼Òµå È£Ãâ ***");
+		System.out.println("*** AnnotationStudentJdbcDAOImpl í´ë˜ìŠ¤ì˜ updateStudent(Student student) ë©”ì†Œë“œ í˜¸ì¶œ ***");
 		return 0;
 	}
 
 	@Override
 	public int deleteStudent(int num) {
-		System.out.println("*** AnnotationStudentJdbcDAOImpl Å¬·¡½ºÀÇ deleteStudent(int num) ¸Ş¼Òµå È£Ãâ ***");
+		System.out.println("*** AnnotationStudentJdbcDAOImpl í´ë˜ìŠ¤ì˜ deleteStudent(int num) ë©”ì†Œë“œ í˜¸ì¶œ ***");
 		return 0;
 	}
 
 	@Override
 	public Student selectStudent(int num) {
-		System.out.println("*** AnnotationStudentJdbcDAOImpl Å¬·¡½ºÀÇ selectStudent(int num) ¸Ş¼Òµå È£Ãâ ***");
+		System.out.println("*** AnnotationStudentJdbcDAOImpl í´ë˜ìŠ¤ì˜ selectStudent(int num) ë©”ì†Œë“œ í˜¸ì¶œ ***");
 		return null;
 	}
 
 	@Override
 	public List<Student> selectStudentList() {
-		System.out.println("*** AnnotationStudentJdbcDAOImpl Å¬·¡½ºÀÇ selectStudentList() ¸Ş¼Òµå È£Ãâ ***");
+		System.out.println("*** AnnotationStudentJdbcDAOImpl í´ë˜ìŠ¤ì˜ selectStudentList() ë©”ì†Œë“œ í˜¸ì¶œ ***");
 		return null;
 	}
 }

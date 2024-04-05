@@ -2,25 +2,25 @@ package xyz.itwill05.lombok;
 
 public class MemberApp {
 	public static void main(String[] args) {
-		Member member1=new Member("abc123", "È«±æµ¿", "abc@itwill.xyz");
+		Member member1=new Member("abc123", "í™ê¸¸ë™", "abc@itwill.xyz");
 		
-		System.out.println("¾ÆÀÌµğ = "+member1.getId());
-		System.out.println("ÀÌ¸§ = "+member1.getName());
-		System.out.println("ÀÌ¸ŞÀÏ = "+member1.getEmail());
+		System.out.println("ì•„ì´ë”” = "+member1.getId());
+		System.out.println("ì´ë¦„ = "+member1.getName());
+		System.out.println("ì´ë©”ì¼ = "+member1.getEmail());
 		System.out.println("==============================================================");
-		//Member °´Ã¼°¡ ÀúÀåµÈ ÂüÁ¶º¯¼ö¸¦ Ãâ·ÂÇÒ °æ¿ì ÀÚµ¿À¸·Î Member Å¬·¡½ºÀÇ toString() ¸Ş¼Òµå È£Ãâ
-		// => Lombok ¶óÀÌºê·¯¸®¿¡ ÀÇÇØ Á¦°øµÈ toString() ¸Ş¼Òµå´Â ¸ğµç ÇÊµå°ªÀ» ¹®ÀÚ¿­·Î °áÇÕÇÏ¿© ¹İÈ¯
+		//Member ê°ì²´ê°€ ì €ì¥ëœ ì°¸ì¡°ë³€ìˆ˜ë¥¼ ì¶œë ¥í•  ê²½ìš° ìë™ìœ¼ë¡œ Member í´ë˜ìŠ¤ì˜ toString() ë©”ì†Œë“œ í˜¸ì¶œ
+		// => Lombok ë¼ì´ë¸ŒëŸ¬ë¦¬ì— ì˜í•´ ì œê³µëœ toString() ë©”ì†Œë“œëŠ” ëª¨ë“  í•„ë“œê°’ì„ ë¬¸ìì—´ë¡œ ê²°í•©í•˜ì—¬ ë°˜í™˜
 		System.out.println(member1);
 		System.out.println("==============================================================");
-		//Å¬·¡½º.builder() : Å¬·¡½º ³»ºÎ¿¡ ¼±¾ğµÈ Builder Å¬·¡½º(³»ºÎ Á¤Àû Å¬·¡½º)¸¦ °´Ã¼·Î 
-		//»ı¼ºÇÏ¿© ¹İÈ¯ÇÏ´Â Á¤Àû ¸Ş¼Òµå
-		// => Builder Å¬·¡½ºÀÇ ÇÊµå¸í°ú °°Àº ÀÌ¸§ÀÇ ¸Ş¼Òµå¸¦ Builder °´Ã¼·Î È£ÃâÇÏ¿© ÇÊµå°ªÀÌ
-		//º¯°æµÈ Builder °´Ã¼ ¹İÈ¯
-		//Builder.build() : ¿ÜºÎ Å¬·¡½ºÀÇ °´Ã¼¸¦ »ı¼ºÇÏ¿© Builder °´Ã¼¿¡ ÀúÀåµÈ ÇÊµå°ªÀ¸·Î
-		//ÇÊµå ÃÊ±âÈ­ Ã³¸®µÈ ¿ÜºÎ Å¬·¡½ºÀÇ °´Ã¼¸¦ ¹İÈ¯ÇÏ´Â ¸Ş¼Òµå
+		//í´ë˜ìŠ¤.builder() : í´ë˜ìŠ¤ ë‚´ë¶€ì— ì„ ì–¸ëœ Builder í´ë˜ìŠ¤(ë‚´ë¶€ ì •ì  í´ë˜ìŠ¤)ë¥¼ ê°ì²´ë¡œ 
+		//ìƒì„±í•˜ì—¬ ë°˜í™˜í•˜ëŠ” ì •ì  ë©”ì†Œë“œ
+		// => Builder í´ë˜ìŠ¤ì˜ í•„ë“œëª…ê³¼ ê°™ì€ ì´ë¦„ì˜ ë©”ì†Œë“œë¥¼ Builder ê°ì²´ë¡œ í˜¸ì¶œí•˜ì—¬ í•„ë“œê°’ì´
+		//ë³€ê²½ëœ Builder ê°ì²´ ë°˜í™˜
+		//Builder.build() : ì™¸ë¶€ í´ë˜ìŠ¤ì˜ ê°ì²´ë¥¼ ìƒì„±í•˜ì—¬ Builder ê°ì²´ì— ì €ì¥ëœ í•„ë“œê°’ìœ¼ë¡œ
+		//í•„ë“œ ì´ˆê¸°í™” ì²˜ë¦¬ëœ ì™¸ë¶€ í´ë˜ìŠ¤ì˜ ê°ì²´ë¥¼ ë°˜í™˜í•˜ëŠ” ë©”ì†Œë“œ
 		Member member2=Member.builder()
 				.id("xyz789")
-				.name("ÀÓ²©Á¤")
+				.name("ì„êº½ì •")
 				.email("xyz@itwill.xyz")
 				.build();
 		
@@ -28,12 +28,3 @@ public class MemberApp {
 		System.out.println("==============================================================");
 	}
 }
-
-
-
-
-
-
-
-
-

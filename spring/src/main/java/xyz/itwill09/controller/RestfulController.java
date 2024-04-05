@@ -8,31 +8,29 @@ import java.util.Map;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import xyz.itwill09.dto.RestMember;
 
-//REST(Representational State Transfer) : ÀÚ¿ø(Resource)ÀÇ Ç¥Çö(Representational)¿¡ ÀÇÇØ
-//»óÅÂ(State)¸¦ Àü´Ş(Transfer)ÇÏ´Â °ÍÀ» ÀÇ¹Ì
-// => ÆäÀÌÁö ¿äÃ»¿¡ ´ëÇÑ ½ÇÇà °á°ú¸¦ Å¬¶óÀÌ¾ğÆ®¿¡°Ô XML ¶Ç´Â JSON Çü½ÄÀÇ ÅØ½ºÆ® µ¥ÀÌÅÍ·Î ÀÀ´ä Ã³¸®
-//Restful API : REST ±â´ÉÀ» »ç¿ëÇÏ¿© µÎ ÄÄÇ»ÅÍÀÇ ½Ã½ºÅÛÀÌ ¾ÈÀüÇÏ°Ô °ªÀ» ÁÖ°í ¹Ş±â À§ÇÑ ÇÁ·Î±×·¥
-// => ½º¸¶Æ®±â±âÀÇ ÇÁ·Î±×·¥(¾Û) ½ÇÇà¿¡ ÇÊ¿äÇÑ Á¤º¸¸¦ Àü´Ş¹Ş¾Æ »ç¿ëÇÏ°Å³ª ½ÇÇà°á°ú¸¦ Á¦°ø¹Ş¾Æ Ãâ·ÂÇÏ±â À§ÇØ »ç¿ë
+//REST(Representational State Transfer) : ìì›(Resource)ì˜ í‘œí˜„(Representational)ì— ì˜í•´ 
+//ìƒíƒœ(State)ë¥¼ ì „ë‹¬(Transfer)í•œëŠ” ê²ƒì„ ì˜ë¯¸
+// => í˜ì´ì§€ ìš”ì²­ì— ëŒ€í•œ ì‹¤í–‰ê²°ê³¼ë¥¼ í´ë¼ì´ì–¸íŠ¸ì—ê²Œ XML ë˜ëŠ” JSON í˜•ì‹ì˜ í…ìŠ¤íŠ¸ ë°ì´íƒ€ë¡œ ì‘ë‹µ ì²˜ë¦¬
+//Restful API : REST ê¸°ëŠ¥ì„ ì‚¬ìš©í•˜ì—¬ ë‘ ì»´í“¨í„°ì˜ ì‹œìŠ¤í…œì´ ì•ˆì „í•˜ê²Œ ê°’ì„ ì£¼ê³  ë°›ê¸° ìœ„í•œ í”„ë¡œê·¸ë¨
+// => ìŠ¤ë§ˆíŠ¸ê¸°ê¸°ì˜ í”„ë¡œê·¸ë¨(ì•±) ì‹¤í–‰ì— í•„ìš”í•œ ì •ë³´ë¥¼ ì „ë‹¬ë°›ê±°ë‚˜ ì‹¤í–‰ê²°ê³¼ë¥¼ ì œê³µë°›ê¸° ìœ„í•´ ì‚¬ìš©
 
 @Controller
 @RequestMapping("/rest")
 public class RestfulController {
-	@RequestMapping(value="/join", method = RequestMethod.GET)
+	@RequestMapping(value = "/join", method = RequestMethod.GET)
 	public String join() {
 		return "rest/input";
 	}
 	
 	/*
-	@RequestMapping(value="/join", method = RequestMethod.POST)
+	@RequestMapping(value = "/join", method = RequestMethod.POST)
 	public String join(@RequestParam String id, @RequestParam String name, Model model) {
 		model.addAttribute("id", id);
 		model.addAttribute("name", name);
@@ -40,47 +38,50 @@ public class RestfulController {
 	}
 	*/
 	
-	//@ResponseBody : ¿äÃ» Ã³¸® ¸Ş¼ÒµåÀÇ ¹İÈ¯°ª(¹®ÀÚ¿­)À» ¸®½ºÆùÁî ¸Ş¼¼Áö ¸öÃ¼ºÎ¿¡ ÀúÀåÇÏ¿©
-	//¹®ÀÚ°ª(ÅØ½ºÆ® µ¥ÀÌÅÍ)·Î Å¬¶óÀÌ¾ğÆ®¿¡°Ô Àü´ŞÇÏ¿© ÀÀ´äÇÏ´Â ¾î³ëÅ×ÀÌ¼Ç
-	// => ¹İÈ¯°ªÀ» ViewResolver °´Ã¼¸¦ »ç¿ëÇÏ¿© ºä·Î º¯È¯ÇÏ¿© ÀÀ´ä Ã³¸®ÇÏÁö ¾Ê°í ¿äÃ» Ã³¸® ¸Ş¼ÒµåÀÇ
-	//¹İÈ¯°ªÀ¸·Î ÀÀ´ä Ã³¸®
-	// => @ResponseBody ´ë½Å ResponseEntity Å¬·¡½º¸¦ ¿äÃ» Ã³¸® ¸Ş¼ÒµåÀÇ ¹İÈ¯ÇüÀ¸·Î ÀÛ¼ºÇÏ¿© ÀÀ´ä Ã³¸®
-	//@RequestBody : ¸®Äù½ºÆ® ¸Ş¼¼Áö ¸öÃ¼ºÎ¿¡ ÀúÀåµÈ ¸ğµç Àü´Ş°ªÀ» ¹®ÀÚ¿­·Î Á¦°ø¹Ş±â À§ÇÑ ¾î³ëÅ×ÀÌ¼Ç
-	// => POST, PUT, PATCH, DELETE µîÀÇ ¿äÃ»¹æ½ÄÀ¸·Î ÆäÀÌÁö¸¦ ¿äÃ»ÇÑ °æ¿ì ¸®Äù½ºÆ® ¸Ş¼¼Áö ¸öÃ¼ºÎ¿¡
-	//ÀúÀåµÈ Àü´Ş°ªÀ» ¹®ÀÚ¿­·Î Á¦°ø¹Ş¾Æ ¸Å°³º¯¼ö¿¡ ÀúÀå
-	// => GET ¹æ½ÄÀ¸·Î ÆäÀÌÁö¸¦ ¿äÃ»ÇÑ °æ¿ì ¸®Äù½ºÆ® ¸Ş¼¼Áö ¸öÃ¼ºÎ°¡ ºñ¾î ÀÖÀ¸¹Ç·Î @RequestBody »ç¿ë ºÒ°¡´É
-	// => ºñµ¿±â½Ä ¹æ½ÄÀ¸·Î ÆäÀÌÁö ¿äÃ»½Ã JSON Çü½ÄÀÇ Å×½ºÆ® µ¥ÀÌÅÍ·Î Àü´ŞµÈ °ªÀ» ¸Å°³º¯¼ö·Î ÀúÀåÇÏ±â À§ÇØ »ç¿ë
-	// => @RequestBody ¾î³ëÅ×ÀÌ¼Ç ´ë½Å RequestEntity Å¬·¡½º¸¦ »ç¿ëÇÏ¿© Àü´Ş°ª ÀúÀå °¡´É
-	@RequestMapping(value="/join", method = RequestMethod.POST)
+	//@ResponseBody : ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œì˜ ë°˜í™˜ê°’(ë¬¸ìì—´)ì„ ë¦¬ìŠ¤í°ì¦ˆ ë©”ì„¸ì§€ ëª¸ì²´ë¶€ì— ì €ì¥í•˜ì—¬
+	//ë¬¸ìê°’(í…ìŠ¤íŠ¸ ë°ì´íƒ€)ìœ¼ë¡œ í´ë¼ì´ì–¸íŠ¸ì—ê²Œ ì „ë‹¬í•˜ì—¬ ì‘ë‹µí•˜ëŠ” ì–´ë…¸í…Œì´ì…˜
+	// => ë°˜í™˜ê°’ì„ ViewResolver ê°ì²´ë¥¼ ì‚¬ìš©í•˜ì—¬ ë·°ë¡œ ë³€í™˜í•˜ì—¬ ì‘ë‹µ ì²˜ë¦¬í•˜ì§€ ì•Šê³  ìš”ì²­ ì²˜ë¦¬
+	//ë©”ì†Œë“œì˜ ë°˜í™˜ê°’ìœ¼ë¡œ ì‘ë‹µ ì²˜ë¦¬
+	// => @ResponseBody ëŒ€ì‹  ResponseEntity í´ë˜ìŠ¤ë¥¼ ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œì˜ ë°˜í™˜í˜•ìœ¼ë¡œ ì‘ì„±í•˜ì—¬ ì‘ë‹µ ì²˜ë¦¬ ê°€ëŠ¥
+	//@RequestBody : ë¦¬í€˜ìŠ¤íŠ¸ ë©”ì„¸ì§€ ëª¸ì²´ë¶€ì— ì €ì¥ëœ ëª¨ë“  ì „ë‹¬ê°’ì„ ë¬¸ìì—´ë¡œ ì œê³µë°›ê¸° ìœ„í•œ ì–´ë…¸í…Œì´ì…˜
+	// => POST, PUT, PATCH, DELETE ë“±ì˜ ìš”ì²­ë°©ì‹ìœ¼ë¡œ í˜ì´ì§€ë¥¼ ìš”ì²­í•œ ê²½ìš° ë¦¬í€˜ìŠ¤íŠ¸ ë©”ì„¸ì§€ ëª¸ì²´ë¶€ì—
+	//ì €ì¥ëœ ì „ë‹¬ê°’ì„ ë¬¸ìì—´ë¡œ ì œê³µë°›ì•„ ë§¤ê°œë³€ìˆ˜ì— ì €ì¥
+	// => GET ë°©ì‹ìœ¼ë¡œ í˜ì´ì§€ë¥¼ ìš”ì²­í•œ ê²½ìš° ë¦¬í€˜ìŠ¤íŠ¸ ë©”ì„¸ì§€ ëª¸ì²´ë¶€ê°€ ë¹„ì–´ ìˆìœ¼ë¯€ë¡œ @RequestBody ì–´ë…¸í…Œì´ì…˜ ì‚¬ìš© ë¶ˆê°€ëŠ¥
+	// => ë¹„ë™ê¸°ì‹ ë°©ì‹ìœ¼ë¡œ í˜ì´ì§€ ìš”ì²­ì‹œ JSON í˜•ì‹ì˜ í…ìŠ¤íŠ¸ ë°ì´íƒ€ë¡œ ì „ë‹¬ëœ ê°’ì„ ë§¤ê°œë³€ìˆ˜ë¡œ 
+	//ì €ì¥í•˜ê¸° ìœ„í•´ ì‚¬ìš©
+	// => @RequestBody ì–´ë…¸í…Œì´ì…˜ ëŒ€ì‹  RequestEntity í´ë˜ìŠ¤ë¥¼ ì‚¬ìš©í•˜ì—¬ ì „ë‹¬ê°’ ì €ì¥ ê°€ëŠ¥
+	@RequestMapping(value = "/join", method = RequestMethod.POST)
 	@ResponseBody
 	public String join(@RequestBody String input) {
 		return input;
 	}
 	
 	/*
-	//@ResponseBody ¾î³ëÅ×ÀÌ¼ÇÀ» »ç¿ëÇÏ¿© ¿äÃ» Ã³¸® ¸Ş¼ÒµåÀÇ ¹İÈ¯°ª(RestMember °´Ã¼)À» ¸®½ºÆùÁî
-	// ¸Ş¼¼Áö ¸öÃ¼ºÎ¿¡ ¹®ÀÚ¿­·Î ÀúÀåÇÏ¿© Å¬¶óÀÌ¾ğÆ®¿¡°Ô ÀÀ´ä Ã³¸®
-	// ¹®Á¦Á¡)¸®½ºÆùÁî ¸Ş¼¼Áö ¸öÃ¼ºÎ¿¡´Â Java °´Ã¼¸¦ ÀúÀåÇÏ¿© ÀÀ´ä Ã³¸® ºÒ°¡´É - 406 ¿¡·¯ÄÚµå ¹ß»ı
-	// ÇØ°á¹ı)¿äÃ» Ã³¸® ¸Ş¼Òµå¿¡ ÀÇÇØ ¹İÈ¯µÇ´Â Java °´Ã¼¸¦ ¹®ÀÚ¿­(XML ¶Ç´Â JSON)·Î º¯È¯ÇÏ¿©
-	// ¸®½ºÆùÁî ¸Ş¼¼Áö ¸öÃ¼ºÎ¿¡ ÀúÀåÇÏ¿© ÀÀ´ä  Ã³¸®
-	// => ÇÁ·ÎÁ§Æ®¿¡ jackson-databind ¶óÀÌºê·¯¸®¸¦ ºôµå Ã³¸®ÇÏ¸é ¿äÃ» Ã³¸® ¸Ş¼Òµå¿¡ ÀÇÇØ ¹İÈ¯µÇ´Â
-	// Java °´Ã¼¸¦ JSON Çü½ÄÀÇ ¹®ÀÚ¿­·Î º¯°æÇÏ¿© ¸®½ºÆùÁî ¸Ş¼¼Áö ¸öÃ¼ºÎ¿¡ ÀúÀåÇÏ¿© ÀÀ´ä Ã³¸® 
+	//@ResponseBody ì–´ë…¸í…Œì´ì…˜ì„ ì‚¬ìš©í•˜ì—¬ ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œì˜ ë°˜í™˜ê°’(RestMember ê°ì²´)ì„ ë¦¬ìŠ¤í°ì¦ˆ
+	//ë©”ì„¸ì§€ ëª¸ì²´ë¶€ì— ë¬¸ìì—´ë¡œ ì €ì¥í•˜ì—¬ í´ë¼ì´ì–¸íŠ¸ì—ê²Œ ì‘ë‹µ ì²˜ë¦¬
+	//ë¬¸ì œì )ë¦¬ìŠ¤í°ì¦ˆ ë©”ì„¸ì§€ ëª¸ì²´ë¶€ì—ëŠ” Java ê°ì²´ë¥¼ ì €ì¥í•˜ì—¬ ì‘ë‹µ ì²˜ë¦¬ ë¶ˆê°€ëŠ¥ - 406 ì—ëŸ¬ì½”ë“œ ë°œìƒ
+	//í•´ê²°ë²•)ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œì— ì˜í•´ ë°˜í™˜ë˜ëŠ” Java ê°ì²´ë¥¼ ë¬¸ìì—´(XML ë˜ëŠ” JSON)ë¡œ ë³€í™˜í•˜ì—¬  
+	//ë¦¬ìŠ¤í°ì¦ˆ ë©”ì„¸ì§€ ëª¸ì²´ë¶€ì— ì €ì¥í•˜ì—¬ ì‘ë‹µ ì²˜ë¦¬
+	// => í”„ë¡œì íŠ¸ì— jackson-databind ë¼ì´ë¸ŒëŸ¬ë¦¬ë¥¼ ë¹Œë“œ ì²˜ë¦¬í•˜ë©´ ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œì— ì˜í•´ ë°˜í™˜ë˜ëŠ”
+	//Java ê°ì²´ë¥¼ JSON í˜•ì‹ì˜ ë¬¸ìì—´ë¡œ ë³€ê²½í•˜ì—¬ ë¦¬ìŠ¤í°ì¦ˆ ë©”ì„¸ì§€ ëª¸ì²´ë¶€ì— ì €ì¥í•˜ì—¬ ì‘ë‹µ ì²˜ë¦¬ 
 	@RequestMapping("/member")
 	@ResponseBody
 	public RestMember restMember() {
-		return RestMember.builder().id("abc123").name("È«±æµ¿").email("abc@itwill.xyz").build();
+		//RestMember ê°ì²´ë¥¼ ë°˜í™˜í•˜ë©´ jackson-databind ë¼ì´ë¸ŒëŸ¬ë¦¬ì— ì˜í•´ JSON í˜•ì‹ì˜ ë¬¸ìì—´ë¡œ ìë™ ë³€í™˜ë˜ì–´ ì‘ë‹µ ì²˜ë¦¬
+		// => Java ê°ì²´ë¥¼ Javascriptì˜ Object ê°ì²´ í˜•ì‹ìœ¼ë¡œ ë³€í™˜
+		return RestMember.builder().id("abc123").name("í™ê¸¸ë™").email("abc@itwill.xyz").build();
 	}
 	*/
 	
-	//@ResponseBody ¾î³ëÅ×ÀÌ¼Ç ´ë½Å ¿äÃ» Ã³¸® ¸Ş¼ÒµåÀÇ ¹İÈ¯ÇüÀ» ResponseEntity Å¬·¡½º·Î ¼³Á¤ÇØ
-	//ResponseEntity °´Ã¼¸¦ ¹İÈ¯ÇØµµ ¹®ÀÚ¿­·Î ÀÀ´ä Ã³¸® °¡´É
-	// => ResponseEntity Å¬·¡½ºÀÇ Á¦³×¸¯¿¡´Â ÀÀ´ä Ã³¸®µÉ Java °´Ã¼ÀÇ ÀÚ·áÇüÀ» ¼³Á¤
+	//@ResponseBody ì–´ë…¸í…Œì´ì…˜ ëŒ€ì‹  ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œì˜ ë°˜í™˜í˜•ì„ ResponseEntity í´ë˜ìŠ¤ë¡œ ì„¤ì •í•´
+	//ResponseEntity ê°ì²´ë¥¼ ë°˜í™˜í•´ë„ ë¬¸ìì—´ë¡œ ì‘ë‹µ ì²˜ë¦¬ ê°€ëŠ¥
+	// => ResponseEntity í´ë˜ìŠ¤ì˜ ì œë„¤ë¦­ì—ëŠ” ì‘ë‹µ ì²˜ë¦¬ë  Java ê°ì²´ì˜ ìë£Œí˜•ì„ ì„¤ì •
 	@RequestMapping("/member")
 	public ResponseEntity<RestMember> restMember() {
 		try {
-			//Java °´Ã¼¸¦ JavascriptÀÇ Object °´Ã¼ Çü½ÄÀ¸·Î º¯È¯ÇÏ¿© ÀÀ´ä Ã³¸®
-			RestMember member=RestMember.builder().id("abc123").name("È«±æµ¿").email("abc@itwill.xyz").build();
-			//Å¬¶óÀÌ¾ğÆ®¿¡°Ô ÀÀ´äÄÚµå 200°ú ½ÇÇà°á°ú¸¦ ÅØ½ºÆ® µ¥ÀÌÅÍ·Î ÀÀ´ä Ã³¸®
+			//Java ê°ì²´ë¥¼ Javascriptì˜ Object ê°ì²´ í˜•ì‹ìœ¼ë¡œ ë³€í™˜í•˜ì—¬ ì‘ë‹µ ì²˜ë¦¬
+			RestMember member=RestMember.builder().id("abc123").name("í™ê¸¸ë™").email("abc@itwill.xyz").build();
+			//í´ë¼ì´ì–¸íŠ¸ì—ê²Œ ì‘ë‹µì½”ë“œ 200ê³¼ ì‹¤í–‰ê²°ê³¼ë¥¼ í…ìŠ¤íŠ¸ ë°ì´íƒ€ë¡œ ì‘ë‹µ ì²˜ë¦¬
 			return new ResponseEntity<RestMember>(member, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<RestMember>(HttpStatus.BAD_REQUEST);
@@ -91,23 +92,23 @@ public class RestfulController {
 	@ResponseBody
 	public List<RestMember> restMemberList() {
 		List<RestMember> restMemberList=new ArrayList<RestMember>();
-		restMemberList.add(RestMember.builder().id("abc123").name("È«±æµ¿").email("abc@itwill.xyz").build());
-		restMemberList.add(RestMember.builder().id("opq456").name("ÀÓ²©Á¤").email("opq@itwill.xyz").build());
-		restMemberList.add(RestMember.builder().id("xyz789").name("Àü¿ìÄ¡").email("xyz@itwill.xyz").build());
-		//List °´Ã¼¸¦ JavascriptÀÇ Array °´Ã¼ Çü½ÄÀ¸·Î º¯È¯ÇÏ¿© ÀÀ´ä Ã³¸®
+		restMemberList.add(RestMember.builder().id("abc123").name("í™ê¸¸ë™").email("abc@itwill.xyz").build());
+		restMemberList.add(RestMember.builder().id("opq456").name("ì„êº½ì •").email("opq@itwill.xyz").build());
+		restMemberList.add(RestMember.builder().id("xyz789").name("ì „ìš°ì¹˜").email("xyz@itwill.xyz").build());
+		//List ê°ì²´ë¥¼ Javascriptì˜ Array ê°ì²´ í˜•ì‹ìœ¼ë¡œ ë³€í™˜í•˜ì—¬ ì‘ë‹µ ì²˜ë¦¬
 		return restMemberList;
 	}
-	
+
 	@RequestMapping("/member_map")
 	@ResponseBody
 	public Map<String, Object> restMemberMap() {
 		Map<String, Object> map=new HashMap<String, Object>();
 		
 		map.put("id", "abc123");
-		map.put("name", "È«±æµ¿");
+		map.put("name", "í™ê¸¸ë™");
 		map.put("email", "abc@itwill.xyz");
 		
-		//Map °´Ã¼¸¦ JavascriptÀÇ Object °´Ã¼ Çü½ÄÀ¸·Î º¯È¯ÇÏ¿© ÀÀ´ä Ã³¸®
+		//Map ê°ì²´ë¥¼ Javascriptì˜ Object ê°ì²´ í˜•ì‹ìœ¼ë¡œ ë³€í™˜í•˜ì—¬ ì‘ë‹µ ì²˜ë¦¬
 		return map;
 	}
 	
@@ -115,5 +116,18 @@ public class RestfulController {
 	public String restBoard() {
 		return "rest/board";
 	}
-	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

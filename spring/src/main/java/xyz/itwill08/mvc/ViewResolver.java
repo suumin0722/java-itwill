@@ -1,8 +1,8 @@
 package xyz.itwill08.mvc;
 
-//ÀÀ´ä Ã³¸®ÇÏ±â À§ÇÑ ºäÁ¤º¸¸¦ Á¦°øÇÏ´Â ±â´ÉÀÇ Å¬·¡½º
+//ì‘ë‹µ ì²˜ë¦¬í•˜ê¸° ìœ„í•œ ë·°ì •ë³´ë¥¼ ì œê³µí•˜ëŠ” ê¸°ëŠ¥ì˜ í´ëž˜ìŠ¤
 public class ViewResolver {
-	//¸Å°³º¯¼ö·Î Àü´Þ¹ÞÀº ºäÀÌ¸§À¸·Î ÀÀ´ä Ã³¸®ÇÒ JSP ¹®¼­ÀÇ °æ·Î¸¦ »ý¼ºÇÏ¿© ¹ÝÈ¯ÇÏ´Â ¸Þ¼Òµå
+	//ë§¤ê°œë³€ìˆ˜ë¡œ ì „ë‹¬ë°›ì€ ë·°ì´ë¦„ìœ¼ë¡œ ì‘ë‹µ ì²˜ë¦¬í•  JSP ë¬¸ì„œì˜ ê²½ë¡œë¥¼ ìƒì„±í•˜ì—¬ ë°˜í™˜í•˜ëŠ” ë©”ì†Œë“œ
 	public String getView(String viewName) {
 		return "/WEB-INF/mvc/"+viewName+".jsp";
 	}

@@ -9,43 +9,45 @@ import lombok.RequiredArgsConstructor;
 import xyz.itwill09.dto.Student;
 import xyz.itwill09.mapper.StudentMapper;
 
-//DAO Å¬·¡½º(=Repository Class, ÀúÀå¼Ò) : ÀúÀå¸ÅÃ¼(DBMS)ÀÇ Çà¿¡ ´ëÇÑ »ğÀÔ, º¯°æ, »èÁ¦, °Ë»ö ±â´ÉÀ» Á¦°øÇÏ±â À§ÇÑ Å¬·¡½º
-// => DAO Å¬·¡½ºÀÇ ¸Ş¼Òµå´Â DBMS ¼­¹ö¿¡ Á¢¼ÓÇÏ¿© ÇÏ³ªÀÇ SQL ¸í·ÉÀ» Àü´ŞÇÏ¿© ½ÇÇàÇÏ°í ½ÇÇà°á°ú¸¦
-//Java °´Ã¼(°ª)·Î ¹İÈ¯µÇµµ·Ï ÀÛ¼º - JDBC 
-// => DAO Å¬·¡½º°¡ ±³Ã¼µÇ¾îµµ ÀÇÁ¸°ü°è·Î ¼³Á¤µÈ Service Å¬·¡½º¿¡ ¿µÇâÀ» ÃÖ¼ÒÈ­ÇÏ±â À§ÇØ ÀÎÅÍÆäÀÌ½º¸¦ »ó¼Ó¹Ş¾Æ ÀÛ¼ºÇÏ´Â °ÍÀ» ±ÇÀå
+//DAO í´ë˜ìŠ¤(Repository í´ë˜ìŠ¤) : DBMS ì„œë²„ í…Œì´ë¸”ì˜ í–‰ì— ëŒ€í•œ ì‚½ì…, ë³€ê²½, ì‚­ì œ, ê²€ìƒ‰ ê¸°ëŠ¥ì„
+//ì œê³µí•˜ê¸° ìœ„í•œ í´ë˜ìŠ¤
+// => DAO í´ë˜ìŠ¤ì˜ ë©”ì†Œë“œëŠ” DBMS ì„œë²„ì— ì ‘ì†í•˜ì—¬ í•˜ë‚˜ì˜ SQL ëª…ë ¹ì„ ì „ë‹¬í•˜ì—¬ ì‹¤í–‰í•˜ê³  ì‹¤í–‰ê²°ê³¼ë¥¼
+//Java ê°ì²´(ê°’)ë¡œ ë°˜í™˜ë˜ë„ë¡ ì‘ì„± - JDBC
+// => DAO í´ë˜ìŠ¤ê°€ êµì²´ë¼ë„ ì˜ì¡´ê´€ê³„ë¡œ ì„¤ì •ëœ Service í´ë˜ìŠ¤ì— ì˜í–¥ì„ ìµœì†Œí™” í•˜ê¸° ìœ„í•´ 
+//ì¸í„°í˜ì´ìŠ¤ë¥¼ ìƒì†ë°›ì•„ ì‘ì„±í•˜ëŠ” ê²ƒì„ ê¶Œì¥
 
-//SpringMVC ÇÁ·¹ÀÓ¿öÅ©·Î À¥ÇÁ·Î±×·¥ ÀÛ¼º ½Ã Mybatis ÇÁ·¹ÀÓ¿öÅ©¸¦ »ç¿ëÇÏ¿© DAO Å¬·¡½º¸¦ ÀÛ¼ºÇÏ´Â ¹æ¹ı
-//1.DataSource °ü·Ã ¶óÀÌºê·¯¸®¿Í Mybatis °ü·Ã ¶óÀÌºê·¯¸®¸¦ ÇÁ·ÎÁ§Æ®¿¡ ºôµå Ã³¸® - ¸ŞÀÌºì : pom.xml
-// => ojdbc, spring-jdbc(spring-tx), mybatis, mybatis-spirng
-//2.Mybatis ÇÁ·¹ÀÓ¿öÅ©ÀÇ È¯°æ¼³Á¤ÆÄÀÏ(mybatis-config.xml - settings ¿¤¸®¸ÕÆ®)À» ÀÛ¼º
-//3.DataSource °ü·Ã Å¬·¡½º, SqlSessionFactory °ü·Ã Å¬·¡½º, SqlSession °ü·Ã Å¬·¡½º¸¦ Spring BeanÀ¸·Î µî·Ï
-// => SpringMVC ÇÁ·¹ÀÓ¿öÅ©¿¡¼­ ½ºÇÁ¸µ ÄÁÅ×ÀÌ³Ê¸¦ ÃÊ±âÈ­ Ã³¸®ÇÏ±â À§ÇÑ Spring Bean Configuration File¿¡¼­
-//bean ¿¤¸®¸ÕÆ®·Î Å¬·¡½º¸¦ Spring BeanÀ¸·Î µî·Ï - root-context.xml ¶Ç´Â servlet-context.xml
-//4.Å×ÀÌºí »ı¼º >> DTO Å¬·¡½º ÀÛ¼º >> ¸ÅÆÛ ÆÄÀÏ ÀÛ¼º >> DAO Å¬·¡½º ÀÛ¼º
+//SpringMVC í”„ë ˆì„ì›Œí¬ë¡œ ì›¹í”„ë¡œê·¸ë¨ ì‘ì„±ì‹œ Mybatis í”„ë ˆì„ì›Œí¬ë¥¼ ì‚¬ìš©í•˜ì—¬ DAO í´ë˜ìŠ¤ë¥¼ ì‘ì„±í•˜ëŠ” ë°©ë²•
+//1.DataSource ê´€ë ¨ ë¼ì´ë¸ŒëŸ¬ë¦¬ì™€ Mybatis ê´€ë ¨ ë¼ì´ë¸ŒëŸ¬ë¦¬ë¥¼ í”„ë¡œì íŠ¸ì— ë¹Œë“œ ì²˜ë¦¬ - ë©”ì´ë¸ : pom.xml
+// => ojdbc, spring-jdbc(spring-tx), mybatis, mybatis-spring
+//2.Mybatis í”„ë ˆì„ì›Œí¬ì˜ í™˜ê²½ì„¤ì •íŒŒì¼(mybatis-config.xml - settings ì—˜ë¦¬ë¨¼íŠ¸)ì„ ì‘ì„±
+// => [src/main/webapp] í´ë”ì— ì‘ì„±í•´ì•¼ë§Œ ìŠ¤í”„ë§ ì»¨í…Œì´ë„ˆ(WebApplication ê°ì²´)ê°€ Mybatis 
+//í”„ë ˆì„ì›Œí¬ì˜ í™˜ê²½ì„¤ì •íŒŒì¼ì„ ì½ì–´ SqlSessionFactory ê°ì²´ ìƒì„± ê°€ëŠ¥
+//3.DataSource ê´€ë ¨ í´ë˜ìŠ¤, SqlSessionFactory ê´€ë ¨ í´ë˜ìŠ¤, SqlSession ê´€ë ¨ í´ë˜ìŠ¤ë¥¼ Spring Beanìœ¼ë¡œ ë“±ë¡
+// => SpringMVC í”„ë ˆì„ì›Œí¬ì—ì„œ ìŠ¤í”„ë§ ì»¨í…Œì´ë„ˆë¥¼ ì´ˆê¸°í™” ì²˜ë¦¬í•˜ê¸° ìœ„í•œ Spring Bean Configuration
+//Fileì—ì„œ bean ì—˜ë¦¬ë¨¼íŠ¸ë¡œ í´ë˜ìŠ¤ë¥¼ Spring Beanìœ¼ë¡œ ë“±ë¡ - root-context.xml ë˜ëŠ” servlet-context.xml
+//4.í…Œì´ë¸” ìƒì„± >> DTO í´ë˜ìŠ¤ ì‘ì„± >> ë§¤í¼ íŒŒì¼ ì‘ì„± >> DAO í´ë˜ìŠ¤ ì‘ì„±
 
-//DAO Å¬·¡½º´Â Service Å¬·¡½º¿¡¼­ °´Ã¼·Î Á¦°ø¹Ş¾Æ »ç¿ëÇÒ ¼ö ÀÖµµ·Ï Spring BeanÀ¸·Î µî·Ï
-// => DAO Å¬·¡½º´Â @Repository ¾î³ëÅ×ÀÌ¼ÇÀ» »ç¿ëÇÏ¿© Spring BeanÀ¸·Î µî·Ï Ã³¸®
-// => @Repository ¾î³ëÅ×ÀÌ¼ÇÀ» ½ºÇÁ¸µ ÄÁÅ×ÀÌ³Ê°¡ Ã³¸®ÇÏ±â À§ÇØ ¹İµå½Ã Å¬·¡½º°¡ ÀÛ¼ºµÈ ÆĞÅ°Áö¸¦
-//Spring Bean Configuration File(servlet-context.xmil)ÀÇ component-scan ¿¤¸®¸ÕÆ®·Î °Ë»öµÇµµ·Ï ¼³Á¤
+//DAO í´ë˜ìŠ¤ëŠ” Service í´ë˜ìŠ¤ì—ì„œ ê°ì²´ë¡œ ì œê³µë°›ì•„ ì‚¬ìš©í•  ìˆ˜ ìˆë„ë¡ ë°˜ë“œì‹œ Spring Beanìœ¼ë¡œ ë“±ë¡
+// => DAO í´ë˜ìŠ¤ëŠ” @Repository ì–´ë…¸í…Œì´ì…˜ì„ ì‚¬ìš©í•˜ì—¬ Spring Beanìœ¼ë¡œ ë“±ë¡ ì²˜ë¦¬
+// => @Repository ì–´ë…¸í…Œì´ì…˜ì„ ìŠ¤í”„ë§ ì»¨í…Œì´ë„ˆê°€ ì²˜ë¦¬í•˜ê¸° ìœ„í•´ ë°˜ë“œì‹œ í´ë˜ìŠ¤ê°€ ì‘ì„±ëœ íŒ¨í‚¤ì§€ë¥¼
+//Spring Bean Configuration File(servlet-context.xml)ì˜ component-scan ì—˜ë¦¬ë¨¼íŠ¸ë¡œ ê²€ìƒ‰ë˜ë„ë¡ ì„¤ì •
 @Repository
+//final ì œí•œìë¡œ ì‘ì„±ëœ í•„ë“œë§Œ ì´ˆê¸°í™” ì²˜ë¦¬í•˜ëŠ” ìƒì„±ìë¥¼ ë§Œë“¤ì–´ì£¼ëŠ” ì–´ë…¸í…Œì´ì…˜
 @RequiredArgsConstructor
-//@RequiredArgsConstructor : final Á¦ÇÑÀÚ·Î ÀÛ¼ºµÈ ÇÊµå¸¸ ÃÊ±âÈ­ Ã³¸®ÇÏ´Â »ı¼ºÀÚ¸¦ ¸¸µé¾îÁÖ´Â ¾î³ëÅ×ÀÌ¼Ç
 public class StudentDAOImpl implements StudentDAO {
-	//DAO Å¬·¡½ºÀÇ ¸Ş¼Òµå¿¡¼­´Â SqlSession °´Ã¼¸¦ »ç¿ëÇÏ¿© ¸ÅÆÛ¿¡ ÀúÀåµÈ SQL ¸í·ÉÀ» Á¦°ø¹Ş¾Æ
-	//Àü´ŞÇÏ¿© ½ÇÇàÇÏ°í ½ÇÇà°á°ú¸¦ Java °´Ã¼(°ª)·Î Á¦°ø¹Ş±â À§ÇØ SqlSession °´Ã¼ ÇÊ¿ä
-	// = > SqlSession °´Ã¼°¡ ÀúÀåµÉ ¼ö ÀÖ´Â ÇÊµå¸¦ ÀÛ¼ºÇÏ¿© ½ºÇÁ¸µ ÄÁÅ×ÀÌ³Ê·ÎºÎÅÍ Spring BeanÀ»
-	//Á¦°ø¹Ş¾Æ ÀúÀåµÇµµ·Ï ÀÇÁ¸¼º ÁÖÀÔ(DI)
-	
-	
-	//SqlSession °´Ã¼°¡ ÀúÀåµÉ ÇÊµå¿¡ @Autowired ¾î³ëÅ×ÀÌ¼ÇÀ» »ç¿ëÇØ ÀÇÁ¸¼º ÁÖÀÔ
-	//@Autowired : ÇÊµå·¹º§ ÀÇÁ¸¼º ÁÖÀÔ => ÀÌ°Å¸»°í »ı¼ºÀÚ ÀÇÁ¸¼º ÁÖÀÔ(@RequiredArgsConstructor)ÇÔ
-	//¸Å°³º¯¼ö°¡ ÀÛ¼ºµÈ »ı¼ºÀÚ¿¡ @Autowired ¾î³ëÅ×ÀÌ¼ÇÀ» »ç¿ëÇØ ÀÇÁ¸¼º ÁÖÀÔ - ¼øÈ¯ÂüÁ¶ ¹æÁö
+	//DAO í´ë˜ìŠ¤ì˜ ë©”ì†Œë“œì—ì„œëŠ” ë§¤í¼ì— ì €ì¥ëœ SQL ëª…ë ¹ì„ ì œê³µë°›ì•„ ì „ë‹¬í•˜ì—¬ ì‹¤í–‰í•˜ê³  ì‹¤í–‰ê²°ê³¼ë¥¼ 
+	//Java ê°ì²´(ê°’)ë¡œ ì œê³µë°›ê¸° ìœ„í•´ SqlSession ê°ì²´ í•„ìš”
+	// => SqlSession ê°ì²´ê°€ ì €ì¥ë  ìˆ˜ ìˆëŠ” í•„ë“œë¥¼ ì‘ì„±í•˜ì—¬ ìŠ¤í”„ë§ ì»¨í…Œì´ë„ˆë¡œë¶€í„° Spring Beanì„
+	//ì œê³µë°›ì•„ ì €ì¥ë˜ë„ë¡ ì˜ì¡´ì„± ì£¼ì…(DI)
+
+	//SqlSession ê°ì²´ê°€ ì €ì¥ë  í•„ë“œì— @Autowired ì–´ë…¸í…Œì´ì…˜ì„ ì‚¬ìš©í•´ ì˜ì¡´ì„± ì£¼ì… - í•„ë“œ ë ˆë²¨ì˜ ì˜ì¡´ì„± ì£¼ì…
 	//@Autowired
-	//private final SqlSession sqlSession;
-	
-	//=> »ı¼ºÀÚ°¡ ÇÏ³ª¸¸ ÀÛ¼ºµÈ °æ¿ì @Autowired ¾î³ëÅ×ÀÌ¼Ç »ı·« °¡´É
+	//private SqlSession sqlSession;
+
+	//ë§¤ê°œë³€ìˆ˜ê°€ ì‘ì„±ëœ ìƒì„±ìì— @Autowired ì–´ë…¸í…Œì´ì…˜ì„ ì‚¬ìš©í•´ SqlSession ê°ì²´ê°€ í•„ë“œì— 
+	//ì €ì¥ë˜ë„ë¡ ì˜ì¡´ì„± ì£¼ì… - ìƒì„±ì ë ˆë²¨ì˜ ì˜ì¡´ì„± ì£¼ì… : ìˆœí™˜ì°¸ì¡° ë°©ì§€
+	// => ìƒì„±ìê°€ í•˜ë‚˜ë§Œ ì‘ì„±ëœ ê²½ìš° @Autowired ì–´ë…¸í…Œì´ì…˜ ìƒëµ ê°€ëŠ¥
 	private final SqlSession sqlSession;
-	
 	
 	@Override
 	public int insertStudent(Student student) {
@@ -56,5 +58,8 @@ public class StudentDAOImpl implements StudentDAO {
 	public List<Student> selectStudentList() {
 		return sqlSession.getMapper(StudentMapper.class).selectStudentList();
 	}
-	
 }
+
+
+
+

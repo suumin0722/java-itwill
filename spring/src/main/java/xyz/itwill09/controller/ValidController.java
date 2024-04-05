@@ -15,18 +15,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import xyz.itwill09.dto.Employee;
 
-//Command °´Ã¼ÀÇ ÇÊµå¿¡ ÀúÀåµÉ Àü´Ş°ª °ËÁõ - Spring Validation
-//1.validation-api ¶óÀÌºê·¯¸®¿Í hibernate-validator ¶óÀÌºê·¯¸®¸¦ ÇÁ·ÎÁ§Æ®¿¡ ºôµå Ã³¸® - ¸ŞÀÌºì : pom.xml
-//2.HTML ÅÂ±× ´ë½Å Spring ÅÂ±×¸¦ »ç¿ëÇÏ¿© ºä(View - JSP) ÀÛ¼º - ¿¡·¯¸Ş¼¼Áö¸¦ Á¦°ø¹Ş¾Æ Ãâ·Â Ã³¸®
-//3.Controller Å¬·¡½ºÀÇ ¿äÃ» Ã³¸® ¸Ş¼Òµå¿¡¼­ Àü´Ş°ªÀÌ ÀúÀåµÈ Command °´Ã¼°¡ ÀúÀåµÉ ¸Å°³º¯¼ö¿¡
-//@Valid ¾î³ëÅ×ÀÌ¼ÇÀ» »ç¿ëÇÏ¿© °ËÁõ Ã³¸®µÇµµ·Ï ¼³Á¤
-//4.Command °´Ã¼¿¡ ´ëÇÑ DTO Å¬·¡½ºÀÇ ÇÊµå¿¡ °ËÁõ °ü·Ã ¾î³ëÅ×ÀÌ¼ÇÀ» »ç¿ëÇÏ¿© Àü´Ş°ª °ËÁõ
+//Command ê°ì²´ì˜ í•„ë“œì— ì €ì¥ë  ì „ë‹¬ê°’ ê²€ì¦ - Spring Validation
+//1.validation-api ë¼ì´ë¸ŒëŸ¬ë¦¬ì™€ hibernate-validator ë¼ì´ë¸ŒëŸ¬ë¦¬ë¥¼ í”„ë¡œì íŠ¸ì— ë¹Œë“œ ì²˜ë¦¬ - ë©”ì´ë¸ : pom.xml
+//2.HTML íƒœê·¸ ëŒ€ì‹  Spring íƒœê·¸ë¥¼ ì‚¬ìš©í•˜ì—¬ ë·°(View - JSP) ì‘ì„± - ì—ëŸ¬ë©”ì„¸ì§€ë¥¼ ì œê³µë°›ì•„ ì¶œë ¥ ì²˜ë¦¬
+//3.Controller í´ë˜ìŠ¤ì˜ ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œì—ì„œ ì „ë‹¬ê°’ì´ ì €ì¥ëœ Command ê°ì²´ê°€ ì €ì¥ë  ë§¤ê°œë³€ìˆ˜ì—
+//@Valid ì–´ë…¸í…Œì´ì…˜ì„ ì‚¬ìš©í•˜ì—¬ ê²€ì¦ ì²˜ë¦¬ë˜ë„ë¡ ì„¤ì •
+//4.Command ê°ì²´ì— ëŒ€í•œ DTO í´ë˜ìŠ¤ì˜ í•„ë“œì— ê²€ì¦ ê´€ë ¨ ì–´ë…¸í…Œì´ì…˜ì„ ì‚¬ìš©í•˜ì—¬ ì „ë‹¬ê°’ ê²€ì¦
 
 @Controller
-//@RequestMapping ¾î³ëÅ×ÀÌ¼ÇÀ» Å¬·¡½º¿¡ ¼±¾ğµÈ Controller Å¬·¡½ºÀÇ ¸ğµç ¿äÃ» Ã³¸® ¸Ş¼Òµå¿Í
-//¸ÅÇÎµÈ ¿äÃ» URL ÁÖ¼Ò ¾ÕºÎºĞ¿¡ °øÅëÀûÀ¸·Î Ãß°¡µÉ URL ÁÖ¼Ò Á¦°ø
-//value ¼Ó¼º : ¸ğµç ¿äÃ» Ã³¸® ¸Ş¼Òµå¿Í ¸ÅÇÎµÈ ¿äÃ» URL ÁÖ¼Ò ¾ÕºÎºĞ¿¡ Ãß°¡µÉ URL ÁÖ¼Ò¸¦ ¼Ó¼º°ªÀ¸·Î ¼³Á¤
-// => value ¼Ó¼º¿Ü¿¡ ´Ù¸¥ ¼Ó¼ºÀÌ ¾ø´Â °æ¿ì ¼Ó¼º°ª¸¸ ¼³Á¤ °¡´É
+//@RequestMapping ì–´ë…¸í…Œì´ì…˜ì„ í´ë˜ìŠ¤ì— ì„ ì–¸ëœ Controller í´ë˜ìŠ¤ì˜ ëª¨ë“  ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œì™€
+//ë§¤í•‘ëœ ìš”ì²­ URL ì£¼ì†Œ ì•ë¶€ë¶„ì— ê³µí†µì ìœ¼ë¡œ ì¶”ê°€ë  URL ì£¼ì†Œ ì œê³µ
+//value ì†ì„± : ëª¨ë“  ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œì™€ ë§¤í•‘ëœ ìš”ì²­ URL ì£¼ì†Œ ì•ë¶€ë¶„ì— ì¶”ê°€ë  URL ì£¼ì†Œë¥¼ ì†ì„±ê°’ìœ¼ë¡œ ì„¤ì •
+// => value ì†ì„±ì™¸ì— ë‹¤ë¥¸ ì†ì„±ì´ ì—†ëŠ” ê²½ìš° ì†ì„±ê°’ë§Œ ì„¤ì • ê°€ëŠ¥
 @RequestMapping("/valid")
 public class ValidController {
 	//@RequestMapping(value = "/valid/html", method = RequestMethod.GET)
@@ -38,15 +38,15 @@ public class ValidController {
 	//@RequestMapping(value = "/valid/html", method = RequestMethod.POST)
 	@RequestMapping(value = "/html", method = RequestMethod.POST)
 	public String html(@ModelAttribute Employee employee, Model model) {
-		//Java¸¦ »ç¿ëÇÏ¿© ¼­¹ö¿¡¼­ Àü´Ş°ª(ÀÔ·Â°ª) °ËÁõ
+		//Javaë¥¼ ì‚¬ìš©í•˜ì—¬ ì„œë²„ì—ì„œ ì „ë‹¬ê°’(ì…ë ¥ê°’) ê²€ì¦
 		if(employee.getId()==null || employee.getId().equals("")) {
-			model.addAttribute("idMsg","¾ÆÀÌµğ¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä.");
+			model.addAttribute("idMsg","ì•„ì´ë””ë¥¼ ì…ë ¥í•´ ì£¼ì„¸ìš”.");
 			return "valid/html_form";
 		}
 		
 		String idReg="^[a-zA-Z]\\w{5,19}$";
 		if(!Pattern.matches(idReg, employee.getId())) {
-			model.addAttribute("idMsg","¾ÆÀÌµğ¸¦ Çü½Ä¿¡ ¸Â°Ô ÀÔ·ÂÇØ ÁÖ¼¼¿ä.");
+			model.addAttribute("idMsg","ì•„ì´ë””ë¥¼ í˜•ì‹ì— ë§ê²Œ ì…ë ¥í•´ ì£¼ì„¸ìš”.");
 			return "valid/html_form";	
 		}
 		
@@ -56,31 +56,27 @@ public class ValidController {
 	//@RequestMapping(value = "/valid/spring", method = RequestMethod.GET)
 	@RequestMapping(value = "/spring", method = RequestMethod.GET)
 	public String spring(@ModelAttribute Employee employee) {
-		//Arrays.asList(Object ... args) : ¿ä¼Ò°ªÀÌ ÀúÀåµÈ List °´Ã¼¸¦ »ı¼ºÇÏ¿© ¹İÈ¯ÇÏ´Â Á¤Àû¸Ş¼Òµå
-		//model.addAttribute("genderList", Arrays.asList("³²ÀÚ","¿©ÀÚ"));
+		//Arrays.asList(Object ... args) : ìš”ì†Œê°’ì´ ì €ì¥ëœ List ê°ì²´ë¥¼ ìƒì„±í•˜ì—¬ ë°˜í™˜í•˜ëŠ” ì •ì ë©”ì†Œë“œ
+		//model.addAttribute("genderList", Arrays.asList("ë‚¨ì","ì—¬ì"));
 		return "valid/spring_form";
 	}
 	
-	//¿äÃ» Ã³¸® ¸Ş¼ÒµåÀÇ ¸Å°³º¯¼ö¸¦ Errors ÀÎÅÍÆäÀÌ½º·Î ÀÛ¼ºÇÏ¸é Errors °´Ã¼¸¦ Àü´Ş¹Ş¾Æ ÀúÀå
-	// => Errors : Àü´Ş°ª¿¡ ´ëÇÑ °ËÁõ ½ÇÆĞ½Ã ¹ß»ıµÇ´Â ¸ğµç ¿¡·¯ °ü·Ã Á¤º¸¸¦ ÀúÀåÇÑ °´Ã¼
+	//ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œì˜ ë§¤ê°œë³€ìˆ˜ë¥¼ Errors ì¸í„°í˜ì´ìŠ¤ë¡œ ì‘ì„±í•˜ë©´ Errors ê°ì²´ë¥¼ ì „ë‹¬ë°›ì•„ ì €ì¥
+	// => Errors : ì „ë‹¬ê°’ì— ëŒ€í•œ ê²€ì¦ ì‹¤íŒ¨ì‹œ ë°œìƒë˜ëŠ” ëª¨ë“  ì—ëŸ¬ ê´€ë ¨ ì •ë³´ë¥¼ ì €ì¥í•œ ê°ì²´
+	//@RequestMapping(value = "/valid/spring", method = RequestMethod.POST)
 	@RequestMapping(value = "/spring", method = RequestMethod.POST)
 	public String spring(@ModelAttribute @Valid Employee employee, Errors errors) {
-		//Errors.hasErrors() : Errors °´Ã¼¿¡ ¿¡·¯ °ü·Ã Á¤º¸°¡ ÀúÀåµÈ °æ¿ì [true]¸¦ ¹İÈ¯ÇÏ´Â ¸Ş¼Òµå
+		//Errors.hasErrors() : Errors ê°ì²´ì— ì—ëŸ¬ ê´€ë ¨ ì •ë³´ê°€ ì €ì¥ëœ ê²½ìš° [true]ë¥¼ ë°˜í™˜í•˜ëŠ” ë©”ì†Œë“œ
 		if(errors.hasErrors()) {
-			//model.addAttribute("genderList", Arrays.asList("³²ÀÚ","¿©ÀÚ"));
+			//model.addAttribute("genderList", Arrays.asList("ë‚¨ì","ì—¬ì"));
 			return "valid/spring_form";
 		}
 		return "valid/result";
 	}
 	
-	//¸Ş¼ÒµåÀÇ ¹İÈ¯°ªÀ» Controller Å¬·¡½ºÀÇ ¸ğµç ¿äÃ» Ã³¸® ¸Ş¼ÒµåÀÇ ºä¿¡°Ô Á¦°ø
+	//ë©”ì†Œë“œì˜ ë°˜í™˜ê°’ì„ Controller í´ë˜ìŠ¤ì˜ ëª¨ë“  ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œì˜ ë·°ì—ê²Œ ì œê³µ
 	@ModelAttribute("genderList")
 	public List<String> gendeList() {
-		return Arrays.asList("³²ÀÚ","¿©ÀÚ");
+		return Arrays.asList("ë‚¨ì","ì—¬ì");
 	}
 }
-
-
-
-
-

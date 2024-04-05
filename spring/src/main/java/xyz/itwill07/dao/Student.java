@@ -4,7 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /*
-ÀÌ¸§       ³Î?       À¯Çü            
+ì´ë¦„       ë„?       ìœ í˜•            
 -------- -------- ------------- 
 NO       NOT NULL NUMBER(4)     
 NAME              VARCHAR2(50)  
@@ -13,7 +13,7 @@ ADDRESS           VARCHAR2(100)
 BIRTHDAY          DATE    
 */
 
-//STUDENT Å×ÀÌºíÀÇ Çà(ÇÐ»ýÁ¤º¸)À» ÀúÀåÇÏ¿© Àü´ÞÇÏ±â À§ÇÑ Å¬·¡½º - DTO Å¬·¡½º
+//STUDENT í…Œì´ë¸”ì˜ í–‰(í•™ìƒì •ë³´)ì„ ì €ìž¥í•˜ì—¬ ì „ë‹¬í•˜ê¸° ìœ„í•œ í´ëž˜ìŠ¤ - DTO í´ëž˜ìŠ¤
 @Data
 @Builder
 public class Student {

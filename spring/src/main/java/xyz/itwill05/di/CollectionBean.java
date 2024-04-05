@@ -8,15 +8,15 @@ import java.util.Set;
 public class CollectionBean {
 	private Set<String> nameSet;
 	private List<String> nameList;
-	//Äİ·º¼Ç Å¬·¡½ºÀÇ Á¦³×¸¯À» ÀÎÅÍÆäÀÌ½º·Î ¼³Á¤ÇÏ¸é Äİ·º¼Ç °´Ã¼¿¡´Â ÀÎÅÍÆäÀÌ½º¸¦ »ó¼Ó¹ŞÀº
-	//¸ğµç ÀÚ½ÄÅ¬·¡½ºÀÇ °´Ã¼¸¦ ¿ä¼Ò·Î Ãß°¡ÇÏ¿© ÀúÀå °¡´É
+	//ì½œë ‰ì…˜ í´ë˜ìŠ¤ì˜ ì œë„¤ë¦­ì„ ì¸í„°í˜ì´ìŠ¤ë¡œ ì„¤ì •í•˜ë©´ ì½œë ‰ì…˜ ê°ì²´ì—ëŠ” ì¸í„°í˜ì´ìŠ¤ë¥¼ ìƒì†ë°›ì€
+	//ëª¨ë“  ìì‹í´ë˜ìŠ¤ì˜ ê°ì²´ë¥¼ ìš”ì†Œë¡œ ì¶”ê°€í•˜ì—¬ ì €ì¥ ê°€ëŠ¥
 	private Set<Controller> controllerSet;
 	private List<Controller> controllerList;
 	private Map<String, Controller> controllerMap;
 	private Properties controllerProperties;
 	
 	public CollectionBean() {
-		System.out.println("### CollectionBean Å¬·¡½ºÀÇ ±âº» »ı¼ºÀÚ È£Ãâ ###");
+		System.out.println("### CollectionBean í´ë˜ìŠ¤ì˜ ê¸°ë³¸ ìƒì„±ì í˜¸ì¶œ ###");
 	}
 
 	public Set<String> getNameSet() {

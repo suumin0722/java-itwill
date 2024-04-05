@@ -91,5 +91,48 @@
 			</tr>
 		</table>
 	</div>
+	
+	<script type="text/javascript">
+	//요청 페이지 번호를 저장하기 위한 전역변수
+	// => 프로그램 종료시까지 값을 유지하여 모든 Javascript 함수에서 제공하기 위한 전역변수 선언
+	var page=1;
+	
+	//비동기식 방식으로 페이지를 요청하여 게시글 목록을 제공받아 출력하는 함수 호출
+	boardListDisplay(page);
+	
+	//매개변수로 요청 페이지 번호를 전달받아 페이지 번호에 대한 게시글 목록을 JSON 형식의
+	//문자열로 제공받아 HTML 태그로 변환하여 출력하는 함수
+	// => 페이지 번호에 대한 게시글 목록을 제공받기 위해 비동기식 방식으로 페이지 요청
+	function boardListDisplay(pageNum) {
+		page=pageNum;
+		
+		$.ajax({
+			type: "get",
+			url: "<c:url value="/rest/board_list"/>",
+			data: {"pageNum":pageNum},
+			dataType: "json",
+			//JSON 형식의 문자열을 제공받아 Javascript 객체로 변환하여 매개변수에 저장
+			success: function(result) {
+				//alert(result);//[object Object]
+				
+				//응답받은 Javascript 객체를 HTML 태그로 변환하여 출력 처리
+				if(result.restBoardList.length == 0) {//검색된 게시글이 없는 경우
+					var html="<table id='restBoardList'>";
+					html+="<tr>";
+					html+="<th width='800'>검색된 게시글이 없습니다.</th>";
+					html+="</tr>";
+					html+="</table>";
+					$("#restBoardListDiv").html(html);
+					return;
+				}
+			},
+			error: function(xhr) {
+				alert("에러코드(게시글 목록 검색) = "+xhr.status);
+			}
+		});
+	}
+	
+	
+	</script>
 </body>
 </html>

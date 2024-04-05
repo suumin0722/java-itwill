@@ -5,40 +5,40 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-//Å¬·¡½º ÀÛ¼º¿¡ ÇÊ¿äÇÑ ¸Þ¼Òµå¸¦ ÀÚµ¿À¸·Î »ý¼ºÇØÁÖ´Â Lombok ¶óÀÌºê·¯¸®¸¦ »ç¿ëÇÏ´Â ¹æ¹ý
-//1.Lombok ¶óÀÌºê·¯¸®¸¦ ÇÁ·ÎÁ§Æ® ºôµå Ã³¸® - ¸ÞÀÌºì »ç¿ë : pom.xml
-//2.ÀÌÅ¬¸³½º(STS)¸¦ Á¾·áÇÏ°í ÄÜ¼Ö(cmd)¸¦ °ü¸®ÀÚ ±ÇÇÑÀ¸·Î ½ÇÇàÇÑ ÈÄ Lombok ¶óÀÌºê·¯¸® ÆÄÀÏÀÌ
-//ÀúÀåµÈ ·ÎÄÃ ÀúÀå¼Ò(Local Repository - »ç¿ëÀÚ Æú´õÀÇ .m2 Æú´õ)ÀÇ Æú´õ·Î ÀÌµ¿
-//3.ÄÜ¼Ö¿¡¼­ Jar ÇÁ·Î±×·¥À» ½ÇÇàÇÏ¿© Lombok ¶óÀÌºê·¯¸®¸¦ ÀÌÅ¬¸³½º¿¡¼­ »ç¿ëÇÒ ¼ö ÀÖµµ·Ï ¼³Á¤
-// => Jar ÇÁ·Î±×·¥ ½ÇÇà ¹æ¹ý : java -jar lombok=1.18.30.jar
-// => Å½»ö±â¿¡¼­ ·ÎÄÃ ÀúÁ¤¼ÒÀÇ Æú´õ·Î ÀÌµ¿ÇÏ¿© Lombok ¶óÀÌºê·¯¸® ÆÄÀÏ(Jar)À» ´õºíÅ¬¸¯ÇÏ¿© ½ÇÇà ±â´É
-//4.Jar ÇÁ·Î±×·¥À» ½ÇÇàÇØ Á¦°øµÈ ¼³Ä¡Ã¢(Installer)¿¡¼­ Lombok ¶óÀÌºê·¯¸®¸¦ »ç¿ëÇÒ ÀÌÅ¬¸³½º(STS)¸¦
-//¼±ÅÃÇÏ¿© Lombok ¶óÀÌºê·¯¸® ¼³Ä¡
-// => ÀÌÅ¬¸³½º(STS)¸¦ ÀÚµ¿À¸·Î Ã£À» ¼ö ¾ø´Â °æ¿ì ÀÌÅ¬¸³½º(STS)°¡ ¼³Ä¡µÈ Æú´õ¸¦ ¼±ÅÃÇÏ¿© Lombok ¼³Ä¡
-//5.ÀÌÅ¬¸³½º(STS)°¡ ¼³Ä¡µÈ Æú´õ·Î ÀÌµ¿ÇÏ¿© STS.ini ÆÄÀÏÀ» ÆíÁýÇÏ¿© ÀúÀåÇÏ°í ÀÌÅ¬¸³½º(STS) ½ÇÇà
-// => [-javaagent:lombok.jar] º¯°æ - lombok.jar ÆÄÀÏÀ» °æ·Î¸¦ Àý´ë°æ·Î¿¡¼­ »ó´ë°æ·Î·Î º¯°æ
-//6.ÀÌÅ¬¸³½º(STS)¿¡¼­ Lombok ¶óÀÌºê·¯¸®°¡ Á¦°øÇÏ´Â ¾î³ëÅ×ÀÌ¼ÇÀ» »ç¿ëÇÏ¿© Å¬·¡½º ÀÛ¼º
-// => @AllArgsConstructor, @NoArgsConstructor, @RequiredArgsConstructor, @Setter, @Getter, @ToString µî 
+//í´ëž˜ìŠ¤ ìž‘ì„±ì— í•„ìš”í•œ ë©”ì†Œë“œë¥¼ ìžë™ìœ¼ë¡œ ìƒì„±í•´ì£¼ëŠ” Lombok ë¼ì´ë¸ŒëŸ¬ë¦¬ë¥¼ ì‚¬ìš©í•˜ëŠ” ë°©ë²•
+//1.Lombok ë¼ì´ë¸ŒëŸ¬ë¦¬ë¥¼ í”„ë¡œì íŠ¸ ë¹Œë“œ ì²˜ë¦¬ - ë©”ì´ë¸ ì‚¬ìš© : pom.xml
+//2.ì´í´ë¦½ìŠ¤(STS)ë¥¼ ì¢…ë£Œí•˜ê³  ì½˜ì†”(cmd)ë¥¼ ê´€ë¦¬ìž ê¶Œí•œìœ¼ë¡œ ì‹¤í–‰í•œ í›„ Lombok ë¼ì´ë¸ŒëŸ¬ë¦¬ íŒŒì¼ì´
+//ì €ìž¥ëœ ë¡œì»¬ ì €ìž¥ì†Œ(Local Repository - ì‚¬ìš©ìž í´ë”ì˜ .m2 í´ë”)ì˜ í´ë”ë¡œ ì´ë™
+//3.ì½˜ì†”ì—ì„œ Jar í”„ë¡œê·¸ëž¨ì„ ì‹¤í–‰í•˜ì—¬ Lombok ë¼ì´ë¸ŒëŸ¬ë¦¬ë¥¼ ì´í´ë¦½ìŠ¤(STS)ì—ì„œ ì‚¬ìš©í•  ìˆ˜ ìžˆë„ë¡ ì„¤ì •
+// => Jar í”„ë¡œê·¸ëž¨ ì‹¤í–‰ ë°©ë²• : java -jar lombok=1.18.30.jar
+// => íƒìƒ‰ê¸°ì—ì„œ ë¡œì»¬ ì €ì •ì†Œì˜ í´ë”ë¡œ ì´ë™í•˜ì—¬ Lombok ë¼ì´ë¸ŒëŸ¬ë¦¬ íŒŒì¼(Jar)ì„ ë”ë¸”í´ë¦­í•˜ì—¬ ì‹¤í–‰ ê¸°ëŠ¥
+//4.Jar í”„ë¡œê·¸ëž¨ì„ ì‹¤í–‰í•´ ì œê³µëœ ì„¤ì¹˜ì°½(Installer)ì—ì„œ Lombok ë¼ì´ë¸ŒëŸ¬ë¦¬ë¥¼ ì‚¬ìš©í•  ì´í´ë¦½ìŠ¤(STS)ë¥¼
+//ì„ íƒí•˜ì—¬ Lombok ë¼ì´ë¸ŒëŸ¬ë¦¬ ì„¤ì¹˜
+// => ì´í´ë¦½ìŠ¤(STS)ë¥¼ ìžë™ìœ¼ë¡œ ì°¾ì„ ìˆ˜ ì—†ëŠ” ê²½ìš° ì´í´ë¦½ìŠ¤(STS)ê°€ ì„¤ì¹˜ëœ í´ë”ë¥¼ ì„ íƒí•˜ì—¬ Lombok ì„¤ì¹˜
+//5.ì´í´ë¦½ìŠ¤(STS)ê°€ ì„¤ì¹˜ëœ í´ë”ë¡œ ì´ë™í•˜ì—¬ eclipse.ini(STS.ini) íŒŒì¼ì„ íŽ¸ì§‘í•˜ì—¬ ì €ìž¥í•˜ê³  ì´í´ë¦½ìŠ¤(STS) ì‹¤í–‰
+// => [-javaagent:lombok.jar] ë³€ê²½ - lombok.jar íŒŒì¼ì„ ê²½ë¡œë¥¼ ì ˆëŒ€ê²½ë¡œì—ì„œ ìƒëŒ€ê²½ë¡œë¡œ ë³€ê²½
+//6.ì´í´ë¦½ìŠ¤(STS)ì—ì„œ Lombok ë¼ì´ë¸ŒëŸ¬ë¦¬ê°€ ì œê³µí•˜ëŠ” ì–´ë…¸í…Œì´ì…˜ì„ ì‚¬ìš©í•˜ì—¬ í´ëž˜ìŠ¤ ìž‘ì„±
+// => @AllArgsConstructor, @NoArgsConstructor, @RequiredArgsConstructor, @Setter, @Getter, @ToString ë“± 
 
-//@NoArgsConstructor : ¸Å°³º¯¼ö°¡ ¾ø´Â ±âº» »ý¼ºÀÚ¸¦ Á¦°øÇÏ±â À§ÇÑ ¾î³ëÅ×ÀÌ¼Ç
-//@AllArgsConstructor : ¸ðµç ÇÊµå¸¦ ÃÊ±âÈ­ Ã³¸®ÇÏ±â À§ÇÑ ¸Å°³º¯¼ö°¡ ÀÛ¼ºµÈ »ý¼ºÀÚ¸¦ Á¦°øÇÏ±â À§ÇÑ ¾î³ëÅ×ÀÌ¼Ç
-//@RequiredArgsConstructor : final Á¦ÇÑÀÚ¸¦ »ç¿ëÇÑ ÇÊµå¸¸ ÃÊ±âÈ­ Ã³¸®ÇÏ±â À§ÇÑ ¸Å°³º¯¼ö°¡ ÀÛ¼ºµÈ 
-//»ý¼ºÀÚ¸¦ Á¦°øÇÏ±â À§ÇÑ ¾î³ëÅ×ÀÌ¼Ç
-// => @NoArgsConstructor ¾î³ëÅ×ÀÌ¼Ç°ú °°ÀÌ »ç¿ëÇÒ °æ¿ì ¿¡·¯ ¹ß»ý
-//@Setter : Å¬·¡½º¿¡ ÀÛ¼ºµÈ ¸ðµç ÇÊµå¿¡ ´ëÇÑ Setter ¸Þ¼Òµå¸¦ Á¦°øÇÏ±â À§ÇÑ ¾î³ëÅ×ÀÌ¼Ç
-// => ÇÊµå¿¡ @Setter ¾î³ëÅ×ÀÌ¼ÇÀ» »ç¿ëÇÏ¿© ÇØ´ç ÇÊµå¿¡ ´ëÇÑ Setter ¸Þ¼Òµå¸¸ Á¦°ø °¡´É
-//@Getter : Å¬·¡½º¿¡ ÀÛ¼ºµÈ ¸ðµç ÇÊµå¿¡ ´ëÇÑ Getter ¸Þ¼Òµå¸¦ Á¦°øÇÏ±â À§ÇÑ ¾î³ëÅ×ÀÌ¼Ç
-//=> ÇÊµå¿¡ @Getter ¾î³ëÅ×ÀÌ¼ÇÀ» »ç¿ëÇÏ¿© ÇØ´ç ÇÊµå¿¡ ´ëÇÑ Getter ¸Þ¼Òµå¸¸ Á¦°ø °¡´É
-//@ToString : Å¬·¡½º¿¡ toString() ¸Þ¼Òµå¸¦ ¿À¹ö¶óÀÌµå ¼±¾ðµÇµµ·Ï Á¦°øÇÏ±â À§ÇÑ ¾î³ëÅ×ÀÌ¼Ç
-// => Å¬·¡½º¿¡ ÀÛ¼ºµÈ ¸ðµç ÇÊµå°ªÀ» °áÇÕÇÏ¿© ¹®ÀÚ¿­·Î ¹ÝÈ¯ÇÏ´Â ±â´É Á¦°ø - ÇÊµå°ª È®ÀÎ
-//@Data : Setter ¸Þ¼Òµå, Getter ¸Þ¼Òµå, toString ¸Þ¼Òµå, equals ¸Þ¼Òµå, hashCode ¸Þ¼Òµå¸¦ 
-//Á¦°øÇÏ±â À§ÇÑ ¾î³ëÅ×ÀÌ¼Ç - VO Å¬·¡½º(°´Ã¼¸¦ °ªÀ¸·Î ºñ±³µÇµµ·Ï ÀÛ¼ºµÈ Å¬·¡½º)¸¦ ¼±¾ðÇÒ ¶§ »ç¿ë
-//@Builder : Å¬·¡½º¿¡ Builder Å¬·¡½º¿Í Builder Å¬·¡½º °ü·Ã ¸Þ¼Òµå¸¦ Á¦°øÇÏ´Â ¾î³ëÅ×ÀÌ¼Ç
-// => Builder Å¬·¡½º : °´Ã¼ »ý¼º½Ã °´Ã¼ ÇÊµå¿¡ ÇÊ¿äÇÑ °ªÀ» ÀúÀåÇÏ±â À§ÇÑ ¸Þ¼Òµå¸¦ Á¦°øÇÏ´Â Å¬·¡½º
-// => Builder Å¬·¡½ºÀÇ ¸Þ¼Òµå¸¦ È£ÃâÇÏ¿© °´Ã¼ ÇÊµå¿¡ ÇÊ¿äÇÑ °ªÀ» ÀúÀåµÇµµ·Ï ¼³Á¤
-// => ÇÊ¿äÇÑ ÇÊµå¸¸ ÃÊ±âÈ­ Ã³¸®ÇÒ ¼ö ÀÖ¾î »ý¼ºÀÚ º¸´Ù °¡µ¶¼ºÀÌ ÁÁÀ¸¸ç ÇÊµåÀÇ ¼ø¼­¿¡ »ó°ü¾øÀÌ
-//ÇÊµå ÃÊ±âÈ­ ÀÛ¾÷¿¡ Æí¸®
-//@Slf4j : ·Î±× ÀÌº¥Æ®¸¦ ¹ß»ýÇÒ ¼ö ÀÖ´Â Logger °´Ã¼°¡ ÀúÀåµÈ log ÇÊµå¸¦ Á¦°øÇÏ±â À§ÇÑ ¾î³ëÅ×ÀÌ¼Ç
+//@NoArgsConstructor : ë§¤ê°œë³€ìˆ˜ê°€ ì—†ëŠ” ê¸°ë³¸ ìƒì„±ìžë¥¼ ì œê³µí•˜ê¸° ìœ„í•œ ì–´ë…¸í…Œì´ì…˜
+//@AllArgsConstructor : ëª¨ë“  í•„ë“œë¥¼ ì´ˆê¸°í™” ì²˜ë¦¬í•˜ê¸° ìœ„í•œ ë§¤ê°œë³€ìˆ˜ê°€ ìž‘ì„±ëœ ìƒì„±ìžë¥¼ ì œê³µí•˜ê¸° ìœ„í•œ ì–´ë…¸í…Œì´ì…˜
+//@RequiredArgsConstructor : final ì œí•œìžë¥¼ ì‚¬ìš©í•œ í•„ë“œë§Œ ì´ˆê¸°í™” ì²˜ë¦¬í•˜ê¸° ìœ„í•œ ë§¤ê°œë³€ìˆ˜ê°€ ìž‘ì„±ëœ 
+//ìƒì„±ìžë¥¼ ì œê³µí•˜ê¸° ìœ„í•œ ì–´ë…¸í…Œì´ì…˜
+// => @NoArgsConstructor ì–´ë…¸í…Œì´ì…˜ê³¼ ê°™ì´ ì‚¬ìš©í•  ê²½ìš° ì—ëŸ¬ ë°œìƒ
+//@Setter : í´ëž˜ìŠ¤ì— ìž‘ì„±ëœ ëª¨ë“  í•„ë“œì— ëŒ€í•œ Setter ë©”ì†Œë“œë¥¼ ì œê³µí•˜ê¸° ìœ„í•œ ì–´ë…¸í…Œì´ì…˜
+// => í•„ë“œì— @Setter ì–´ë…¸í…Œì´ì…˜ì„ ì‚¬ìš©í•˜ì—¬ í•´ë‹¹ í•„ë“œì— ëŒ€í•œ Setter ë©”ì†Œë“œë§Œ ì œê³µ ê°€ëŠ¥
+//@Getter : í´ëž˜ìŠ¤ì— ìž‘ì„±ëœ ëª¨ë“  í•„ë“œì— ëŒ€í•œ Getter ë©”ì†Œë“œë¥¼ ì œê³µí•˜ê¸° ìœ„í•œ ì–´ë…¸í…Œì´ì…˜
+//=> í•„ë“œì— @Getter ì–´ë…¸í…Œì´ì…˜ì„ ì‚¬ìš©í•˜ì—¬ í•´ë‹¹ í•„ë“œì— ëŒ€í•œ Getter ë©”ì†Œë“œë§Œ ì œê³µ ê°€ëŠ¥
+//@ToString : í´ëž˜ìŠ¤ì— toString() ë©”ì†Œë“œë¥¼ ì˜¤ë²„ë¼ì´ë“œ ì„ ì–¸ë˜ë„ë¡ ì œê³µí•˜ê¸° ìœ„í•œ ì–´ë…¸í…Œì´ì…˜
+// => í´ëž˜ìŠ¤ì— ìž‘ì„±ëœ ëª¨ë“  í•„ë“œê°’ì„ ê²°í•©í•˜ì—¬ ë¬¸ìžì—´ë¡œ ë°˜í™˜í•˜ëŠ” ê¸°ëŠ¥ ì œê³µ - í•„ë“œê°’ í™•ì¸
+//@Data : Setter ë©”ì†Œë“œ, Getter ë©”ì†Œë“œ, toString ë©”ì†Œë“œ, equals ë©”ì†Œë“œ, hashCode ë©”ì†Œë“œë¥¼ ì œê³µí•˜ê¸° ìœ„í•œ ì–´ë…¸í…Œì´ì…˜ 
+// => VO í´ëž˜ìŠ¤(ê°ì²´ë¥¼ ê°’ì²˜ëŸ¼ ë¹„êµí•  ìˆ˜ ìžˆë„ë¡ ìž‘ì„±ëœ í´ëž˜ìŠ¤)ë¥¼ ì„ ì–¸í•  ë•Œ ì‚¬ìš©
+//@Builder : í´ëž˜ìŠ¤ì— Builder í´ëž˜ìŠ¤ì™€ Builder í´ëž˜ìŠ¤ ê´€ë ¨ ë©”ì†Œë“œë¥¼ ì œê³µí•˜ëŠ” ì–´ë…¸í…Œì´ì…˜
+// => Builder í´ëž˜ìŠ¤ : ê°ì²´ ìƒì„±ì‹œ ê°ì²´ í•„ë“œì— í•„ìš”í•œ ê°’ì„ ì €ìž¥í•˜ê¸° ìœ„í•œ ë©”ì†Œë“œë¥¼ ì œê³µí•˜ëŠ” í´ëž˜ìŠ¤
+// => Builder í´ëž˜ìŠ¤ì˜ ë©”ì†Œë“œë¥¼ í˜¸ì¶œí•˜ì—¬ ê°ì²´ í•„ë“œì— í•„ìš”í•œ ê°’ì„ ì €ìž¥ë˜ë„ë¡ ì„¤ì •
+// => í•„ìš”í•œ í•„ë“œë§Œ ì´ˆê¸°í™” ì²˜ë¦¬í•  ìˆ˜ ìžˆì–´ ìƒì„±ìž ë³´ë‹¤ ê°€ë…ì„±ì´ ì¢‹ìœ¼ë©° í•„ë“œì˜ ìˆœì„œì— ìƒê´€ì—†ì´
+//í•„ë“œ ì´ˆê¸°í™” ìž‘ì—…ì— íŽ¸ë¦¬ - í…ŒìŠ¤íŠ¸ í”„ë¡œê·¸ëž¨ ìž‘ì„±ì‹œ ì‚¬ìš©
+//@Slf4j : ë¡œê·¸ ì´ë²¤íŠ¸ë¥¼ ë°œìƒí•  ìˆ˜ ìžˆëŠ” Logger ê°ì²´ê°€ ì €ìž¥ëœ log í•„ë“œë¥¼ ì œê³µí•˜ê¸° ìœ„í•œ ì–´ë…¸í…Œì´ì…˜
 
 @NoArgsConstructor
 @AllArgsConstructor

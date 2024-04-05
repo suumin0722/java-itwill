@@ -20,18 +20,18 @@ import lombok.RequiredArgsConstructor;
 import xyz.itwill09.dto.FileBoard;
 import xyz.itwill09.service.FileBoardService;
 
-//Å¬¶óÀÌ¾ğÆ®·ÎºÎÅÍ ÆÄÀÏÀ» Àü´Ş¹Ş¾Æ ¼­¹ö µğ·ºÅä¸®¾Ö ¾÷·Îµå Ã³¸®ÇÏ±â À§ÇÑ ¹æ¹ı
-//1.commons-fileupload ¶óÀÌºê·¯¸®¸¦ ÇÁ·ÎÁ§Æ®¿¡ ºôµå Ã³¸® - ¸ŞÀÌºì : pom.xml
-//2.Spring Bean Configuration File(servlet-context.xml)¿¡ ÆÄÀÏ ¾÷·Îµå Ã³¸® ±â´ÉÀ» Á¦°øÇÏ´Â 
-//Å¬·¡½º¸¦ Spring BeanÀ¸·Î µî·Ï
-//3.MultipartHttpServletRequest °´Ã¼¸¦ »ç¿ëÇÏ¿© [multipart/form-data] ÇüÅÂ·Î Àü´ŞµÈ °ª ¶Ç´Â 
-//ÆÄÀÏÀ» Á¦°ø¹Ş¾Æ Ã³¸®
+//í´ë¼ì´ì–¸íŠ¸ë¡œë¶€í„° íŒŒì¼ì„ ì „ë‹¬ë°›ì•„ ì„œë²„ ë””ë ‰í† ë¦¬ì•  ì—…ë¡œë“œ ì²˜ë¦¬í•˜ê¸° ìœ„í•œ ë°©ë²•
+//1.commons-fileupload ë¼ì´ë¸ŒëŸ¬ë¦¬ë¥¼ í”„ë¡œì íŠ¸ì— ë¹Œë“œ ì²˜ë¦¬ - ë©”ì´ë¸ : pom.xml
+//2.Spring Bean Configuration File(servlet-context.xml)ì— íŒŒì¼ ì—…ë¡œë“œ ì²˜ë¦¬ ê¸°ëŠ¥ì„ ì œê³µí•˜ëŠ” 
+//í´ë˜ìŠ¤ë¥¼ Spring Beanìœ¼ë¡œ ë“±ë¡
+//3.MultipartHttpServletRequest ê°ì²´ë¥¼ ì‚¬ìš©í•˜ì—¬ [multipart/form-data] í˜•íƒœë¡œ ì „ë‹¬ëœ ê°’ ë˜ëŠ” 
+//íŒŒì¼ì„ ì œê³µë°›ì•„ ì²˜ë¦¬
 
 @Controller
 @RequestMapping("/file")
 @RequiredArgsConstructor
 public class FileController {
-	//WebApplicationContext °´Ã¼(½ºÇÁ¸µ ÄÁÅ×ÀÌ³Ê)¸¦ Á¦°ø¹Ş¾Æ ÇÊµå¿¡ ÀúÀåµÇµµ·Ï ÀÇÁ¸¼º ÁÖÀÔ
+	//WebApplicationContext ê°ì²´(ìŠ¤í”„ë§ ì»¨í…Œì´ë„ˆ)ë¥¼ ì œê³µë°›ì•„ í•„ë“œì— ì €ì¥ë˜ë„ë¡ ì˜ì¡´ì„± ì£¼ì…
 	private final WebApplicationContext context;
 	private final FileBoardService fileBoardService;
 	
@@ -41,46 +41,46 @@ public class FileController {
 	}
 	
 	/*
-	//¿äÃ» Ã³¸® ¸Ş¼Òµå¿¡ MultipartHttpServletRequest ÀÎÅÍÆäÀÌ½º·Î ¸Å°³º¯¼ö¸¦ ÀÛ¼ºÇÏ¸é Front
-	//Controller·ÎºÎÅÍ MultipartHttpServletRequest °´Ã¼¸¦ Á¦°ø¹Ş¾Æ »ç¿ë 
-	// => MultipartHttpServletRequest °´Ã¼ : [multipart/form-data] ÇüÅÂ·Î Àü´ŞµÈ °ª ¶Ç´Â ÆÄÀÏÀ»
-	//ÀúÀåÇÏ¿© Ã³¸®ÇÏ±â À§ÇÑ °´Ã¼
+	//ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œì— MultipartHttpServletRequest ì¸í„°í˜ì´ìŠ¤ë¡œ ë§¤ê°œë³€ìˆ˜ë¥¼ ì‘ì„±í•˜ë©´ Front
+	//Controllerë¡œë¶€í„° MultipartHttpServletRequest ê°ì²´ë¥¼ ì œê³µë°›ì•„ ì‚¬ìš© 
+	// => MultipartHttpServletRequest ê°ì²´ : [multipart/form-data] í˜•íƒœë¡œ ì „ë‹¬ëœ ê°’ ë˜ëŠ” íŒŒì¼ì„
+	//ì €ì¥í•˜ì—¬ ì²˜ë¦¬í•˜ê¸° ìœ„í•œ ê°ì²´
 	@RequestMapping(value = "/upload1", method = RequestMethod.POST)
 	public String uploadOne(MultipartHttpServletRequest request) throws IOException {
-		//MultipartHttpServletRequest.getParameter(String name) : Àü´Ş°ªÀ» String °´Ã¼·Î ¹İÈ¯ÇÏ´Â ¸Ş¼Òµå
+		//MultipartHttpServletRequest.getParameter(String name) : ì „ë‹¬ê°’ì„ String ê°ì²´ë¡œ ë°˜í™˜í•˜ëŠ” ë©”ì†Œë“œ
 		String uploaderName=request.getParameter("uploaderName");
 		
-		//MultipartHttpServletRequest.getFile(String name) : Àü´ŞÆÄÀÏÀ» MultipartFile °´Ã¼·Î ¹İÈ¯ÇÏ´Â ¸Ş¼Òµå
-		// => MultipartFile °´Ã¼ : »ç¿ëÀÚ·ÎºÎÅÍ ÀÔ·Â¹Ş¾Æ Àü´ŞµÈ ÆÄÀÏÁ¤º¸¸¦ ÀúÀåÇÏ±â À§ÇÑ °´Ã¼
+		//MultipartHttpServletRequest.getFile(String name) : ì „ë‹¬íŒŒì¼ì„ MultipartFile ê°ì²´ë¡œ ë°˜í™˜í•˜ëŠ” ë©”ì†Œë“œ
+		// => MultipartFile ê°ì²´ : ì‚¬ìš©ìë¡œë¶€í„° ì…ë ¥ë°›ì•„ ì „ë‹¬ëœ íŒŒì¼ì •ë³´ë¥¼ ì €ì¥í•˜ê¸° ìœ„í•œ ê°ì²´
 		MultipartFile uploaderFile=request.getFile("uploaderFile");
 	
-		//Àü´ŞÆÄÀÏ¿¡ ´ëÇÑ °ËÁõ ÀÛ¾÷ °ü·Ã ¸í·É ÀÛ¼º
-		//MultipartFile.isEmpty() : MultipartFile °´Ã¼¿¡ ÆÄÀÏÁ¤º¸°¡ ÀúÀåµÇ¾î ÀÖ´Â °æ¿ì [false]¸¦
-		//¹İÈ¯ÇÏ°í ÆÄÀÏÁ¤º¸°¡ ÀúÀåµÇ¾î ÀÖÁö ¾ÊÀº °æ¿ì [true]¸¦ ¹İÈ¯ÇÏ´Â ¸Ş¼Òµå
+		//ì „ë‹¬íŒŒì¼ì— ëŒ€í•œ ê²€ì¦ ì‘ì—… ê´€ë ¨ ëª…ë ¹ ì‘ì„±
+		//MultipartFile.isEmpty() : MultipartFile ê°ì²´ì— íŒŒì¼ì •ë³´ê°€ ì €ì¥ë˜ì–´ ìˆëŠ” ê²½ìš° [false]ë¥¼
+		//ë°˜í™˜í•˜ê³  íŒŒì¼ì •ë³´ê°€ ì €ì¥ë˜ì–´ ìˆì§€ ì•Šì€ ê²½ìš° [true]ë¥¼ ë°˜í™˜í•˜ëŠ” ë©”ì†Œë“œ
 		if(uploaderFile.isEmpty()) {
 			return "file/upload_fail";
 		}
 		
-		//MultipartFile.getContentType() : MultipartFile °´Ã¼¿¡ ÀúÀåµÈ Àü´ŞÆÄÀÏÀÇ ÆÄÀÏÇüÅÂ
-		//(MimeType)¸¦ ¹İÈ¯ÇÏ´Â ¸Ş¼Òµå
-		System.out.println("ÆÄÀÏ ÇüÅÂ = "+uploaderFile.getContentType());
-		//MultipartFile.getBytes() : MultipartFile °´Ã¼¿¡ ÀúÀåµÈ Àü´ŞÆÄÀÏÀÇ ³»¿ëÀ» byte ¹è¿­
-		//(¿ø½Ãµ¥ÀÌÅ¸)·Î ¹İÈ¯ÇÏ´Â ¸Ş¼Òµå
-		System.out.println("ÆÄÀÏ Å©±â = "+uploaderFile.getBytes().length+"Byte");
+		//MultipartFile.getContentType() : MultipartFile ê°ì²´ì— ì €ì¥ëœ ì „ë‹¬íŒŒì¼ì˜ íŒŒì¼í˜•íƒœ
+		//(MimeType)ë¥¼ ë°˜í™˜í•˜ëŠ” ë©”ì†Œë“œ
+		System.out.println("íŒŒì¼ í˜•íƒœ = "+uploaderFile.getContentType());
+		//MultipartFile.getBytes() : MultipartFile ê°ì²´ì— ì €ì¥ëœ ì „ë‹¬íŒŒì¼ì˜ ë‚´ìš©ì„ byte ë°°ì—´
+		//(ì›ì‹œë°ì´íƒ€)ë¡œ ë°˜í™˜í•˜ëŠ” ë©”ì†Œë“œ
+		System.out.println("íŒŒì¼ í¬ê¸° = "+uploaderFile.getBytes().length+"Byte");
 		
-		//Àü´ŞÆÄÀÏÀ» ÀúÀåÇÏ±â À§ÇÑ ¼­¹ö µğ·ºÅä¸®ÀÇ ½Ã½ºÅÛ °æ·Î¸¦ ¹İÈ¯¹Ş¾Æ ÀúÀå
+		//ì „ë‹¬íŒŒì¼ì„ ì €ì¥í•˜ê¸° ìœ„í•œ ì„œë²„ ë””ë ‰í† ë¦¬ì˜ ì‹œìŠ¤í…œ ê²½ë¡œë¥¼ ë°˜í™˜ë°›ì•„ ì €ì¥
 		String uploadDirectory=request.getServletContext().getRealPath("/resources/images/upload");
 		System.out.println("uploadDirectory = "+uploadDirectory);
 		
-		//MultipartFile.getOriginalFilename() : MultipartFile °´Ã¼¿¡ ÀúÀåµÈ Àü´ŞÆÄÀÏÀÇ ÀÌ¸§À»
-		//¹İÈ¯ÇÏ´Â ¸Ş¼Òµå
+		//MultipartFile.getOriginalFilename() : MultipartFile ê°ì²´ì— ì €ì¥ëœ ì „ë‹¬íŒŒì¼ì˜ ì´ë¦„ì„
+		//ë°˜í™˜í•˜ëŠ” ë©”ì†Œë“œ
 		String uploadFilename=uploaderFile.getOriginalFilename();
 		
-		//¾÷·Îµå Ã³¸®µÉ ÆÄÀÏ¿¡ ´ëÇÑ Á¤º¸°¡ ÀúÀåµÈ File °´Ã¼ »ı¼º 
+		//ì—…ë¡œë“œ ì²˜ë¦¬ë  íŒŒì¼ì— ëŒ€í•œ ì •ë³´ê°€ ì €ì¥ëœ File ê°ì²´ ìƒì„± 
 		File file=new File(uploadDirectory, uploadFilename);
 		
-		//MultipartFile.transferTo(File file) : MultipartFile °´Ã¼¿¡ ÀúÀåµÈ Àü´ŞÆÄÀÏÀ» File
-		//°´Ã¼ÀÇ ÀúÀåµÈ Á¤º¸ÀÇ ÆÄÀÏ·Î ÀúÀåµÇµµ·Ï ¾÷·Îµå Ã³¸®ÇÏ´Â ¸Ş¼Òµå
+		//MultipartFile.transferTo(File file) : MultipartFile ê°ì²´ì— ì €ì¥ëœ ì „ë‹¬íŒŒì¼ì„ File
+		//ê°ì²´ì˜ ì €ì¥ëœ ì •ë³´ì˜ íŒŒì¼ë¡œ ì €ì¥ë˜ë„ë¡ ì—…ë¡œë“œ ì²˜ë¦¬í•˜ëŠ” ë©”ì†Œë“œ
 		uploaderFile.transferTo(file);
 		
 		request.setAttribute("uploaderName", uploaderName);
@@ -90,150 +90,160 @@ public class FileController {
 	}
 	*/
 	
-	//¿äÃ» Ã³¸® ¸Ş¼Òµå¿¡ ¸Å°³º¯¼ö¸¦ ÀÛ¼ºÇÏ¿© Àü´Ş°ª ¹× Àü´ŞÆÄÀÏÀ» Á¦°ø¹Ş¾Æ »ç¿ë
-	// => Àü´Ş°ª ¹× Àü´ŞÆÄÀÏÀÇ ÀÌ¸§°ú °°Àº ÀÌ¸§À¸·Î ¸Å°³º¯¼ö ÀÛ¼º
-	// ¹®Á¦Á¡)Àü´ŞÆÄÀÏÀÇ ÀÌ¸§°ú °°Àº ÀÌ¸§ÀÇ ÆÄÀÏÀÌ ¼­¹ö µğ·ºÅä¸®¿¡ ÀÖ´Â °æ¿ì ±âÁ¸ ÆÄÀÏÀ»
-	// Àü´ŞÆÄÀÏ·Î µ¤¾î¾º¿ö ÀúÀå(OverWrite)
-	// ÇØ°á¹ı)Àü´ŞÆÄÀÏÀ» ¼­¹ö µğ·ºÅä¸®¿¡ ÀúÀåÇÏ±â Àü¿¡ ÆÄÀÏÀÇ ÀÌ¸§ÀÌ Áßº¹µÇÁö ¾Êµµ·Ï º¯°æÇÏ¿©
-	// ¾÷·Îµå Ã³¸®
+	//ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œì— ë§¤ê°œë³€ìˆ˜ë¥¼ ì‘ì„±í•˜ì—¬ ì „ë‹¬ê°’ ë° ì „ë‹¬íŒŒì¼ì„ ì œê³µë°›ì•„ ì‚¬ìš©
+	// => ì „ë‹¬ê°’ ë° ì „ë‹¬íŒŒì¼ì˜ ì´ë¦„ê³¼ ê°™ì€ ì´ë¦„ìœ¼ë¡œ ë§¤ê°œë³€ìˆ˜ ì‘ì„±
+	//ë¬¸ì œì )ì „ë‹¬íŒŒì¼ì˜ ì´ë¦„ê³¼ ê°™ì€ ì´ë¦„ì˜ íŒŒì¼ì´ ì„œë²„ ë””ë ‰í† ë¦¬ì— ìˆëŠ” ê²½ìš° ê¸°ì¡´ íŒŒì¼ì„ 
+	//ì „ë‹¬íŒŒì¼ë¡œ ë®ì–´ì”Œì›Œ ì €ì¥(OverWrite)
+	//í•´ê²°ë²•)ì „ë‹¬íŒŒì¼ì„ ì„œë²„ ë””ë ‰í† ë¦¬ì— ì €ì¥í•˜ê¸° ì „ì— íŒŒì¼ì˜ ì´ë¦„ì´ ì¤‘ë³µë˜ì§€ ì•Šë„ë¡ ë³€ê²½í•˜ì—¬
+	//ì—…ë¡œë“œ ì²˜ë¦¬
 	@RequestMapping(value = "/upload1", method = RequestMethod.POST)
-	public String uploadOne(@RequestParam String uploaderName, @RequestParam MultipartFile uploaderFile, Model model)
-			throws IOException {
-		// Àü´ŞÆÄÀÏ¿¡ ´ëÇÑ °ËÁõ ÀÛ¾÷ °ü·Ã ¸í·É ÀÛ¼º
-		if (uploaderFile.isEmpty()) {
+	public String uploadOne(@RequestParam String uploaderName
+			, @RequestParam MultipartFile uploaderFile, Model model) throws IOException {
+		//ì „ë‹¬íŒŒì¼ì— ëŒ€í•œ ê²€ì¦ ì‘ì—… ê´€ë ¨ ëª…ë ¹ ì‘ì„±
+		if(uploaderFile.isEmpty()) {
 			return "file/upload_fail";
 		}
+		
+		//ì „ë‹¬íŒŒì¼ì„ ì €ì¥í•˜ê¸° ìœ„í•œ ì„œë²„ ë””ë ‰í† ë¦¬ì˜ ì‹œìŠ¤í…œ ê²½ë¡œë¥¼ ë°˜í™˜ë°›ì•„ ì €ì¥
+		String uploadDirectory=context.getServletContext().getRealPath("/resources/images/upload");
 
-		// Àü´ŞÆÄÀÏÀ» ÀúÀåÇÏ±â À§ÇÑ ¼­¹ö µğ·ºÅä¸®ÀÇ ½Ã½ºÅÛ °æ·Î¸¦ ¹İÈ¯¹Ş¾Æ ÀúÀå
-		String uploadDirectory = context.getServletContext().getRealPath("/resources/images/upload");
-
-		// UUID.randomUUID() : 36Byte Å©±âÀÇ ¹®ÀÚ¿­ÀÌ ÀúÀåµÈ UUID °´Ã¼¸¦ ¹İÈ¯ÇÏ´Â ¸Ş¼Òµå
-		// => UUID °´Ã¼ : ½Äº°ÀÚ Á¤º¸¸¦ ÀúÀåÇÏ±â À§ÇÑ °´Ã¼
-		// UUID.toString() : UUID °´Ã¼¿¡ ÀúÀåµÈ ½Äº°ÀÚ¸¦ ¹®ÀÚ¿­·Î ¹İÈ¯ÇÏ´Â ¸Ş¼Òµå
-		String uploadFilename = UUID.randomUUID().toString() + "_" + uploaderFile.getOriginalFilename();
-
-		// ¾÷·Îµå Ã³¸®µÉ ÆÄÀÏ¿¡ ´ëÇÑ Á¤º¸°¡ ÀúÀåµÈ File °´Ã¼ »ı¼º
-		File file = new File(uploadDirectory, uploadFilename);
-
-		// MultipartFile.transferTo(File file) : MultipartFile °´Ã¼¿¡ ÀúÀåµÈ Àü´ŞÆÄÀÏÀ» File
-		// °´Ã¼ÀÇ ÀúÀåµÈ Á¤º¸ÀÇ ÆÄÀÏ·Î ÀúÀåµÇµµ·Ï ¾÷·Îµå Ã³¸®ÇÏ´Â ¸Ş¼Òµå
+		//UUID.randomUUID() : 36Byte í¬ê¸°ì˜ ë¬¸ìì—´ì´ ì €ì¥ëœ UUID ê°ì²´ë¥¼ ë°˜í™˜í•˜ëŠ” ì •ì  ë©”ì†Œë“œ
+		// => UUID ê°ì²´ : ì‹ë³„ì ì •ë³´ë¥¼ ì €ì¥í•˜ê¸° ìœ„í•œ ê°ì²´
+		//UUID.toString() : UUID ê°ì²´ì— ì €ì¥ëœ ì‹ë³„ìë¥¼  ë¬¸ìì—´ë¡œ ë°˜í™˜í•˜ëŠ” ë©”ì†Œë“œ
+		String uploadFilename=UUID.randomUUID().toString()+"_"+uploaderFile.getOriginalFilename();
+		
+		//ì—…ë¡œë“œ ì²˜ë¦¬ë  íŒŒì¼ì— ëŒ€í•œ ì •ë³´ê°€ ì €ì¥ëœ File ê°ì²´ ìƒì„± 
+		File file=new File(uploadDirectory, uploadFilename);
+		
+		//MultipartFile.transferTo(File file) : MultipartFile ê°ì²´ì— ì €ì¥ëœ ì „ë‹¬íŒŒì¼ì„ File
+		//ê°ì²´ì˜ ì €ì¥ëœ ì •ë³´ì˜ íŒŒì¼ë¡œ ì €ì¥ë˜ë„ë¡ ì—…ë¡œë“œ ì²˜ë¦¬í•˜ëŠ” ë©”ì†Œë“œ
 		uploaderFile.transferTo(file);
-
+		
 		model.addAttribute("uploaderName", uploaderName);
 		model.addAttribute("uploadFilename", uploadFilename);
-
+		
 		return "file/upload_success_one";
 	}
 	
-	@RequestMapping(value="/upload2", method=RequestMethod.GET)
+	@RequestMapping(value = "/upload2", method = RequestMethod.GET)
 	public String uploadTwo() {
 		return "file/form_two";
 	}
 	
-	//Àü´ŞÆÄÀÏÀÌ ¿©·¯°³ÀÎ °æ¿ì ¸Å°³º¯¼ö¸¦ List ÀÎÅÍÆäÀÌ½º·Î ÀÛ¼ºÇÏ¿© Àü´ŞÆÄÀÏ¿¡ ´ëÇÑ
-		//MultipartFile °´Ã¼°¡ ¿ä¼Ò·Î ÀúÀåµÈ List °´Ã¼¸¦ Á¦°ø¹Ş¾Æ »ç¿ë 
-		@RequestMapping(value = "/upload2", method = RequestMethod.POST)
-		public String uploadTwo(@RequestParam String uploaderName
-				, @RequestParam List<MultipartFile> uploaderFileList, Model model) throws IOException {
-			//Àü´ŞÆÄÀÏÀ» ÀúÀåÇÏ±â À§ÇÑ ¼­¹ö µğ·ºÅä¸®ÀÇ ½Ã½ºÅÛ °æ·Î¸¦ ¹İÈ¯¹Ş¾Æ ÀúÀå
-			String uploadDirectory=context.getServletContext().getRealPath("/resources/images/upload");
-			
-			//¾÷·Îµå Ã³¸®µÈ ¸ğµç ÆÄÀÏÀÇ ÀÌ¸§À» ÀúÀåÇÏ±â À§ÇÑ List °´Ã¼ »ı¼º
-			List<String> filenameList=new ArrayList<String>();
-			
-			for(MultipartFile multipartFile : uploaderFileList) {
-				if(multipartFile.isEmpty() || !multipartFile.getContentType().equals("image/jpeg") && !multipartFile.getContentType().equals("image/png")) {
-					return "file/upload_fail";
-				}
-
-				//Àü´ŞÆÄÀÏÀ» ¼­¹ö µğ·ºÅä¸®¿¡ ÀúÀåµÇµµ·Ï ¾÷·Îµå Ã³¸®
-				String uploadFilename=UUID.randomUUID().toString()+"_"+multipartFile.getOriginalFilename();
-				File file=new File(uploadDirectory, uploadFilename);
-				multipartFile.transferTo(file);
-				
-				//List °´Ã¼¿¡ ¾÷·Îµå Ã³¸®µÈ ÆÄÀÏ¸íÀ» ¿ä¼Ò°ªÀ¸·Î Ãß°¡ÇÏ¿© ÀúÀå
-				filenameList.add(uploadFilename);
-			}
-				
-			model.addAttribute("uploaderName", uploaderName);
-			model.addAttribute("filenameList", filenameList);
-			
-			return "file/upload_success_two";
-		}
+	//ì „ë‹¬íŒŒì¼ì´ ì—¬ëŸ¬ê°œì¸ ê²½ìš° ë§¤ê°œë³€ìˆ˜ë¥¼ List ì¸í„°í˜ì´ìŠ¤ë¡œ ì‘ì„±í•˜ì—¬ ì „ë‹¬íŒŒì¼ì— ëŒ€í•œ
+	//MultipartFile ê°ì²´ê°€ ìš”ì†Œë¡œ ì €ì¥ëœ List ê°ì²´ë¥¼ ì œê³µë°›ì•„ ì‚¬ìš© 
+	@RequestMapping(value = "/upload2", method = RequestMethod.POST)
+	public String uploadTwo(@RequestParam String uploaderName
+			, @RequestParam List<MultipartFile> uploaderFileList, Model model) throws IOException {
+		//ì „ë‹¬íŒŒì¼ì„ ì €ì¥í•˜ê¸° ìœ„í•œ ì„œë²„ ë””ë ‰í† ë¦¬ì˜ ì‹œìŠ¤í…œ ê²½ë¡œë¥¼ ë°˜í™˜ë°›ì•„ ì €ì¥
+		String uploadDirectory=context.getServletContext().getRealPath("/resources/images/upload");
 		
-		@RequestMapping(value = "/write", method = RequestMethod.GET)
-		public String fileBoardWrite() {
+		//ì—…ë¡œë“œ ì²˜ë¦¬ëœ ëª¨ë“  íŒŒì¼ì˜ ì´ë¦„ì„ ì €ì¥í•˜ê¸° ìœ„í•œ List ê°ì²´ ìƒì„±
+		List<String> filenameList=new ArrayList<String>();
+		
+		for(MultipartFile multipartFile : uploaderFileList) {
+			if(multipartFile.isEmpty() || !multipartFile.getContentType().equals("image/jpeg")) {
+				return "file/upload_fail";
+			}
+
+			//ì „ë‹¬íŒŒì¼ì„ ì„œë²„ ë””ë ‰í† ë¦¬ì— ì €ì¥ë˜ë„ë¡ ì—…ë¡œë“œ ì²˜ë¦¬
+			String uploadFilename=UUID.randomUUID().toString()+"_"+multipartFile.getOriginalFilename();
+			File file=new File(uploadDirectory, uploadFilename);
+			multipartFile.transferTo(file);
+			
+			//List ê°ì²´ì— ì—…ë¡œë“œ ì²˜ë¦¬ëœ íŒŒì¼ëª…ì„ ìš”ì†Œê°’ìœ¼ë¡œ ì¶”ê°€í•˜ì—¬ ì €ì¥
+			filenameList.add(uploadFilename);
+		}
+			
+		model.addAttribute("uploaderName", uploaderName);
+		model.addAttribute("filenameList", filenameList);
+		
+		return "file/upload_success_two";
+	}
+	
+	@RequestMapping(value = "/write", method = RequestMethod.GET)
+	public String fileBoardWrite() {
+		return "file/board_write";
+	}
+	
+	@RequestMapping(value = "/write", method = RequestMethod.POST)
+	public String fileBoardWrite(@ModelAttribute FileBoard fileBoard
+			, @RequestParam MultipartFile multipartFile) throws IOException {
+		if(multipartFile.isEmpty()) {
 			return "file/board_write";
 		}
-		
-		@RequestMapping(value = "/write", method = RequestMethod.POST)
-		public String fileBoardWrite(@ModelAttribute FileBoard fileBoard
-				, @RequestParam MultipartFile multipartFile) throws IOException {
-			if(multipartFile.isEmpty()) {
-				return "file/board_write";
-			}
 
-			//Àü´ŞÆÄÀÏÀ» ÀúÀåÇÏ±â À§ÇÑ ¼­¹ö µğ·ºÅä¸®ÀÇ ½Ã½ºÅÛ °æ·Î¸¦ ¹İÈ¯¹Ş¾Æ ÀúÀå
-			// => ´Ù¿î·Îµå ÇÁ·Î±×·¥¿¡¼­¸¸ ÆÄÀÏ¿¡ Á¢±Ù °¡´ÉÇÏµµ·Ï /WEB-INF Æú´õ¿¡ ¾÷·Îµå Æú´õ ÀÛ¼º
-			String uploadDirectory=context.getServletContext().getRealPath("/WEB-INF/upload");
+		//ì „ë‹¬íŒŒì¼ì„ ì €ì¥í•˜ê¸° ìœ„í•œ ì„œë²„ ë””ë ‰í† ë¦¬ì˜ ì‹œìŠ¤í…œ ê²½ë¡œë¥¼ ë°˜í™˜ë°›ì•„ ì €ì¥
+		// => ë‹¤ìš´ë¡œë“œ í”„ë¡œê·¸ë¨ì—ì„œë§Œ íŒŒì¼ì— ì ‘ê·¼ ê°€ëŠ¥í•˜ë„ë¡ /WEB-INF í´ë”ì— ì—…ë¡œë“œ í´ë” ì‘ì„±
+		String uploadDirectory=context.getServletContext().getRealPath("/WEB-INF/upload");
 
-			//¾÷·Îµå Ã³¸®µÉ ÆÄÀÏ¸íÀ» »ı¼ºÇÏ¿© FileBoard °´Ã¼ÀÇ ÇÊµå°ª º¯°æ
-			fileBoard.setFilename(UUID.randomUUID().toString()+"_"+multipartFile.getOriginalFilename());
+		//ì—…ë¡œë“œ ì²˜ë¦¬ë  íŒŒì¼ëª…ì„ ìƒì„±í•˜ì—¬ FileBoard ê°ì²´ì˜ í•„ë“œê°’ ë³€ê²½
+		fileBoard.setFilename(UUID.randomUUID().toString()+"_"+multipartFile.getOriginalFilename());
 
-			//Àü´ŞÆÄÀÏÀ» ¼­¹ö µğ·ºÅä¸®¿¡ ÀúÀåµÇµµ·Ï ¾÷·Îµå Ã³¸®
-			multipartFile.transferTo(new File(uploadDirectory, fileBoard.getFilename()));
-			
-			//Àü´Ş°ª°ú ¾÷·Îµå Ã³¸®µÈ ÆÄÀÏ¸íÀ» FILE_BOARD Å×ÀÌºíÀÇ ÇàÀ¸·Î »ğÀÔ Ã³¸®
-			fileBoardService.addFileBoard(fileBoard);
-			
-			return "redirect:/file/list";
-		}
+		//ì „ë‹¬íŒŒì¼ì„ ì„œë²„ ë””ë ‰í† ë¦¬ì— ì €ì¥ë˜ë„ë¡ ì—…ë¡œë“œ ì²˜ë¦¬
+		multipartFile.transferTo(new File(uploadDirectory, fileBoard.getFilename()));
 		
-		@RequestMapping("/list")
-		public String fileBoardList(@RequestParam(defaultValue = "1") int pageNum, Model model) {
-			Map<String, Object> map=fileBoardService.getFileBoardList(pageNum);
-			
-			model.addAttribute("pager", map.get("pager"));
-			model.addAttribute("fileBoardList", map.get("fileBoardList"));
-			
-			return "file/board_list";
-		}
+		//ì „ë‹¬ê°’ê³¼ ì—…ë¡œë“œ ì²˜ë¦¬ëœ íŒŒì¼ëª…ì„ FILE_BOARD í…Œì´ë¸”ì˜ í–‰ìœ¼ë¡œ ì‚½ì… ì²˜ë¦¬
+		fileBoardService.addFileBoard(fileBoard);
 		
-		@RequestMapping("/delete")
-		public String fileBoardDelete(@RequestParam int idx) {
-			//»èÁ¦µÉ °Ô½Ã±ÛÀ» ¹İÈ¯¹Ş¾Æ ÀúÀå - ÆÄÀÏ¸íÀ» Á¦°ø¹Ş±â À§ÇØ »ç¿ë
-			FileBoard fileBoard=fileBoardService.getFileBoard(idx);
-			String uploadDirectory=context.getServletContext().getRealPath("/WEB-INF/upload");
-			
-			//¼­¹ö µğ·ºÅä¸®¿¡ ÀúÀåµÈ °Ô½Ã±ÛÀÇ ÆÄÀÏ »èÁ¦ Ã³¸®
-			new File(uploadDirectory, fileBoard.getFilename()).delete();
-			
-			fileBoardService.removeFileBoard(idx);
-			return "redirect:/file/list";
-		}
+		return "redirect:/file/list";
+	}
+
+	@RequestMapping("/list")
+	public String fileBoardList(@RequestParam(defaultValue = "1") int pageNum, Model model) {
+		Map<String, Object> map=fileBoardService.getFileBoardList(pageNum);
 		
-		//´Ù¿î·Îµå(Download) : ¼­¹ö µğ·ºÅä¸®¿¡ ÀúÀåµÈ ÆÄÀÏÀ» Å¬¶óÀÌ¾ğÆ®¿¡°Ô Àü´ŞÇÏ¿© ÀúÀåÇÏ´Â ±â´É
-		//¿äÃ» Ã³¸® ¸Ş¼Òµå¿¡ ÀÇÇØ ¹İÈ¯µÇ´Â ¹®ÀÚ¿­(ViewName)·Î ´Ù¿î·Îµå ±â´ÉÀ» Á¦°øÇÏ´Â °´Ã¼(Spring Bean)ÀÇ
-		//¸Ş¼Òµå¸¦ È£ÃâÇÏ¿© ¼­¹ö µğ·ºÅä¸®¿¡ ÀúÀåµÈ ÆÄÀÏÀ» Å¬¶óÀÌ¾ğÆ®¿¡°Ô Àü´ŞµÇµµ·Ï ÀÀ´ä Ã³¸®
-		// => BeanNameViewResolver °´Ã¼¸¦ »ç¿ëÇÏ¿© ¹İÈ¯µÇ´Â ¹®ÀÚ¿­(ViewName)·Î °´Ã¼ÀÇ ¸Ş¼Òµå È£Ãâ
-		// => Spring Bean Configuration File(servlet-context.xml)¿¡ BeanNameViewResolver Å¬·¡½º¸¦
-		//Spring BeanÀ¸·Î µî·Ï
-		// => ViewResolver °´Ã¼ Áß °¡Àå ¿ì¼± ¼øÀ§°¡ ³ôµµ·Ï ¼³Á¤
-		@RequestMapping("/download")
-		public String fileBoardDownload(@RequestParam int idx, Model model) {
-			FileBoard fileBoard=fileBoardService.getFileBoard(idx);
-			
-			//Model °´Ã¼¸¦ »ç¿ëÇÏ¿© BeanNameViewResolver °´Ã¼¿¡ ½ÇÇàµÉ Å¬·¡½º¿¡¼­ »ç¿ëÇÒ ¼ö ÀÖ´Â
-			//¼Ó¼º°ª ÀúÀåÇÏ¿© Á¦°ø 
-			model.addAttribute("uploadDirectory", context.getServletContext().getRealPath("/WEB-INF/upload"));
-			model.addAttribute("uploadFilename", fileBoard.getFilename());
-			
-			//BeanNameViewResolver °´Ã¼¿¡ ½ÇÇàµÉ Å¬·¡½ºÀÇ Spring BeanÀÇ ½Äº°ÀÚ(beanName)¸¦ ¹İÈ¯
-			// => BeanNameViewResolver °´Ã¼¿¡ ½ÇÇàµÉ Å¬·¡½º¸¦ ÀÛ¼ºÇÏ¿© Spring Bean Configuration File(servlet-context.xml)¿¡
-			//Spring BeanÀ¸·Î µî·Ï - @Component ¾î³ëÅ×ÀÌ¼Ç »ç¿ë °¡´É
-			//cf)Spring Bean À¸·Î µî·ÏÇÒ ¶§ ¾µ ¼ö ÀÖ´Â ¾î³ëÅ×ÀÌ¼Ç 5°³ ÀÖÀ½
-			return "fileDownload";
-		}
+		model.addAttribute("pager", map.get("pager"));
+		model.addAttribute("fileBoardList", map.get("fileBoardList"));
 		
+		return "file/board_list";
+	}
 	
+	@RequestMapping("/delete")
+	public String fileBoardDelete(@RequestParam int idx) {
+		//ì‚­ì œë  ê²Œì‹œê¸€ì„ ë°˜í™˜ë°›ì•„ ì €ì¥ - íŒŒì¼ëª…ì„ ì œê³µë°›ê¸° ìœ„í•´ ì‚¬ìš©
+		FileBoard fileBoard=fileBoardService.getFileBoard(idx);
+		String uploadDirectory=context.getServletContext().getRealPath("/WEB-INF/upload");
+		//ì„œë²„ ë””ë ‰í† ë¦¬ì— ì €ì¥ëœ ê²Œì‹œê¸€ì˜ íŒŒì¼ ì‚­ì œ ì²˜ë¦¬
+		new File(uploadDirectory, fileBoard.getFilename()).delete();		
+		
+		fileBoardService.removeFileBoard(idx);
+		return "redirect:/file/list";
+	}
+	
+	//ë‹¤ìš´ë¡œë“œ(Download) : ì„œë²„ ë””ë ‰í† ë¦¬ì— ì €ì¥ëœ íŒŒì¼ì„ í´ë¼ì´ì–¸íŠ¸ì—ê²Œ ì „ë‹¬í•˜ì—¬ ì €ì¥í•˜ëŠ” ê¸°ëŠ¥
+	//ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œì— ì˜í•´ ë°˜í™˜ë˜ëŠ” ë¬¸ìì—´(ViewName)ë¡œ ë‹¤ìš´ë¡œë“œ ê¸°ëŠ¥ì„ ì œê³µí•˜ëŠ” ê°ì²´(Spring
+	//Bean)ì˜ ë©”ì†Œë“œë¥¼ í˜¸ì¶œí•˜ì—¬ ì„œë²„ ë””ë ‰í† ë¦¬ì— ì €ì¥ëœ íŒŒì¼ì„ í´ë¼ì´ì–¸íŠ¸ì—ê²Œ ì „ë‹¬ë˜ë„ë¡ ì‘ë‹µ ì²˜ë¦¬
+	// => BeanNameViewResovler ê°ì²´ë¥¼ ì‚¬ìš©í•˜ì—¬ ë°˜í™˜ë˜ëŠ” ë¬¸ìì—´(ViewName)ë¡œ ê°ì²´ì˜ ë©”ì†Œë“œ í˜¸ì¶œ
+	// => Spring Bean Configuration File(servlet-context.xml)ì— BeanNameViewResovler í´ë˜ìŠ¤ë¥¼
+	//Spring Beanìœ¼ë¡œ ë“±ë¡  
+	// => ViewResolver ê°ì²´ ì¤‘ ê°€ì¥ ìš°ì„  ìˆœìœ„ê°€ ë†’ë„ë¡ ì„¤ì •
+	@RequestMapping("/download")
+	public String fileBoardDownload(@RequestParam int idx, Model model) {
+		FileBoard fileBoard=fileBoardService.getFileBoard(idx);
+
+		//Model ê°ì²´ë¥¼ ì‚¬ìš©í•˜ì—¬ BeanNameViewResovler ê°ì²´ì— ì˜í•´ ì‹¤í–‰ë  í´ë˜ìŠ¤ì—ì„œ ì‚¬ìš©í•  ìˆ˜
+		//ìˆëŠ” ì†ì„±ê°’ ì €ì¥í•˜ì—¬ ì œê³µ
+		model.addAttribute("uploadDirectory", context.getServletContext().getRealPath("/WEB-INF/upload"));
+		model.addAttribute("uploadFilename", fileBoard.getFilename());
+
+		//BeanNameViewResovler ê°ì²´ì— ì˜í•´ ì‹¤í–‰ë  í´ë˜ìŠ¤ì˜ Spring Beanì˜ ì‹ë³„ì(beanName)ë¥¼ ë°˜í™˜
+		// => BeanNameViewResovler ê°ì²´ì— ì˜í•´ ì‹¤í–‰ë  í´ë˜ìŠ¤ë¥¼ ì‘ì„±í•˜ì—¬ Spring Bean Configuration 
+		//File(servlet-context.xml)ì— Spring Beanìœ¼ë¡œ ë“±ë¡ - @Component ì–´ë…¸í…Œì´ì…˜ ì‚¬ìš© ê°€ëŠ¥
+		return "fileDownload";
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

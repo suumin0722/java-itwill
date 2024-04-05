@@ -8,28 +8,26 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+//ëª¨ë¸(Model) : í´ë¼ì´ì–¸íŠ¸ì˜ ìš”ì²­ì„ ì²˜ë¦¬í•˜ê¸° ìœ„í•œ ê¸°ëŠ¥ì„ ì œê³µí•˜ê¸° ìœ„í•œ í´ë˜ìŠ¤
 
-//¸ğµ¨(Model) : Å¬¶óÀÌ¾ğÆ®ÀÇ ¿äÃ»À» Ã³¸®ÇÏ±â À§ÇÑ ±â´ÉÀ» Á¦°øÇÏ±â À§ÇÑ Å¬·¡½º
-
-//¸ğµ¨ ±â´ÉÀ» Á¦°øÇÏ±â À§ÇÑ Å¬·¡½º - ÀÎÅÍÆäÀÌ½º¸¦ »ó¼Ó¹Ş¾Æ ÀÛ¼º
-//=> Å¬¶óÀÌ¾ğÆ®ÀÇ ¿äÃ»À» ÇÏ³ªÀÇ Å¬·¡½º·Î Ã³¸®µÇµµ·Ï ÀÛ¼º - Command Pattern
-//Å¬¶óÀÌ¾ğÆ®°¡ [/list.itwill]ÀÇ URL ÁÖ¼Ò·Î ¿äÃ»ÇÑ °æ¿ì ÄÁÆ®·Ñ·¯¿¡ ÀÇÇØ ½ÇÇàµÉ Å¬·¡½º
+//ëª¨ë¸ ê¸°ëŠ¥ì„ ì œê³µí•˜ê¸° ìœ„í•œ í´ë˜ìŠ¤ - ì¸í„°í˜ì´ìŠ¤ë¥¼ ìƒì†ë°›ì•„ ì‘ì„±
+// => í´ë¼ì´ì–¸íŠ¸ì˜ ìš”ì²­ì„ í•˜ë‚˜ì˜ í´ë˜ìŠ¤ë¡œ ì²˜ë¦¬ë˜ë„ë¡ ì‘ì„± - Command Pattern
+//í´ë¼ì´ì–¸íŠ¸ê°€ [/list.itwill]ì˜ URL ì£¼ì†Œë¡œ ìš”ì²­í•œ ê²½ìš° ì»¨íŠ¸ë¡¤ëŸ¬ì— ì˜í•´ ì‹¤í–‰ë  í´ë˜ìŠ¤
 public class ListController implements Controller {
-	//¿äÃ» Ã³¸® ¸Ş¼Òµå : Å¬¶óÀÌ¾ğÆ®ÀÇ ¿äÃ»À» Ã³¸®ÇÏ±â À§ÇÑ ¸í·ÉÀ» ÀÛ¼ºÇÒ ¸Ş¼Òµå
-	// => ÀÀ´äÇÒ ºä(View - JSP)ÀÇ ÀÌ¸§(ViewName)À» ¹İÈ¯
+	//ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œ : í´ë¼ì´ì–¸íŠ¸ì˜ ìš”ì²­ì„ ì²˜ë¦¬í•˜ê¸° ìœ„í•œ ëª…ë ¹ì„ ì‘ì„±í•  ë©”ì†Œë“œ
+	// => ì‘ë‹µí•  ë·°(View - JSP)ì˜ ì´ë¦„(ViewName)ì„ ë°˜í™˜
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//¿äÃ» Ã³¸® ¸í·É ÀÛ¼º - µ¥ÀÌÅ¸ Ã³¸® ¸í·É : Service Å¬·¡½ºÀÇ ¸Ş¼Òµå È£Ãâ
+		//ìš”ì²­ ì²˜ë¦¬ ëª…ë ¹ ì‘ì„± - ë°ì´íƒ€ ì²˜ë¦¬ ëª…ë ¹ : Service í´ë˜ìŠ¤ì˜ ë©”ì†Œë“œ í˜¸ì¶œ
 		List<Member> memberList=new ArrayList<Member>();
-		memberList.add(new Member("abc123", "È«±æµ¿", "¼­¿ï½Ã °­³²±¸"));
-		memberList.add(new Member("opq456", "ÀÓ²©Á¤", "ÀÎÃµ½Ã ¿ù¹Ì±¸"));
-		memberList.add(new Member("xyz789", "Àü¿ìÄ¡", "¼ö¿ø½Ã ÆÈ´Ş±¸"));
+		memberList.add(new Member("abc123", "í™ê¸¸ë™", "ì„œìš¸ì‹œ ê°•ë‚¨êµ¬"));
+		memberList.add(new Member("opq456", "ì„êº½ì •", "ì¸ì²œì‹œ ì›”ë¯¸êµ¬"));
+		memberList.add(new Member("xyz789", "ì „ìš°ì¹˜", "ìˆ˜ì›ì‹œ íŒ”ë‹¬êµ¬"));
 		
-		//¿äÃ»¿¡ ´ëÇÑ Ã³¸®°á°ú¸¦ ºä(View)¿¡°Ô Á¦°øÇÏ±â À§ÇØ request °´Ã¼ÀÇ ¼Ó¼º°ªÀ¸·Î ÀúÀå
+		//ìš”ì²­ì— ëŒ€í•œ ì²˜ë¦¬ê²°ê³¼ë¥¼ ë·°(View)ì—ê²Œ ì œê³µí•˜ê¸° ìœ„í•´ request ê°ì²´ì˜ ì†ì„±ê°’ìœ¼ë¡œ ì €ì¥
 		request.setAttribute("memberList", memberList);
 		
 		return "member_list";
 	}
-
 }

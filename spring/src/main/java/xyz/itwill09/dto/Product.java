@@ -8,11 +8,12 @@ import lombok.Data;
 
 @Data
 public class Product {
-	//@NotEmpty(message = "Á¦Ç°ÄÚµå¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä.")
+	//@NotEmpty(message = "ì œí’ˆì½”ë“œë¥¼ ìž…ë ¥í•´ ì£¼ì„¸ìš”.")
 	@NotEmpty
 	private String productCode;
 	@NotEmpty
 	private String productName;
+	@NotEmpty
 	@Min(value = 1)
 	@Max(value = 100)
 	private int productQuantity;

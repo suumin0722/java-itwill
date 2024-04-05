@@ -6,15 +6,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//Å¬¶óÀÌ¾ğÆ®°¡ [/view.itwill]ÀÇ URL ÁÖ¼Ò·Î ¿äÃ»ÇÑ °æ¿ì ÄÁÆ®·Ñ·¯¿¡ ÀÇÇØ ½ÇÇàµÉ Å¬·¡½º
-public class ViewController implements Controller { 
-
+//í´ë¼ì´ì–¸íŠ¸ê°€ [/view.itwill]ì˜ URL ì£¼ì†Œë¡œ ìš”ì²­í•œ ê²½ìš° ì»¨íŠ¸ë¡¤ëŸ¬ì— ì˜í•´ ì‹¤í–‰ë  í´ë˜ìŠ¤
+public class ViewController implements Controller {
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Member member=new Member("test258", "ÀÏÁö¸Å", "¼­¿ï½Ã Á¾·Î±¸");
+		Member member=new Member("test258", "ì¼ì§€ë§¤", "ì„œìš¸ì‹œ ì¢…ë¡œêµ¬");
 		request.setAttribute("member", member);
 		return "member_view";
 	}
-	
 }

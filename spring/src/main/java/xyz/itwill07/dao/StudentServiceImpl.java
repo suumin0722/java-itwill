@@ -5,9 +5,9 @@ import java.util.List;
 import lombok.Setter;
 
 public class StudentServiceImpl implements StudentService {
-	//StudentDAO ÀÎÅÍÆäÀÌ½º¸¦ »ó¼Ó¹ŞÀº ÀÚ½ÄÅ¬·¡½ºÀÇ °´Ã¼¸¦ ÀúÀåÇÏ±â À§ÇÑ ÇÊµå ¼±¾ğ
-	// => Spring Bean Configuration File¿¡¼­ StudentServiceImpl Å¬·¡½º¸¦ Spring BeanÀ¸·Î µî·ÏÇÒ ¶§
-	//½ºÇÁ¸µ ÄÁÅ×ÀÌ³Ê·ÎºÎÅÍ StudentDAO °´Ã¼¸¦ Á¦°ø¹Ş¾Æ ÀÇÁ¸¼º ÁÖÀÔ - Setter Injection
+	//StudentDAO ì¸í„°í˜ì´ìŠ¤ë¥¼ ìƒì†ë°›ì€ ìì‹í´ë˜ìŠ¤ì˜ ê°ì²´ë¥¼ ì €ì¥í•˜ê¸° ìœ„í•œ í•„ë“œ ì„ ì–¸
+	// => Spring Bean Configuration Fileì—ì„œ StudentServiceImpl í´ë˜ìŠ¤ë¥¼ Spring Beanìœ¼ë¡œ ë“±ë¡í•  ë•Œ
+	//ìŠ¤í”„ë§ ì»¨í…Œì´ë„ˆë¡œë¶€í„° StudentDAO ê°ì²´ë¥¼ ì œê³µë°›ì•„ ì˜ì¡´ì„± ì£¼ì… - Setter Injection
 	@Setter
 	private StudentDAO studentDAO;
 	
@@ -28,12 +28,12 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public Student getStudent(int no) {
-		return  studentDAO.selectStudent(no);
+		return studentDAO.selectStudent(no);
 	}
 
 	@Override
 	public List<Student> getStudentList() {
-		return  studentDAO.selectStudentList();
+		return studentDAO.selectStudentList();
 	}
 
 }

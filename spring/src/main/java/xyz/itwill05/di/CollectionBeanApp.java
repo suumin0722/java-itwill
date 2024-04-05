@@ -5,13 +5,13 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class CollectionBeanApp {
 	public static void main(String[] args) {
-		System.out.println("=============== Spring Container ÃÊ±âÈ­ Àü ===============");
+		System.out.println("=============== Spring Container ì´ˆê¸°í™” ì „ ===============");
 		ApplicationContext context=new ClassPathXmlApplicationContext("05-2_collection.xml");
-		System.out.println("=============== Spring Container ÃÊ±âÈ­ ÈÄ ===============");
+		System.out.println("=============== Spring Container ì´ˆê¸°í™” í›„ ===============");
 		CollectionBean bean=context.getBean("collectionBean", CollectionBean.class);
 		
-		//CollectionBean °´Ã¼ÀÇ ÇÊµå°ª(Äİ·º¼Ç °´Ã¼  - Set °´Ã¼, List °´Ã¼ µî)¸¦ ¹İÈ¯¹Ş¾Æ Ãâ·Â
-		// => Äİ·º¼Ç °´Ã¼ÀÇ toString() ¸Ş¼Òµå È£Ãâ - Collection¿¡ ÀúÀåµÈ ¸ğµç ¿ä¼Ò°ª Ãâ·Â
+		//CollectionBean ê°ì²´ì˜ í•„ë“œê°’(ì½œë ‰ì…˜ ê°ì²´  - Set ê°ì²´, List ê°ì²´ ë“±)ë¥¼ ë°˜í™˜ë°›ì•„ ì¶œë ¥
+		// => ì½œë ‰ì…˜ ê°ì²´ì˜ toString() ë©”ì†Œë“œ í˜¸ì¶œ - Collectionì— ì €ì¥ëœ ëª¨ë“  ìš”ì†Œê°’ ì¶œë ¥
 		System.out.println("nameSet = "+bean.getNameSet());
 		System.out.println("nameList = "+bean.getNameList());
 		System.out.println("controllerSet = "+bean.getControllerSet());

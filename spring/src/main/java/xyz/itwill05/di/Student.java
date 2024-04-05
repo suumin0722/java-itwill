@@ -1,27 +1,33 @@
 package xyz.itwill05.di;
 
-//ÇĞ»ıÁ¤º¸¸¦ ÀúÀåÇÏ±â À§ÇÑ Å¬·¡½º - VO Å¬·¡½º, DTO Å¬·¡½º : POJO(Plain Old Java Object)
-//=> ÇĞ»ıÁ¤º¸ °ü·Ã °ªÀ» ÇÊµå¿¡ ÀúÀåÇÏ¿© »ç¿ë
+//í•™ìƒì •ë³´ë¥¼ ì €ì¥í•˜ê¸° ìœ„í•œ í´ë˜ìŠ¤ - VO í´ë˜ìŠ¤, DTO í´ë˜ìŠ¤ : POJO(Plain Old Java Object)
+// => í•™ìƒì •ë³´ ê´€ë ¨ ê°’ì„ í•„ë“œì— ì €ì¥í•˜ì—¬ ì‚¬ìš©
 public class Student {
 	private int num;
 	private String name;
 	private String email;
 	
 	public Student() {
-		System.out.println("### Student Å¬·¡½ºÀÇ ±âº» »ı¼ºÀÚ È£Ãâ ###");
+		System.out.println("### Student í´ë˜ìŠ¤ì˜ ê¸°ë³¸ ìƒì„±ì í˜¸ì¶œ ###");
 	}
 
 	public Student(int num) {
 		super();
 		this.num = num;
-		System.out.println("### Student Å¬·¡½ºÀÇ ¸Å°³º¯¼ö(ÇĞ¹ø)°¡ ¼±¾ğµÈ »ı¼ºÀÚ È£Ãâ ###");
+		System.out.println("### Student í´ë˜ìŠ¤ì˜ ë§¤ê°œë³€ìˆ˜(í•™ë²ˆ)ê°€ ì„ ì–¸ëœ ìƒì„±ì í˜¸ì¶œ ###");
+	}
+
+	public Student(String name) {
+		super();
+		this.name = name;
+		System.out.println("### Student í´ë˜ìŠ¤ì˜ ë§¤ê°œë³€ìˆ˜(ì´ë¦„)ê°€ ì„ ì–¸ëœ ìƒì„±ì í˜¸ì¶œ ###");
 	}
 
 	public Student(int num, String name) {
 		super();
 		this.num = num;
 		this.name = name;
-		System.out.println("### Student Å¬·¡½ºÀÇ ¸Å°³º¯¼ö(ÇĞ¹ø, ÀÌ¸§)°¡ ¼±¾ğµÈ »ı¼ºÀÚ È£Ãâ ###");
+		System.out.println("### Student í´ë˜ìŠ¤ì˜ ë§¤ê°œë³€ìˆ˜(í•™ë²ˆ, ì´ë¦„)ê°€ ì„ ì–¸ëœ ìƒì„±ì í˜¸ì¶œ ###");
 	}
 
 	public Student(int num, String name, String email) {
@@ -29,7 +35,7 @@ public class Student {
 		this.num = num;
 		this.name = name;
 		this.email = email;
-		System.out.println("### Student Å¬·¡½ºÀÇ ¸Å°³º¯¼ö(ÇĞ¹ø, ÀÌ¸§, ÀÌ¸ŞÀÏ)°¡ ¼±¾ğµÈ »ı¼ºÀÚ È£Ãâ ###");
+		System.out.println("### Student í´ë˜ìŠ¤ì˜ ë§¤ê°œë³€ìˆ˜(í•™ë²ˆ, ì´ë¦„, ì´ë©”ì¼)ê°€ ì„ ì–¸ëœ ìƒì„±ì í˜¸ì¶œ ###");
 	}
 
 	public int getNum() {
@@ -38,8 +44,7 @@ public class Student {
 
 	public void setNum(int num) {
 		this.num = num;
-		System.out.println("*** Student Å¬·¡½ºÀÇ setNum(int num) ¸Ş¼Òµå È£Ãâ ***");
-
+		System.out.println("*** Student í´ë˜ìŠ¤ì˜ setNum(int num) ë©”ì†Œë“œ í˜¸ì¶œ ***");
 	}
 
 	public String getName() {
@@ -48,7 +53,7 @@ public class Student {
 
 	public void setName(String name) {
 		this.name = name;
-		System.out.println("*** Student Å¬·¡½ºÀÇ setName(String name) ¸Ş¼Òµå È£Ãâ ***");
+		System.out.println("*** Student í´ë˜ìŠ¤ì˜ setName(String name) ë©”ì†Œë“œ í˜¸ì¶œ ***");
 	}
 
 	public String getEmail() {
@@ -57,14 +62,11 @@ public class Student {
 
 	public void setEmail(String email) {
 		this.email = email;
-		System.out.println("*** Student Å¬·¡½ºÀÇ setEmail(String email) ¸Ş¼Òµå È£Ãâ ***");
+		System.out.println("*** Student í´ë˜ìŠ¤ì˜ setEmail(String email) ë©”ì†Œë“œ í˜¸ì¶œ ***");
 	}
-
+	
 	@Override
 	public String toString() {
-		return "ÇĞ¹ø = "+num+", ÀÌ¸§ = "+name+", ÀÌ¸ŞÀÏ = "+email;
+		return "í•™ë²ˆ = "+num+", ì´ë¦„ = "+name+", ì´ë©”ì¼ = "+email;
 	}
-	
-	
-	
 }

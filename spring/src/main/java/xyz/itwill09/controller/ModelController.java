@@ -12,32 +12,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ModelController {
 	@RequestMapping("/display1")
 	public String display1(Model model) {
-		model.addAttribute("display1Name","È«±æµ¿");
-		//model.addAttribute("now", new SimpleDateFormat("yyyy³â MM¿ù ddÀÏ HH½Ã mmºĞ ssÃÊ").format(new Date()));
+		model.addAttribute("display1Name","í™ê¸¸ë™");
+		//model.addAttribute("now", new SimpleDateFormat("yyyyë…„ MMì›” ddì¼ HHì‹œ mmë¶„ ssì´ˆ").format(new Date()));
 		return "model_display1";
 	}
 	
 	@RequestMapping("/display2")
 	public String display2(Model model) {
-		model.addAttribute("display2Name","ÀÓ²©Á¤");
-		//model.addAttribute("now", new SimpleDateFormat("yyyy³â MM¿ù ddÀÏ HH½Ã mmºĞ ssÃÊ").format(new Date()));
+		model.addAttribute("display2Name","ì„êº½ì •");
+		//model.addAttribute("now", new SimpleDateFormat("yyyyë…„ MMì›” ddì¼ HHì‹œ mmë¶„ ssì´ˆ").format(new Date()));
 		return "model_display2";
 	}
 	
 	@RequestMapping("/display3")
 	public String display3(Model model) {
-		model.addAttribute("display3Name","Àü¿ìÄ¡");
-		//model.addAttribute("now", new SimpleDateFormat("yyyy³â MM¿ù ddÀÏ HH½Ã mmºĞ ssÃÊ").format(new Date()));
+		model.addAttribute("display3Name","ì „ìš°ì¹˜");
+		//model.addAttribute("now", new SimpleDateFormat("yyyyë…„ MMì›” ddì¼ HHì‹œ mmë¶„ ssì´ˆ").format(new Date()));
 		return "model_display3";
 	}
 	
-	//½Ã½ºÅÛÀÇ ÇöÀç ³¯Â¥¿Í ½Ã°£ÀÌ ÀúÀåµÈ ¹®ÀÚ¿­À» ¹İÈ¯ÇÏ´Â ¸Ş¼Òµå
-	//@ModelAttribute : ¸Ş¼Òµå¿¡ @ModelAttribute ¾î³ëÅ×ÀÌ¼ÇÀ» »ç¿ëÇÏ¸é ¸Ş¼ÒµåÀÇ ¹İÈ¯°ª(°´Ã¼)¸¦
-	//ÇöÀç Controller Å¬·¡½º¿¡ ÀÛ¼ºµÈ ¸ğµç ¿äÃ» Ã³¸® ¸Ş¼ÒµåÀÇ ºä¿¡°Ô ¼Ó¼º°ªÀ¸·Î Á¦°øÇÏ´Â ¾î³ëÅ×ÀÌ¼Ç
-	//value ¼Ó¼º : ¸Ş¼ÒµåÀÇ ¹İÈ¯°ª(°´Ã¼)¸¦ ºä¿¡¼­ »ç¿ëÇÏ±â À§ÇÑ ÀÌ¸§(¼Ó¼º¸í)À» ¼Ó¼º°ªÀ¸·Î ¼³Á¤
-	// => value ¼Ó¼º¿Ü¿¡ ´Ù¸¥ ¼Ó¼ºÀÌ ¾ø´Â °æ¿ì ¼Ó¼º°ª¸¸ ¼³Á¤ °¡´É
+	//ì‹œìŠ¤í…œì˜ í˜„ì¬ ë‚ ì§œì™€ ì‹œê°„ì´ ì €ì¥ëœ ë¬¸ìì—´ì„ ë°˜í™˜í•˜ëŠ” ë©”ì†Œë“œ
+	//@ModelAttribute : ë©”ì†Œë“œì— @ModelAttribute ì–´ë…¸í…Œì´ì…˜ì„ ì‚¬ìš©í•˜ë©´ ë©”ì†Œë“œì˜ ë°˜í™˜ê°’(ê°ì²´)ë¥¼
+	//í˜„ì¬ Controller í´ë˜ìŠ¤ì— ì‘ì„±ëœ ëª¨ë“  ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œì˜ ë·°ì—ê²Œ ì†ì„±ê°’ìœ¼ë¡œ ì œê³µí•˜ëŠ” ì–´ë…¸í…Œì´ì…˜
+	//value ì†ì„± : ë©”ì†Œë“œì˜ ë°˜í™˜ê°’(ê°ì²´)ë¥¼ ë·°ì—ì„œ ì‚¬ìš©í•˜ê¸° ìœ„í•œ ì´ë¦„(ì†ì„±ëª…)ì„ ì†ì„±ê°’ìœ¼ë¡œ ì„¤ì •
+	// => value ì†ì„±ì™¸ì— ë‹¤ë¥¸ ì†ì„±ì´ ì—†ëŠ” ê²½ìš° ì†ì„±ê°’ë§Œ ì„¤ì • ê°€ëŠ¥
 	@ModelAttribute(value = "now")
 	public String getNow() {
-		return new SimpleDateFormat("yyyy³â MM¿ù ddÀÏ HH½Ã mmºĞ ssÃÊ").format(new Date());
+		return new SimpleDateFormat("yyyyë…„ MMì›” ddì¼ HHì‹œ mmë¶„ ssì´ˆ").format(new Date());
 	}
 }

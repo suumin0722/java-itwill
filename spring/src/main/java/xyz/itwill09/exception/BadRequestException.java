@@ -1,6 +1,6 @@
 package xyz.itwill09.exception;
 
-//ºñÁ¤»óÀûÀ¸·Î ÆäÀÌÁö¸¦ ¿äÃ»ÇÒ °æ¿ì¿¡ ´ëÇÑ Á¤º¸¸¦ ÀúÀåÇÏ¿© Ã³¸®ÇÏ±â À§ÇÑ ¿¹¿ÜÅ¬·¡½º
+//ë¹„ì •ìƒì ìœ¼ë¡œ í˜ì´ì§€ë¥¼ ìš”ì²­í•  ê²½ìš°ì— ëŒ€í•œ ì •ë³´ë¥¼ ì €ì¥í•˜ì—¬ ì²˜ë¦¬í•˜ê¸° ìœ„í•œ ì˜ˆì™¸í´ë˜ìŠ¤
 public class BadRequestException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 

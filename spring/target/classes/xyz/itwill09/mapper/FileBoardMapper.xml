@@ -24,5 +24,4 @@
 		select * from (select rownum rn, board.* from (select idx, writer, subject, filename
 			from file_board order by idx desc) board) where rn between #{startRow} and #{endRow}
 	</select>
-	
 </mapper>

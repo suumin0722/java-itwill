@@ -3,12 +3,12 @@ package xyz.itwill09.exception;
 import lombok.Getter;
 import xyz.itwill09.dto.Userinfo;
 
-//È¸¿øÁ¤º¸¸¦ µî·ÏÇÒ ¶§ »ç¿ëÀÚ·ÎºÎÅÍ ÀÔ·Â¹ÞÀº È¸¿øÁ¤º¸ÀÇ ¾ÆÀÌµð°¡ ±âÁ¸ È¸¿øÁ¤º¸ÀÇ ¾ÆÀÌµð¿Í
-//Áßº¹µÉ °æ¿ì¿¡ ´ëÇÑ ¹®Á¦¿¡ ´ëÇÑ Á¤º¸¸¦ ÀúÀåÇÏ¿© Ã³¸®ÇÏ±â À§ÇÑ ¿¹¿ÜÅ¬·¡½º 
+//íšŒì›ì •ë³´ë¥¼ ë“±ë¡í•  ë•Œ ì‚¬ìš©ìžë¡œë¶€í„° ìž…ë ¥ë°›ì€ íšŒì›ì •ë³´ì˜ ì•„ì´ë””ê°€ ê¸°ì¡´ íšŒì›ì •ë³´ì˜ ì•„ì´ë””ì™€
+//ì¤‘ë³µë  ê²½ìš°ì— ëŒ€í•œ ë¬¸ì œì— ëŒ€í•œ ì •ë³´ë¥¼ ì €ìž¥í•˜ì—¬ ì²˜ë¦¬í•˜ê¸° ìœ„í•œ ì˜ˆì™¸í´ëž˜ìŠ¤ 
 public class ExistsUserinfoException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 
-	//¿¹¿ÜÃ³¸®¿¡ ÇÊ¿äÇÑ °ªÀ» ÀúÀåÇÏ±â À§ÇÑ ÇÊµå - »ç¿ëÀÚ·ÎºÎÅÍ ÀÔ·ÂµÈ È¸¿øÁ¤º¸¸¦ ÇÊµå¿¡ ÀúÀå
+	//ì˜ˆì™¸ì²˜ë¦¬ì— í•„ìš”í•œ ê°’ì„ ì €ìž¥í•˜ê¸° ìœ„í•œ í•„ë“œ - ì‚¬ìš©ìžë¡œë¶€í„° ìž…ë ¥ëœ íšŒì›ì •ë³´ë¥¼ í•„ë“œì— ì €ìž¥
 	@Getter
 	private Userinfo userinfo;
 	

@@ -1,7 +1,7 @@
 package xyz.itwill09.exception;
 
-//È¸¿øÁ¤º¸¿¡ ´ëÇÑ º¯°æ, »èÁ¦, °Ë»öÇÒ ¶§ »ç¿ëÀÚ·ÎºÎÅÍ Àü´Þ¹ÞÀº ¾ÆÀÌµðÀÇ È¸¿øÁ¤º¸°¡ ¾ø´Â °æ¿ì¿¡ ´ëÇÑ ¹®Á¦¿¡ 
-//´ëÇÑ Á¤º¸¸¦ ÀúÀåÇÏ¿© Ã³¸®ÇÏ±â À§ÇÑ ¿¹¿ÜÅ¬·¡½º
+//íšŒì›ì •ë³´ì— ëŒ€í•œ ë³€ê²½, ì‚­ì œ, ê²€ìƒ‰í•  ë•Œ ì‚¬ìš©ìžë¡œë¶€í„° ì „ë‹¬ë°›ì€ ì•„ì´ë””ì˜ íšŒì›ì •ë³´ê°€ ì—†ëŠ” ê²½ìš°ì— ëŒ€í•œ ë¬¸ì œì— 
+//ëŒ€í•œ ì •ë³´ë¥¼ ì €ìž¥í•˜ì—¬ ì²˜ë¦¬í•˜ê¸° ìœ„í•œ ì˜ˆì™¸í´ëž˜ìŠ¤
 public class UserinfoNotFoundException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 

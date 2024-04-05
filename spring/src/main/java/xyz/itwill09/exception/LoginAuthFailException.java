@@ -2,8 +2,8 @@ package xyz.itwill09.exception;
 
 import lombok.Getter;
 
-//·Î±×ÀÎ Ã³¸®½Ã »ç¿ëÀÚ·ÎºÎÅÍ ÀÔ·Â¹ÞÀº ¾ÆÀÌµð¿Í ºñ¹Ð¹øÈ£¿¡ ´ëÇÑ ÀÎÁõÀÌ ½ÇÆÐÇÑ °æ¿ì¿¡ 
-//´ëÇÑ Á¤º¸¸¦ ÀúÀåÇÏ¿© Ã³¸®ÇÏ±â À§ÇÑ ¿¹¿ÜÅ¬·¡½º
+//ë¡œê·¸ì¸ ì²˜ë¦¬ì‹œ ì‚¬ìš©ìžë¡œë¶€í„° ìž…ë ¥ë°›ì€ ì•„ì´ë””ì™€ ë¹„ë°€ë²ˆí˜¸ì— ëŒ€í•œ ì¸ì¦ì´ ì‹¤íŒ¨í•œ ê²½ìš°ì— 
+//ëŒ€í•œ ì •ë³´ë¥¼ ì €ìž¥í•˜ì—¬ ì²˜ë¦¬í•˜ê¸° ìœ„í•œ ì˜ˆì™¸í´ëž˜ìŠ¤
 public class LoginAuthFailException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 

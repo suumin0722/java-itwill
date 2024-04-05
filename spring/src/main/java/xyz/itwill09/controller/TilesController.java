@@ -3,15 +3,14 @@ package xyz.itwill09.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-//TilesView Å¬·¡½º : ¿äÃ» Ã³¸® ¸Ş¼ÒµåÀÇ ¹İÈ¯°ª(ViewName)À» Á¦°ø¹Ş¾Æ ´Ù¼öÀÇ JSP ¹®¼­°¡ °áÇÕµÈ
-//ºä(ÅÛÇÃ¸´ ÆäÀÌÁö - JSP)·Î ÀÀ´äÇÏ±â À§ÇÑ ±â´ÉÀ» Á¦°øÇÏ´Â ViewResolver Å¬·¡½º
-//1.TilesView °ü·Ã ¶óÀÌºê·¯¸®(tiles-extras ¶óÀÌºê·¯¸®)¸¦ ÇÁ·ÎÁ§Æ®¿¡ ºôµå Ã³¸® - ¸ŞÀÌºì : pom.xml
-//2.¿äÃ» Ã³¸® ¸Ş¼ÒµåÀÇ ¹İÈ¯°ª(ViewName)À» Á¦°ø¹Ş¾Æ ÀÀ´äÇÒ JSP ¹®¼­(ÅÛÇÃ¸´ ÆäÀÌÁö) ¼³Á¤
-//=> TilesView Å¬·¡½º°¡ Á¦°ø¹Ş¾Æ »ç¿ëÇÏ±â À§ÇÑ È¯°æ¼³Á¤ÆÄÀÏ ÀÛ¼º - /WEB-INF/spring/appServlet/tiles.xml
-//3.Front Controller(DispatchServlet °´Ã¼)°¡ ¿äÃ» Ã³¸® ¸Ş¼ÒµåÀÇ ¹İÈ¯°ª(ViewName)À» Á¦°ø¹Ş¾Æ
-//TilesView Å¬·¡½ºÀÇ °´Ã¼·Î ÀÀ´ä Ã³¸®µÇµµ·Ï Spring Bean Configuration File(servlet-context.xml) ¼³Á¤
-//=> InternalResourceViewResolver °´Ã¼º¸´Ù TilesView °´Ã¼·Î ¸ÕÀú ½ÇÇàµÇµµ·Ï ¿ì¼± ¼øÀ§ ¼³Á¤  
-
+//TilesView í´ë˜ìŠ¤ : ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œì˜ ë°˜í™˜ê°’(ViewName)ì„ ì œê³µë°›ì•„ ë‹¤ìˆ˜ì˜ JSP ë¬¸ì„œê°€ ê²°í•©ëœ
+//ë·°(í…œí”Œë¦¿ í˜ì´ì§€ - JSP)ë¡œ ì‘ë‹µí•˜ê¸° ìœ„í•œ ê¸°ëŠ¥ì„ ì œê³µí•˜ëŠ” ViewResolver í´ë˜ìŠ¤
+//1.TilesView ê´€ë ¨ ë¼ì´ë¸ŒëŸ¬ë¦¬(tiles-extras ë¼ì´ë¸ŒëŸ¬ë¦¬)ë¥¼ í”„ë¡œì íŠ¸ì— ë¹Œë“œ ì²˜ë¦¬ - ë©”ì´ë¸ : pom.xml
+//2.ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œì˜ ë°˜í™˜ê°’(ViewName)ì„ ì œê³µë°›ì•„ ì‘ë‹µí•  JSP ë¬¸ì„œ(í…œí”Œë¦¿ í˜ì´ì§€) ì„¤ì •
+// => TilesView í´ë˜ìŠ¤ê°€ ì œê³µë°›ì•„ ì‚¬ìš©í•˜ê¸° ìœ„í•œ í™˜ê²½ì„¤ì •íŒŒì¼ ì‘ì„± - /WEB-INF/spring/appServlet/tiles.xml
+//3.Front Controller(DispatchServlet ê°ì²´)ê°€ ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œì˜ ë°˜í™˜ê°’(ViewName)ì„ ì œê³µë°›ì•„
+//TilesView í´ë˜ìŠ¤ì˜ ê°ì²´ë¡œ ì‘ë‹µ ì²˜ë¦¬ë˜ë„ë¡ Spring Bean Configuration File(servlet-context.xml) ì„¤ì •
+// => InternalResourceViewResolver ê°ì²´ë³´ë‹¤ TilesView ê°ì²´ë¡œ ë¨¼ì € ì‹¤í–‰ë˜ë„ë¡ ìš°ì„  ìˆœìœ„ ì„¤ì •  
 
 @Controller
 public class TilesController {
@@ -27,7 +26,7 @@ public class TilesController {
 	
 	@RequestMapping("/tiles2")
 	public String tiles2() {
-		return "layout_tiles2";
+		return "layout/tiles2";
 	}
 	
 	@RequestMapping("/admin")
@@ -35,3 +34,6 @@ public class TilesController {
 		return "admin";
 	}
 }
+
+
+

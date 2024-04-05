@@ -4,7 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 
 //create table point_board(idx number primary key, writer varchar2(20), content varchar2(100));
-//create SEQUENCE point_board_seq;
+//create sequence point_board_seq;
 
 @Data
 @Builder

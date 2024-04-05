@@ -11,13 +11,13 @@ import xyz.itwill09.dto.PointUser;
 public class PointUserServiceImpl implements PointUserService {
 	private final PointUserDAO pointUserDAO;
 	
-	//¸Å°³º¯¼ö·Î È¸¿øÁ¤º¸¸¦ Àü´Ş¹Ş¾Æ POINT_USER Å×ÀÌºí¿¡ ÇàÀ¸·Î »ğÀÔÇÏ°í »ğÀÔµÈ Çà(È¸¿øÁ¤º¸)À»
-	//°Ë»öÇÏ¿© DTO °´Ã¼·Î ¹İÈ¯ÇÏ´Â ¸Ş¼Òµå
+	//ë§¤ê°œë³€ìˆ˜ë¡œ íšŒì›ì •ë³´ë¥¼ ì „ë‹¬ë°›ì•„ POINT_USER í…Œì´ë¸”ì— í–‰ìœ¼ë¡œ ì‚½ì…í•˜ê³  ì‚½ì…ëœ í–‰(íšŒì›ì •ë³´)ì„
+	//ê²€ìƒ‰í•˜ì—¬ PointUserDTO ê°ì²´ë¡œ ë°˜í™˜í•˜ëŠ” ë©”ì†Œë“œ
 	@Override
 	public PointUser addPointUser(PointUser user) {
-		//¸Å°³º¯¼ö·Î Àü´Ş¹ŞÀº È¸¿øÁ¤º¸ÀÇ ¾ÆÀÌµğ°¡ Áßº¹µÉ °æ¿ì ÀÎÀ§Àû ¿¹¿Ü ¹ß»ı
+		//ë§¤ê°œë³€ìˆ˜ë¡œ ì „ë‹¬ë°›ì€ íšŒì›ì •ë³´ì˜ ì•„ì´ë””ê°€ ì¤‘ë³µë  ê²½ìš° ì¸ìœ„ì  ì˜ˆì™¸ ë°œìƒ
 		if(pointUserDAO.selectPointUser(user.getId()) != null) {
-			throw new RuntimeException("ÀÌ¹Ì »ç¿ëÁßÀÎ ¾ÆÀÌµğÀÔ´Ï´Ù.");
+			throw new RuntimeException("ì´ë¯¸ ì‚¬ìš©ì¤‘ì¸ ì•„ì´ë””ì…ë‹ˆë‹¤.");
 		}
 		
 		pointUserDAO.insertPointUser(user);
@@ -25,6 +25,7 @@ public class PointUserServiceImpl implements PointUserService {
 	}
 
 }
+
 
 
 

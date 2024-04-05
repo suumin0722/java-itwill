@@ -2,9 +2,9 @@ package xyz.itwill09.dto;
 
 import lombok.Data;
 
-//È¸¿øÁ¤º¸¸¦ ÀúÀåÇÏ±â À§ÇÑ Å¬·¡½º - VO Å¬·¡½º >> DTO Å¬·¡½º
-// => DAO Å¬·¡½º¿¡¼­ Á¤º¸¸¦ Àü´ÞÇÒ ¸ñÀûÀ¸·Î ÀÛ¼ºµÈ Å¬·¡½º
-// => ÆäÀÌÁö ¿äÃ»½Ã Àü´Þ°ªÀ» ÀúÀåÇÒ ¸ñÀûÀ¸·Î »ç¿ë - Àü´Þ°ªÀÇ ÀÌ¸§°ú ÇÊµåÀÇ ÀÌ¸§ÀÌ °°µµ·Ï ÀÛ¼º
+//íšŒì›ì •ë³´ë¥¼ ì €ìž¥í•˜ê¸° ìœ„í•œ í´ëž˜ìŠ¤ - VO í´ëž˜ìŠ¤ >> DTO í´ëž˜ìŠ¤
+// => DAO í´ëž˜ìŠ¤ì—ì„œ ì •ë³´ë¥¼ ì „ë‹¬í•  ëª©ì ìœ¼ë¡œ ìž‘ì„±ëœ í´ëž˜ìŠ¤
+// => íŽ˜ì´ì§€ ìš”ì²­ì‹œ ì „ë‹¬ê°’ì„ ì €ìž¥í•  ëª©ì ìœ¼ë¡œ ì‚¬ìš© - ì „ë‹¬ê°’ì˜ ì´ë¦„ê³¼ í•„ë“œì˜ ì´ë¦„ì´ ê°™ë„ë¡ ìž‘ì„±
 @Data
 public class Member {
 	private String id;

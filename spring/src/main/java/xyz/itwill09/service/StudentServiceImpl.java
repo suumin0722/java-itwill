@@ -8,32 +8,31 @@ import lombok.RequiredArgsConstructor;
 import xyz.itwill09.dao.StudentDAO;
 import xyz.itwill09.dto.Student;
 
-//Service Å¬·¡½º : Å¬¶óÀÌ¾ğÆ® ¿äÃ»¿¡ ´ëÇÑ µ¥ÀÌÅÍ Ã³¸® ±â´ÉÀ» Á¦°øÇÏ±â À§ÇÑ Å¬·¡½º -  ÄÄÆ÷³ÍÆ®(Component) Å¬·¡½º
-// => Service Å¬·¡½ºÀÇ ¸Ş¼Òµå¿¡¼­´Â µ¥ÀÌÅÍ Ã³¸®¿¡ ÇÊ¿äÇÑ ¸í·ÉÀ¸·Î DAO Å¬·¡½ºÀÇ ¸Ş¼Òµå¸¦
-//È£ÃâÇÏ¿© ÀÛ¼º - DAO °´Ã¼¸¦ ¸ğµâÈ­ Ã³¸®ÇÏ¿© Á¦°ø
-// => Service Å¬·¡½º°¡ ±³Ã¼µÇ¾îµµ ÀÇÁ¸°ü°è·Î ¼³Á¤µÈ Controller Å¬·¡½º¿¡ ¿µÇâÀ» ÃÖ¼ÒÈ­ ÇÏ±â À§ÇØ
-//ÀÎÅÍÆäÀÌ½º¸¦ »ó¼Ó¹Ş¾Æ ÀÛ¼ºÇÏ´Â °ÍÀ» ±ÇÀå
+//Service í´ë˜ìŠ¤ : í´ë¼ì´ì–¸íŠ¸ ìš”ì²­ì— ëŒ€í•œ ë°ì´íƒ€ ì²˜ë¦¬ ê¸°ëŠ¥ì„ ì œê³µí•˜ê¸° ìœ„í•œ í´ë˜ìŠ¤ - ì»´í¼ë„ŒíŠ¸(Component)
+// => Service í´ë˜ìŠ¤ì˜ ë©”ì†Œë“œì—ì„œëŠ” ë°ì´íƒ€ ì²˜ë¦¬ì— í•„ìš”í•œ ëª…ë ¹ìœ¼ë¡œ DAO í´ë˜ìŠ¤ì˜ ë©”ì†Œë“œë¥¼ 
+//í˜¸ì¶œí•˜ì—¬ ì‘ì„± - DAO ê°ì²´ë¥¼ ëª¨ë“ˆí™” ì²˜ë¦¬í•˜ì—¬ ì œê³µ 
+// => Service í´ë˜ìŠ¤ê°€ êµì²´ë¼ë„ ì˜ì¡´ê´€ê³„ë¡œ ì„¤ì •ëœ Controller í´ë˜ìŠ¤ì— ì˜í–¥ì„ ìµœì†Œí™” í•˜ê¸° ìœ„í•´ 
+//ì¸í„°í˜ì´ìŠ¤ë¥¼ ìƒì†ë°›ì•„ ì‘ì„±í•˜ëŠ” ê²ƒì„ ê¶Œì¥
 
-//Service Å¬·¡½º´Â Controller Å¬·¡½º¿¡¼­ °´Ã¼·Î Á¦°ø¹Ş¾Æ »ç¿ëÇÒ ¼ö ÀÖµµ·Ï Spring BeanÀ¸·Î µî·Ï
-//=> Service Å¬·¡½º´Â @Service ¾î³ëÅ×ÀÌ¼ÇÀ» »ç¿ëÇÏ¿© Spring BeanÀ¸·Î µî·Ï Ã³¸®
-//=> @Service ¾î³ëÅ×ÀÌ¼ÇÀ» ½ºÇÁ¸µ ÄÁÅ×ÀÌ³Ê°¡ Ã³¸®ÇÏ±â À§ÇØ ¹İµå½Ã Å¬·¡½º°¡ ÀÛ¼ºµÈ ÆĞÅ°Áö¸¦
-//Spring Bean Configuration File(servlet-context.xmil)ÀÇ component-scan ¿¤¸®¸ÕÆ®·Î °Ë»öµÇµµ·Ï ¼³Á¤
+//Service í´ë˜ìŠ¤ëŠ” Controller í´ë˜ìŠ¤ì—ì„œ ê°ì²´ë¡œ ì œê³µë°›ì•„ ì‚¬ìš©í•  ìˆ˜ ìˆë„ë¡ ë°˜ë“œì‹œ Spring Beanìœ¼ë¡œ ë“±ë¡
+//=> Service í´ë˜ìŠ¤ëŠ” @Service ì–´ë…¸í…Œì´ì…˜ì„ ì‚¬ìš©í•˜ì—¬ Spring Beanìœ¼ë¡œ ë“±ë¡ ì²˜ë¦¬
+//=> @Service ì–´ë…¸í…Œì´ì…˜ì„ ìŠ¤í”„ë§ ì»¨í…Œì´ë„ˆê°€ ì²˜ë¦¬í•˜ê¸° ìœ„í•´ ë°˜ë“œì‹œ í´ë˜ìŠ¤ê°€ ì‘ì„±ëœ íŒ¨í‚¤ì§€ë¥¼
+//Spring Bean Configuration File(servlet-context.xml)ì˜ component-scan ì—˜ë¦¬ë¨¼íŠ¸ë¡œ ê²€ìƒ‰ë˜ë„ë¡ ì„¤ì •
 @Service
 @RequiredArgsConstructor
 public class StudentServiceImpl implements StudentService {
-	//Service Å¬·¡½ºÀÇ ¸Ş¼Òµå¿¡¼­´Â DAO Å¬·¡½ºÀÇ ¸Ş¼Òµå¸¦ È£ÃâÇÒ ¼ö ÀÖµµ·Ï DAO °´Ã¼°¡ ÀúÀåµÉ ÇÊµå ÀÛ¼º
-	// => DAO °´Ã¼°¡ ÀúÀåµÉ ¼ö ÀÖ´Â ÇÊµå¸¦ ÀÛ¼ºÇÏ¿© ½ºÇÁ¸µ ÄÁÅ×ÀÌ³Ê·ÎºÎÅÍ Spring BeanÀ»
-	//Á¦°ø¹Ş¾Æ ÀúÀåµÇµµ·Ï ÀÇÁ¸¼º ÁÖÀÔ(DI) - »ı¼ºÀÚ ·¹º§ÀÇ ÀÇÁ¸¼º ÁÖÀÔ
+	//Service í´ë˜ìŠ¤ì˜ ë©”ì†Œë“œì—ì„œëŠ” DAO í´ë˜ìŠ¤ì˜ ë©”ì†Œë“œë¥¼ í˜¸ì¶œí•  ìˆ˜ ìˆë„ë¡ DAO ê°ì²´ê°€ ì €ì¥ë  í•„ë“œ ì‘ì„±
+	// => DAO ê°ì²´ê°€ ì €ì¥ë  ìˆ˜ ìˆëŠ” í•„ë“œë¥¼ ì‘ì„±í•˜ì—¬ ìŠ¤í”„ë§ ì»¨í…Œì´ë„ˆë¡œë¶€í„° Spring Beanì„
+	//ì œê³µë°›ì•„ ì €ì¥ë˜ë„ë¡ ì˜ì¡´ì„± ì£¼ì…(DI) - ìƒì„±ì ë ˆë²¨ì˜ ì˜ì¡´ì„± ì£¼ì…
 	private final StudentDAO studentDAO;
-
+	
 	@Override
-	public void addStudent(Student student) {
+	public void addStuent(Student student) {
 		studentDAO.insertStudent(student);
 	}
-	
+
 	@Override
 	public List<Student> getStudentList() {
 		return studentDAO.selectStudentList();
 	}
-
 }

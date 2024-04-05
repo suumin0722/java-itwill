@@ -2,6 +2,6 @@ package xyz.itwill06.oop;
 
 public class OopLogger {
 	public void beforeLog() {
-		System.out.println("### ¸Ş¼Òµå ¸í·É(ÇÙ½É°ü½ÉÄÚµå) ½ÇÇàÀü¿¡ ±â·ÏµÉ ³»¿ë ###");
+		System.out.println("### ë©”ì†Œë“œ ëª…ë ¹(í•µì‹¬ê´€ì‹¬ì½”ë“œ) ì‹¤í–‰ì „ì— ê¸°ë¡ë  ë‚´ìš© ###");
 	}
 }

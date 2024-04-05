@@ -1,9 +1,9 @@
 package xyz.itwill03.spring;
 
 public class MessagePrintObject {
-	//MessageObject ÀÎÅÍÆäÀÌ½º¸¦ »ó¼Ó¹ŞÀº ÀÚ½ÄÅ¬·¡½ºÀÇ °´Ã¼¸¦ ÀúÀåÇÏ±â À§ÇÑ ÇÊµå
-	// => ÇÊµå¿¡ °´Ã¼¸¦ ÀúÀåÇÏ±â À§ÇØ »ı¼ºÀÚ ¶Ç´Â Setter ¸Ş¼Òµå¸¦ ¹İµå½Ã ÀÛ¼º - Æ÷ÇÔ°ü°è(ÀÇÁ¸°ü°è)
-	// => ÇÊµå¿¡ °´Ã¼¸¦ ÀúÀåÇØ¾ß¸¸ Å¬·¡½º¿¡¼­ °´Ã¼·Î ¸Ş¼Òµå È£Ãâ °¡´É
+	//MessageObject ì¸í„°í˜ì´ìŠ¤ë¥¼ ìƒì†ë°›ì€ ìì‹í´ë˜ìŠ¤ì˜ ê°ì²´ë¥¼ ì €ì¥í•˜ê¸° ìœ„í•œ í•„ë“œ
+	// => í•„ë“œì— ê°ì²´ë¥¼ ì €ì¥í•˜ê¸° ìœ„í•´ ìƒì„±ì ë˜ëŠ” Setter ë©”ì†Œë“œë¥¼ ë°˜ë“œì‹œ ì‘ì„± - í¬í•¨ê´€ê³„(ì˜ì¡´ê´€ê³„)
+	// => í•„ë“œì— ê°ì²´ë¥¼ ì €ì¥í•´ì•¼ë§Œ í´ë˜ìŠ¤ì—ì„œ ê°ì²´ë¡œ ë©”ì†Œë“œ í˜¸ì¶œ ê°€ëŠ¥
 	private MessageObject object;
 
 	public MessageObject getObject() {
@@ -15,9 +15,8 @@ public class MessagePrintObject {
 	}
 	
 	public void messagePrint() {
-		//ÇÊµå¿¡ °´Ã¼°¡ ÀúÀåµÇ¾î ÀÖÁö ¾ÊÀº °æ¿ì ¿¹¿Ü(NullPointerException) ¹ß»ı
+		//í•„ë“œì— ê°ì²´ê°€ ì €ì¥ë˜ì–´ ìˆì§€ ì•Šì€ ê²½ìš° ì˜ˆì™¸(NullPointerException) ë°œìƒ
 		String message=object.getMessage();
 		System.out.println("message = "+message);
 	}
-	
 }

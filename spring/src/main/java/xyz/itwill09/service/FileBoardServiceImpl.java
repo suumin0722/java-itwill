@@ -27,7 +27,7 @@ public class FileBoardServiceImpl implements FileBoardService {
 	@Override
 	public void removeFileBoard(int idx) {
 		if(fileBoardDAO.selectFileBoard(idx) == null) {
-			throw new RuntimeException("°Ô½Ã±ÛÀ» Ã£À» ¼ö ¾ø½À´Ï´Ù.");
+			throw new RuntimeException("ê²Œì‹œê¸€ì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 		}
 		
 		fileBoardDAO.deleteFileBoard(idx);
@@ -37,30 +37,30 @@ public class FileBoardServiceImpl implements FileBoardService {
 	public FileBoard getFileBoard(int idx) {
 		FileBoard fileBoard=fileBoardDAO.selectFileBoard(idx);
 		if(fileBoard == null) {
-			throw new RuntimeException("°Ô½Ã±ÛÀ» Ã£À» ¼ö ¾ø½À´Ï´Ù.");
+			throw new RuntimeException("ê²Œì‹œê¸€ì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 		}
 		return fileBoard;
 	}
 
-	//¸Ş¼ÒµåÀÇ ¸Å°³º¯¼ö·Î ¿äÃ» ÆäÀÌÁö ¹øÈ£¸¦ Àü´Ş¹Ş¾Æ °Ô½Ã±Û ¸ñ·ÏÀ» °Ë»öÇÏ¿© °Ô½Ã±Û ¸ñ·Ï°ú
-	//ÆäÀÌÂ¡ Ã³¸® °ü·Ã Á¤º¸¸¦ Map °´Ã¼ÀÇ ¿£Æ®¸®·Î Ãß°¡ÇÏ¿© ¹İÈ¯ÇÏ´Â ¸Ş¼Òµå 
+	//ë©”ì†Œë“œì˜ ë§¤ê°œë³€ìˆ˜ë¡œ ìš”ì²­ í˜ì´ì§€ ë²ˆí˜¸ë¥¼ ì „ë‹¬ë°›ì•„ ê²Œì‹œê¸€ ëª©ë¡ì„ ê²€ìƒ‰í•˜ì—¬ ê²Œì‹œê¸€ ëª©ë¡ê³¼
+	//í˜ì´ì§• ì²˜ë¦¬ ê´€ë ¨ ì •ë³´ë¥¼ Map ê°ì²´ì˜ ì—”íŠ¸ë¦¬ë¡œ ì¶”ê°€í•˜ì—¬ ë°˜í™˜í•˜ëŠ” ë©”ì†Œë“œ 
 	@Override
 	public Map<String, Object> getFileBoardList(int pageNum) {
-		//FILE_BOARD Å×ÀÌºí¿¡ ÀúÀåµÈ ¸ğµç Çà(°Ô½Ã±Û)ÀÇ °¹¼ö¸¦ ¹İÈ¯¹Ş¾Æ ÀúÀå
+		//FILE_BOARD í…Œì´ë¸”ì— ì €ì¥ëœ ëª¨ë“  í–‰(ê²Œì‹œê¸€)ì˜ ê°¯ìˆ˜ë¥¼ ë°˜í™˜ë°›ì•„ ì €ì¥
 		int totalSize=fileBoardDAO.selectFileBoardCount();
-		int pageSize=5;//ÇÏ³ªÀÇ ÆäÀÌÁö¿¡ Ãâ·ÂµÉ °Ô½Ã±ÛÀÇ °¹¼ö¸¦ ÀúÀå
-		int blockSize=5;//ÇÏ³ªÀÇ ºí·°¿¡ Ãâ·ÂµÉ ÆäÀÌÁö ¹øÈ£ÀÇ °¹¼ö¸¦ ÀúÀå
+		int pageSize=5;//í•˜ë‚˜ì˜ í˜ì´ì§€ì— ì¶œë ¥ë  ê²Œì‹œê¸€ì˜ ê°¯ìˆ˜ë¥¼ ì €ì¥
+		int blockSize=5;//í•˜ë‚˜ì˜ ë¸”ëŸ­ì— ì¶œë ¥ë  í˜ì´ì§€ ë²ˆí˜¸ì˜ ê°¯ìˆ˜ë¥¼ ì €ì¥
 
 		Pager pager=new Pager(pageNum, totalSize, pageSize, blockSize);
 
-		//FileBoardDAO Å¬·¡½ºÀÇ selectFileBoardList() ¸Ş¼Òµå¸¦ È£ÃâÇÏ±â À§ÇØ ¸Å°³º¯¼ö¿¡ Àü´ŞµÉ Map °´Ã¼ »ı¼º
+		//FileBoardDAO í´ë˜ìŠ¤ì˜ selectFileBoardList() ë©”ì†Œë“œë¥¼ í˜¸ì¶œí•˜ê¸° ìœ„í•´ ë§¤ê°œë³€ìˆ˜ì— ì „ë‹¬ë  Map ê°ì²´ ìƒì„±
 		Map<String, Object> pageMap=new HashMap<String, Object>();
 		pageMap.put("startRow", pager.getStartRow());
 		pageMap.put("endRow", pager.getEndRow());
 		List<FileBoard> fileBoardList=fileBoardDAO.selectFileBoardList(pageMap);
 		
-		//¿äÃ» Ã³¸® ¸Ş¼Òµå¿¡°Ô ¹İÈ¯µÉ Ã³¸®°á°ú°¡ ÀúÀåµÈ Map °´Ã¼ »ı¼º
-		// => ¿äÃ» Ã³¸® ¸Ş¼Òµå´Â ¹İÈ¯¹ŞÀº Map °´Ã¼¸¦ ºä¿¡°Ô Á¦°øÇÏ¿© Ãâ·Â Ã³¸®
+		//ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œì—ê²Œ ë°˜í™˜ë  ì²˜ë¦¬ê²°ê³¼ê°€ ì €ì¥ëœ Map ê°ì²´ ìƒì„±
+		// => ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œëŠ” ë°˜í™˜ë°›ì€ Map ê°ì²´ë¥¼ ë·°ì—ê²Œ ì œê³µí•˜ì—¬ ì¶œë ¥ ì²˜ë¦¬
 		Map<String, Object> resultMap=new HashMap<String, Object>();
 		resultMap.put("pager", pager);
 		resultMap.put("fileBoardList", fileBoardList);

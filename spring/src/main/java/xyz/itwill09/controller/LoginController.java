@@ -4,40 +4,58 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import xyz.itwill09.dto.Member;
 
 @Controller
 public class LoginController {
-	//»ç¿ëÀÚ¿¡°Ô ÀÎÁõÁ¤º¸¸¦ ÀÔ·Â¹Ş±â À§ÇÑ JSP ¹®¼­ÀÇ ºäÀÌ¸§À» ¹İÈ¯ÇÏ´Â ¿äÃ» Ã³¸® ¸Ş¼Òµå
+	//ì‚¬ìš©ìì—ê²Œ ì¸ì¦ì •ë³´ë¥¼ ì…ë ¥ë°›ê¸° ìœ„í•œ JSP ë¬¸ì„œì˜ ë·°ì´ë¦„ì„ ë°˜í™˜í•˜ëŠ” ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œ
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login() {
 		return "login_form";
 	}
 	
-	//Àü´Ş°ª(ÀÎÁõÁ¤º¸)¸¦ ¸Å°³º¯¼ö·Î Á¦°ø¹Ş¾Æ ÀÎÁõ Ã³¸® ÈÄ ±ÇÇÑ °ü·Ã Á¤º¸¸¦ Session Scope ¼Ó¼º°ªÀ¸·Î
-	//ÀúÀåÇÏ°í ·Î±×ÀÎ ¼º°ø ¸Ş¼¼Áö¸¦ Ãâ·ÂÇÏ´Â JSP ¹®¼­ÀÇ ºäÀÌ¸§À» ¹İÈ¯ÇÏ´Â ¿äÃ» Ã³¸® ¸Ş¼Òµå
-	// => Àü´Ş°ªÀ» String Å¬·¡½ºÀÇ ¸Å°³º¯¼ö·Î ÇÏ³ª¾¿ Á¦°ø¹Ş¾Æ »ç¿ë
-	//¿äÃ» Ã³¸® ¸Ş¼ÒµåÀÇ ¸Å°³º¯¼ö ÀÚ·áÇüÀ» HttpSession ÀÎÅÍÆäÀÌ½º·Î ÀÛ¼ºÇÏ¸é Front Controller¿¡¼­
-	//¼¼¼Ç ¹ÙÀÎµù Ã³¸®µÈ HttpSession °´Ã¼À» Á¦°ø¹Ş¾Æ ¸Å°³º¯¼ö¿¡ ÀúÀåÇÏ¿© »ç¿ë
+	/*
+	//ì „ë‹¬ê°’(ì¸ì¦ì •ë³´)ë¥¼ ë§¤ê°œë³€ìˆ˜ë¡œ ì œê³µë°›ì•„ ì¸ì¦ ì²˜ë¦¬ í›„ ê¶Œí•œ ê´€ë ¨ ì •ë³´ë¥¼ Session Scope ì†ì„±ê°’ìœ¼ë¡œ
+	//ì €ì¥í•˜ê³  ë¡œê·¸ì¸ ì„±ê³µ ë©”ì„¸ì§€ë¥¼ ì¶œë ¥í•˜ëŠ” JSP ë¬¸ì„œì˜ ë·°ì´ë¦„ì„ ë°˜í™˜í•˜ëŠ” ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œ
+	// => ë§¤ê°œë³€ìˆ˜ë¥¼ String í´ë˜ìŠ¤ë¡œ ì‘ì„±í•˜ì—¬ ì „ë‹¬ê°’ì„ í•˜ë‚˜ì”© ì œê³µë°›ì•„ ì‚¬ìš©
+	//ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œì˜ ë§¤ê°œë³€ìˆ˜ ìë£Œí˜•ì„ HttpSession ì¸í„°í˜ì´ìŠ¤ë¡œ ì‘ì„±í•˜ë©´ Front Controllerì—ì„œ
+	//ì„¸ì…˜ ë°”ì¸ë”© ì²˜ë¦¬ëœ HttpSession ê°ì²´ì„ ì œê³µë°›ì•„ ë§¤ê°œë³€ìˆ˜ì— ì €ì¥í•˜ì—¬ ì‚¬ìš©
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(@RequestParam String id, @RequestParam String passwd
 			, Model model, HttpSession session) {
-		if(!id.equals("abc123") || !passwd.equals("123456")) {//ÀÎÁõ ½ÇÆĞ
-			//ÀÎÁõ ½ÇÆĞ °ü·Ã Á¤º¸¸¦ Model °´Ã¼·Î Request Scope ¼Ó¼º°ªÀ¸·Î ÀúÀå
-			//Request Scope : ÇöÀç ¿äÃ» Ã³¸® ¸Ş¼Òµå¿Í Æ÷¿öµå ÀÌµ¿ µÇ´Â ºä¿¡¼­¸¸ ¼Ó¼º°ªÀ» Á¦°ø¹Ş¾Æ »ç¿ë 
-			model.addAttribute("message", "¾ÆÀÌµğ ¶Ç´Â ºñ¹Ğ¹øÈ£¸¦ Àß¸ø ÀÔ·Â ÇÏ¿´½À´Ï´Ù.");
+		if(!id.equals("abc123") || !passwd.equals("123456")) {//ì¸ì¦ ì‹¤íŒ¨
+			//ì¸ì¦ ì‹¤íŒ¨ ê´€ë ¨ ì •ë³´ë¥¼ Model ê°ì²´ë¡œ Request Scope ì†ì„±ê°’ìœ¼ë¡œ ì €ì¥
+			//Request Scope : í˜„ì¬ ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œì™€ í¬ì›Œë“œ ì´ë™ ë˜ëŠ” ë·°ì—ì„œë§Œ ì†ì„±ê°’ì„ ì œê³µë°›ì•„ ì‚¬ìš© 
+			model.addAttribute("message", "ì•„ì´ë”” ë˜ëŠ” ë¹„ë°€ë²ˆí˜¸ë¥¼ ì˜ëª» ì…ë ¥ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 			model.addAttribute("id", id);
-			return "login_form";//ÀÔ·ÂÆäÀÌÁö ÀÌµ¿
+			return "login_form";//ì…ë ¥í˜ì´ì§€ ì´ë™
 		}
 		
-		//ÀÎÁõ ¼º°ø - ±ÇÇÑ °ü·Ã Á¤º¸¸¦ Session Scope ¼Ó¼º°ªÀ¸·Î ÀúÁ¤
-		//Session Scope : µ¿ÀÏÇÑ ¼¼¼ÇÀ» »ç¿ëÇÏ´Â ¸ğµç ¿äÃ» Ã³¸® ¸Ş¼Òµå¿Í ºä¿¡¼­ ¼Ó¼º°ªÀ» Á¦°ø¹Ş¾Æ »ç¿ë
+		//ì¸ì¦ ì„±ê³µ - ê¶Œí•œ ê´€ë ¨ ì •ë³´ë¥¼ Session Scope ì†ì„±ê°’ìœ¼ë¡œ ì €ì •
+		//Session Scope : ë™ì¼í•œ ì„¸ì…˜ì„ ì‚¬ìš©í•˜ëŠ” ëª¨ë“  ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œì™€ ë·°ì—ì„œ ì†ì„±ê°’ì„ ì œê³µë°›ì•„ ì‚¬ìš©
 		session.setAttribute("loginId", id);
 		
 		return "login_display";
 	}
+	*/
+
+	//ì „ë‹¬ê°’(ì¸ì¦ì •ë³´)ë¥¼ ë§¤ê°œë³€ìˆ˜ë¡œ ì œê³µë°›ì•„ ì¸ì¦ ì²˜ë¦¬ í›„ ê¶Œí•œ ê´€ë ¨ ì •ë³´ë¥¼ Session Scope ì†ì„±ê°’ìœ¼ë¡œ
+	//ì €ì¥í•˜ê³  ë¡œê·¸ì¸ ì„±ê³µ ë©”ì„¸ì§€ë¥¼ ì¶œë ¥í•˜ëŠ” JSP ë¬¸ì„œì˜ ë·°ì´ë¦„ì„ ë°˜í™˜í•˜ëŠ” ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œ
+	// => ë§¤ê°œë³€ìˆ˜ë¥¼ Member í´ë˜ìŠ¤ë¡œ ì‘ì„±í•˜ì—¬ ëª¨ë“  ì „ë‹¬ê°’ì´ ì €ì¥ëœ Command ê°ì²´ë¡œ ì œê³µë°›ì•„ ì‚¬ìš©
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String login(@ModelAttribute Member member, Model model, HttpSession session) {
+		if(!member.getId().equals("abc123") || !member.getPasswd().equals("123456")) {
+			model.addAttribute("message", "ì•„ì´ë”” ë˜ëŠ” ë¹„ë°€ë²ˆí˜¸ë¥¼ ì˜ëª» ì…ë ¥ í•˜ì˜€ìŠµë‹ˆë‹¤.");
+			return "login_form";
+		}
+		session.setAttribute("loginId", member.getId());
+		return "login_display";
+	}
+	
 	
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
@@ -47,11 +65,11 @@ public class LoginController {
 		return "logout_display";
 	}
 	
-	//·Î±×ÀÎ »óÅÂÀÇ »ç¿ëÀÚ¸¸ Á¢±Ù °¡´ÉÇÑ ÆäÀÌÁö
+	//ë¡œê·¸ì¸ ìƒíƒœì˜ ì‚¬ìš©ìë§Œ ì ‘ê·¼ ê°€ëŠ¥í•œ í˜ì´ì§€
 	@RequestMapping("/login_user")
 	public String login(HttpSession session, Model model) {
 		if(session.getAttribute("loginId")==null) {
-			model.addAttribute("message", "·Î±×ÀÎ »ç¿ëÀÚ¸¸ Á¢±Ù °¡´ÉÇÕ´Ï´Ù.");
+			model.addAttribute("message", "ë¡œê·¸ì¸ ì‚¬ìš©ìë§Œ ì ‘ê·¼ ê°€ëŠ¥í•©ë‹ˆë‹¤.");
 			return "login_form";
 		}
 		

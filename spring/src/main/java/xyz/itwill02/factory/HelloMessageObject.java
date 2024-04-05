@@ -1,12 +1,10 @@
 package xyz.itwill02.factory;
 
-//Factory Å¬·¡½º¿¡ ÀÇÇØ °´Ã¼·Î »ı¼ºµÉ Å¬·¡½º - ÀÎÅÍÆäÀÌ½º¸¦ »ó¼Ó¹Ş¾Æ ÀÛ¼º 
-//=> ÀÎÅÍÆäÀÌ½ºÀÇ Ãß»ó¸Ş¼Òµå¸¦ ¹İµå½Ã ¿À¹ö¶óÀÌµå ¼±¾ğ
+//Factory í´ë˜ìŠ¤ì— ì˜í•´ ê°ì²´ë¡œ ìƒì„±ë  í´ë˜ìŠ¤ - ì¸í„°í˜ì´ìŠ¤ë¥¼ ìƒì†ë°›ì•„ ì‘ì„± 
+// => ì¸í„°í˜ì´ìŠ¤ì˜ ì¶”ìƒë©”ì†Œë“œë¥¼ ë°˜ë“œì‹œ ì˜¤ë²„ë¼ì´ë“œ ì„ ì–¸
 public class HelloMessageObject implements MessageObject {
-
 	@Override
 	public String getMessage() {
-		return "Hello!!!";	
+		return "Hello!!!";
 	}
-	
 }

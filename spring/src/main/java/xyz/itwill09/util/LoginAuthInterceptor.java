@@ -10,19 +10,19 @@ import org.springframework.web.servlet.ModelAndView;
 import xyz.itwill09.dto.Userinfo;
 import xyz.itwill09.exception.BadRequestException;
 
-//Interceptor Å¬·¡½º : ¿äÃ» Ã³¸® ¸Þ¼Òµå È£Ãâ Àü ¶Ç´Â ÈÄ¿¡ »ðÀÔµÇ¾î ½ÇÇàµÉ ±â´ÉÀ» Á¦°øÇÏ´Â Å¬·¡½º
-// => Interceptor Å¬·¡½º´Â ¹Ýµå½Ã HandlerInterceptor ÀÎÅÍÆäÀÌ½º¸¦ »ó¼Ó¹Þ¾Æ ÀÛ¼º
-// => HandlerInterceptor ÀÎÅÍÆäÀÌ½ºÀÇ ±âº» ¸Þ¼Òµå(Default Method) Áß ÇÊ¿äÇÑ ¸Þ¼Òµå¸¸ ¿À¹ö¶óÀÌµå ¼±¾ðÇÏ¿© »ç¿ë
-// => Interceptor Å¬·¡½º´Â Front Controller¿¡ ÀÇÇØ °ü¸®µÇ¹Ç·Î Spring Bean Configuration File
-//(servlet-context.xml)¿¡¼­ Spring BeanÀ¸·Î µî·ÏÇÏ¿© ¿äÃ» Ã³¸® ¸Þ¼Òµå È£Ãâ Àü ¶Ç´Â ÈÄ¿¡ ½ÇÇàµÇµµ·Ï ¼³Á¤
-// => Filter Å¬·¡½º´Â Front Controller ÀÌÀü¿¡ À§Ä¡ÇÏ¿© ½ÇÇàµÇ°í Interceptor Å¬·¡½º´Â Front 
-//Controller ´ÙÀ½¿¡ À§Ä¡ÇÏ¿© ½ÇÇà - Filter Å¬·¡½º´Â WAS ÇÁ·Î±×·¥¿¡ ÀÇÇØ °ü¸® 
+//Interceptor í´ëž˜ìŠ¤ : ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œ í˜¸ì¶œ ì „ ë˜ëŠ” í›„ì— ì‚½ìž…ë˜ì–´ ì‹¤í–‰ë  ê¸°ëŠ¥ì„ ì œê³µí•˜ëŠ” í´ëž˜ìŠ¤
+// => Interceptor í´ëž˜ìŠ¤ëŠ” ë°˜ë“œì‹œ HandlerInterceptor ì¸í„°íŽ˜ì´ìŠ¤ë¥¼ ìƒì†ë°›ì•„ ìž‘ì„±
+// => HandlerInterceptor ì¸í„°íŽ˜ì´ìŠ¤ì˜ ê¸°ë³¸ ë©”ì†Œë“œ(Default Method) ì¤‘ í•„ìš”í•œ ë©”ì†Œë“œë§Œ ì˜¤ë²„ë¼ì´ë“œ ì„ ì–¸í•˜ì—¬ ì‚¬ìš©
+// => Interceptor í´ëž˜ìŠ¤ëŠ” Front Controllerì— ì˜í•´ ê´€ë¦¬ë˜ë¯€ë¡œ Spring Bean Configuration File
+//(servlet-context.xml)ì—ì„œ Spring Beanìœ¼ë¡œ ë“±ë¡í•˜ì—¬ ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œ í˜¸ì¶œ ì „ ë˜ëŠ” í›„ì— ì‹¤í–‰ë˜ë„ë¡ ì„¤ì •
+// => Filter í´ëž˜ìŠ¤ëŠ” Front Controller ì´ì „ì— ìœ„ì¹˜í•˜ì—¬ ì‹¤í–‰ë˜ê³  Interceptor í´ëž˜ìŠ¤ëŠ” Front 
+//Controller ë‹¤ìŒì— ìœ„ì¹˜í•˜ì—¬ ì‹¤í–‰ - Filter í´ëž˜ìŠ¤ëŠ” WAS í”„ë¡œê·¸ëž¨ì— ì˜í•´ ê´€ë¦¬(web.xml íŒŒì¼ë¡œ ì„¤ì •) 
 
-//·Î±×ÀÎ »ç¿ëÀÚ °ü·Ã ±ÇÇÑ Ã³¸®¸¦ À§ÇØ ÀÛ¼ºµÈ ÀÎÅÍ¼ÁÅÍ Å¬·¡½º
-// => ¿äÃ» Ã³¸® ¸Þ¼Òµå È£Ãâ Àü¿¡ ºñ·Î±×ÀÎ »ç¿ëÀÚ°¡ ÆäÀÌÁö¸¦ ¿äÃ»ÇÒ °æ¿ì ÀÎÀ§Àû ¿¹¿Ü ¹ß»ý
+//ë¡œê·¸ì¸ ì‚¬ìš©ìž ê´€ë ¨ ê¶Œí•œ ì²˜ë¦¬ë¥¼ ìœ„í•´ ìž‘ì„±ëœ ì¸í„°ì…‰í„° í´ëž˜ìŠ¤
+// => ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œ í˜¸ì¶œ ì „ì— ë¹„ë¡œê·¸ì¸ ì‚¬ìš©ìžê°€ íŽ˜ì´ì§€ë¥¼ ìš”ì²­í•  ê²½ìš° ì¸ìœ„ì  ì˜ˆì™¸ ë°œìƒ
 public class LoginAuthInterceptor implements HandlerInterceptor {
-	//preHandle ¸Þ¼Òµå : ¿äÃ» Ã³¸® ¸Þ¼Òµå È£Ãâ Àü¿¡ ½ÇÇàµÉ ¸í·ÉÀ» ÀÛ¼ºÇÏ±â À§ÇÑ ¸Þ¼Òµå
-	// => false ¹ÝÈ¯ : ¿äÃ» Ã³¸® ¸Þ¼Òµå ¹ÌÈ£Ãâ, true ¹ÝÈ¯ : ¿äÃ» Ã³¸® ¸Þ¼Òµå È£Ãâ
+	//preHandle ë©”ì†Œë“œ : ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œ í˜¸ì¶œ ì „ì— ì‹¤í–‰ë  ëª…ë ¹ì„ ìž‘ì„±í•˜ê¸° ìœ„í•œ ë©”ì†Œë“œ
+	// => false ë°˜í™˜ : ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œ ë¯¸í˜¸ì¶œ, true ë°˜í™˜ : ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œ í˜¸ì¶œ
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
@@ -31,16 +31,16 @@ public class LoginAuthInterceptor implements HandlerInterceptor {
 		Userinfo loginUserinfo=(Userinfo)session.getAttribute("loginUserinfo");
 		
 		if(loginUserinfo == null) {
-			//ÀÎÀ§Àû ¿¹¿Ü ¹ß»ý - ¿äÃ» Ã³¸® ¸Þ¼Òµå ¹ÌÈ£Ãâ
-			throw new BadRequestException("ºñÁ¤»óÀûÀÎ ¹æ½ÄÀ¸·Î ÆäÀÌÁö¸¦ ¿äÃ» ÇÏ¿´½À´Ï´Ù.");
+			//ì¸ìœ„ì  ì˜ˆì™¸ ë°œìƒ - ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œ ë¯¸í˜¸ì¶œ
+			throw new BadRequestException("ë¹„ì •ìƒì ì¸ ë°©ì‹ìœ¼ë¡œ íŽ˜ì´ì§€ë¥¼ ìš”ì²­ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		}
 		
 		return true;
 	}
 	
-	//postHandle ¸Þ¼Òµå : ¿äÃ» Ã³¸® ¸Þ¼Òµå°¡ È£ÃâµÇ¾î ½ÇÇàµÈ ÈÄ ¹ÝÈ¯µÈ ºäÀÌ¸§À¸·Î ViewResolver
-	//°´Ã¼°¡ ºä(View)¸¦ »ý¼ºÇÏ±â Àü¿¡ ½ÇÇàµÉ ¸í·ÉÀ» ÀÛ¼ºÇÏ´Â ¸Þ¼Òµå
-	// => ModelAndView °´Ã¼¸¦ Á¦°ø¹Þ¾Æ ViewName ¶Ç´Â ¼Ó¼º°ªÀ» ÀúÀå(º¯°æ)ÇÏ±â À§ÇÑ »ç¿ë 
+	//postHandle ë©”ì†Œë“œ : ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œê°€ í˜¸ì¶œë˜ì–´ ì‹¤í–‰ëœ í›„ ë°˜í™˜ëœ ë·°ì´ë¦„ìœ¼ë¡œ ViewResolver
+	//ê°ì²´ê°€ ë·°(View)ë¥¼ ìƒì„±í•˜ê¸° ì „ì— ì‹¤í–‰ë  ëª…ë ¹ì„ ìž‘ì„±í•˜ëŠ” ë©”ì†Œë“œ
+	// => ModelAndView ê°ì²´ë¥¼ ì œê³µë°›ì•„ ViewName ë˜ëŠ” ì†ì„±ê°’ì„ ì €ìž¥(ë³€ê²½)í•˜ê¸° ìœ„í•œ ì‚¬ìš© 
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
@@ -48,9 +48,9 @@ public class LoginAuthInterceptor implements HandlerInterceptor {
 		HandlerInterceptor.super.postHandle(request, response, handler, modelAndView);
 	}
 
-	//afterCompletion ¸Þ¼Òµå : ¿äÃ» Ã³¸® ¸Þ¼Òµå°¡ È£ÃâµÇ¾î ½ÇÇàµÈ ÈÄ ¹ÝÈ¯µÈ ºäÀÌ¸§À¸·Î ViewResolver
-	//°´Ã¼°¡ ºä(View)¸¦ »ý¼ºÇÏ±â ÈÄ¿¡ ½ÇÇàµÉ ¸í·ÉÀ» ÀÛ¼ºÇÏ´Â ¸Þ¼Òµå
-	// => ºä(View)¸¦ º¯°æÇÏ±â À§ÇØ »ç¿ë
+	//afterCompletion ë©”ì†Œë“œ : ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œê°€ í˜¸ì¶œë˜ì–´ ì‹¤í–‰ëœ í›„ ë°˜í™˜ëœ ë·°ì´ë¦„ìœ¼ë¡œ ViewResolver
+	//ê°ì²´ê°€ ë·°(View)ë¥¼ ìƒì„±í•˜ê¸° í›„ì— ì‹¤í–‰ë  ëª…ë ¹ì„ ìž‘ì„±í•˜ëŠ” ë©”ì†Œë“œ
+	// => ë·°(View)ë¥¼ ë³€ê²½í•˜ê¸° ìœ„í•´ ì‚¬ìš©
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {
@@ -58,5 +58,17 @@ public class LoginAuthInterceptor implements HandlerInterceptor {
 		HandlerInterceptor.super.afterCompletion(request, response, handler, ex);
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 

@@ -8,17 +8,17 @@
 	<update id="updateUserinfo">
 		update userinfo
 		<set>
-			<if test="password !=null and password !=''">
+			<if test="password !=null and password != ''">
 				password=#{password}
 			</if>
-			<if test="name !=null and name !=''">
-				name=#{name}
+			<if test="name !=null and name != ''">
+				, name=#{name}
 			</if>
-			<if test="email !=null and email !=''">
-				email=#{email}
+			<if test="email !=null and email != ''">
+				, email=#{email}
 			</if>
-			<if test="status !=null and status !=''">
-				status=#{status}
+			<if test="status == 1 or status == 9">
+				, status=#{status}
 			</if>
 		</set>
 		where userid=#{userid}
@@ -36,3 +36,13 @@
 		select userid, password, name, email, status from userinfo order by userid
 	</select>
 </mapper>
+
+
+
+
+
+
+
+
+
+

@@ -3,31 +3,31 @@ package xyz.itwill06.oop;
 public class OopTwo {
 	/*
 	private void beforeLog() {
-		System.out.println("### ¸Ş¼Òµå ¸í·É(ÇÙ½É°ü½ÉÄÚµå) ½ÇÇàÀü¿¡ ±â·ÏµÉ ³»¿ë ###");
+		System.out.println("### ë©”ì†Œë“œ ëª…ë ¹(í•µì‹¬ê´€ì‹¬ì½”ë“œ) ì‹¤í–‰ì „ì— ê¸°ë¡ë  ë‚´ìš© ###");
 	}
 	*/
 	
 	private OopLogger logger=new OopLogger();
 	
 	public void display1() {
-		//System.out.println("### ¸Ş¼Òµå ¸í·É ½ÇÇàÀü¿¡ ±â·ÏµÉ ³»¿ë ###");
+		//System.out.println("### ë©”ì†Œë“œ ëª…ë ¹ ì‹¤í–‰ì „ì— ê¸°ë¡ë  ë‚´ìš© ###");
 		//beforeLog();
 		logger.beforeLog();
 		logger.beforeLog();
-		System.out.println("*** OopTwo Å¬·¡½ºÀÇ display1() ¸Ş¼Òµå È£Ãâ ***");
+		System.out.println("*** OopTwo í´ë˜ìŠ¤ì˜ display1() ë©”ì†Œë“œ í˜¸ì¶œ ***");
 	}
 	
 	public void display2() {
-		//System.out.println("### ¸Ş¼Òµå ¸í·É ½ÇÇàÀü¿¡ ±â·ÏµÉ ³»¿ë ###");
+		//System.out.println("### ë©”ì†Œë“œ ëª…ë ¹ ì‹¤í–‰ì „ì— ê¸°ë¡ë  ë‚´ìš© ###");
 		//beforeLog();
 		logger.beforeLog();
-		System.out.println("*** OopTwo Å¬·¡½ºÀÇ display2() ¸Ş¼Òµå È£Ãâ ***");
+		System.out.println("*** OopTwo í´ë˜ìŠ¤ì˜ display2() ë©”ì†Œë“œ í˜¸ì¶œ ***");
 	}
 	
 	public void display3() {
-		//System.out.println("### ¸Ş¼Òµå ¸í·É ½ÇÇàÀü¿¡ ±â·ÏµÉ ³»¿ë ###");
+		//System.out.println("### ë©”ì†Œë“œ ëª…ë ¹ ì‹¤í–‰ì „ì— ê¸°ë¡ë  ë‚´ìš© ###");
 		//beforeLog();
 		logger.beforeLog();
-		System.out.println("*** OopTwo Å¬·¡½ºÀÇ display3() ¸Ş¼Òµå È£Ãâ ***");
+		System.out.println("*** OopTwo í´ë˜ìŠ¤ì˜ display3() ë©”ì†Œë“œ í˜¸ì¶œ ***");
 	}
 }

@@ -13,14 +13,14 @@ import xyz.itwill09.exception.ExistsUserinfoException;
 import xyz.itwill09.exception.LoginAuthFailException;
 import xyz.itwill09.exception.UserinfoNotFoundException;
 
-//»ç¿ëÀÚ·ÎºÎÅÍ ÀÔ·Â¹Ş¾Æ Àü´ŞµÈ ¹®ÀÚ¿­(ºñ¹Ğ¹øÈ£)À» ¾ÏÈ£È­ Ã³¸®ÇÏ´Â ¹æ¹ı
-//1.jbcrypt ¶óÀÌºê·¯¸®¸¦ ÇÁ·ÎÁ§Æ®¿¡ ºôµå Ã³¸® - ¸ŞÀÌºì : pom.xml
-//2.BCrypt.hashpw(String password, String salt) ¸Ş¼Òµå¸¦ È£ÃâÇÏ¿© ¹®ÀÚ¿­(ºñ¹Ğ¹øÈ£)À» ¾ÏÈ£È­ Ã³¸®
-// => ¸Å°³º¯¼ö¿¡ ¾ÏÈ£È­ Ã³¸®ÇÒ ¹®ÀÚ¿­°ú Ã·°¡¹°À» Àü´Ş¹Ş¾Æ ¾ÏÈ£È­ Ã³¸® - Ã·ÀÚ¹°¿¡ ÀÇÇØ ºñºô¹øÈ£°¡ ´Ù¸£°Ô ¾ÏÈ£È­ Ã³¸®
-// => BCrypt.gensalt(int log_bounds) : ¸Å°³º¯¼ö¿¡ Ã·°¡¹°ÀÇ ±æÀÌ¸¦ Àü´ŞÇÏ¿© Ã·°¡¹°À» »ı¼ºÇØ ¹İÈ¯ÇÏ´Â Á¤Àû¸Ş¼Òµå
-// - ¸Å°³º¯¼ö°¡ ¾ø´Â ¸Ş¼Òµå¸¦ È£ÃâÇÏ¸é Ã·°¡¹°ÀÇ ±æÀÌ´Â ÀÚµ¿À¸·Î [10]À¸·Î ¼³Á¤
-//3.BCrypt.checkpw(String plainText, String hashed) ¸Ş¼Òµå·Î ¾ÏÈ£È­µÈ ¹®ÀÚ¿­À» ÀÏ¹İ ¹®ÀÚ¿­°ú
-//ºñ±³ÇÏ¿© ´Ù¸¥ °æ¿ì [false]¸¦ ¹İÈ¯ÇÏ°í °°Àº [true]¸¦ ¹İÈ¯¹Ş¾Æ Ã³¸®
+//ì‚¬ìš©ìë¡œë¶€í„° ì…ë ¥ë°›ì•„ ì „ë‹¬ëœ ë¬¸ìì—´(ë¹„ë°€ë²ˆí˜¸)ì„ ì•”í˜¸í™” ì²˜ë¦¬í•˜ëŠ” ë°©ë²•
+//1.jbcrypt ë¼ì´ë¸ŒëŸ¬ë¦¬ë¥¼ í”„ë¡œì íŠ¸ì— ë¹Œë“œ ì²˜ë¦¬ - ë©”ì´ë¸ : pom.xml
+//2.BCrypt.hashpw(String password, String salt) ë©”ì†Œë“œë¥¼ í˜¸ì¶œí•˜ì—¬ ë¬¸ìì—´(ë¹„ë°€ë²ˆí˜¸)ì„ ì•”í˜¸í™” ì²˜ë¦¬
+// => ë§¤ê°œë³€ìˆ˜ì— ì•”í˜¸í™” ì²˜ë¦¬í•  ë¬¸ìì—´ê³¼ ì²¨ê°€ë¬¼ì„ ì „ë‹¬ë°›ì•„ ì•”í˜¸í™” ì²˜ë¦¬ - ì²¨ìë¬¼ì— ì˜í•´ ë¹„ë¹Œë²ˆí˜¸ê°€ ë‹¤ë¥´ê²Œ ì•”í˜¸í™” ì²˜ë¦¬
+// => BCrypt.gensalt(int log_bounds) : ë§¤ê°œë³€ìˆ˜ì— ì²¨ê°€ë¬¼ì˜ ê¸¸ì´ë¥¼ ì „ë‹¬í•˜ì—¬ ì²¨ê°€ë¬¼ì„ ìƒì„±í•´ ë°˜í™˜í•˜ëŠ” ì •ì ë©”ì†Œë“œ
+// - ë§¤ê°œë³€ìˆ˜ê°€ ì—†ëŠ” ë©”ì†Œë“œë¥¼ í˜¸ì¶œí•˜ë©´ ì²¨ê°€ë¬¼ì˜ ê¸¸ì´ëŠ” ìë™ìœ¼ë¡œ [10]ìœ¼ë¡œ ì„¤ì •
+//3.BCrypt.checkpw(String plainText, String hashed) ë©”ì†Œë“œë¡œ ì•”í˜¸í™”ëœ ë¬¸ìì—´ì„ ì¼ë°˜ ë¬¸ìì—´ê³¼
+//ë¹„êµí•˜ì—¬ ë‹¤ë¥¸ ê²½ìš° [false]ë¥¼ ë°˜í™˜í•˜ê³  ê°™ì€ [true]ë¥¼ ë°˜í™˜ë°›ì•„ ì²˜ë¦¬
 
 @Service
 @RequiredArgsConstructor
@@ -31,12 +31,12 @@ public class UserinfoServiceImpl implements UserinfoService {
 	@Override
 	public void addUserinfo(Userinfo userinfo) {
 		if(userinfoDAO.selectUserinfo(userinfo.getUserid()) != null) {
-			//¿¹¿Ü¸¦ ¸íÈ®È÷ ±¸ºĞÇÏ¿© ¿¹¿ÜÃ³¸®½Ã ÇÊ¿äÇÑ °ªÀ» Á¦°ø¹Ş±â À§ÇØ ¿¹¿ÜÅ¬·¡½º¸¦ ÀÛ¼ºÇÏ¿©
-			//ÀÎÀ§Àû ¿¹¿Ü ¹ß»ı
-			throw new ExistsUserinfoException("ÀÌ¹Ì »ç¿ëÁßÀÎ ¾ÆÀÌµğ¸¦ ÀÔ·Â ÇÏ¿´½À´Ï´Ù.", userinfo);
+			//ì˜ˆì™¸ë¥¼ ëª…í™•íˆ êµ¬ë¶„í•˜ì—¬ ì˜ˆì™¸ì²˜ë¦¬ì‹œ í•„ìš”í•œ ê°’ì„ ì œê³µë°›ê¸° ìœ„í•´ ì˜ˆì™¸í´ë˜ìŠ¤ë¥¼ ì‘ì„±í•˜ì—¬
+			//ì¸ìœ„ì  ì˜ˆì™¸ ë°œìƒ
+			throw new ExistsUserinfoException("ì´ë¯¸ ì‚¬ìš©ì¤‘ì¸ ì•„ì´ë””ë¥¼ ì…ë ¥ í•˜ì˜€ìŠµë‹ˆë‹¤.", userinfo);
 		}
 		
-		//¸Å°³º¯¼ö·Î Àü´Ş¹ŞÀº È¸¿øÁ¤º¸ÀÇ ºñ¹Ğ¹øÈ£¸¦ ¾ÏÈ£È­ Ã³¸®ÇÏ¿© ÇÊµå°ªÀ¸·Î º¯°æ Ã³¸®
+		//ë§¤ê°œë³€ìˆ˜ë¡œ ì „ë‹¬ë°›ì€ íšŒì›ì •ë³´ì˜ ë¹„ë°€ë²ˆí˜¸ë¥¼ ì•”í˜¸í™” ì²˜ë¦¬í•˜ì—¬ í•„ë“œê°’ìœ¼ë¡œ ë³€ê²½ ì²˜ë¦¬
 		String hashedPasword=BCrypt.hashpw(userinfo.getPassword(),BCrypt.gensalt());
 		userinfo.setPassword(hashedPasword);
 		
@@ -47,7 +47,7 @@ public class UserinfoServiceImpl implements UserinfoService {
 	@Override
 	public void modifyUserinfo(Userinfo userinfo) {
 		if(userinfoDAO.selectUserinfo(userinfo.getUserid()) == null) {
-			throw new UserinfoNotFoundException("¾ÆÀÌµğÀÇ È¸¿øÁ¤º¸¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.");
+			throw new UserinfoNotFoundException("ì•„ì´ë””ì˜ íšŒì›ì •ë³´ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 		}
 		
 		if(userinfo.getPassword() !=null && !userinfo.getPassword().equals("")) {
@@ -62,7 +62,7 @@ public class UserinfoServiceImpl implements UserinfoService {
 	@Override
 	public void removeUserinfo(String userid) {
 		if(userinfoDAO.selectUserinfo(userid) == null) {
-			throw new UserinfoNotFoundException("¾ÆÀÌµğÀÇ È¸¿øÁ¤º¸¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.");
+			throw new UserinfoNotFoundException("ì•„ì´ë””ì˜ íšŒì›ì •ë³´ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 		}
 		
 		userinfoDAO.deleteUserinfo(userid);
@@ -72,7 +72,7 @@ public class UserinfoServiceImpl implements UserinfoService {
 	public Userinfo getUserinfo(String userid) {
 		Userinfo userinfo=userinfoDAO.selectUserinfo(userid);
 		if(userinfo == null) {
-			throw new UserinfoNotFoundException("¾ÆÀÌµğÀÇ È¸¿øÁ¤º¸¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.");
+			throw new UserinfoNotFoundException("ì•„ì´ë””ì˜ íšŒì›ì •ë³´ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 		}
 		return userinfo;
 	}
@@ -86,12 +86,12 @@ public class UserinfoServiceImpl implements UserinfoService {
 	public Userinfo loginAuth(Userinfo userinfo) {
 		Userinfo authUserinfo=userinfoDAO.selectUserinfo(userinfo.getUserid());
 
-		if(authUserinfo ==null) {//¾ÆÀÌµğ ÀÎÁõ ½ÇÆĞ
-			throw new LoginAuthFailException("¾ÆÀÌµğÀÇ È¸¿øÁ¤º¸°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.", userinfo.getUserid());
+		if(authUserinfo == null) {//ì•„ì´ë”” ì¸ì¦ ì‹¤íŒ¨
+			throw new LoginAuthFailException("ì•„ì´ë””ì˜ íšŒì›ì •ë³´ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.", userinfo.getUserid());
 		}
 		
-		if(!BCrypt.checkpw(userinfo.getPassword(), authUserinfo.getPassword())) {//ºñ¹Ğ¹øÈ£ ÀÎÁõ ½ÇÆĞ
-			throw new LoginAuthFailException("¾ÆÀÌµğ°¡ ¾ø°Å³ª ºñ¹Ğ¹øÈ£°¡ ¸ÂÁö ¾Ê½À´Ï´Ù.", userinfo.getUserid());
+		if(!BCrypt.checkpw(userinfo.getPassword(), authUserinfo.getPassword())) {//ë¹„ë°€ë²ˆí˜¸ ì¸ì¦ ì‹¤íŒ¨
+			throw new LoginAuthFailException("ì•„ì´ë””ê°€ ì—†ê±°ë‚˜ ë¹„ë°€ë²ˆí˜¸ê°€ ë§ì§€ ì•ŠìŠµë‹ˆë‹¤.", userinfo.getUserid());
 		}
 		
 		return authUserinfo;

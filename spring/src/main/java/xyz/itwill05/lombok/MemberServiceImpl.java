@@ -9,30 +9,30 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-//@AllArgsConstructor : ¸ğµç ÇÊµå¿¡ ´ëÇÑ ÃÊ±âÈ­ ÀÛ¾÷À» ÇÏ±â À§ÇÑ ¸Å°³º¯¼ö°¡ ÀÛ¼ºµÈ »ı¼ºÀÚ¸¦
-//Á¦°øÇÏ´Â ¾î³ëÅ×ÀÌ¼Ç
-//@RequiredArgsConstructor : final Á¦ÇÑÀÚ¸¦ »ç¿ëÇØ ÀÛ¼ºµÈ ÇÊµå¿¡ ÃÊ±âÈ­ ÀÛ¾÷À» ÇÏ±â À§ÇÑ
-//¸Å°³º¯¼ö°¡ ÀÛ¼ºµÈ »ı¼ºÀÚ¸¦ Á¦°øÇÏ´Â ¾î³ëÅ×ÀÌ¼Ç
+//@AllArgsConstructor : ëª¨ë“  í•„ë“œì— ëŒ€í•œ ì´ˆê¸°í™” ì‘ì—…ì„ í•˜ê¸° ìœ„í•œ ë§¤ê°œë³€ìˆ˜ê°€ ì‘ì„±ëœ ìƒì„±ìë¥¼
+//ì œê³µí•˜ëŠ” ì–´ë…¸í…Œì´ì…˜
+//@RequiredArgsConstructor : final ì œí•œìë¥¼ ì‚¬ìš©í•´ ì‘ì„±ëœ í•„ë“œì— ì´ˆê¸°í™” ì‘ì—…ì„ í•˜ê¸° ìœ„í•œ
+//ë§¤ê°œë³€ìˆ˜ê°€ ì‘ì„±ëœ ìƒì„±ìë¥¼ ì œê³µí•˜ëŠ” ì–´ë…¸í…Œì´ì…˜
 @RequiredArgsConstructor
 @Service("memberService")
 public class MemberServiceImpl implements MemberService {
-	//ÇÊµå¿¡ @Autowired ¾î³ëÅ×ÀÌ¼ÇÀ» »ç¿ëÇÏ¿© ½ºÇÁ¸µ ÄÁÅ×ÀÌ³Ê¿¡°Ô Spring BeanÀ» Á¦°ø¹Ş¾Æ 
-	//ÇÊµå¿¡ ÀúÀåµÇµµ·Ï ÀÇÁ¸¼º ÁÖÀÔ - ÇÊµå ·¹º§ÀÇ ÀÇÁ¸¼º ÁÖÀÔ
-	// => ÇÊµå¿¡ ´ëÇÑ Setter ¸Ş¼Òµå°¡ ¾ø¾îµµ Setter InjectionÀ» »ç¿ëÇÏ¿© ÀÇÁ¸¼º ÁÖÀÔ
-	// => °¡Àå º¸ÆíÀûÀÎ ÀÇÁ¸¼º ÁÖÀÔ ¹æ¹ıÀÌÁö¸¸ ¼øÈ¯ ÂüÁ¶½Ã ¿¡·¯°¡ ¹ß»ıµÇÁö ¾Ê¾Æ StackOverflow ¹ß»ı °¡´É
+	//í•„ë“œì— @Autowired ì–´ë…¸í…Œì´ì…˜ì„ ì‚¬ìš©í•˜ì—¬ ìŠ¤í”„ë§ ì»¨í…Œì´ë„ˆì—ê²Œ Spring Beanì„ ì œê³µë°›ì•„ 
+	//í•„ë“œì— ì €ì¥ë˜ë„ë¡ ì˜ì¡´ì„± ì£¼ì… - í•„ë“œ ë ˆë²¨ì˜ ì˜ì¡´ì„± ì£¼ì…
+	// => í•„ë“œì— ëŒ€í•œ Setter ë©”ì†Œë“œê°€ ì—†ì–´ë„ Setter Injectionì„ ì‚¬ìš©í•˜ì—¬ ì˜ì¡´ì„± ì£¼ì…
+	// => ê°€ì¥ ë³´í¸ì ì¸ ì˜ì¡´ì„± ì£¼ì… ë°©ë²•ì´ì§€ë§Œ ìˆœí™˜ ì°¸ì¡°ì‹œ ì—ëŸ¬ê°€ ë°œìƒë˜ì§€ ì•Šì•„ StackOverflow ë°œìƒ ê°€ëŠ¥
 	//@Autowired
 	//private MemberDAO memberDAO;
 	
-	//@RequiredArgsConstructor ¾î³ëÅ×ÀÌ¼ÇÀ» »ç¿ëÇÏ¿© »ı¼ºÀÚ·Î ÃÊ±âÈ­ Ã³¸®ÇÏ±â À§ÇÑ ÇÊµå´Â
-	//final Á¦ÇÑÀÚ¸¦ »ç¿ëÇØ ÀÛ¼º
-	// => final Á¦ÇÑÀÚ ´ë½Å ÇÊµå¿¡ @NonNull ¾î³ëÅ×ÀÌ¼Ç »ç¿ëÇÏ¿© ÀÛ¼º °¡´É 
+	//@RequiredArgsConstructor ì–´ë…¸í…Œì´ì…˜ì„ ì‚¬ìš©í•˜ì—¬ ìƒì„±ìë¡œ ì´ˆê¸°í™” ì²˜ë¦¬í•˜ê¸° ìœ„í•œ í•„ë“œëŠ”
+	//final ì œí•œìë¥¼ ì‚¬ìš©í•´ ì‘ì„±
+	// => final ì œí•œì ëŒ€ì‹  í•„ë“œì— @NonNull ì–´ë…¸í…Œì´ì…˜ ì‚¬ìš©í•˜ì—¬ ì‘ì„± ê°€ëŠ¥ 
 	//private final MemberDAO memberDAO;
 	
 	@NonNull 
 	private MemberDAO memberDAO;
 	
-	//ÇÊµå¿¡ ´ëÇÑ Setter ¸Ş¼Òµå¿¡ @Autowired ¾î³ëÅ×ÀÌ¼ÇÀ» »ç¿ëÇÏ¿© ÀÇÁ¸¼º ÁÖÀÔ - Setter ·¹º§ÀÇ ÀÇÁ¸¼º ÁÖÀÔ
-	// => Setter ¸Ş¼ÒµåÀÇ Á¢±Ù Á¦ÇÑÀÚ°¡ [public]ÀÎ °æ¿ì Setter ¸Ş¼Òµå¸¦ È£ÃâÇÏ¿© ÀÇÁ¸°ü°è º¯°æ °¡´É
+	//í•„ë“œì— ëŒ€í•œ Setter ë©”ì†Œë“œì— @Autowired ì–´ë…¸í…Œì´ì…˜ì„ ì‚¬ìš©í•˜ì—¬ ì˜ì¡´ì„± ì£¼ì… - Setter ë ˆë²¨ì˜ ì˜ì¡´ì„± ì£¼ì…
+	// => Setter ë©”ì†Œë“œì˜ ì ‘ê·¼ ì œí•œìê°€ [public]ì¸ ê²½ìš° Setter ë©”ì†Œë“œë¥¼ í˜¸ì¶œí•˜ì—¬ ì˜ì¡´ê´€ê³„ ë³€ê²½ ê°€ëŠ¥
 	/*
 	@Autowired
 	public void setMemberDAO(MemberDAO memberDAO) {
@@ -42,48 +42,48 @@ public class MemberServiceImpl implements MemberService {
 
 	/*
 	public MemberServiceImpl() {
-		log.info("### MemberServiceImpl Å¬·¡½ºÀÇ ±âº» »ı¼ºÀÚ È£Ãâ ###");
+		log.info("### MemberServiceImpl í´ë˜ìŠ¤ì˜ ê¸°ë³¸ ìƒì„±ì í˜¸ì¶œ ###");
 	}
 	*/
 
 	/*
-	//¸Å°³º¯¼ö°¡ ÀÛ¼ºµÈ »ı¼ºÀÚ¿¡ @Autowired ¾î³ëÅ×ÀÌ¼ÇÀ» »ç¿ëÇÏ¿© ÀÇÁ¸¼º ÁÖÀÔ - Constructor ·¹º§ÀÇ ÀÇÁ¸¼º ÁÖÀÔ
-	// => ¼øÈ¯ ÂüÁ¶ ¹æÁö¸¦ À§ÇØ »ı¼ºÀÚ¸¦ ÀÌ¿ëÇÑ ÀÇÁ¸¼º ÁÖÀÔ - ¼øÈ¯ ÂüÁ¶ ¹ß»ı½Ã ¿¡·¯ ¹ß»ı
-	// => ¸Å°³º¯¼ö°¡ ÀÛ¼ºµÈ »ı¼ºÀÚ°¡ ÇÏ³ª¸¸ ÀÖ´Â °æ¿ì @Autowired ¾î³ëÅ×ÀÌ¼ÇÀ» »ı·«ÇØµµ ÀÇÁ¸¼º ÁÖÀÔ °¡´É
+	//ë§¤ê°œë³€ìˆ˜ê°€ ì‘ì„±ëœ ìƒì„±ìì— @Autowired ì–´ë…¸í…Œì´ì…˜ì„ ì‚¬ìš©í•˜ì—¬ ì˜ì¡´ì„± ì£¼ì… - Constructor ë ˆë²¨ì˜ ì˜ì¡´ì„± ì£¼ì…
+	// => ìˆœí™˜ ì°¸ì¡° ë°©ì§€ë¥¼ ìœ„í•´ ìƒì„±ìë¥¼ ì´ìš©í•œ ì˜ì¡´ì„± ì£¼ì… - ìˆœí™˜ ì°¸ì¡° ë°œìƒì‹œ ì—ëŸ¬ ë°œìƒ
+	// => ë§¤ê°œë³€ìˆ˜ê°€ ì‘ì„±ëœ ìƒì„±ìê°€ í•˜ë‚˜ë§Œ ìˆëŠ” ê²½ìš° @Autowired ì–´ë…¸í…Œì´ì…˜ì„ ìƒëµí•´ë„ ì˜ì¡´ì„± ì£¼ì… ê°€ëŠ¥
 	//@Autowired
 	public MemberServiceImpl(MemberDAO memberDAO) {
-		log.info("### MemberServiceImpl Å¬·¡½ºÀÇ ¸Å°³º¯¼ö°¡ ÀÛ¼ºµÈ »ı¼ºÀÚ È£Ãâ ###");
+		log.info("### MemberServiceImpl í´ë˜ìŠ¤ì˜ ë§¤ê°œë³€ìˆ˜ê°€ ì‘ì„±ëœ ìƒì„±ì í˜¸ì¶œ ###");
 		this.memberDAO=memberDAO;
 	}
 	*/
 	
 	@Override
 	public void addMember(Member member) {
-		log.info("*** MemberServiceImpl Å¬·¡½ºÀÇ addMember(Member member) ¸Ş¼Òµå È£Ãâ ***");
+		log.info("*** MemberServiceImpl í´ë˜ìŠ¤ì˜ addMember(Member member) ë©”ì†Œë“œ í˜¸ì¶œ ***");
 		memberDAO.insertMember(member);
 	}
 
 	@Override
 	public void modifyMember(Member member) {
-		log.info("*** MemberServiceImpl Å¬·¡½ºÀÇ modifyMember(Member member) ¸Ş¼Òµå È£Ãâ ***");
+		log.info("*** MemberServiceImpl í´ë˜ìŠ¤ì˜ modifyMember(Member member) ë©”ì†Œë“œ í˜¸ì¶œ ***");
 		memberDAO.updateMember(member);
 	}
 
 	@Override
 	public void removeMember(String id) {
-		log.info("*** MemberServiceImpl Å¬·¡½ºÀÇ removeMember(String id) ¸Ş¼Òµå È£Ãâ ***");
+		log.info("*** MemberServiceImpl í´ë˜ìŠ¤ì˜ removeMember(String id) ë©”ì†Œë“œ í˜¸ì¶œ ***");
 		memberDAO.deleteMember(id);
 	}
 
 	@Override
 	public Member getMember(String id) {
-		log.info("*** MemberServiceImpl Å¬·¡½ºÀÇ getMember(String id) ¸Ş¼Òµå È£Ãâ ***");
+		log.info("*** MemberServiceImpl í´ë˜ìŠ¤ì˜ getMember(String id) ë©”ì†Œë“œ í˜¸ì¶œ ***");
 		return memberDAO.selectMember(id);
 	}
 
 	@Override
 	public List<Member> getMemberList() {
-		log.info("*** MemberServiceImpl Å¬·¡½ºÀÇ getMemberList() ¸Ş¼Òµå È£Ãâ ***");
+		log.info("*** MemberServiceImpl í´ë˜ìŠ¤ì˜ getMemberList() ë©”ì†Œë“œ í˜¸ì¶œ ***");
 		return memberDAO.selectMemberList();
 	}
 

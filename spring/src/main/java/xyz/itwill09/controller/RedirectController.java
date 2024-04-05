@@ -9,42 +9,48 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class RedirectController {
 	@RequestMapping("/forward_move")
 	public String forward(Model model) {
-		//Model °´Ã¼¸¦ »ç¿ëÇÏ¿© ºä(View)¿¡°Ô Á¦°øÇÒ °´Ã¼¸¦ ¼Ó¼º°ªÀ¸·Î ÀúÀå - Request Scope
-		model.addAttribute("name", "È«±æµ¿");
+		//Model ê°ì²´ë¥¼ ì‚¬ìš©í•˜ì—¬ ë·°(View)ì—ê²Œ ì œê³µí•  ê°ì²´ë¥¼ ì†ì„±ê°’ìœ¼ë¡œ ì €ì¥ - Request Scope
+		model.addAttribute("name", "í™ê¸¸ë™");
 		
-		//ºä(View)¸¦ »ı¼ºÇÏ±â À§ÇÑ ºäÀÌ¸§(ViewName) ¹İÈ¯
-		// => Front Controller(DispatchServlet °´Ã¼)´Â ¹İÈ¯¹ŞÀº ºäÀÌ¸§À» InternalResourceViewResolver
-		//°´Ã¼¿¡°Ô Àü´ŞÇÏ¿© JSP ¹®¼­ÀÇ °æ·Î¸¦ Á¦°ø¹Ş¾Æ ½º·¹µå¸¦ ÀÌµ¿ÇØ JSP ¹®¼­·Î ÀÀ´ä Ã³¸® - Æ÷¿öµå ÀÌµ¿
-		//Æ÷¿öµå ÀÌµ¿ : Å¬¶óÀÌ¾ğÆ® ¿äÃ»¿¡ ÀÇÇØ ½ÇÇàµÈ À¥ÇÁ·Î±×·¥(Front Controller)¿¡¼­ ÀÀ´ä 
-		//Ã³¸®ÇÒ À¥ÇÁ·Î±×·¥(View - JSP)À¸·Î ½º·¹µå¸¦ ÀÌµ¿ÇÏ¿© ÀÀ´ä Ã³¸®
-		// => Å¬¶óÀÌ¾ğÆ®ÀÇ URL ÁÖ¼Ò´Â º¯°æµÇÁö ¾ÊÀ¸¸é Request Scope ¼Ó¼º°ªÀ» °´Ã¼·Î Á¦°ø¹Ş¾Æ »ç¿ë °¡´É
+		//ë·°(View)ë¥¼ ìƒì„±í•˜ê¸° ìœ„í•œ ë·°ì´ë¦„(ViewName) ë°˜í™˜
+		// => Front Controller(DispatchServlet ê°ì²´)ëŠ” ë°˜í™˜ë°›ì€ ë·°ì´ë¦„ì„ InternalResourceViewResolver
+		//ê°ì²´ì—ê²Œ ì „ë‹¬í•˜ì—¬ JSP ë¬¸ì„œì˜ ê²½ë¡œë¥¼ ì œê³µë°›ì•„ ìŠ¤ë ˆë“œë¥¼ ì´ë™í•´ JSP ë¬¸ì„œë¡œ ì‘ë‹µ ì²˜ë¦¬ - í¬ì›Œë“œ ì´ë™
+		//í¬ì›Œë“œ ì´ë™ : í´ë¼ì´ì–¸íŠ¸ ìš”ì²­ì— ì˜í•´ ì‹¤í–‰ëœ ì›¹í”„ë¡œê·¸ë¨(Front Controller)ì—ì„œ ì‘ë‹µ 
+		//ì²˜ë¦¬í•  ì›¹í”„ë¡œê·¸ë¨(View - JSP)ìœ¼ë¡œ ìŠ¤ë ˆë“œë¥¼ ì´ë™í•˜ì—¬ ì‘ë‹µ ì²˜ë¦¬
+		// => í´ë¼ì´ì–¸íŠ¸ì˜ URL ì£¼ì†ŒëŠ” ë³€ê²½ë˜ì§€ ì•Šìœ¼ë©´ Request Scope ì†ì„±ê°’ì„ ê°ì²´ë¡œ ì œê³µë°›ì•„ ì‚¬ìš© ê°€ëŠ¥
 		return "display_forward";
 	}
 	
 	/*
 	@RequestMapping("/redirect")
 	public String redirect() {
-		//¿äÃ» Ã³¸® ¸Ş¼ÒµåÀÇ ¹İÈ¯°ª(ºäÀÌ¸§)¿¡ redirect Á¢µÎ»ç¸¦ »ç¿ëÇÏ¿© ¹İÈ¯ÇÏ¸é Front Controller
-		//(DispatchServlet °´Ã¼)´Â ¹İÈ¯¹ŞÀº URL ÁÖ¼Ò¸¦ Å¬¶óÀÌ¾ğÆ®¿¡°Ô Àü´ŞÇÏ¿© ÀÀ´ä Ã³¸®
-		// => URL ÁÖ¼Ò¸¦ ÀÀ´ä¹ŞÀº Å¬¶óÀÌ¾ğÆ®´Â ºê¶ó¿ìÀú ¿äÃ» URL ÁÖ¼Ò¸¦ º¯°æÇÏ¿© ÇØ´ç ÆäÀÌÁö¸¦
-		//¿äÃ»ÇØ »õ·Î¿î ÀÀ´ä°á°ú¸¦ Á¦°ø¹Ş¾Æ Ãâ·Â Ã³¸® - ¸®´ÙÀÌ·ºÆ® ÀÌµ¿
-		//¸®´ÙÀÌ·ºÆ® ÀÌµ¿ : Å¬¶óÀÌ¾ğÆ®¿¡°Ô URL ÁÖ¼Ò¸¦ Àü´ŞÇÏ¿© ÆäÀÌÁö¸¦ Àç¿äÃ»ÇØ ½ÇÇà°á°ú¸¦ ÀÀ´ä¹Ş¾Æ Ã³¸®
-		// => Å¬¶óÀÌ¾ğÆ®ÀÇ URL ÁÖ¼Ò´Â º¯°æµÇÁö¸¸ Request Scope ¼Ó¼º°ªÀ» °´Ã¼·Î Á¦°ø¹Ş¾Æ »ç¿ë ºÒ°¡´É
+		//ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œì˜ ë°˜í™˜ê°’(ë·°ì´ë¦„)ì— redirect ì ‘ë‘ì‚¬ë¥¼ ì‚¬ìš©í•˜ì—¬ ë°˜í™˜í•˜ë©´ Front Controller
+		//(DispatchServlet ê°ì²´)ëŠ” ë°˜í™˜ë°›ì€ URL ì£¼ì†Œë¥¼ í´ë¼ì´ì–¸íŠ¸ì—ê²Œ ì „ë‹¬í•˜ì—¬ ì‘ë‹µ ì²˜ë¦¬
+		// => URL ì£¼ì†Œë¥¼ ì‘ë‹µë°›ì€ í´ë¼ì´ì–¸íŠ¸ëŠ” ë¸Œë¼ìš°ì € ìš”ì²­ URL ì£¼ì†Œë¥¼ ë³€ê²½í•˜ì—¬ í•´ë‹¹ í˜ì´ì§€ë¥¼
+		//ìš”ì²­í•´ ìƒˆë¡œìš´ ì‘ë‹µê²°ê³¼ë¥¼ ì œê³µë°›ì•„ ì¶œë ¥ ì²˜ë¦¬ - ë¦¬ë‹¤ì´ë ‰íŠ¸ ì´ë™
+		//ë¦¬ë‹¤ì´ë ‰íŠ¸ ì´ë™ : í´ë¼ì´ì–¸íŠ¸ì—ê²Œ URL ì£¼ì†Œë¥¼ ì „ë‹¬í•˜ì—¬ í˜ì´ì§€ë¥¼ ì¬ìš”ì²­í•´ ì‹¤í–‰ê²°ê³¼ë¥¼ ì‘ë‹µë°›ì•„ ì²˜ë¦¬
+		// => í´ë¼ì´ì–¸íŠ¸ì˜ URL ì£¼ì†ŒëŠ” ë³€ê²½ë˜ì§€ë§Œ Request Scope ì†ì„±ê°’ì„ ê°ì²´ë¡œ ì œê³µë°›ì•„ ì‚¬ìš© ë¶ˆê°€ëŠ¥
 		return "redirect:/redirect_move";
+	}
+	
+	@RequestMapping("/redirect_move")
+	public String redirect(Model model) {
+		model.addAttribute("name", "ì„êº½ì •");
+		return "display_redirect";
 	}
 	
 	*/
 
-	//¿äÃ» Ã³¸® ¸Ş¼Òµå¿¡ RedirectAttributes ÀÎÅÍÆäÀÌ½º¸¦ ¸Å°³º¯¼ö¸¦ ÀÛ¼ºÇÏ¿© RedirectAttributes
-	//°´Ã¼¸¦ Á¦°ø¹Ş¾Æ »ç¿ë °¡´É
-	// => RedirectAttributes °´Ã¼ : ¸®´ÙÀÌ·ºÆ® ÀÌµ¿µÇ´Â ÆäÀÌÁöÀÇ ¿äÃ» Ã³¸® ¸Ş¼Òµå¿Í ºä¿¡¼­
-	//»ç¿ëÇÒ ¼ö ÀÖ´Â Request Scope ¼Ó¼º°ªÀ» Á¦°øÇÏ±â À§ÇÑ °´Ã¼
+	//ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œì— RedirectAttributes ì¸í„°í˜ì´ìŠ¤ë¥¼ ë§¤ê°œë³€ìˆ˜ë¥¼ ì‘ì„±í•˜ì—¬ RedirectAttributes
+	//ê°ì²´ë¥¼ ì œê³µë°›ì•„ ì‚¬ìš© ê°€ëŠ¥
+	// => RedirectAttributes ê°ì²´ : ë¦¬ë‹¤ì´ë ‰íŠ¸ ì´ë™ë˜ëŠ” í˜ì´ì§€ì˜ ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œì™€ ë·°ì—ì„œ
+	//ì‚¬ìš©í•  ìˆ˜ ìˆëŠ” Request Scope ì†ì„±ê°’ì„ ì œê³µí•˜ê¸° ìœ„í•œ ê°ì²´
 	@RequestMapping("/redirect")
 	public String redirect(RedirectAttributes attributes) {
 		//RedirectAttributes.addFlashAttribute(String attributeName, Object attributeValue)
-		// => Request Scope ¼Ó¼º°ªÀ» ÀúÀåÇÏ¿© ¸®´ÙÀÌ·ºÆ® ÀÌµ¿µÇ´Â ÆäÀÌÁöÀÇ ¿äÃ» Ã³¸® ¸Ş¼Òµå¿Í
-		//ºä¿¡°Ô ¼Ó¼º°ªÀ» Á¦°øÇÏ±â À§ÇÑ ¸Ş¼Òµå
-		attributes.addFlashAttribute("name", "ÀÓ²©Á¤");
+		// => Request Scope ì†ì„±ê°’ì„ ì €ì¥í•˜ì—¬ ë¦¬ë‹¤ì´ë ‰íŠ¸ ì´ë™ë˜ëŠ” í˜ì´ì§€ì˜ ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œì™€
+		//ë·°ì—ê²Œ ì†ì„±ê°’ì„ ì œê³µí•˜ê¸° ìœ„í•œ ë©”ì†Œë“œ
+		attributes.addFlashAttribute("name", "ì„êº½ì •");
 		return "redirect:/redirect_move";
 	}
 
@@ -53,9 +59,3 @@ public class RedirectController {
 		return "display_redirect";
 	}
 }
-
-
-
-
-
-

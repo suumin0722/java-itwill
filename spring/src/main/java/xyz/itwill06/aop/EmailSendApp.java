@@ -8,8 +8,8 @@ public class EmailSendApp {
 		ApplicationContext context=new ClassPathXmlApplicationContext("06-4_email.xml");
 		EmailSendBean bean=context.getBean("emailSendBean", EmailSendBean.class);
 		System.out.println("==============================================================");
-		bean.sendEmail("suumin0722@naver.com", "¸ŞÀÏ Àü¼Û Å×½ºÆ®"
-				,"<h1>JavaMail ±â´ÉÀ» »ç¿ëÇÏ¿© Àü´ŞµÈ ÀÌ¸ŞÀÏÀÔ´Ï´Ù.</h1>");
+		bean.sendEmail("ocj1778@hanmail.net", "ë©”ì¼ ì „ì†¡ í…ŒìŠ¤íŠ¸"
+				,"<h1>JavaMail ê¸°ëŠ¥ì„ ì‚¬ìš©í•˜ì—¬ ì „ë‹¬ëœ ì´ë©”ì¼ì…ë‹ˆë‹¤.</h1>");
 		System.out.println("==============================================================");
 		((ClassPathXmlApplicationContext)context).close();			
 	}

@@ -2,8 +2,8 @@ package xyz.itwill05.di;
 
 import java.util.List;
 
-//ÇĞ»ıÁ¤º¸¸¦ Ã³¸®ÇÏ´Â DAO Å¬·¡½º°¡ ¹İµå½Ã »ó¼Ó¹Ş¾Æ¾ß µÇ´Â ÀÎÅÍÆäÀÌ½º
-// => °´Ã¼°£ÀÇ °áÇÕµµ¸¦ ³·Ãç À¯Áöº¸¼öÀÇ È¿À²¼º Áõ°¡
+//í•™ìƒì •ë³´ë¥¼ ì²˜ë¦¬í•˜ëŠ” DAO í´ë˜ìŠ¤ê°€ ë°˜ë“œì‹œ ìƒì†ë°›ì•„ì•¼ ë˜ëŠ” ì¸í„°í˜ì´ìŠ¤
+// => ê°ì²´ê°„ì˜ ê²°í•©ë„ë¥¼ ë‚®ì¶° ìœ ì§€ë³´ìˆ˜ì˜ íš¨ìœ¨ì„± ì¦ê°€
 public interface StudentDAO {
 	int insertStudent(Student student);
 	int updateStudent(Student student);

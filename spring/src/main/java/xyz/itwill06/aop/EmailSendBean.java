@@ -8,54 +8,51 @@ import org.springframework.mail.javamail.JavaMailSender;
 
 import lombok.Setter;
 
-//JavaMail ±â´ÉÀ» ±¸ÇöÇÏ±â À§ÇØ spring-context-support ¶óÀÌºê·¯¸®¿Í javax.mail ¶óÀÌºê·¯¸®°¡
-//ÇÁ·ÎÁ§Æ®¿¡ ºôµåµÇµµ·Ï Ã³¸® - ¸ŞÀÌºì »ç¿ë : pom.xml  
+//JavaMail ê¸°ëŠ¥ì„ êµ¬í˜„í•˜ê¸° ìœ„í•´ spring-context-support ë¼ì´ë¸ŒëŸ¬ë¦¬ì™€ javax.mail ë¼ì´ë¸ŒëŸ¬ë¦¬ê°€
+//í”„ë¡œì íŠ¸ì— ë¹Œë“œë˜ë„ë¡ ì²˜ë¦¬ - ë©”ì´ë¸ ì‚¬ìš© : pom.xml  
 
-//¸ŞÀÏ Àü¼Û ±â´É(JavaMail ±â´É)À» Á¦°øÇÏ±â À§ÇÑ Å¬·¡½º - ¸ŞÀÏ ¼­¹öÀÇ SMTP ¼­ºñ½º¸¦ »ç¿ëÇÏ¿© ¸ŞÀÏ Àü¼Û
-// => ¸ŞÀÏ ¼­¹ö(Mail Server) : ¸ŞÀÏÀ» ¼Û¼ö½ÅÇÏ´Â ¼­ºñ½º¸¦ Á¦°øÇÏ´Â ÄÄÇ»ÅÍ
-// => STMP ¼­ºñ½º(Simple Message Transfer Protocol - 25)·Î ¸ŞÀÏÀ» º¸³»°í POP3(Post Office Protocol3 - 110) 
-//¼­ºñ½º³ª IMAP(Internet Message Access Protocol - 143) ¼­ºñ½º´Â ¸ŞÀÏÀ» ¹Ş¾Æ »ç¿ëÀÚ¿¡°Ô Àü´Ş
+//ë©”ì¼ ì „ì†¡ ê¸°ëŠ¥(JavaMail ê¸°ëŠ¥)ì„ ì œê³µí•˜ê¸° ìœ„í•œ í´ë˜ìŠ¤ - ë©”ì¼ ì„œë²„ì˜ SMTP ì„œë¹„ìŠ¤ë¥¼ ì‚¬ìš©í•˜ì—¬ ë©”ì¼ ì „ì†¡
+// => ë©”ì¼ ì„œë²„(Mail Server) : ë©”ì¼ì„ ì†¡ìˆ˜ì‹ í•˜ëŠ” ì„œë¹„ìŠ¤ë¥¼ ì œê³µí•˜ëŠ” ì»´í“¨í„°
+// => STMP ì„œë¹„ìŠ¤(Simple Message Transfer Protocol - 25)ë¡œ ë©”ì¼ì„ ë³´ë‚´ê³  POP3(Post Office Protocol3 - 110) 
+//ì„œë¹„ìŠ¤ë‚˜ IMAP(Internet Message Access Protocol - 143) ì„œë¹„ìŠ¤ëŠ” ë©”ì¼ì„ ë°›ì•„ ì‚¬ìš©ìì—ê²Œ ì „ë‹¬
 public class EmailSendBean {
-	//JavaMailSender °´Ã¼¸¦ ÀúÀåÇÏ±â À§ÇÑ ÇÊµå ¼±¾ğ
-	// => JavaMailSender °´Ã¼ : SMTP ¼­ºñ½º¸¦ Á¦°øÇÏ´Â ¼­¹öÀÇ Á¤º¸¸¦ ÀúÀåÇÏ±â À§ÇÑ °´Ã¼
-	// => Spring Bean Configuration File¿¡¼­ JavaMailSender °´Ã¼¸¦ Á¦°ø¹Ş¾Æ ÇÊµå¿¡ ÀúÀå - DI
+	//JavaMailSender ê°ì²´ë¥¼ ì €ì¥í•˜ê¸° ìœ„í•œ í•„ë“œ ì„ ì–¸
+	// => JavaMailSender ê°ì²´ : SMTP ì„œë¹„ìŠ¤ë¥¼ ì œê³µí•˜ëŠ” ì„œë²„ì˜ ì •ë³´ë¥¼ ì €ì¥í•˜ê¸° ìœ„í•œ ê°ì²´
+	// => Spring Bean Configuration Fileì—ì„œ JavaMailSender ê°ì²´ë¥¼ ì œê³µë°›ì•„ í•„ë“œì— ì €ì¥ - DI
 	@Setter
 	private JavaMailSender javaMailSender;
 	
-	//SMTP ¼­ºñ½º¸¦ »ç¿ëÇÏ¿© ¸ŞÀÏÀ» Àü¼ÛÇÏ´Â ¸Ş¼Òµå
-	// => ¸ŞÀÏÀ» ¹Ş´Â »ç¶÷ÀÇ ÀÌ¸ŞÀÏ ÁÖ¼Ò¸¦ ¹İÈ¯
-	// => ¸ŞÀÏÀ» ¹Ş´Â »ç¶÷ÀÇ ÀÌ¸ŞÀÏ ÁÖ¼Ò, Á¦¸ñ, ³»¿ëÀ» ¸Å°³º¯¼ö·Î Àü´Ş¹Ş¾Æ ¸Ş¼Òµå¿¡¼­ »ç¿ë
-	//º¸ÅëÀº ¹İÈ¯ÇüÀ» void·Î ¸¹ÀÌ ¾¸ 
+	//SMTP ì„œë¹„ìŠ¤ë¥¼ ì‚¬ìš©í•˜ì—¬ ë©”ì¼ì„ ì „ì†¡í•˜ëŠ” ë©”ì†Œë“œ
+	// => ë©”ì¼ì„ ë°›ëŠ” ì‚¬ëŒì˜ ì´ë©”ì¼ ì£¼ì†Œë¥¼ ë°˜í™˜
+	// => ë©”ì¼ì„ ë°›ëŠ” ì‚¬ëŒì˜ ì´ë©”ì¼ ì£¼ì†Œ, ì œëª©, ë‚´ìš©ì„ ë§¤ê°œë³€ìˆ˜ë¡œ ì „ë‹¬ë°›ì•„ ë©”ì†Œë“œì—ì„œ ì‚¬ìš©
 	public String sendEmail(String email, String subject, String content) throws Exception {
-		//JavaMailSender.createMimeMessage() : MimeMessage °´Ã¼¸¦ »ı¼ºÇÏ¿© ¹İÈ¯ÇÏ´Â ¸Ş¼Òµå
-		//MimeMessage °´Ã¼ : ¸ŞÀÏ Àü¼Û °ü·Ã Á¤º¸¸¦ ÀúÀåÇÏ±â À§ÇÑ °´Ã¼
+		//JavaMailSender.createMimeMessage() : MimeMessage ê°ì²´ë¥¼ ìƒì„±í•˜ì—¬ ë°˜í™˜í•˜ëŠ” ë©”ì†Œë“œ
+		//MimeMessage ê°ì²´ : ë©”ì¼ ì „ì†¡ ê´€ë ¨ ì •ë³´ë¥¼ ì €ì¥í•˜ê¸° ìœ„í•œ ê°ì²´
 		MimeMessage message=javaMailSender.createMimeMessage();
 		
-		//MimeMessage.setSubject(String subject) : MimeMessage °´Ã¼ÀÇ ¸ŞÀÏ Á¦¸ñÀ» º¯°æÇÏ´Â ¸Ş¼Òµå
+		//MimeMessage.setSubject(String subject) : MimeMessage ê°ì²´ì˜ ë©”ì¼ ì œëª©ì„ ë³€ê²½í•˜ëŠ” ë©”ì†Œë“œ
 		message.setSubject(subject);
 		
-		//MimeMessage.setText(String content) : MimeMessage °´Ã¼ÀÇ ¸ŞÀÏ ³»¿ë º¯°æÇÏ´Â ¸Ş¼Òµå
-		// => ¸ŞÀÏ ³»¿ëÀ» ÀÏ¹İ ÅØ½ºÆ® ¹®¼­ ÇüÅÂ·Î ÀúÀåÇÏ¿© Àü´Ş
+		//MimeMessage.setText(String content) : MimeMessage ê°ì²´ì˜ ë©”ì¼ ë‚´ìš© ë³€ê²½í•˜ëŠ” ë©”ì†Œë“œ
+		// => ë©”ì¼ ë‚´ìš©ì„ ì¼ë°˜ í…ìŠ¤íŠ¸ ë¬¸ì„œ í˜•íƒœë¡œ ì €ì¥í•˜ì—¬ ì „ë‹¬
 		//message.setText(content);
 		
-		//MimeMessage.setContent(Object o, String type) : MimeMessage °´Ã¼ÀÇ ¸ŞÀÏ ³»¿ëÀ» º¯°æÇÏ´Â ¸Ş¼Òµå
-		// => type ¸Å°³º¯¼ö¿¡ ¸ŞÀÏ·Î Àü´ŞÇÒ ¹®¼­ÀÇ Çü½Ä(MimeType)À» Àü´ŞÇÏ¿© ÀúÀå
-		// => ¸ŞÀÏ ³»¿ëÀ» HTML ¹®¼­ ÇüÅÂ·Î ÀúÀåÇÏ¿© Àü´Ş 
+		//MimeMessage.setContent(Object o, String type) : MimeMessage ê°ì²´ì˜ ë©”ì¼ ë‚´ìš©ì„ ë³€ê²½í•˜ëŠ” ë©”ì†Œë“œ
+		// => type ë§¤ê°œë³€ìˆ˜ì— ë©”ì¼ë¡œ ì „ë‹¬í•  ë¬¸ì„œì˜ í˜•ì‹(MimeType)ì„ ì „ë‹¬í•˜ì—¬ ì €ì¥
+		// => ë©”ì¼ ë‚´ìš©ì„ HTML ë¬¸ì„œ í˜•íƒœë¡œ ì €ì¥í•˜ì—¬ ì „ë‹¬ 
 		message.setContent(content, "text/html; charset=utf-8");
 		
-		message.setFrom(new InternetAddress("swiftair@itwill.xyz"));
-		
-		//MimeMessage.setRecipient(RecipientType type, Address address) : MimeMessage °´Ã¼ÀÇ
-		//¸ŞÀÏÀ» ¹Ş´Â »ç¶÷ÀÇ ÀÌ¸ŞÀÏ ÁÖ¼Ò °ü·Ã Á¤º¸¸¦ º¯°æÇÏ´Â ¸Ş¼Òµå
-		// => type : ¸ŞÀÏ ¼ö½Å »ç¿ëÀÚ¸¦ ±¸ºĞÇÏ±â À§ÇÑ »ó¼ö(RecipientType) Àü´Ş
-		// => address :  ÀÌ¸ŞÀÏ ÁÖ¼Ò°¡ ÀúÀåµÈ Address °´Ã¼ Àü´Ş
-		//InternetAddress °´Ã¼ : ÀÌ¸ŞÀÏ ÁÖ°í¸¦ ÀúÀåÇÏ±â À§ÇÑ °´Ã¼
-		//MimeMessage.setRecipients(RecipientType type, Address[] address) : MimeMessage °´Ã¼ÀÇ
-		//¸ŞÀÏÀ» ¹Ş´Â »ç¶÷µéÀÇ ÀÌ¸ŞÀÏ ÁÖ¼Ò °ü·Ã Á¤º¸¸¦ º¯°æÇÏ´Â ¸Ş¼Òµå - ´Ù¼öÀÇ »ç¿ëÀÚ¿¡°Ô ¸ŞÀÏ Àü¼Û
+		//MimeMessage.setRecipient(RecipientType type, Address address) : MimeMessage ê°ì²´ì˜
+		//ë©”ì¼ì„ ë°›ëŠ” ì‚¬ëŒì˜ ì´ë©”ì¼ ì£¼ì†Œ ê´€ë ¨ ì •ë³´ë¥¼ ë³€ê²½í•˜ëŠ” ë©”ì†Œë“œ
+		// => type : ë©”ì¼ ìˆ˜ì‹  ì‚¬ìš©ìë¥¼ êµ¬ë¶„í•˜ê¸° ìœ„í•œ ìƒìˆ˜(RecipientType) ì „ë‹¬
+		// => address :  ì´ë©”ì¼ ì£¼ì†Œê°€ ì €ì¥ëœ Address ê°ì²´ ì „ë‹¬
+		//InternetAddress ê°ì²´ : ì´ë©”ì¼ ì£¼ê³ ë¥¼ ì €ì¥í•˜ê¸° ìœ„í•œ ê°ì²´
+		//MimeMessage.setRecipients(RecipientType type, Address[] address) : MimeMessage ê°ì²´ì˜
+		//ë©”ì¼ì„ ë°›ëŠ” ì‚¬ëŒë“¤ì˜ ì´ë©”ì¼ ì£¼ì†Œ ê´€ë ¨ ì •ë³´ë¥¼ ë³€ê²½í•˜ëŠ” ë©”ì†Œë“œ - ë‹¤ìˆ˜ì˜ ì‚¬ìš©ìì—ê²Œ ë©”ì¼ ì „ì†¡
 		message.setRecipient(RecipientType.TO, new InternetAddress(email));
 		
-		//JavaMailSender.send(MimeMessage message) : ¸Å°³º¯¼ö·Î Àü´ŞµÈ MimeMessage °´Ã¼ÀÇ Á¤º¸¸¦
-		//ÀÌ¿ëÇØ SMTP ¼­ºñ½º·Î ¸ŞÀÏÀ» Àü¼ÛÇÏ´Â ¸Ş¼Òµå
+		//JavaMailSender.send(MimeMessage message) : ë§¤ê°œë³€ìˆ˜ë¡œ ì „ë‹¬ëœ MimeMessage ê°ì²´ì˜ ì •ë³´ë¥¼
+		//ì´ìš©í•´ SMTP ì„œë¹„ìŠ¤ë¡œ ë©”ì¼ì„ ì „ì†¡í•˜ëŠ” ë©”ì†Œë“œ
 		javaMailSender.send(message);
 		
 		return email;

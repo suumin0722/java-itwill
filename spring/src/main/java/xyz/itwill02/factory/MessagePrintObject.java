@@ -2,17 +2,17 @@ package xyz.itwill02.factory;
 
 public class MessagePrintObject {
 	public void messagePrint() {
-		// °´Ã¼¸¦ Á÷Á¢ »ı¼ºÇÏ¿© ¸Ş¼Òµå È£Ãâ - °´Ã¼°£ÀÇ °áÇÕµµ°¡ ³ô¾Æ À¯Áöº¸¼öÀÇ È¿À²¼º °¨¼Ò
-		// MessageObject object=new HelloMessageObject();
-
-		// ÇÁ·Î±×·¥ ½ÇÇà¿¡ ÇÊ¿äÇÑ °´Ã¼¸¦ Factory Å¬·¡½º·ÎºÎÅÍ ¹İÈ¯¹Ş¾Æ ¸Ş¼Òµå È£Ãâ
-		// => Á¦¾îÀÇ ¿ªÇà(IoC)À» »ç¿ëÇÏ¿© °´Ã¼°£ÀÇ °áÇÕµµ¸¦ ³·Ãç À¯Áöº¸¼öÀÇ È¿À²¼º Áõ°¡
-		// MessageObject object = MessageObjectFactory.getmeMessageObject();
-
+		//ê°ì²´ë¥¼ ì§ì ‘ ìƒì„±í•˜ì—¬ ë©”ì†Œë“œ í˜¸ì¶œ - ê°ì²´ê°„ì˜ ê²°í•©ë„ê°€ ë†’ì•„ ìœ ì§€ë³´ìˆ˜ì˜ íš¨ìœ¨ì„± ê°ì†Œ
+		//MessageObject object=new HelloMessageObject();
+		
+		//í”„ë¡œê·¸ë¨ ì‹¤í–‰ì— í•„ìš”í•œ ê°ì²´ë¥¼ Factory í´ë˜ìŠ¤ë¡œë¶€í„° ë°˜í™˜ë°›ì•„ ë©”ì†Œë“œ í˜¸ì¶œ
+		// => ì œì–´ì˜ ì—­í–‰(IoC)ì„ ì‚¬ìš©í•˜ì—¬ ê°ì²´ê°„ì˜ ê²°í•©ë„ë¥¼ ë‚®ì¶° ìœ ì§€ë³´ìˆ˜ì˜ íš¨ìœ¨ì„± ì¦ê°€ 
+		//MessageObject object=MessageObjectFactory.getMessageObject();
+		
 		//MessageObject object=MessageObjectFactory.getMessageObject(MessageObjectFactory.HELLO_MSG);
-		MessageObject object = MessageObjectFactory.getMessageObject(MessageObjectFactory.HI_MSG);
-
-		String message = object.getMessage();
-		System.out.println("message = " + message);
+		MessageObject object=MessageObjectFactory.getMessageObject(MessageObjectFactory.HI_MSG);
+		
+		String message=object.getMessage();
+		System.out.println("message = "+message);
 	}
 }

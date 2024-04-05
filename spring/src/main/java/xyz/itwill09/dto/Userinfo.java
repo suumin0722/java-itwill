@@ -3,14 +3,14 @@ package xyz.itwill09.dto;
 import lombok.Data;
 
 /*
-¿Ã∏ß       ≥Œ?       ¿Ø«¸            
+Ïù¥Î¶Ñ       ÎÑê?       Ïú†Ìòï            
 -------- -------- ------------- 
 USERID   NOT NULL VARCHAR2(100) 
 PASSWORD          VARCHAR2(100) 
 NAME              VARCHAR2(200) 
 EMAIL             VARCHAR2(300) 
-STATUS            NUMBER(1)    
- */
+STATUS            NUMBER(1)     
+*/
 
 @Data
 public class Userinfo {

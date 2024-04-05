@@ -2,23 +2,23 @@ package xyz.itwill09.util;
 
 import lombok.Data;
 
-//ÆäÀÌÂ¡ Ã³¸® °ü·Ã °ªÀ» ÀúÀåÇÏ±â À§ÇÑ Å¬·¡½º
+//í˜ì´ì§• ì²˜ë¦¬ ê´€ë ¨ ê°’ì„ ì €ì¥í•˜ê¸° ìœ„í•œ í´ë˜ìŠ¤
 @Data
 public class Pager {
-	//»ı¼ºÀÚ ¸Å°³º¯¼ö·Î ÃÊ±â°ªÀ» Àü´Ş¹Ş¾Æ ÇÊµå¿¡ ÀúÀå
-	private int pageNum;//¿äÃ» ÆäÀÌÁö ¹øÈ£
-	private int totalSize;//ÀüÃ¼ °Ô½Ã±ÛÀÇ °¹¼ö
-	private int pageSize;//ÇÏ³ªÀÇ ÆäÀÌÁö¿¡ Ãâ·ÂµÉ °Ô½Ã±ÛÀÇ °¹¼ö
-	private int blockSize;//ÇÏ³ªÀÇ ºí·°¿¡ Ãâ·ÂµÉ ÆäÀÌÁö ¹øÈ£ÀÇ °¹¼ö
+	//ìƒì„±ì ë§¤ê°œë³€ìˆ˜ë¡œ ì´ˆê¸°ê°’ì„ ì „ë‹¬ë°›ì•„ í•„ë“œì— ì €ì¥
+	private int pageNum;//ìš”ì²­ í˜ì´ì§€ ë²ˆí˜¸
+	private int totalSize;//ì „ì²´ ê²Œì‹œê¸€ì˜ ê°¯ìˆ˜
+	private int pageSize;//í•˜ë‚˜ì˜ í˜ì´ì§€ì— ì¶œë ¥ë  ê²Œì‹œê¸€ì˜ ê°¯ìˆ˜
+	private int blockSize;//í•˜ë‚˜ì˜ ë¸”ëŸ­ì— ì¶œë ¥ë  í˜ì´ì§€ ë²ˆí˜¸ì˜ ê°¯ìˆ˜
 	
-	//»ı¼ºÀÚ ¸Å°³º¯¼ö·Î ÃÊ±âÈ­ Ã³¸®µÈ ÇÊµå°ªÀ» »ç¿ëÇØ °è»êµÈ °á°ú°ªÀ» ÇÊµå¿¡ ÀúÀå
-	private int totalPage;//ÀüÃ¼ ÆäÀÌÁöÀÇ °¹¼ö
-	private int startRow;//¿äÃ» ÆäÀÌÁö¿¡ Ãâ·ÂµÉ °Ô½Ã±ÛÀÇ ½ÃÀÛ Çà¹øÈ£
-	private int endRow;//¿äÃ» ÆäÀÌÁö¿¡ Ãâ·ÂµÉ °Ô½Ã±ÛÀÇ Á¾·á Çà¹øÈ£
-	private int startPage;//ÇöÀç ºí·°¿¡ Ãâ·ÂµÉ ½ÃÀÛ ÆäÀÌÁö ¹øÈ£
-	private int endPage;//ÇöÀç ºí·°¿¡ Ãâ·ÂµÉ Á¾·á ÆäÀÌÁö ¹øÈ£
-	private int prevPage;//ÀÌÀü ºí·°¿¡ Ãâ·ÂµÉ ½ÃÀÛ ÆäÀÌÁö ¹øÈ£
-	private int nextPage;//´ÙÀ½ ºí·°¿¡ Ãâ·ÂµÉ ½ÃÀÛ ÆäÀÌÁö ¹øÈ£
+	//ìƒì„±ì ë§¤ê°œë³€ìˆ˜ë¡œ ì´ˆê¸°í™” ì²˜ë¦¬ëœ í•„ë“œê°’ì„ ì‚¬ìš©í•´ ê³„ì‚°ëœ ê²°ê³¼ê°’ì„ í•„ë“œì— ì €ì¥
+	private int totalPage;//ì „ì²´ í˜ì´ì§€ì˜ ê°¯ìˆ˜
+	private int startRow;//ìš”ì²­ í˜ì´ì§€ì— ì¶œë ¥ë  ê²Œì‹œê¸€ì˜ ì‹œì‘ í–‰ë²ˆí˜¸
+	private int endRow;//ìš”ì²­ í˜ì´ì§€ì— ì¶œë ¥ë  ê²Œì‹œê¸€ì˜ ì¢…ë£Œ í–‰ë²ˆí˜¸
+	private int startPage;//í˜„ì¬ ë¸”ëŸ­ì— ì¶œë ¥ë  ì‹œì‘ í˜ì´ì§€ ë²ˆí˜¸
+	private int endPage;//í˜„ì¬ ë¸”ëŸ­ì— ì¶œë ¥ë  ì¢…ë£Œ í˜ì´ì§€ ë²ˆí˜¸
+	private int prevPage;//ì´ì „ ë¸”ëŸ­ì— ì¶œë ¥ë  ì‹œì‘ í˜ì´ì§€ ë²ˆí˜¸
+	private int nextPage;//ë‹¤ìŒ ë¸”ëŸ­ì— ì¶œë ¥ë  ì‹œì‘ í˜ì´ì§€ ë²ˆí˜¸
 	
 	public Pager(int pageNum, int totalSize, int pageSize, int blockSize) {
 		this.pageNum = pageNum;
@@ -51,4 +51,15 @@ public class Pager {
 		nextPage=startPage+blockSize;
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
 

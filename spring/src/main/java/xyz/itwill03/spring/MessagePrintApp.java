@@ -8,22 +8,22 @@ public class MessagePrintApp {
 		/*
 		HelloMessageObject object=new HelloMessageObject();
 		MessagePrintObject print=new MessagePrintObject();
-		//╦е╟Ё╨╞╪Ж©║ ╟╢ц╪╦╕ юЭ╢чго©╘ гй╣Е©║ юЗюЕ - фВгт╟Э╟Х ©о╪╨
+		//К╖╓Й╟°КЁ─Л┬≤Л≈░ Й╟²Л╡╢К╔╪ Л═└К▀╛М∙≤Л≈╛ М∙└К⌠°Л≈░ Л═─Л·╔ - М▐╛М∙╗Й╢─ЙЁ└ Л≥└Л└╠
 		print.setObject(object);
 		print.messagePrint();
 		*/
 		
-		//ApplicationContext ╟╢ц╪ : ╫╨га╦╣ даевюлЁй(Spring Container) ╠Б╢ию╩ а╕╟Ьго╠Б ю╖гя ╟╢ц╪
-		// => Spring Bean Configuration File(XML)ю╩ а╕╟Ь╧ч╬ф ╟╢ц╪(Spring Bean)╦╕ ╩Щ╪╨го©╘ ╟Э╦╝	
+		//ApplicationContext Й╟²Л╡╢ : Л┼╓М■└К╖│ Л╩╗М┘▄Л²╢К└┬(Spring Container) Й╦╟К┼╔Л²└ Л═°ЙЁ╣М∙≤Й╦╟ Л°└М∙° Й╟²Л╡╢
+		// => Spring Bean Configuration File(XML)Л²└ Л═°ЙЁ╣К╟⌡Л∙└ Й╟²Л╡╢(Spring Bean)К╔╪ Л┐²Л└╠М∙≤Л≈╛ Й╢─К╕╛	
 		ApplicationContext context=new ClassPathXmlApplicationContext("03_message.xml");
 		
-		//╫╨га╦╣ даевюлЁй©║╟т гй©Дгя ╟╢ц╪(Spring Bean)ю╩ а╕╟Ь╧ч╬ф юЗюЕ
+		//Л┼╓М■└К╖│ Л╩╗М┘▄Л²╢К└┬Л≈░Й╡▄ М∙└Л ■М∙° Й╟²Л╡╢(Spring Bean)Л²└ Л═°ЙЁ╣К╟⌡Л∙└ Л═─Л·╔
 		MessagePrintObject print=(MessagePrintObject)context.getBean("messagePrintObject");
 		
 		print.messagePrint();
 		
-		//ApplicationContext ╟╢ц╪ а╕╟е - ╫╨га╦╣ даевюлЁй ╪р╦Й
-		// => ╫╨га╦╣ даевюлЁй╟║ ╟Э╦╝го╢б ╦П╣Г ╟╢ц╪(Spring Bean) ╪р╦Й
+		//ApplicationContext Й╟²Л╡╢ Л═°Й╠╟ - Л┼╓М■└К╖│ Л╩╗М┘▄Л²╢К└┬ Л├▄К╘╦
+		// => Л┼╓М■└К╖│ Л╩╗М┘▄Л²╢К└┬Й╟─ Й╢─К╕╛М∙≤К┼■ К╙╗К⌠═ Й╟²Л╡╢(Spring Bean) Л├▄К╘╦
 		((ClassPathXmlApplicationContext)context).close();
 	}
 }

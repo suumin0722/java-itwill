@@ -12,57 +12,58 @@ import xyz.itwill09.dto.PointBoard;
 import xyz.itwill09.dto.PointUser;
 
 @Service
-@RequiredArgsConstructor()
+@RequiredArgsConstructor
 public class PointBoardServiceImpl implements PointBoardService {
 	private final PointUserDAO pointUserDAO;
 	private final PointBoardDAO pointBoardDAO;
-	
-	//¸Å°³º¯¼ö·Î °Ô½Ã±ÛÀ» Àü´Ş¹Ş¾Æ POINT_BOARD Å×ÀÌºí¿¡ ÇàÀ¸·Î »ğÀÔÇÏ°í °Ô½Ã±Û ÀÛ¼ºÀÚ¿¡ ´ëÇÑ
-	// È¸¿øÁ¤º¸¸¦ POINT_USER Å×ÀÌºí¿¡¼­ °Ë»öÇÏ¿© PointUserDTO °´Ã¼·Î ¹İÈ¯ÇÏ´Â ¸Ş¼Òµå
-	// => POINT_USER Å×ÀÌºí¿¡¼­ °Ô½Ã±Û ÀÛ¼ºÀÚ¿¡ ´ëÇÑ ÇàÀÇ POINT ÄÃ·³°ªÀÌ Áõ°¡µÇµµ·Ï º¯°æ Ã³¸®
-	// @Transactional : TransactionManager °´Ã¼¿¡ ÀÇÇØ Æ®·»Á§¼Ç Ã³¸® ±â´ÉÀ» Á¦°ø¹Ş±â À§ÇÑ ¾î³ëÅ×ÀÌ¼Ç
-	// rollbackFor ¼Ó¼º : ¿¹¿ÜÅ¬·¡½º(Class °´Ã¼)¸¦ ¼Ó¼º°ªÀ¸·Î ¼³Á¤ - ¿¹¿Ü°¡ ¹ß»ıµÇ¸é ·Ñ¹é Ã³¸®
+
+	//ë§¤ê°œë³€ìˆ˜ë¡œ ê²Œì‹œê¸€ì„ ì „ë‹¬ë°›ì•„ POINT_BOARD í…Œì´ë¸”ì— í–‰ìœ¼ë¡œ ì‚½ì…í•˜ê³  ê²Œì‹œê¸€ ì‘ì„±ìì— ëŒ€í•œ
+	//íšŒì›ì •ë³´ë¥¼ POINT_USER í…Œì´ë¸”ì—ì„œ ê²€ìƒ‰í•˜ì—¬ PointUserDTO ê°ì²´ë¡œ ë°˜í™˜í•˜ëŠ” ë©”ì†Œë“œ
+	// => POINT_USER í…Œì´ë¸”ì—ì„œ ê²Œì‹œê¸€ ì‘ì„±ìì— ëŒ€í•œ í–‰ì˜ POINT ì»¬ëŸ¼ê°’ì´ ì¦ê°€ë˜ë„ë¡ ë³€ê²½ ì²˜ë¦¬
+	//@Transactional : TransactionManager ê°ì²´ì— ì˜í•´ íŠ¸ë Œì ì…˜ ì²˜ë¦¬ ê¸°ëŠ¥ì„ ì œê³µë°›ê¸° ìœ„í•œ ì–´ë…¸í…Œì´ì…˜
+	//rollbackFor ì†ì„± : ì˜ˆì™¸í´ë˜ìŠ¤(Class ê°ì²´)ë¥¼ ì†ì„±ê°’ìœ¼ë¡œ ì„¤ì • - ì˜ˆì™¸ê°€ ë°œìƒë˜ë©´ ë¡¤ë°± ì²˜ë¦¬
 	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public PointUser addPointBoard(PointBoard board) {
 		pointBoardDAO.insertPointBoard(board);
 		
-		//°Ô½Ã±Û ÀÛ¼ºÀÚ¿¡ ´ëÇÑ È¸¿øÁ¤º¸°¡ ¾ø´Â °æ¿ì ÀÎÀ§Àû ¿¹¿Ü ¹ß»ı
-		// => ¿¹¿Ü°¡ ¹ß»ıµÈ °æ¿ì ¿¹¿Ü ¹ß»ı ¸í·É ¾Æ·¡¿¡ ÀÛ¼ºµÈ ¸í·ÉÀº ½ÇÇàµÇÁö ¾Ê°í ¸Ş¼Òµå °­Á¦ Á¾·á
+		//ê²Œì‹œê¸€ ì‘ì„±ìì— ëŒ€í•œ íšŒì›ì •ë³´ê°€ ì—†ëŠ” ê²½ìš° ì¸ìœ„ì  ì˜ˆì™¸ ë°œìƒ
+		// => ì˜ˆì™¸ê°€ ë°œìƒëœ ê²½ìš° ì˜ˆì™¸ ë°œìƒ ëª…ë ¹ ì•„ë˜ì— ì‘ì„±ëœ ëª…ë ¹ì€ ì‹¤í–‰ë˜ì§€ ì•Šê³  ë©”ì†Œë“œ ê°•ì œ ì¢…ë£Œ
 		if(pointUserDAO.selectPointUser(board.getWriter()) == null) {
-			throw new RuntimeException("°Ô½Ã±Û ÀÛ¼ºÀÚ°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+			throw new RuntimeException("ê²Œì‹œê¸€ ì‘ì„±ìê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 		}
+		
 		pointUserDAO.updatePlusPointUser(board.getWriter());
 		
 		return pointUserDAO.selectPointUser(board.getWriter());
 	}
 
-	//¸Å°³º¯¼ö·Î ±Û¹øÈ£¸¦ Àü´Ş¹Ş¾Æ POINT_BOARD Å×ÀÌºí¿¡ ÀúÀåµÈ ÇàÀ¸·Î »èÁ¦ÇÏ°í °Ô½Ã±Û ÀÛ¼ºÀÚ¿¡ ´ëÇÑ
-	//È¸¿øÁ¤º¸¸¦ POINT_USER Å×ÀÌºí¿¡¼­ °Ë»öÇÏ¿© PointUserDTO °´Ã¼·Î ¹İÈ¯ÇÏ´Â ¸Ş¼Òµå
-	// => POINT_USER Å×ÀÌºí¿¡¼­ °Ô½Ã±Û ÀÛ¼ºÀÚ¿¡ ´ëÇÑ ÇàÀÇ POINT ÄÃ·³°ªÀÌ °¨¼ÒµÇµµ·Ï º¯°æ Ã³¸®
+	//ë§¤ê°œë³€ìˆ˜ë¡œ ê¸€ë²ˆí˜¸ë¥¼ ì „ë‹¬ë°›ì•„ POINT_BOARD í…Œì´ë¸”ì— ì €ì¥ëœ í–‰ì„ ì‚­ì œí•˜ê³  ê²Œì‹œê¸€ ì‘ì„±ìì—
+	//ëŒ€í•œ íšŒì›ì •ë³´ë¥¼ POINT_USER í…Œì´ë¸”ì—ì„œ ê²€ìƒ‰í•˜ì—¬ PointUserDTO ê°ì²´ë¡œ ë°˜í™˜í•˜ëŠ” ë©”ì†Œë“œ
+	// => POINT_USER í…Œì´ë¸”ì—ì„œ ê²Œì‹œê¸€ ì‘ì„±ìì— ëŒ€í•œ í–‰ì˜ POINT ì»¬ëŸ¼ê°’ì´ ê°ì†Œë˜ë„ë¡ ë³€ê²½ ì²˜ë¦¬ 
 	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public PointUser removePointBoard(int idx) {
-		PointBoard board = pointBoardDAO.selectPointBoard(idx);
-		
+		PointBoard board=pointBoardDAO.selectPointBoard(idx);
 		
 		if(board == null) {
-			throw new RuntimeException("°Ô½Ã±ÛÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+			throw new RuntimeException("ê²Œì‹œê¸€ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 		}
 		
 		pointBoardDAO.deletePointBoard(idx);
-
-		//°Ô½Ã±Û ÀÛ¼ºÀÚ¿¡ ´ëÇÑ È¸¿øÁ¤º¸°¡ ¾ø´Â °æ¿ì ÀÎÀ§Àû ¿¹¿Ü ¹ß»ı
-		// => ¿¹¿Ü°¡ ¹ß»ıµÈ °æ¿ì ¿¹¿Ü ¹ß»ı ¸í·É ¾Æ·¡¿¡ ÀÛ¼ºµÈ ¸í·ÉÀº ½ÇÇàµÇÁö ¾Ê°í ¸Ş¼Òµå °­Á¦ Á¾·á
+		
+		//ê²Œì‹œê¸€ ì‘ì„±ìì— ëŒ€í•œ íšŒì›ì •ë³´ê°€ ì—†ëŠ” ê²½ìš° ì¸ìœ„ì  ì˜ˆì™¸ ë°œìƒ
+		// => ì˜ˆì™¸ê°€ ë°œìƒëœ ê²½ìš° ì˜ˆì™¸ ë°œìƒ ëª…ë ¹ ì•„ë˜ì— ì‘ì„±ëœ ëª…ë ¹ì€ ì‹¤í–‰ë˜ì§€ ì•Šê³  ë©”ì†Œë“œ ê°•ì œ ì¢…ë£Œ
 		if(pointUserDAO.selectPointUser(board.getWriter()) == null) {
-			throw new RuntimeException("°Ô½Ã±Û ÀÛ¼ºÀÚ°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
-		}	
-		pointUserDAO.updateMinusPointUser(null);
+			throw new RuntimeException("ê²Œì‹œê¸€ ì‘ì„±ìê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+		}
+		
+		pointUserDAO.updateMinusPointUser(board.getWriter());
 		
 		return pointUserDAO.selectPointUser(board.getWriter());
 	}
-	
-	//POINT_BOARD Å×ÀÌºí¿¡ ÀúÀåµÈ ¸ğµç ÇàÀ» °Ë»öÇÏ¿© List °´Ã¼·Î ¹İÈ¯ÇÏ´Â ¸Ş¼Òµå
+
+	//POINT_BOARD í…Œì´ë¸”ì— ì €ì¥ëœ ëª¨ë“  í–‰ì„ ê²€ìƒ‰í•˜ì—¬ List ê°ì²´ë¡œ ë°˜í™˜í•˜ëŠ” ë©”ì†Œë“œ
 	@Override
 	public List<PointBoard> getPointBoardList() {
 		return pointBoardDAO.selectPointBoardList();

@@ -10,32 +10,32 @@ import org.springframework.jdbc.core.RowMapper;
 
 import lombok.Setter;
 
-//SpringDAO ±â´ÉÀ» »ç¿ëÇÏ¿© DAO Å¬·¡½º ÀÛ¼º - spring-jdbc ¶óÀÌºê·¯¸®¸¦ ÇÁ·ÎÁ§Æ®¿¡ ºôµå Ã³¸®
-// => Template Method PatternÀÌ Àû¿ëµÈ JdbcTemplate °´Ã¼ÀÇ ¸Ş¼Òµå¸¦ È£ÃâÇÏ¿© DAO Å¬·¡½ºÀÇ ¸Ş¼Òµå ÀÛ¼º 
-//Template Method Pattern : ¸Ş¼Òµå¿¡ ÇÊ¿äÇÑ ¸í·ÉµéÀ» ¹Ì¸® Á¦°øÇÏ¿© ½±°Ô ±â´É ±¸ÇöÀ» Á¦°øÇÏ´Â µğÀÚÀÎ ÆĞÅÏ 
-// => ÅÛÇÃ¸´ ¸Ş¼ÒµåÀÇ ¸Å°³º¯¼ö¿¡ ÇÊ¿äÇÑ °ªÀ» Àü´ŞÇÏ¿© JDBC ±â´É ±¸Çö 
+//SpringDAO ê¸°ëŠ¥ì„ ì‚¬ìš©í•˜ì—¬ DAO í´ë˜ìŠ¤ ì‘ì„± - spring-jdbc ë¼ì´ë¸ŒëŸ¬ë¦¬ë¥¼ í”„ë¡œì íŠ¸ì— ë¹Œë“œ ì²˜ë¦¬
+// => Template Method Patternì´ ì ìš©ëœ JdbcTemplate ê°ì²´ì˜ ë©”ì†Œë“œë¥¼ í˜¸ì¶œí•˜ì—¬ DAO í´ë˜ìŠ¤ì˜ ë©”ì†Œë“œ ì‘ì„± 
+//Template Method Pattern : ë©”ì†Œë“œì— í•„ìš”í•œ ëª…ë ¹ë“¤ì„ ë¯¸ë¦¬ ì œê³µí•˜ì—¬ ì‰½ê²Œ ê¸°ëŠ¥ êµ¬í˜„ì„ ì œê³µí•˜ëŠ” ë””ìì¸ íŒ¨í„´ 
+// => í…œí”Œë¦¿ ë©”ì†Œë“œì˜ ë§¤ê°œë³€ìˆ˜ì— í•„ìš”í•œ ê°’(ê°ì²´)ì„ ì „ë‹¬í•˜ì—¬ JDBC ê¸°ëŠ¥ êµ¬í˜„ 
 
 public class StudentDAOImpl implements StudentDAO {
-	//JdbcTemplate °´Ã¼¸¦ ÀúÀåÇÏ±â À§ÇÑ ÇÊµå ¼±¾ğ
-	// => Spring Bean Configuration File¿¡¼­ StudentDAOImpl Å¬·¡½º¸¦ Spring BeanÀ¸·Î µî·ÏÇÒ ¶§
-	//½ºÇÁ¸µ ÄÁÅ×ÀÌ³Ê·ÎºÎÅÍ JdbcTemplate °´Ã¼¸¦ Á¦°ø¹Ş¾Æ ÀÇÁ¸¼º ÁÖÀÔ - Setter Injection
+	//JdbcTemplate ê°ì²´ë¥¼ ì €ì¥í•˜ê¸° ìœ„í•œ í•„ë“œ ì„ ì–¸
+	// => Spring Bean Configuration Fileì—ì„œ StudentDAOImpl í´ë˜ìŠ¤ë¥¼ Spring Beanìœ¼ë¡œ ë“±ë¡í•  ë•Œ
+	//ìŠ¤í”„ë§ ì»¨í…Œì´ë„ˆë¡œë¶€í„° JdbcTemplate ê°ì²´ë¥¼ ì œê³µë°›ì•„ ì˜ì¡´ì„± ì£¼ì… - Setter Injection
 	@Setter
 	private JdbcTemplate jdbcTemplate;  
 	
-	//ÇĞ»ıÁ¤º¸¸¦ Àü´Ş¹Ş¾Æ STUDENT Å×ÀÌºí¿¡ ÇàÀ¸·Î »ğÀÔÇÏ°í »ğÀÔÇàÀÇ °¹¼ö¸¦ ¹İÈ¯ÇÏ´Â ¸Ş¼Òµå
+	//í•™ìƒì •ë³´ë¥¼ ì „ë‹¬ë°›ì•„ STUDENT í…Œì´ë¸”ì— í–‰ìœ¼ë¡œ ì‚½ì…í•˜ê³  ì‚½ì…í–‰ì˜ ê°¯ìˆ˜ë¥¼ ë°˜í™˜í•˜ëŠ” ë©”ì†Œë“œ
 	@Override
 	public int insertStudent(Student student) {
 		String sql="insert into student values(?,?,?,?,?)";
-		//JdbcTemplate.update(String sql, Object ... args) : SQL ¸í·É(INSET, UPDATE, DELETE)À»
-		//DBMS ¼­¹ö¿¡ Àü´ŞÇÏ¿© ½ÇÇàÇÏ´Â ¸Ş¼Òµå - Á¶ÀÛÇàÀÇ °¹¼ö(int) ¹İÈ¯
-		// => ¸Ş¼Òµå ¸Å°³º¯¼ö¿¡´Â ½ÇÇàµÉ SQL ¸í·É°ú InParameter(?)¿¡ Àü´ŞµÇ¾î »ç¿ëµÉ °ªÀ»
-		//Â÷·Ê´ë·Î ³ª¿­ÇÏ¿© Á¦°ø
-		// => SQL ¸í·ÉÀÇ InParameter(?) °¹¼ö¸¸Å­ ¹İµå½Ã args ¸Å°³º¯¼ö¿¡ °ªÀ» Àü´Ş 
+		//JdbcTemplate.update(String sql, Object ... args) : SQL ëª…ë ¹(INSERT, UPDATE, DELETE)ì„
+		//DBMS ì„œë²„ì— ì „ë‹¬í•˜ì—¬ ì‹¤í–‰í•˜ëŠ” ë©”ì†Œë“œ - ì¡°ì‘í–‰ì˜ ê°¯ìˆ˜(int) ë°˜í™˜
+		// => ë©”ì†Œë“œ ë§¤ê°œë³€ìˆ˜ì—ëŠ” ì‹¤í–‰ë  SQL ëª…ë ¹ê³¼ InParameter(?)ì— ì „ë‹¬ë˜ì–´ ì‚¬ìš©ë  ê°’ì„
+		//ì°¨ë¡€ëŒ€ë¡œ ë‚˜ì—´í•˜ì—¬ ì œê³µ
+		// => SQL ëª…ë ¹ì˜ InParameter(?) ê°¯ìˆ˜ë§Œí¼ ë°˜ë“œì‹œ args ë§¤ê°œë³€ìˆ˜ì— ê°’ì„ ì „ë‹¬ 
 		return jdbcTemplate.update(sql, student.getNo(), student.getName()
 				, student.getPhone(), student.getAddress(), student.getBirthday());
 	}
 
-	//ÇĞ»ıÁ¤º¸¸¦ Àü´Ş¹Ş¾Æ STUDENT Å×ÀÌºí¿¡ ÀúÀåµÈ ÇàÀ» º¯°æÇÏ°í º¯°æÇàÀÇ °¹¼ö¸¦ ¹İÈ¯ÇÏ´Â ¸Ş¼Òµå
+	//í•™ìƒì •ë³´ë¥¼ ì „ë‹¬ë°›ì•„ STUDENT í…Œì´ë¸”ì— ì €ì¥ëœ í–‰ì„ ë³€ê²½í•˜ê³  ë³€ê²½í–‰ì˜ ê°¯ìˆ˜ë¥¼ ë°˜í™˜í•˜ëŠ” ë©”ì†Œë“œ
 	@Override
 	public int updateStudent(Student student) {
 		String sql="update student set name=?, phone=?, address=?, birthday=? where no=?";
@@ -43,33 +43,34 @@ public class StudentDAOImpl implements StudentDAO {
 				, student.getAddress(), student.getBirthday(), student.getNo());
 	}
 
-	//ÇĞ»ı¹øÈ£¸¦ Àü´Ş¹Ş¾Æ STUDENT Å×ÀÌºí¿¡ ÀúÀåµÈ ÇàÀ» »èÁ¦ÇÏ°í »èÁ¦ÇàÀÇ °¹¼ö¸¦ ¹İÈ¯ÇÏ´Â ¸Ş¼Òµå
+	//í•™ìƒë²ˆí˜¸ë¥¼ ì „ë‹¬ë°›ì•„ STUDENT í…Œì´ë¸”ì— ì €ì¥ëœ í–‰ì„ ì‚­ì œí•˜ê³  ì‚­ì œí–‰ì˜ ê°¯ìˆ˜ë¥¼ ë°˜í™˜í•˜ëŠ” ë©”ì†Œë“œ
 	@Override
 	public int deleteStudent(int no) {
 		return jdbcTemplate.update("delete from student where no=?", no);
 	}
 
-	//ÇĞ»ı¹øÈ£¸¦ Àü´Ş¹Ş¾Æ STUDENT Å×ÀÌºí¿¡ ÀúÀåµÈ ÇàÀ» °Ë»öÇÏ¿© Java °´Ã¼(DTO)·Î ¹İÈ¯ÇÏ´Â ¸Ş¼Òµå
+	//í•™ìƒë²ˆí˜¸ë¥¼ ì „ë‹¬ë°›ì•„ STUDENT í…Œì´ë¸”ì— ì €ì¥ëœ í–‰ì„ ê²€ìƒ‰í•˜ì—¬ Java ê°ì²´(DTO)ë¡œ ë°˜í™˜í•˜ëŠ” ë©”ì†Œë“œ
 	@Override
 	public Student selectStudent(int no) {
 		try {
 			String sql="select no, name, phone, address, birthday from student where no=?";
 			//jdbcTemplate.queryForObject(String sql, RowMapper<T> rowMapper, Object ... args)
-			// => SQL ¸í·É(SELECT)À» DBMS ¼­¹ö¿¡ Àü´ŞÇÏ¿© ½ÇÇàÇÏ´Â ¸Ş¼Òµå
-			// => ´ÜÀÏÇàÀÇ °Ë»ö°á°ú¸¦ DTO °´Ã¼·Î ¹İÈ¯ÇÏ±â À§ÇØ »ç¿ëÇÏ´Â ¸Ş¼Òµå
-			// => ¸Å°³º¯¼ö¿¡¼­ ½ÇÇàµÉ SQL ¸í·É°ú °Ë»öÇàÀ» Java °´Ã¼·Î º¯È¯ÇÏ±â À§ÇÑ Á¤º¸¸¦ Á¦°øÇÏ´Â
-			//RowMapper °´Ã¼, InParameter(?)¿¡ Àü´ŞµÇ¾î »ç¿ëµÉ °ªÀ» Â÷·Ê´ë·Î ³ª¿­ÇÏ¿© Á¦°ø
+			// => SQL ëª…ë ¹(SELECT)ì„ DBMS ì„œë²„ì— ì „ë‹¬í•˜ì—¬ ì‹¤í–‰í•˜ëŠ” ë©”ì†Œë“œ
+			// => ë‹¨ì¼í–‰ì˜ ê²€ìƒ‰ê²°ê³¼ë¥¼ DTO ê°ì²´(Wrapper ë˜ëŠ” String)ë¡œ ë°˜í™˜í•˜ê¸° ìœ„í•´ ì‚¬ìš©í•˜ëŠ” ë©”ì†Œë“œ
+			// => ë§¤ê°œë³€ìˆ˜ì—ì„œ ì‹¤í–‰ë  SQL ëª…ë ¹ê³¼ ê²€ìƒ‰í–‰ì„ Java ê°ì²´ë¡œ ë³€í™˜í•˜ê¸° ìœ„í•œ ì •ë³´ë¥¼ ì œê³µí•˜ëŠ”
+			//RowMapper ê°ì²´, InParameter(?)ì— ì „ë‹¬ë˜ì–´ ì‚¬ìš©ë  ê°’ì„ ì°¨ë¡€ëŒ€ë¡œ ë‚˜ì—´í•˜ì—¬ ì œê³µ
 			
-			//RowMapper °´Ã¼ : RowMapper ÀÎÅÍÆäÀÌ½º¸¦ »ó¼Ó¹ŞÀº ÀÚ½ÄÅ¬·¡½º·Î »ı¼ºµÈ °´Ã¼
-			// => °Ë»öÇàÀÇ ÄÃ·³°ªÀ» DTO °´Ã¼ÀÇ ÇÊµå¿¡ ÀúÀåÇÏ±â À§ÇÑ ¸ÅÇÎÁ¤º¸¸¦ Á¦°ø
-			//RowMapper ÀÎÅÍÆäÀÌ½º¸¦ »ó¼Ó¹ŞÀº ÀÍ¸íÀÇ ³»ºÎÅ¬·¡½º¸¦ »ç¿ëÇÏ¿© RowMapper °´Ã¼ »ı¼ºÇÏ¿© »ç¿ë 
-			// => ÀÎÅÍÆäÀÌ½º Á¦³×¸¯¿¡´Â °Ë»öÇàÀ¸·Î »ı¼ºµÉ DTO °´Ã¼ÀÇ ÀÚ·áÇü(Å¬·¡½º)¸¦ ¼³Á¤
-			// => RowMapper ÀÎÅÍÆäÀÌ½ºÀÇ Ãß»ó¸Ş¼Òµå¸¦ ¿À¹ö¶óÀÌµå ¼±¾ğÇÏ¿© ¸ÅÇÎÁ¤º¸ ÀÛ¼º
+			//RowMapper ê°ì²´ : RowMapper ì¸í„°í˜ì´ìŠ¤ë¥¼ ìƒì†ë°›ì€ ìì‹í´ë˜ìŠ¤ë¡œ ìƒì„±ëœ ê°ì²´
+			// => ê²€ìƒ‰í–‰ì„ Java ê°ì²´ë¡œ ë³€í™˜í•˜ëŠ” ê¸°ëŠ¥ì„ ì œê³µí•˜ëŠ” ê°ì²´
+			// => ê²€ìƒ‰í–‰ì˜ ì»¬ëŸ¼ê°’ì„ DTO ê°ì²´ì˜ í•„ë“œì— ì €ì¥í•˜ê¸° ìœ„í•œ ë§¤í•‘ì •ë³´ë¥¼ ë°˜ë“œì‹œ ì„¤ì •
+			//RowMapper ì¸í„°í˜ì´ìŠ¤ë¥¼ ìƒì†ë°›ì€ ìµëª…ì˜ ë‚´ë¶€í´ë˜ìŠ¤ë¥¼ ì‚¬ìš©í•˜ì—¬ RowMapper ê°ì²´ ìƒì„±í•˜ì—¬ ì‚¬ìš© 
+			// => ì¸í„°í˜ì´ìŠ¤ ì œë„¤ë¦­ì—ëŠ” ê²€ìƒ‰í–‰ìœ¼ë¡œ ìƒì„±ë  DTO ê°ì²´ì˜ ìë£Œí˜•(í´ë˜ìŠ¤)ë¥¼ ì„¤ì •
+			// => RowMapper ì¸í„°í˜ì´ìŠ¤ì˜ ì¶”ìƒë©”ì†Œë“œë¥¼ ì˜¤ë²„ë¼ì´ë“œ ì„ ì–¸í•˜ì—¬ ë§¤í•‘ì •ë³´ ì‘ì„±
 			/*
 			return jdbcTemplate.queryForObject(sql, new RowMapper<Student>() {
 				@Override
 				public Student mapRow(ResultSet rs, int rowNum) throws SQLException {
-					//°Ë»öÇàÀÇ ÄÃ·³°ªÀ» DTO °´Ã¼ÀÇ ÇÊµå¿¡ ÀúÀåµÇµµ·Ï ¸ÅÇÎ ¼³Á¤
+					//ê²€ìƒ‰í–‰ì˜ ì»¬ëŸ¼ê°’ì„ DTO ê°ì²´ì˜ í•„ë“œì— ì €ì¥ë˜ë„ë¡ ë§¤í•‘ ì„¤ì •
 					return Student.builder()
 							.no(rs.getInt("no"))
 							.name(rs.getString("name"))
@@ -80,23 +81,23 @@ public class StudentDAOImpl implements StudentDAO {
 				}
 			}, no);
 			*/
-			//RowMapper ÀÎÅÍÆäÀÌ½º¸¦ »ó¼Ó¹ŞÀº ³»ºÎÅ¬·¡½º·Î RowMapper °´Ã¼ »ı¼ºÇÏ¿© »ç¿ë - ÀçÈ°¿ë 
+			//RowMapper ì¸í„°í˜ì´ìŠ¤ë¥¼ ìƒì†ë°›ì€ ë‚´ë¶€í´ë˜ìŠ¤ë¡œ RowMapper ê°ì²´ ìƒì„±í•˜ì—¬ ì‚¬ìš© - ì¬í™œìš© 
 			return jdbcTemplate.queryForObject(sql, new StudentRowMapper(), no);
 		} catch (EmptyResultDataAccessException e) {
-			//EmptyResultDataAccessException : queryForObject() ¸Ş¼Òµå·Î Àü´ŞµÉ¾î ½ÇÇàµÈ
-			//SELECT ¸í·É¿¡ ´ëÇÑ °Ë»öÇàÀÌ ¾ø´Â °æ¿ì ¹ß»ıµÇ´Â ¿¹¿Ü
+			//EmptyResultDataAccessException : queryForObject() ë©”ì†Œë“œë¡œ ì „ë‹¬ë ì–´ ì‹¤í–‰ëœ
+			//SELECT ëª…ë ¹ì— ëŒ€í•œ ê²€ìƒ‰í–‰ì´ ì—†ëŠ” ê²½ìš° ë°œìƒë˜ëŠ” ì˜ˆì™¸
 			return null;
 		}	
 	}
 
-	//STUDENT Å×ÀÌºí¿¡ ÀúÀåµÈ ¸ğµç ÇàÀ» °Ë»öÇÏ¿© Java °´Ã¼(List)·Î ¹İÈ¯ÇÏ´Â ¸Ş¼Òµå
+	//STUDENT í…Œì´ë¸”ì— ì €ì¥ëœ ëª¨ë“  í–‰ì„ ê²€ìƒ‰í•˜ì—¬ Java ê°ì²´(List)ë¡œ ë°˜í™˜í•˜ëŠ” ë©”ì†Œë“œ
 	@Override
 	public List<Student> selectStudentList() {
 		String sql="select no, name, phone, address, birthday from student order by no";
 		//jdbcTemplate.query(String sql, RowMapper<T> rowMapper, Object ... args)
-		// => SQL ¸í·É(SELECT)À» DBMS ¼­¹ö¿¡ Àü´ŞÇÏ¿© ½ÇÇàÇÏ´Â ¸Ş¼Òµå
-		// => ´Ù¼öÇàÀÇ °Ë»ö°á°ú¸¦ List °´Ã¼·Î ¹İÈ¯ÇÏ±â À§ÇØ »ç¿ëÇÏ´Â ¸Ş¼Òµå 
-		// => RowMapper °´Ã¼·Î ÇÏ³ªÀÇ °Ë»öÇàÀ» DTO °´Ã¼·Î »ı¼ºÇÏ¿© List °´Ã¼ÀÇ ¿ä¼Ò·Î Ãß°¡
+		// => SQL ëª…ë ¹(SELECT)ì„ DBMS ì„œë²„ì— ì „ë‹¬í•˜ì—¬ ì‹¤í–‰í•˜ëŠ” ë©”ì†Œë“œ
+		// => ë‹¤ìˆ˜í–‰ì˜ ê²€ìƒ‰ê²°ê³¼ë¥¼ List ê°ì²´ë¡œ ë°˜í™˜í•˜ê¸° ìœ„í•´ ì‚¬ìš©í•˜ëŠ” ë©”ì†Œë“œ 
+		// => RowMapper ê°ì²´ë¡œ í•˜ë‚˜ì˜ ê²€ìƒ‰í–‰ì„ DTO ê°ì²´ë¡œ ìƒì„±í•˜ì—¬ List ê°ì²´ì˜ ìš”ì†Œë¡œ ì¶”ê°€
 		/*
 		return jdbcTemplate.query(sql, new RowMapper<Student>() {
 			@Override
@@ -114,7 +115,7 @@ public class StudentDAOImpl implements StudentDAO {
 		return jdbcTemplate.query(sql, new StudentRowMapper());
 	}
 	
-	public class StudentRowMapper implements RowMapper<Student> {
+	private class StudentRowMapper implements RowMapper<Student> {
 		@Override
 		public Student mapRow(ResultSet rs, int rowNum) throws SQLException {
 			return Student.builder()

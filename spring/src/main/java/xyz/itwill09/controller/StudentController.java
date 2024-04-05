@@ -10,59 +10,59 @@ import lombok.RequiredArgsConstructor;
 import xyz.itwill09.dto.Student;
 import xyz.itwill09.service.StudentService;
 
-//SpringMVC ÇÁ·¹ÀÓ¿öÅ©¸¦ »ç¿ëÇÏ¿© À¥ÇÁ·Î±×·¥À» ÀÛ¼ºÇÏ´Â ¹æ¹ı
-// => Å×ÀÌºí >> DTO Å¬·¡½º >> DAO Å¬·¡½º(Mybatis) >> Service Å¬·¡½º >> Controller Å¬·¡½º 
-// >> Å×½ºÆ® ÇÁ·Î±×·¥(JUnit) - ´ÜÀ§ ÇÁ·Î±×·¥(¸ğµâ) Å×½ºÆ® >> HTML ¹®¼­¸¦ JSP ¹®¼­·Î º¯È¯
-// >> ÅëÇÕ ÇÁ·Î±×·¥ Å×½ºÆ® - ºê¶ó¿ìÀú »ç¿ë
+//SpringMVC í”„ë ˆì„ì›Œí¬ë¥¼ ì‚¬ìš©í•˜ì—¬ ì›¹í”„ë¡œê·¸ë¨ì„ ì‘ì„±í•˜ëŠ” ë°©ë²•
+// => í…Œì´ë¸” >> DTO í´ë˜ìŠ¤ >> DAO í´ë˜ìŠ¤(Mybatis) >> Service í´ë˜ìŠ¤ >> Controller í´ë˜ìŠ¤ 
+// >> í…ŒìŠ¤íŠ¸ í”„ë¡œê·¸ë¨(JUnit) - ë‹¨ìœ„ í”„ë¡œê·¸ë¨(ëª¨ë“ˆ) í…ŒìŠ¤íŠ¸ >> HTML ë¬¸ì„œë¥¼ JSP ë¬¸ì„œë¡œ ë³€í™˜
+// >> í†µí•© í”„ë¡œê·¸ë¨ í…ŒìŠ¤íŠ¸ - ë¸Œë¼ìš°ì € ì‚¬ìš©
 
-//Mybatis ÇÁ·¹ÀÓ¿öÅ©¿¡¼­ ¹ß»ıµÇ´Â ·Î±× ÀÌº¥Æ®¸¦ Spring ÇÁ·¹ÀÓ¿öÅ©ÀÇ ·Î±× ±¸ÇöÃ¼·Î ±â·ÏÇÏ´Â ¹æ¹ı
-//1.log4jdbc-log4j2-jdbc4 ¶óÀÌºê·¯¸®¸¦ ÇÁ·ÎÁ§Æ®¿¡ ºôµå Ã³¸® - ¸ŞÀÌºì : pom.xml
-//2.Spring Bean Configuration File(root-context.xml)¿¡¼­ DataSource °ü·Ã Å¬·¡½º¸¦ Spring BeanÀ¸·Î
-//µî·ÏÇÑ bean ¿¤¸®¸ÕÆ®¿¡¼­ driverClassName ÇÊµå¿Í url ÇÊµå¿¡ ÀúÀåµÈ °ª º¯°æ
-//3.[src/main/resources] Æú´õ¿¡ [log4jdbc.log4j2.properties] ÆÄÀÏ ÀÛ¼º
-//=> Mybatis ÇÁ·¹ÀÓ¿öÅ©¿¡¼­ ¹ß»ıµÇ´Â ·Î±× ÀÌº¥Æ®¸¦ Spring ÇÁ·¹ÀÓ¿öÅ©ÀÇ ·Î±× ±¸ÇöÃ¼·Î Á¦°øÇÏ±â
-//À§ÇÑ SpyLogDelegator Å¬·¡½º¸¦ ¼³Á¤ÇÏ±â À§ÇÑ ÆÄÀÏ
-//4.SpyLogDelegator °´Ã¼¿¡ ÀÇÇØ ¹ß»ıµÈ ·Î±× ÀÌº¥Æ®¸¦ Spring ÇÁ·¹ÀÓ¿öÅ©ÀÇ ·Î±× ±¸ÇöÃ¼·Î ±â·Ï
-//µÇµµ·Ï È¯°æ¼³Á¤ÆÄÀÏ(log4j.xml) º¯°æ - logger ¿¤¸®¸ÕÆ® Ãß°¡
+//Mybatis í”„ë ˆì„ì›Œí¬ì—ì„œ ë°œìƒë˜ëŠ” ë¡œê·¸ ì´ë²¤íŠ¸ë¥¼ Spring í”„ë ˆì„ì›Œí¬ì˜ ë¡œê·¸ êµ¬í˜„ì²´ë¡œ ê¸°ë¡í•˜ëŠ” ë°©ë²•
+//1.log4jdbc-log4j2-jdbc4 ë¼ì´ë¸ŒëŸ¬ë¦¬ë¥¼ í”„ë¡œì íŠ¸ì— ë¹Œë“œ ì²˜ë¦¬ - ë©”ì´ë¸ : pom.xml
+//2.Spring Bean Configuration File(root-context.xml)ì—ì„œ DataSource ê´€ë ¨ í´ë˜ìŠ¤ë¥¼ Spring Beanìœ¼ë¡œ
+//ë“±ë¡í•œ bean ì—˜ë¦¬ë¨¼íŠ¸ì—ì„œ driverClassName í•„ë“œì™€ url í•„ë“œì— ì €ì¥ëœ ê°’ ë³€ê²½
+//3.[src/main/resources] í´ë”ì— [log4jdbc.log4j2.properties] íŒŒì¼ ì‘ì„±
+// => Mybatis í”„ë ˆì„ì›Œí¬ì—ì„œ ë°œìƒë˜ëŠ” ë¡œê·¸ ì´ë²¤íŠ¸ë¥¼ Spring í”„ë ˆì„ì›Œí¬ì˜ ë¡œê·¸ êµ¬í˜„ì²´ë¡œ ì œê³µí•˜ê¸°
+//ìœ„í•œ SpyLogDelegator í´ë˜ìŠ¤ë¥¼ ì„¤ì •í•˜ê¸° ìœ„í•œ íŒŒì¼
+//4.SpyLogDelegator ê°ì²´ì— ì˜í•´ ë°œìƒëœ ë¡œê·¸ ì´ë²¤íŠ¸ë¥¼ Spring í”„ë ˆì„ì›Œí¬ì˜ ë¡œê·¸ êµ¬í˜„ì²´ë¡œ ê¸°ë¡
+//ë˜ë„ë¡ í™˜ê²½ì„¤ì •íŒŒì¼(log4j.xml) ë³€ê²½ - logger ì—˜ë¦¬ë¨¼íŠ¸ ì¶”ê°€
 
-//Controller Å¬·¡½º : Å¬¶óÀÌ¾ğÆ®ÀÇ ¿äÃ»À» Ã³¸®ÇÏ´Â ±â´ÉÀ» Á¦°øÇÏ±â À§ÇÑ Å¬·¡½º
-// => Controller Å¬·¡½ºÀÇ ¸Ş¼Òµå¿¡¼­´Â Å¬¶óÀÌ¾ğÆ®ÀÇ ¿äÃ»À» Ã³¸®ÇÏ±â À§ÇÑ ¸í·ÉÀ¸·Î Service 
-//Å¬·¡½ºÀÇ ¸Ş¼Òµå¸¦ È£ÃâÇÏ¿© ÀÛ¼º 
+//Controller í´ë˜ìŠ¤ : í´ë¼ì´ì–¸íŠ¸ì˜ ìš”ì²­ì„ ì²˜ë¦¬í•˜ëŠ” ê¸°ëŠ¥ì„ ì œê³µí•˜ê¸° ìœ„í•œ í´ë˜ìŠ¤
+// => Controller í´ë˜ìŠ¤ì˜ ë©”ì†Œë“œì—ì„œëŠ” í´ë¼ì´ì–¸íŠ¸ì˜ ìš”ì²­ì— ëŒ€í•œ ë°ì´íƒ€ ì²˜ë¦¬ ê¸°ëŠ¥ì„ êµ¬í˜„í•˜ê¸°
+//ìœ„í•´ Service í´ë˜ìŠ¤ì˜ ë©”ì†Œë“œë¥¼ í˜¸ì¶œí•˜ì—¬ ì‘ì„± 
 
-//Controller Å¬·¡½º´Â Front Controller¿¡¼­ »ç¿ëÇÒ ¼ö ÀÖµµ·Ï ¹İµå½Ã Spring BeanÀ¸·Î µî·Ï
-// => Controller Å¬·¡½º´Â @Controller ¾î³ëÅ×ÀÌ¼ÇÀ» »ç¿ëÇÏ¿© Spring BeanÀ¸·Î µî·Ï Ã³¸®
-// => @Controller ¾î³ëÅ×ÀÌ¼ÇÀ» ½ºÇÁ¸µ ÄÁÅ×ÀÌ³Ê°¡ Ã³¸®ÇÏ±â À§ÇØ ¹İµå½Ã Å¬·¡½º°¡ ÀÛ¼ºµÈ ÆĞÅ°Áö¸¦
-//Spring Bean Configuration File(servlet-context.xml)ÀÇ component-scan ¿¤¸®¸ÕÆ®·Î °Ë»öµÇµµ·Ï ¼³Á¤
+//Controller í´ë˜ìŠ¤ëŠ” Front Controllerì—ì„œ ì‚¬ìš©í•  ìˆ˜ ìˆë„ë¡ ë°˜ë“œì‹œ Spring Beanìœ¼ë¡œ ë“±ë¡
+// => Controller í´ë˜ìŠ¤ëŠ” @Controller ì–´ë…¸í…Œì´ì…˜ì„ ì‚¬ìš©í•˜ì—¬ Spring Beanìœ¼ë¡œ ë“±ë¡ ì²˜ë¦¬
+// => @Controller ì–´ë…¸í…Œì´ì…˜ì„ ìŠ¤í”„ë§ ì»¨í…Œì´ë„ˆê°€ ì²˜ë¦¬í•˜ê¸° ìœ„í•´ ë°˜ë“œì‹œ í´ë˜ìŠ¤ê°€ ì‘ì„±ëœ íŒ¨í‚¤ì§€ë¥¼
+//Spring Bean Configuration File(servlet-context.xml)ì˜ component-scan ì—˜ë¦¬ë¨¼íŠ¸ë¡œ ê²€ìƒ‰ë˜ë„ë¡ ì„¤ì •
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/student")
 public class StudentController {
-	//Controller Å¬·¡½ºÀÇ ¸Ş¼Òµå¿¡¼­´Â Service Å¬·¡½ºÀÇ ¸Ş¼Òµå¸¦ È£ÃâÇÒ ¼ö ÀÖµµ·Ï Serviuce °´Ã¼°¡ ÀúÀåµÉ ÇÊµå ÀÛ¼º
-	// => Service °´Ã¼°¡ ÀúÀåµÉ ¼ö ÀÖ´Â ÇÊµå¸¦ ÀÛ¼ºÇÏ¿© ½ºÇÁ¸µ ÄÁÅ×ÀÌ³Ê·ÎºÎÅÍ Spring BeanÀ»
-	//Á¦°ø¹Ş¾Æ ÀúÀåµÇµµ·Ï ÀÇÁ¸¼º ÁÖÀÔ(DI) - »ı¼ºÀÚ ·¹º§ÀÇ ÀÇÁ¸¼º ÁÖÀÔ
+	//Controller í´ë˜ìŠ¤ì˜ ë©”ì†Œë“œì—ì„œëŠ” Service í´ë˜ìŠ¤ì˜ ë©”ì†Œë“œë¥¼ í˜¸ì¶œí•  ìˆ˜ ìˆë„ë¡ Serviuce ê°ì²´ê°€ ì €ì¥ë  í•„ë“œ ì‘ì„±
+	// => Service ê°ì²´ê°€ ì €ì¥ë  ìˆ˜ ìˆëŠ” í•„ë“œë¥¼ ì‘ì„±í•˜ì—¬ ìŠ¤í”„ë§ ì»¨í…Œì´ë„ˆë¡œë¶€í„° Spring Beanì„
+	//ì œê³µë°›ì•„ ì €ì¥ë˜ë„ë¡ ì˜ì¡´ì„± ì£¼ì…(DI) - ìƒì„±ì ë ˆë²¨ì˜ ì˜ì¡´ì„± ì£¼ì…
 	private final StudentService studentService;
 	
-	//ÇĞ»ıÁ¤º¸¸¦ ÀÔ·Â¹Ş±â À§ÇÑ JSP ¹®¼­ÀÇ ºäÀÌ¸§À» ¹İÈ¯ÇÏ´Â ¿äÃ» Ã³¸® ¸Ş¼Òµå
+	//í•™ìƒì •ë³´ë¥¼ ì…ë ¥ë°›ê¸° ìœ„í•œ JSP ë¬¸ì„œì˜ ë·°ì´ë¦„ì„ ë°˜í™˜í•˜ëŠ” ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œ
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String add() {
-		return "student/student_add";//Æ÷¿öµå ÀÌµ¿
+		return "student/student_add";//í¬ì›Œë“œ ì´ë™
 	}
 	
-	//ÇĞ»ıÁ¤º¸¸¦ Àü´Ş¹Ş¾Æ STUDENT Å×ÀÌºí¿¡ ÇàÀ¸·Î »ğÀÔÇÏ°í ÇĞ»ı¸ñ·ÏÀ» Ãâ·ÂÇÏ´Â ÆäÀÌÁö¸¦ 
-	//Å¬¶óÀÌ¾ğÆ®¿¡°Ô Àü´ŞÇÏ¿© ÀÀ´äÇÏ´Â ¿äÃ» Ã³¸® ¸Ş¼Òµå
+	//í•™ìƒì •ë³´ë¥¼ ì „ë‹¬ë°›ì•„ STUDENT í…Œì´ë¸”ì— í–‰ìœ¼ë¡œ ì‚½ì…í•˜ê³  í•™ìƒëª©ë¡ì„ ì¶œë ¥í•˜ëŠ” í˜ì´ì§€ë¥¼ 
+	//í´ë¼ì´ì–¸íŠ¸ì—ê²Œ ì „ë‹¬í•˜ì—¬ ì‘ë‹µí•˜ëŠ” ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œ
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String add(@ModelAttribute Student student, Model model) {
 		try {
-			studentService.addStudent(student);
+			studentService.addStuent(student);
 		} catch (Exception e) {
-			model.addAttribute("message", "ÇĞ»ı¹øÈ£°¡ Áßº¹µÇ°Å³ª ÀÔ·Â°ª¿¡ ¹®Á¦°¡ ÀÖ½À´Ï´Ù.");
+			model.addAttribute("message", "í•™ìƒë²ˆí˜¸ê°€ ì¤‘ë³µë˜ê±°ë‚˜ ì…ë ¥ê°’ì— ë¬¸ì œê°€ ìˆìŠµë‹ˆë‹¤.");
 			return "student/student_add";
 		}
-		return "redirect:/student/display";//¶ó´ÙÀÌ·ºÆ® ÀÌµ¿ 
+		return "redirect:/student/display";//ë¼ë‹¤ì´ë ‰íŠ¸ ì´ë™ 
 	}
 
-	//STUDENT Å×ÀÌºí¿¡ ÀúÀåµÈ ¸ğµç ÇàÀ» °Ë»öÇÏ¿© ¹İÈ¯¹ŞÀº ÇĞ»ı¸ñ·ÏÀ» Request Scope ¼Ó¼º°ªÀ¸·Î
-	//ÀúÀåÇØ ÇĞ»ı¸ñ·ÏÀ» Ãâ·ÂÇÏ´Â JSP ¹®¼­ÀÇ ºäÀÌ¸§À» ¹İÈ¯ÇÏ´Â ¿äÃ» Ã³¸® ¸Ş¼Òµå
+	//STUDENT í…Œì´ë¸”ì— ì €ì¥ëœ ëª¨ë“  í–‰ì„ ê²€ìƒ‰í•˜ì—¬ ë°˜í™˜ë°›ì€ í•™ìƒëª©ë¡ì„ Request Scope ì†ì„±ê°’ìœ¼ë¡œ
+	//ì €ì¥í•´ í•™ìƒëª©ë¡ì„ ì¶œë ¥í•˜ëŠ” JSP ë¬¸ì„œì˜ ë·°ì´ë¦„ì„ ë°˜í™˜í•˜ëŠ” ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œ
 	@RequestMapping("/display")
 	public String display(Model model) {
 		model.addAttribute("studentList", studentService.getStudentList());

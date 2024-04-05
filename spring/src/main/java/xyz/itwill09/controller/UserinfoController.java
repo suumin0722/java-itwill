@@ -19,17 +19,18 @@ import xyz.itwill09.service.UserinfoService;
 public class UserinfoController {
 	private final UserinfoService userinfoService;
 	
-	//È¸¿øÁ¤º¸¸¦ ÀÔ·Â¹Ş±â À§ÇÑ ºäÀÌ¸§À» ¹İÈ¯ÇÏ´Â ¿äÃ» Ã³¸® ¸Ş¼Òµå
-	// => ºñ·Î±×ÀÎ »ç¿ëÀÚ ¶Ç´Â °ü¸®ÀÚ°¡ ¾Æ´Ñ ÀÏ¹İÈ¸¿øÀÌ ÆäÀÌÁö¸¦ ¿äÃ»ÇÒ °æ¿ì ÀÎÀ§Àû ¿¹¿Ü ¹ß»ı - 500 ¿¡·¯ÄÚµå ¹ß»ı
-	// => try~catch ±¸¹®À» »ç¿ëÇÏ¿© ¿¹¿Ü°¡ ¹ß»ıµÉ °æ¿ì ¿¡·¯¸Ş¼¼Áö¸¦ Ãâ·ÂÇÏ´Â ºäÀÌ¸§ ¹İÈ¯ - 500 ¿¡·¯ÄÚµå ¹Ì¹ß»ı
+	//íšŒì›ì •ë³´ë¥¼ ì…ë ¥ë°›ê¸° ìœ„í•œ ë·°ì´ë¦„ì„ ë°˜í™˜í•˜ëŠ” ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œ
+	// => ê´€ë¦¬ìë§Œ ìš”ì²­ ê°€ëŠ¥í•œ í˜ì´ì§€	
 	/*
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
 	public String write(HttpSession session) {
 		Userinfo loginUserinfo=(Userinfo)session.getAttribute("loginUserinfo");
+		//try~catch êµ¬ë¬¸ì„ ì‚¬ìš©í•˜ì—¬ ì˜ˆì™¸ê°€ ë°œìƒë  ê²½ìš° ì—ëŸ¬ë©”ì„¸ì§€ë¥¼ ì¶œë ¥í•˜ëŠ” ë·°ì´ë¦„ ë°˜í™˜ - 500 ì—ëŸ¬ì½”ë“œ ë¯¸ë°œìƒ
 		try {
-			//ÆäÀÌÁö¸¦ ¿äÃ»ÇÑ »ç¿ëÀÚ°¡ ºñ·Î±×ÀÎ »ç¿ëÀÚÀÌ°Å³ª °ü¸®ÀÚ°¡ ¾Æ´Ñ ÀÏ¹İÈ¸¿øÀÎ °æ¿ì
+			//í˜ì´ì§€ë¥¼ ìš”ì²­í•œ ì‚¬ìš©ìê°€ ë¹„ë¡œê·¸ì¸ ì‚¬ìš©ìì´ê±°ë‚˜ ê´€ë¦¬ìê°€ ì•„ë‹Œ ì¼ë°˜íšŒì›ì¸ ê²½ìš° 
+			//ì¸ìœ„ì  ì˜ˆì™¸ ë°œìƒ - 500 ì—ëŸ¬ì½”ë“œ ë°œìƒ
 			if(loginUserinfo == null || loginUserinfo.getStatus() != 9) {
-				throw new BadRequestException("ºñÁ¤»óÀûÀÎ ¹æ½ÄÀ¸·Î ÆäÀÌÁö¸¦ ¿äÃ» ÇÏ¿´½À´Ï´Ù.");
+				throw new BadRequestException("ë¹„ì •ìƒì ì¸ ë°©ì‹ìœ¼ë¡œ í˜ì´ì§€ë¥¼ ìš”ì²­ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 			}
 		} catch (BadRequestException e) {
 			return "userinfo/user_error";
@@ -38,20 +39,21 @@ public class UserinfoController {
 	}
 	*/
 	
-	//¿¹¿Ü Ã³¸® ¸Ş¼Òµå(Exception Handle Method)¸¦ »ç¿ëÇÏ¿© ¿¹¿Ü Ã³¸®
-	//ÀÎÅÍ¼ÁÅÍ¸¦ »ç¿ëÇÏ¿© ±ÇÇÑ °ü·Ã Ã³¸® ±¸Çö - ¿äÃ» Ã³¸® ¸Ş¼Òµå¿¡¼­´Â ±ÇÇÑ °ü·Ã ¸í·É ¹ÌÀÛ¼º
+	//ì˜ˆì™¸ ì²˜ë¦¬ ë©”ì†Œë“œ(Exception Handler Method)ë¥¼ ì‚¬ìš©í•˜ì—¬ ì˜ˆì™¸ ì²˜ë¦¬ ê¸°ëŠ¥ êµ¬í˜„í•˜ê³  ì¸í„°ì…‰í„°ë¥¼ 
+	//ì‚¬ìš©í•˜ì—¬ ê¶Œí•œ ê´€ë ¨ ì²˜ë¦¬ ê¸°ëŠ¥ êµ¬í˜„ 
+	// => ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œì—ì„œëŠ” ì˜ˆì™¸ ì²˜ë¦¬ ë° ê¶Œí•œ ê´€ë ¨ ëª…ë ¹ ë¯¸ì‘ì„±
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
 	public String write() {
 		return "userinfo/user_write";	
 	}
 	
 	/*
-	//È¸¿øÁ¤º¸¸¦ Àü´Ş¹Ş¾Æ USERINFO Å×ÀÌºí¿¡ »ğÀÔÇÏ°í ·Î±×ÀÎ ÆäÀÌÁö¸¦ ¿äÃ»ÇÒ ¼ö ÀÖ´Â URL ÁÖ¼Ò·Î
-	//ÀÀ´äÇÏ´Â ¿äÃ» Ã³¸® ¸Ş¼Òµå
+	//íšŒì›ì •ë³´ë¥¼ ì „ë‹¬ë°›ì•„ USERINFO í…Œì´ë¸”ì— ì‚½ì…í•˜ê³  ë¡œê·¸ì¸ í˜ì´ì§€ë¥¼ ìš”ì²­í•  ìˆ˜ ìˆëŠ” URL ì£¼ì†Œë¡œ
+	//ì‘ë‹µí•˜ëŠ” ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œ
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
 	public String write(@ModelAttribute Userinfo userinfo, Model model) {
 		try {
-			//¸Å°³º¯¼ö·Î Àü´Ş¹ŞÀº È¸¿øÁ¤º¸ÀÇ ¾ÆÀÌµğ°¡ Áßº¹µÉ °æ¿ì ExistsUserinfoException ¹ß»ı
+			//ë§¤ê°œë³€ìˆ˜ë¡œ ì „ë‹¬ë°›ì€ íšŒì›ì •ë³´ì˜ ì•„ì´ë””ê°€ ì¤‘ë³µë  ê²½ìš° ExistsUserinfoException ë°œìƒ
 			userinfoService.addUserinfo(userinfo);
 		} catch (ExistsUserinfoException e) {
 			model.addAttribute("message", e.getMessage());
@@ -62,27 +64,27 @@ public class UserinfoController {
 	}
 	*/
 	
-	//¿¹¿Ü Ã³¸® ¸Ş¼Òµå(Exception Handle Method)¸¦ »ç¿ëÇÏ¿© ¿¹¿Ü Ã³¸®
+	//ì˜ˆì™¸ ì²˜ë¦¬ ë©”ì†Œë“œ(Exception Handle Method)ë¥¼ ì‚¬ìš©í•˜ì—¬ ì˜ˆì™¸ ì²˜ë¦¬
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
 	public String write(@ModelAttribute Userinfo userinfo) {
 		userinfoService.addUserinfo(userinfo);
 		return "redirect:/userinfo/login";	
 	}
 	
-	//ÀÎÁõÁ¤º¸¸¦ ÀÔ·Â¹Ş±â À§ÇÑ ºäÀÌ¸§À» ¹İÈ¯ÇÏ´Â ¿äÃ» Ã³¸® ¸Ş¼Òµå
+	//ì¸ì¦ì •ë³´ë¥¼ ì…ë ¥ë°›ê¸° ìœ„í•œ ë·°ì´ë¦„ì„ ë°˜í™˜í•˜ëŠ” ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œ
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login() {
 		return "userinfo/user_login";	
 	}
 	
 	/*
-	//ÀÎÁõÁ¤º¸¸¦ Àü´Ş¹Ş¾Æ USERINFO Å×ÀÌºí¿¡ ÀúÀåµÈ ÇàÀ» °Ë»öÇØ ÀÎÁõ Ã³¸®ÇÏ°í È¯¿µ¸Ş¼¼Áö¸¦ 
-	//Ãâ·ÂÇÏ´Â ºäÀÌ¸§À» ¹İÈ¯ÇÏ´Â ¿äÃ» Ã³¸® ¸Ş¼Òµå
-	// => ÀÎÁõ ¼º°ø ÈÄ ¼¼¼Ç¿¡ ±ÇÇÑ °ü·Ã Á¤º¸(È¸¿øÁ¤º¸)¸¦ ¼Ó¼º°ªÀ¸·Î ÀúÀå
+	//ì¸ì¦ì •ë³´ë¥¼ ì „ë‹¬ë°›ì•„ USERINFO í…Œì´ë¸”ì— ì €ì¥ëœ í–‰ì„ ê²€ìƒ‰í•´ ì¸ì¦ ì²˜ë¦¬í•˜ê³  í™˜ì˜ë©”ì„¸ì§€ë¥¼ 
+	//ì¶œë ¥í•˜ëŠ” ë·°ì´ë¦„ì„ ë°˜í™˜í•˜ëŠ” ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œ
+	// => ì¸ì¦ ì„±ê³µ í›„ ì„¸ì…˜ì— ê¶Œí•œ ê´€ë ¨ ì •ë³´(íšŒì›ì •ë³´)ë¥¼ ì†ì„±ê°’ìœ¼ë¡œ ì €ì¥
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(@ModelAttribute Userinfo userinfo, HttpSession session, Model model) {
 		try {
-			//¸Å°³º¯¼ö·Î Àü´Ş¹ŞÀº ÀÎÁõÁ¤º¸¿¡ ´ëÇÑ ÀÎÁõ½ÇÆĞ½Ã LoginAuthFailException ¹ß»ı
+			//ë§¤ê°œë³€ìˆ˜ë¡œ ì „ë‹¬ë°›ì€ ì¸ì¦ì •ë³´ì— ëŒ€í•œ ì¸ì¦ì‹¤íŒ¨ì‹œ LoginAuthFailException ë°œìƒ
 			Userinfo authUserinfo=userinfoService.loginAuth(userinfo);
 			session.setAttribute("loginUserinfo", authUserinfo);	
 		} catch (LoginAuthFailException e) {
@@ -94,7 +96,7 @@ public class UserinfoController {
 	}
 	*/
 	
-	//¿¹¿Ü Ã³¸® ¸Ş¼Òµå(Exception Handle Method)¸¦ »ç¿ëÇÏ¿© ¿¹¿Ü Ã³¸®
+	//ì˜ˆì™¸ ì²˜ë¦¬ ë©”ì†Œë“œ(Exception Handle Method)ë¥¼ ì‚¬ìš©í•˜ì—¬ ì˜ˆì™¸ ì²˜ë¦¬
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(@ModelAttribute Userinfo userinfo, HttpSession session) {
 		Userinfo authUserinfo=userinfoService.loginAuth(userinfo);
@@ -102,7 +104,7 @@ public class UserinfoController {
 		return "userinfo/user_login";	
 	}
 	
-	//·Î±×¾Æ¿ô Ã³¸®ÇÏ°í ·Î±×ÀÎ ÆäÀÌÁö¸¦ ¿äÃ»ÇÒ ¼ö ÀÖ´Â URL ÁÖ¼Ò·Î ÀÀ´äÇÏ´Â ¿äÃ» Ã³¸® ¸Ş¼Òµå
+	//ë¡œê·¸ì•„ì›ƒ ì²˜ë¦¬í•˜ê³  ë¡œê·¸ì¸ í˜ì´ì§€ë¥¼ ìš”ì²­í•  ìˆ˜ ìˆëŠ” URL ì£¼ì†Œë¡œ ì‘ë‹µí•˜ëŠ” ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œ
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		//session.removeAttribute("loginUserinfo");
@@ -110,23 +112,23 @@ public class UserinfoController {
 		return "redirect:/userinfo/login";	
 	}
 	
-	//USERINFO Å×ÀÌºí¿¡ ÀúÀåµÈ ¸ğµç È¸¿øÁ¤º¸¸¦ °Ë»öÇÏ¿© ¼Ó¼º°ªÀ¸·Î ÀúÀåÇØ È¸¿ø¸ñ·ÏÀ» Ãâ·ÂÇÏ´Â
-	//ºäÀÌ¸§À» ¹İÈ¯ÇÏ´Â ¿äÃ» Ã³¸® ¸Ş¼Òµå
-	// => ºñ·Î±×ÀÎ »ç¿ëÀÚ°¡ ÆäÀÌÁö¸¦ ¿äÃ»ÇÒ °æ¿ì ÀÎÀ§Àû ¿¹¿Ü ¹ß»ı
+	//USERINFO í…Œì´ë¸”ì— ì €ì¥ëœ ëª¨ë“  íšŒì›ì •ë³´ë¥¼ ê²€ìƒ‰í•˜ì—¬ ì†ì„±ê°’ìœ¼ë¡œ ì €ì¥í•´ íšŒì›ëª©ë¡ì„ ì¶œë ¥í•˜ëŠ”
+	//ë·°ì´ë¦„ì„ ë°˜í™˜í•˜ëŠ” ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œ
+	// => ë¹„ë¡œê·¸ì¸ ì‚¬ìš©ìê°€ í˜ì´ì§€ë¥¼ ìš”ì²­í•  ê²½ìš° ì¸ìœ„ì  ì˜ˆì™¸ ë°œìƒ
 	/*
 	@RequestMapping("/list")
 	public String list(Model model, HttpSession session) {
 		Userinfo loginUserinfo=(Userinfo)session.getAttribute("loginUserinfo");
-		//ÆäÀÌÁö¸¦ ¿äÃ»ÇÑ »ç¿ëÀÚ°¡ ºñ·Î±×ÀÎ »ç¿ëÀÚÀÎ °æ¿ì
+		//í˜ì´ì§€ë¥¼ ìš”ì²­í•œ ì‚¬ìš©ìê°€ ë¹„ë¡œê·¸ì¸ ì‚¬ìš©ìì¸ ê²½ìš°
 		if(loginUserinfo == null) {
-			throw new BadRequestException("ºñÁ¤»óÀûÀÎ ¹æ½ÄÀ¸·Î ÆäÀÌÁö¸¦ ¿äÃ» ÇÏ¿´½À´Ï´Ù.");
+			throw new BadRequestException("ë¹„ì •ìƒì ì¸ ë°©ì‹ìœ¼ë¡œ í˜ì´ì§€ë¥¼ ìš”ì²­ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		}
 		model.addAttribute("userinfoList", userinfoService.getUserinfoList());
 		return "userinfo/user_list";
 	}
 	*/
 	
-	//ÀÎÅÍ¼ÁÅÍ¸¦ »ç¿ëÇÏ¿© ±ÇÇÑ °ü·Ã Ã³¸® ±¸Çö - ¿äÃ» Ã³¸® ¸Ş¼Òµå¿¡¼­´Â ±ÇÇÑ °ü·Ã ¸í·É ¹ÌÀÛ¼º
+	//ì¸í„°ì…‰í„°ë¥¼ ì‚¬ìš©í•˜ì—¬ ê¶Œí•œ ê´€ë ¨ ì²˜ë¦¬ êµ¬í˜„ - ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œì—ì„œëŠ” ê¶Œí•œ ê´€ë ¨ ëª…ë ¹ ë¯¸ì‘ì„±
 	@RequestMapping("/list")
 	public String list(Model model) {
 		model.addAttribute("userinfoList", userinfoService.getUserinfoList());
@@ -134,36 +136,79 @@ public class UserinfoController {
 	}
 
 	/*
-	//¾ÆÀÌµğ¸¦ Àü´Ş¹Ş¾Æ USERINFO Å×ÀÌºí¿¡ ÀúÀåµÈ È¸¿øÁ¤º¸¸¦ °Ë»öÇÏ¿© ¼Ó¼º°ªÀ¸·Î ÀúÀåÇØ 
-	//È¸¿øÁ¤º¸¸¦ Ãâ·ÂÇÏ´Â ºäÀÌ¸§À» ¹İÈ¯ÇÏ´Â ¿äÃ» Ã³¸® ¸Ş¼Òµå
-	// => ºñ·Î±×ÀÎ »ç¿ëÀÚ°¡ ÆäÀÌÁö¸¦ ¿äÃ»ÇÒ °æ¿ì ÀÎÀ§Àû ¿¹¿Ü ¹ß»ı
+	//ì•„ì´ë””ë¥¼ ì „ë‹¬ë°›ì•„ USERINFO í…Œì´ë¸”ì— ì €ì¥ëœ íšŒì›ì •ë³´ë¥¼ ê²€ìƒ‰í•˜ì—¬ ì†ì„±ê°’ìœ¼ë¡œ ì €ì¥í•´ 
+	//íšŒì›ì •ë³´ë¥¼ ì¶œë ¥í•˜ëŠ” ë·°ì´ë¦„ì„ ë°˜í™˜í•˜ëŠ” ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œ
+	// => ë¹„ë¡œê·¸ì¸ ì‚¬ìš©ìê°€ í˜ì´ì§€ë¥¼ ìš”ì²­í•  ê²½ìš° ì¸ìœ„ì  ì˜ˆì™¸ ë°œìƒ
 	@RequestMapping("/view")
 	public String view(@RequestParam String userid, Model model, HttpSession session) {
 		Userinfo loginUserinfo=(Userinfo)session.getAttribute("loginUserinfo");
-		//ÆäÀÌÁö¸¦ ¿äÃ»ÇÑ »ç¿ëÀÚ°¡ ºñ·Î±×ÀÎ »ç¿ëÀÚÀÎ °æ¿ì
+		//í˜ì´ì§€ë¥¼ ìš”ì²­í•œ ì‚¬ìš©ìê°€ ë¹„ë¡œê·¸ì¸ ì‚¬ìš©ìì¸ ê²½ìš°
 		if(loginUserinfo == null) {
-			throw new BadRequestException("ºñÁ¤»óÀûÀÎ ¹æ½ÄÀ¸·Î ÆäÀÌÁö¸¦ ¿äÃ» ÇÏ¿´½À´Ï´Ù.");
+			throw new BadRequestException("ë¹„ì •ìƒì ì¸ ë°©ì‹ìœ¼ë¡œ í˜ì´ì§€ë¥¼ ìš”ì²­ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		}
 		model.addAttribute("userinfo", userinfoService.getUserinfo(userid));
 		return "userinfo/user_view";
 	}
 	*/
 	
-	//ÀÎÅÍ¼ÁÅÍ¸¦ »ç¿ëÇÏ¿© ±ÇÇÑ °ü·Ã Ã³¸® ±¸Çö - ¿äÃ» Ã³¸® ¸Ş¼Òµå¿¡¼­´Â ±ÇÇÑ °ü·Ã ¸í·É ¹ÌÀÛ¼º
+	//ì¸í„°ì…‰í„°ë¥¼ ì‚¬ìš©í•˜ì—¬ ê¶Œí•œ ê´€ë ¨ ì²˜ë¦¬ êµ¬í˜„ - ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œì—ì„œëŠ” ê¶Œí•œ ê´€ë ¨ ëª…ë ¹ ë¯¸ì‘ì„±
 	@RequestMapping("/view")
 	public String view(@RequestParam String userid, Model model, HttpSession session) {
 		model.addAttribute("userinfo", userinfoService.getUserinfo(userid));
 		return "userinfo/user_view";
 	}
 	
+	//ì•„ì´ë””ë¥¼ ì „ë‹¬ë°›ì•„ USERINFO í…Œì´ë¸”ì— ì €ì¥ëœ íšŒì›ì •ë³´ë¥¼ ê²€ìƒ‰í•˜ì—¬ ì†ì„±ê°’ìœ¼ë¡œ ì €ì¥í•˜ê³ 
+	//íšŒì›ì •ë³´ë¥¼ ë³€ê²½í•˜ëŠ” ë·°ì´ë¦„ì„ ë°˜í™˜í•˜ëŠ” ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œ
+	// => ë¹„ë¡œê·¸ì¸ ì‚¬ìš©ì ë˜ëŠ” ê´€ë¦¬ìê°€ ì•„ë‹Œ ì¼ë°˜íšŒì›ì´ í˜ì´ì§€ë¥¼ ìš”ì²­í•  ê²½ìš° ì¸ìœ„ì  ì˜ˆì™¸ ë°œìƒ - 500 ì—ëŸ¬ì½”ë“œ ë°œìƒ
+	// => ì˜ˆì™¸ ì²˜ë¦¬ ë©”ì†Œë“œë¡œ ë°œìƒëœ ì˜ˆì™¸ë¥¼ ì²˜ë¦¬í•˜ê³  ì¸í„°ì…‰í„°ë¥¼ ì‚¬ìš©í•˜ì—¬ ê¶Œí•œ ê´€ë ¨ ì²˜ë¦¬ êµ¬í˜„
+	@RequestMapping(value = "/modify", method = RequestMethod.GET)
+	public String modify(@RequestParam String userid, Model model) {
+		model.addAttribute("userinfo", userinfoService.getUserinfo(userid));
+		return "userinfo/user_modify";
+	}
+
+	//íšŒì›ì •ë³´ë¥¼ ì „ë‹¬ë°›ì•„ USERINFO í…Œì´ë¸”ì— ì €ì¥ëœ íšŒì›ì •ë³´ë¥¼ ë³€ê²½í•˜ê³  íšŒì›ì •ë³´ë¥¼ ì¶œë ¥í•˜ëŠ” 
+	//í˜ì´ì§€ë¥¼ ìš”ì²­í•  ìˆ˜ ìˆëŠ” URL ì£¼ì†Œë¡œ ì‘ë‹µí•˜ëŠ” ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œ
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	public String modify(@ModelAttribute Userinfo userinfo, HttpSession session) {
+		userinfoService.modifyUserinfo(userinfo);
+		
+		//ë¡œê·¸ì¸ ì‚¬ìš©ì(ê´€ë¦¬ì)ì™€ ë³€ê²½ ì²˜ë¦¬ëœ ì‚¬ìš©ìê°€ ë™ì¼í•œ ê²½ìš° ì„¸ì…˜ì— ì €ì¥ëœ ê¶Œí•œ ê´€ë ¨ ì†ì„±ê°’ ë³€ê²½
+		Userinfo loginUserinfo=(Userinfo)session.getAttribute("loginUserinfo");
+		if(loginUserinfo.getUserid().equals(userinfo.getUserid())) {
+			session.setAttribute("loginUserinfo", userinfoService.getUserinfo(userinfo.getUserid()));
+		}
+		
+		return "redirect:/userinfo/view?userid="+userinfo.getUserid();
+	}
+	
+	//ì•„ì´ë””ë¥¼ ì „ë‹¬ë°›ì•„ USERINFO í…Œì´ë¸”ì— ì €ì¥ëœ íšŒì›ì •ë³´ë¥¼ ì‚­ì œí•˜ê³  íšŒì›ëª©ë¡ì„ ì¶œë ¥í•˜ëŠ” 
+	//í˜ì´ì§€ë¥¼ ìš”ì²­í•  ìˆ˜ ìˆëŠ” URL ì£¼ì†Œë¡œ ì‘ë‹µí•˜ëŠ” ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œ
+	// => ë¹„ë¡œê·¸ì¸ ì‚¬ìš©ì ë˜ëŠ” ê´€ë¦¬ìê°€ ì•„ë‹Œ ì¼ë°˜íšŒì›ì´ í˜ì´ì§€ë¥¼ ìš”ì²­í•  ê²½ìš° ì¸ìœ„ì  ì˜ˆì™¸ ë°œìƒ - 500 ì—ëŸ¬ì½”ë“œ ë°œìƒ
+	// => ì˜ˆì™¸ ì²˜ë¦¬ ë©”ì†Œë“œë¡œ ë°œìƒëœ ì˜ˆì™¸ë¥¼ ì²˜ë¦¬í•˜ê³  ì¸í„°ì…‰í„°ë¥¼ ì‚¬ìš©í•˜ì—¬ ê¶Œí•œ ê´€ë ¨ ì²˜ë¦¬ êµ¬í˜„
+	@RequestMapping("/remove")
+	public String remove(@RequestParam String userid, HttpSession session) {
+		Userinfo loginUserinfo=(Userinfo)session.getAttribute("loginUserinfo");
+
+		userinfoService.removeUserinfo(userid);
+		
+		//ë¡œê·¸ì¸ ì‚¬ìš©ì(ê´€ë¦¬ì)ì™€ ì‚­ì œ ì²˜ë¦¬ëœ ì‚¬ìš©ìê°€ ë™ì¼í•œ ê²½ìš° ë¡œê·¸ì•„ì›ƒ í˜ì´ì§€ë¡œ ë¦¬ë‹¤ì´ë ‰íŠ¸ ì´ë™
+		if(loginUserinfo.getUserid().equals(userid)) {
+			return "redirect:/userinfo/logout";
+		}
+		
+		return "redirect:/userinfo/list";
+	}
+	
 	/*
-	//@ExceptionHandler : ¿¹¿Ü Ã³¸® ±â´ÉÀÇ ¸Ş¼Òµå¸¦ ¼³Á¤ÇÏ±â À§ÇÑ ¾î³ëÅ×ÀÌ¼Ç
-	// => Controller Å¬·¡½ºÀÇ ¿äÃ» Ã³¸® ¸Ş¼Òµå¿¡¼­ ¿¹¿Ü°¡ ¹ß»ıµÇ¸é Front Controller¿¡ ÀÇÇØ
-	//ÀÚµ¿ È£ÃâµÇ¾î ¿¹¿Ü Ã³¸®ÇÏ´Â ¸Ş¼Òµå - ¿¹¿Ü Ã³¸® ¸Ş¼Òµå
-	// => ¿¹¿Ü Ã³¸® ¸Ş¼ÒµåÀÇ ¸Å°³º¯¼ö¿¡ ¿¹¿Ü Ã³¸®¿¡ ÇÊ¿äÇÑ °´Ã¼¸¦ Àü´Ş¹Ş¾Æ ¿¹¿Ü¸¦ Ã³¸®ÇÒ ¼ö
-	//ÀÖÀ¸¸ç Å¬¶óÀÌ¾ğÆ®¿¡°Ô ÀÀ´äÇÒ ºäÀÌ¸§ ¹İÈ¯ - ¸®´ÙÀÌ·ºÆ® ÀÌµ¿°¡´É
-	//value ¼Ó¼º : ¿¹¿Ü Ã³¸®ÇÏ±â À§ÇÑ Å¬·¡½º(Class °´Ã¼)¸¦ ¼Ó¼º°ªÀ¸·Î ¼³Á¤
-	// => value ¼Ó¼º¿Ü¿¡ ´Ù¸¥ ¼Ó¼ºÀÌ ¾ø´Â °æ¿ì ¼Ó¼º°ª¸¸ ¼³Á¤ °¡´É
+	//@ExceptionHandler : ì˜ˆì™¸ ì²˜ë¦¬ ê¸°ëŠ¥ì˜ ë©”ì†Œë“œë¥¼ ì„¤ì •í•˜ê¸° ìœ„í•œ ì–´ë…¸í…Œì´ì…˜
+	// => Controller í´ë˜ìŠ¤ì˜ ìš”ì²­ ì²˜ë¦¬ ë©”ì†Œë“œì—ì„œ ì˜ˆì™¸ê°€ ë°œìƒë  ê²½ìš° Front Controllerì— ì˜í•´
+	//ìë™ í˜¸ì¶œë˜ì–´ ì˜ˆì™¸ ì²˜ë¦¬í•˜ëŠ” ë©”ì†Œë“œ - ì˜ˆì™¸ ì²˜ë¦¬ ë©”ì†Œë“œ
+	// => ì˜ˆì™¸ ì²˜ë¦¬ ë©”ì†Œë“œì˜ ë§¤ê°œë³€ìˆ˜ì— ì˜ˆì™¸ ì²˜ë¦¬ì— í•„ìš”í•œ ê°ì²´ë¥¼ ì „ë‹¬ë°›ì•„ ì˜ˆì™¸ë¥¼ ì²˜ë¦¬í•  ìˆ˜
+	//ìˆìœ¼ë©° í´ë¼ì´ì–¸íŠ¸ì—ê²Œ ì‘ë‹µí•  ë·°(ViewName)ì˜ ë·°ì´ë¦„ ë°˜í™˜ - ë¦¬ë‹¤ì´ë ‰íŠ¸ ì´ë™ ê°€ëŠ¥
+	//value ì†ì„± : ì˜ˆì™¸ ì²˜ë¦¬í•˜ê¸° ìœ„í•œ í´ë˜ìŠ¤(Class ê°ì²´)ë¥¼ ì†ì„±ê°’ìœ¼ë¡œ ì„¤ì •
+	// => value ì†ì„±ì™¸ì— ë‹¤ë¥¸ ì†ì„±ì´ ì—†ëŠ” ê²½ìš° ì†ì„±ê°’ë§Œ ì„¤ì • ê°€ëŠ¥
 	@ExceptionHandler(value = BadRequestException.class)
 	public String badRequestExceptionHandler() {
 		return "userinfo/user_error";
@@ -194,4 +239,18 @@ public class UserinfoController {
 	}
 	*/
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

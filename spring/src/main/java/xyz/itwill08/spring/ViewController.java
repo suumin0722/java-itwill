@@ -6,16 +6,14 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
-//=> Å¬¶óÀÌ¾ğÆ®°¡ [/view.do]ÀÇ URL ÁÖ¼Ò·Î ¿äÃ»ÇÑ °æ¿ì ÄÁÆ®·Ñ·¯¿¡ ÀÇÇØ ½ÇÇàµÉ Å¬·¡½º
+//í´ë¼ì´ì–¸íŠ¸ê°€ [/view.do]ì˜ URL ì£¼ì†Œë¡œ ìš”ì²­í•œ ê²½ìš° ì»¨íŠ¸ë¡¤ëŸ¬ì— ì˜í•´ ì‹¤í–‰ë  í´ë˜ìŠ¤
 public class ViewController implements Controller {
-
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView modelAndView=new ModelAndView();
-		Product product=new Product(4000, "ÇÁ¸°ÅÍ");
+		Product product=new Product(4000, "í”„ë¦°í„°");
 		modelAndView.addObject("product", product);
-		modelAndView.setViewName("product_view");
-		
+		modelAndView.setViewName("product_view");;
 		return modelAndView;
 	}
 

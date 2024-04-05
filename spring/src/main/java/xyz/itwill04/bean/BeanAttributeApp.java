@@ -5,31 +5,32 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class BeanAttributeApp {
 	public static void main(String[] args) {
-		System.out.println("=============== Spring Container ÃÊ±âÈ­ Àü ===============");
+		System.out.println("=============== Spring Container ì´ˆê¸°í™” ì „ ===============");
 		ApplicationContext context=new ClassPathXmlApplicationContext("04-2_beanAttribute.xml");
-		System.out.println("=============== Spring Container ÃÊ±âÈ­ ÈÄ ===============");
-		//ApplicationContext.getBean(String beanName) : ¸Å°³º¯¼ö·Î Spring Bean¸¦ ±¸ºĞÇÏ±â À§ÇÑ ½Äº°ÀÚ
-		//(BeanName)À» Àü´Ş¹Ş¾Æ ½ºÇÁ¸µ ÄÁÅ×ÀÌ³Ê·ÎºÎÅÍ °´Ã¼(Spring Bean)¸¦ ¹İÈ¯ÇÏ´Â ¸Ş¼Òµå
-		// => Object Å¸ÀÔÀÇ °´Ã¼¸¦ ¹İÈ¯ÇÏ¹Ç·Î ¹İµå½Ã ¸í½ÃÀû °´Ã¼ Çüº¯È¯ »ç¿ë
+		System.out.println("=============== Spring Container ì´ˆê¸°í™” í›„ ===============");
+		//ApplicationContext.getBean(String beanName) : ë§¤ê°œë³€ìˆ˜ë¡œ Spring Beanë¥¼ êµ¬ë¶„í•˜ê¸° ìœ„í•œ ì‹ë³„ì
+		//(BeanName)ì„ ì „ë‹¬ë°›ì•„ ìŠ¤í”„ë§ ì»¨í…Œì´ë„ˆë¡œë¶€í„° ê°ì²´(Spring Bean)ë¥¼ ë°˜í™˜í•˜ëŠ” ë©”ì†Œë“œ
+		// => Object íƒ€ì…ì˜ ê°ì²´ë¥¼ ë°˜í™˜í•˜ë¯€ë¡œ ë°˜ë“œì‹œ ëª…ì‹œì  ê°ì²´ í˜•ë³€í™˜ ì‚¬ìš©
 		//InitDestroyMethodBean bean=(InitDestroyMethodBean)context.getBean("initDestroyMethodBean");
 
-		//ApplicationContext.getBean(String beanName, Class<T> clazz) : ½ºÇÁ¸µ ÄÁÅ×ÀÌ³Ê·ÎºÎÅÍ
-		//¸Å°³º¯¼ö·Î BeanNameÀÇ Spring BeanÀ» Class °´Ã¼·Î Çüº¯È¯ÇÏ¿© ¹İÈ¯ÇÏ´Â ¸Ş¼Òµå
+		//ApplicationContext.getBean(String beanName, Class<T> clazz) : ìŠ¤í”„ë§ ì»¨í…Œì´ë„ˆë¡œë¶€í„°
+		//ë§¤ê°œë³€ìˆ˜ë¡œ BeanNameì˜ Spring Beanì„ Class ê°ì²´ë¡œ í˜•ë³€í™˜í•˜ì—¬ ë°˜í™˜í•˜ëŠ” ë©”ì†Œë“œ
 		InitDestroyMethodBean bean=context.getBean("initDestroyMethodBean", InitDestroyMethodBean.class);
 		
-		//bean ¿¤¸®¸ÕÆ®¸¦ »ç¿ëÇÏ¿© °´Ã¼°¡ »ı¼ºµÈ ÈÄ¿¡ ¸Ş¼Òµå°¡ ÀÚµ¿ È£ÃâµÇµµ·Ï ¼³Á¤ °¡´É
-		//bean.init();//°´Ã¼ÀÇ ÃÊ±âÈ­ Ã³¸®¸¦ À§ÇÑ ¸Ş¼Òµå
+		//bean ì—˜ë¦¬ë¨¼íŠ¸ë¥¼ ì‚¬ìš©í•˜ì—¬ ê°ì²´ê°€ ìƒì„±ëœ í›„ì— ë©”ì†Œë“œê°€ ìë™ í˜¸ì¶œë˜ë„ë¡ ì„¤ì • ê°€ëŠ¥
+		//bean.init();//ê°ì²´ì˜ ì´ˆê¸°í™” ì²˜ë¦¬ë¥¼ ìœ„í•œ ë©”ì†Œë“œ
 		
 		bean.display();
 				
-		//bean ¿¤¸®¸ÕÆ®¸¦ »ç¿ëÇÏ¿© °´Ã¼°¡ ¼Ò¸êµÇ±â Àü¿¡ ¸Ş¼Òµå°¡ ÀÚµ¿ È£ÃâµÇµµ·Ï ¼³Á¤ °¡´É
-		//bean.destroy();//°´Ã¼ÀÇ ¸¶¹«¸® Ã³¸®¸¦ À§ÇÑ ¸Ş¼Òµå
+		//bean ì—˜ë¦¬ë¨¼íŠ¸ë¥¼ ì‚¬ìš©í•˜ì—¬ ê°ì²´ê°€ ì†Œë©¸ë˜ê¸° ì „ì— ë©”ì†Œë“œê°€ ìë™ í˜¸ì¶œë˜ë„ë¡ ì„¤ì • ê°€ëŠ¥
+		//bean.destroy();//ê°ì²´ì˜ ë§ˆë¬´ë¦¬ ì²˜ë¦¬ë¥¼ ìœ„í•œ ë©”ì†Œë“œ
 		System.out.println("==========================================================");
 		context.getBean("lazyInitBean", LazyInitBean.class);
 		System.out.println("==========================================================");
 		ScopeBean bean1=context.getBean("singletonBean", ScopeBean.class);
 		ScopeBean bean2=context.getBean("singletonBean", ScopeBean.class);
 		ScopeBean bean3=context.getBean("singletonBean", ScopeBean.class);
+		
 		System.out.println("bean1 = "+bean1);
 		System.out.println("bean2 = "+bean2);
 		System.out.println("bean3 = "+bean3);
@@ -37,6 +38,7 @@ public class BeanAttributeApp {
 		ScopeBean bean4=context.getBean("prototypeBean", ScopeBean.class);
 		ScopeBean bean5=context.getBean("prototypeBean", ScopeBean.class);
 		ScopeBean bean6=context.getBean("prototypeBean", ScopeBean.class);
+		
 		System.out.println("bean4 = "+bean4);
 		System.out.println("bean5 = "+bean5);
 		System.out.println("bean6 = "+bean6);
@@ -45,3 +47,18 @@ public class BeanAttributeApp {
 		System.out.println("==========================================================");
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

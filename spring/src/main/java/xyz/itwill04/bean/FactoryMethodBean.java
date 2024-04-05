@@ -1,12 +1,12 @@
 package xyz.itwill04.bean;
 
-//½Ì±ÛÅæ µğÀÚÀÎ ÆĞÅÏÀ» Àû¿ëÇÏ¿© ÀÛ¼ºµÈ Å¬·¡½º - ½Ì±ÛÅæ Å¬·¡½º(Singleton Class)
-// => ÇÁ·Î±×·¥¿¡ ÇÊ¿äÇÑ °´Ã¼¸¦ ÇÏ³ª¸¸ Á¦°øÇÏ±â À§ÇÑ ¸ñÀûÀÇ Å¬·¡½º¸¦ ÀÛ¼ºÇÏ±â À§ÇÑ »ç¿ëÇÏ´Â µğÀÚÀÎ ÆĞÅÏ
+//ì‹±ê¸€í†¤ ë””ìì¸ íŒ¨í„´ì„ ì ìš©í•˜ì—¬ ì‘ì„±ëœ í´ë˜ìŠ¤ - ì‹±ê¸€í†¤ í´ë˜ìŠ¤(Singleton Class)
+// => ì‹±ê¸€í†¤ í´ë˜ìŠ¤ : í”„ë¡œê·¸ë¨ì— í•„ìš”í•œ ê°ì²´ë¥¼ í•˜ë‚˜ë§Œ ì œê³µí•˜ê¸° ìœ„í•œ ëª©ì ìœ¼ë¡œ ì‘ì„±ëœ í´ë˜ìŠ¤
 public class FactoryMethodBean {
 	private static FactoryMethodBean _bean;
 	
 	private FactoryMethodBean() {
-		System.out.println("### FactoryMethodBean Å¬·¡½ºÀÇ ±âº» »ı¼ºÀÚ È£Ãâ ###");
+		System.out.println("### FactoryMethodBean í´ë˜ìŠ¤ì˜ ê¸°ë³¸ ìƒì„±ì í˜¸ì¶œ ###");
 	}
 	
 	static {

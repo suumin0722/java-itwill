@@ -2,8 +2,8 @@ package xyz.itwill06.aop;
 
 public class ExecutionTimeBean {
 	public void one() {
-		//System.currentTimeMillis() : ½Ã½ºÅÛÀÇ ÇöÀç ³¯Â¥¿Í ½Ã°£¿¡ ´ëÇÑ Å¸ÀÓ½ºÅÛÇÁ¸¦ ¹İÈ¯ÇÏ´Â ¸Ş¼Òµå
-		//Å¸ÀÓ½ºÅÛÇÁ(TimeStamp) : ³¯Â¥¿Í ½Ã°£¿¡ ´ëÇÑ ¿¬»êÀ» ¸ñÀûÀ¸·Î ³¯Â¥¿Í ½Ã°£À» Á¤¼ö°ªÀ¸·Î º¯È¯ÇÑ °ª
+		//System.currentTimeMillis() : ì‹œìŠ¤í…œì˜ í˜„ì¬ ë‚ ì§œì™€ ì‹œê°„ì— ëŒ€í•œ íƒ€ì„ìŠ¤í…œí”„ë¥¼ ë°˜í™˜í•˜ëŠ” ë©”ì†Œë“œ
+		//íƒ€ì„ìŠ¤í…œí”„(TimeStamp) : ë‚ ì§œì™€ ì‹œê°„ì— ëŒ€í•œ ì—°ì‚°ì„ ëª©ì ìœ¼ë¡œ ë‚ ì§œì™€ ì‹œê°„ì„ ì •ìˆ˜ê°’ìœ¼ë¡œ ë³€í™˜í•œ ê°’
 		//long startTime=System.currentTimeMillis();
 		
 		long count=0;
@@ -13,7 +13,7 @@ public class ExecutionTimeBean {
 		System.out.println("count = "+count);
 
 		//long endTime=System.currentTimeMillis();
-		//System.out.println("ExecutionTimeBean Å¬·¡½ºÀÇ one() ¸Ş¼Òµå ½ÇÇà ½Ã°£ = "
+		//System.out.println("ExecutionTimeBean í´ë˜ìŠ¤ì˜ one() ë©”ì†Œë“œ ì‹¤í–‰ ì‹œê°„ = "
 		//		+(endTime-startTime)+"ms");
 	}
 	
@@ -27,7 +27,7 @@ public class ExecutionTimeBean {
 		System.out.println("count = "+count);
 
 		//long endTime=System.currentTimeMillis();
-		//System.out.println("ExecutionTimeBean Å¬·¡½ºÀÇ two() ¸Ş¼Òµå ½ÇÇà ½Ã°£ = "
+		//System.out.println("ExecutionTimeBean í´ë˜ìŠ¤ì˜ two() ë©”ì†Œë“œ ì‹¤í–‰ ì‹œê°„ = "
 		//		+(endTime-startTime)+"ms");
 		
 	}

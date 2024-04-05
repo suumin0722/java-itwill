@@ -5,14 +5,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class AopAnnotationBean {
 	public void display1() {
-		System.out.println("*** AopAnnotationBean Å¬·¡½ºÀÇ display1() ¸Ş¼Òµå È£Ãâ ***");
+		System.out.println("*** AopAnnotationBean í´ë˜ìŠ¤ì˜ display1() ë©”ì†Œë“œ í˜¸ì¶œ ***");
 	}
 	
 	public void display2() {
-		System.out.println("*** AopAnnotationBean Å¬·¡½ºÀÇ display2() ¸Ş¼Òµå È£Ãâ ***");
+		System.out.println("*** AopAnnotationBean í´ë˜ìŠ¤ì˜ display2() ë©”ì†Œë“œ í˜¸ì¶œ ***");
 	}
 	
 	public void display3() {
-		System.out.println("*** AopAnnotationBean Å¬·¡½ºÀÇ display3() ¸Ş¼Òµå È£Ãâ ***");
+		System.out.println("*** AopAnnotationBean í´ë˜ìŠ¤ì˜ display3() ë©”ì†Œë“œ í˜¸ì¶œ ***");
 	}
 }
