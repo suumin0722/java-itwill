@@ -19,11 +19,11 @@ import xyz.itwill09.service.StudentService;
 @WebAppConfiguration
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml"
 		, "file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml"})
-//@FixMethodOrder : Å×½ºÆ® ¸Þ¼Òµå È£Ãâ¼ø¼­¸¦ ¼³Á¤ÇÏ±â À§ÇÑ ¾î³ëÅ×ÀÌ¼Ç
-//value ¼Ó¼º : MethodSorters Enum ÀÚ·áÇüÀÇ »ó¼ö Áß ÇÏ³ª¸¦ ¼Ó¼º°ªÀ¸·Î ¼³Á¤
-//=> MethodSorters.DEFAULT : JUnit ÇÁ·Î±×·¥ÀÇ ³»ºÎ ±ÔÄ¢¿¡ ÀÇÇØ ¸Þ¼Òµå°¡ Á¤·ÄµÇ¾î È£Ãâ - ½ÇÇà½Ã µ¿ÀÏÇÑ ¼ø¼­·Î Á¤·ÄµÇ¾î È£Ãâ
-//=> MethodSorters.JVM : JVM ÇÁ·Î±×·¥¿¡ ÀÇÇØ ¸Þ¼Òµå°¡ Á¤·ÄµÇ¾î È£Ãâ - ½ÇÇà½Ã ºÒ±ÔÄ¢ÇÑ ¼ø¼­·Î Á¤·ÄµÇ¾î È£Ãâ
-//=> MethodSorters.NAME_ASCENDING : Å×½ºÆ® ¸Þ¼ÒµåÀÇ ÀÌ¸§À¸·Î Á¤·ÄµÇ¾î È£Ãâ - ½ÇÇà½Ã µ¿ÀÏÇÑ ¼ø¼­·Î Á¤·ÄµÇ¾î È£Ãâ
+//@FixMethodOrder : ï¿½×½ï¿½Æ® ï¿½Þ¼Òµï¿½ È£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¼ï¿½
+//value ï¿½Ó¼ï¿½ : MethodSorters Enum ï¿½Ú·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//=> MethodSorters.DEFAULT : JUnit ï¿½ï¿½ï¿½Î±×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼Òµå°¡ ï¿½ï¿½ï¿½ÄµÇ¾ï¿½ È£ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ÄµÇ¾ï¿½ È£ï¿½ï¿½
+//=> MethodSorters.JVM : JVM ï¿½ï¿½ï¿½Î±×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼Òµå°¡ ï¿½ï¿½ï¿½ÄµÇ¾ï¿½ È£ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò±ï¿½Ä¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ÄµÇ¾ï¿½ È£ï¿½ï¿½
+//=> MethodSorters.NAME_ASCENDING : ï¿½×½ï¿½Æ® ï¿½Þ¼Òµï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ÄµÇ¾ï¿½ È£ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ÄµÇ¾ï¿½ È£ï¿½ï¿½
 @FixMethodOrder(value = MethodSorters.DEFAULT)
 @Slf4j
 public class StudentServiceTest {
@@ -32,10 +32,10 @@ public class StudentServiceTest {
 	
 	@Test
 	public void testAddStudent() {
-		Student student=Student.builder().no(4000).name("µÑ¸®").phone("010-1112-1111")
-				.address("¼­¿ï½Ã ±¤Áø±¸").birthday("1992-06-22").build();
+		Student student=Student.builder().no(4000).name("ï¿½Ñ¸ï¿½").phone("010-1112-1111")
+				.address("ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½").birthday("1992-06-22").build();
 		
-		studentService.addStudent(student);
+		studentService.addStuent(student);
 	}
 	
 	@Test

@@ -17,6 +17,6 @@ public class Scheduler {
 	//@Scheduled(cron = "0 0 5 * * 1-5")//매월 매일 월요일부터 금요일까지 5시 0분 0초 
 	//@Scheduled(cron = "0 0 5 1 1-12/3 *")//1월부터 12월까지 3개월마다 매일 5시 0분 0초 
 	public void autoUpdate() {
-		System.out.println("Scheduler 클래스의 autoUpdate() 메소드 호출");
+		//System.out.println("Scheduler 클래스의 autoUpdate() 메소드 호출");
 	}
 }
