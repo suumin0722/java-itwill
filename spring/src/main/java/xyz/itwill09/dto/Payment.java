@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class Payment {
 	private String impUid;//결제 관련 OpenApi에서 제공되는 고유값
-	private String mercharntUid;//결제번호
+	private String merchantUid;//결제번호
 	private long amount;//결제금액
 	private String payDate;//결제일
 	private String userid;//결제 아이디
