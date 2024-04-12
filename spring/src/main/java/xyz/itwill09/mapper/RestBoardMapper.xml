@@ -5,7 +5,7 @@
 		<selectKey resultType="int" keyProperty="idx" order="BEFORE">
 			select rest_board_seq.nextval from dual
 		</selectKey>
-		insert into rest_board values(#{writer}, #{content}, sysdate)
+		insert into rest_board values(#{idx}, #{writer}, #{content}, sysdate)
 	</insert>
 	
 	<update id="updateRestBoard">
@@ -28,4 +28,5 @@
 		select * from (select rownum rn, board.* from (select idx, writer, content, regdate 
 			from rest_board order by idx desc) board) where rn between #{startRow} and #{endRow}
 	</select>
+	
 </mapper>
